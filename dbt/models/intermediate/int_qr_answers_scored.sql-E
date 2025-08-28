@@ -16,4 +16,4 @@ select
        limit 1)
     end
   ) as score_value
-from a
+from a;
