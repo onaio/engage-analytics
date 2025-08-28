@@ -32,4 +32,4 @@ answers as (
     answer ->> 'valueBoolean'             as value_boolean
   from items
 )
-select * from answers;
+select * from answers

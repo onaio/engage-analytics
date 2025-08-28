@@ -12,4 +12,4 @@ with src as (
         _airbyte_extracted_at
     from {{ source('airbyte','patient') }}
 )
-select * from src;
+select * from src

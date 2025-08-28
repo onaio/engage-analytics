@@ -13,4 +13,4 @@ with base as (
         _airbyte_extracted_at
     from {{ source('airbyte','questionnaire_response') }}
 )
-select * from base;
+select * from base

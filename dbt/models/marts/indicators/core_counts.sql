@@ -11,4 +11,4 @@ select
   a.patients,
   b.practitioners,
   c.encounters
-from a,b,c;
+from a,b,c

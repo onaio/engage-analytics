@@ -8,4 +8,4 @@ select
   e.type_display,
   e.period_start,
   e.period_end
-from {{ ref('stg_encounter') }} e;
+from {{ ref('stg_encounter') }} e

@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table "data_warehouse"."engage_analytics"."score_map";
+    -- dbt seed --
+    
+          insert into "data_warehouse"."engage_analytics"."score_map" ("questionnaire_match", "link_id", "coding_code", "numeric_value") values
+          (%s,%s,%s,%s),(%s,%s,%s,%s),(%s,%s,%s,%s),(%s,%s,%s,%s)
+      
+
+;
+  

@@ -7,4 +7,4 @@ select
     resource -> 'telecom' -> 0 ->> 'value'       as phone_raw,
     {{ as_timestamptz("lastUpdated") }}          as lastUpdated_ts,
     _airbyte_extracted_at
-from {{ source('airbyte','practitioner') }};
+from {{ source('airbyte','practitioner') }}

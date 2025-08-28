@@ -18,4 +18,4 @@ latest as (
   from scored
   order by patient_id, questionnaire_canonical, authored_ts desc
 )
-select * from latest;
+select * from latest

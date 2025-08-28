@@ -4,4 +4,4 @@ select
   (p.birth_date)::date as birth_date,
   (date_part('year', age((p.birth_date)::date)))::int as age_years,
   (p.active)::boolean as is_active
-from {{ ref('stg_patient') }} p;
+from {{ ref('stg_patient') }} p

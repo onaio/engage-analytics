@@ -1,0 +1,1655 @@
+[0m10:13:36.588277 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e843c9f40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e843cb5f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e843cbf80>]}
+
+
+============================== 10:13:36.592541 | 33aa59b1-f30c-4d5c-8c5a-825d4aa2b243 ==============================
+[0m10:13:36.592541 [info ] [MainThread]: Running with dbt=1.10.9
+[0m10:13:36.593247 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'debug': 'False', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'use_experimental_parser': 'False', 'target_path': 'None', 'profiles_dir': '/home/dbt/.dbt', 'warn_error': 'None', 'empty': 'None', 'introspect': 'True', 'indirect_selection': 'eager', 'fail_fast': 'False', 'partial_parse': 'True', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt deps', 'cache_selected_only': 'False', 'printer_width': '80', 'log_cache_events': 'False', 'use_colors': 'True', 'no_print': 'None', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'static_parser': 'True'}
+[0m10:13:36.778954 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '33aa59b1-f30c-4d5c-8c5a-825d4aa2b243', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e83d86240>]}
+[0m10:13:36.793316 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-rcn63p17'
+[0m10:13:36.794141 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m10:13:36.852054 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m10:13:36.854741 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m10:13:36.906535 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m10:13:36.916283 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/codegen.json
+[0m10:13:36.963825 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/codegen.json 200
+[0m10:13:36.980396 [info ] [MainThread]: Updating lock file in file path: /home/dbt/fhir-analytics-repo/engage-analytics/dbt/package-lock.yml
+[0m10:13:36.984519 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-vktapo74'
+[0m10:13:36.989713 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m10:13:37.080330 [info ] [MainThread]: Installed from version 1.3.0
+[0m10:13:37.080902 [info ] [MainThread]: Up to date!
+[0m10:13:37.081349 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '33aa59b1-f30c-4d5c-8c5a-825d4aa2b243', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e8433e9c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e83be4b30>]}
+[0m10:13:37.081827 [info ] [MainThread]: Installing dbt-labs/codegen
+[0m10:13:37.151128 [info ] [MainThread]: Installed from version 0.13.1
+[0m10:13:37.151681 [info ] [MainThread]: Up to date!
+[0m10:13:37.152182 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '33aa59b1-f30c-4d5c-8c5a-825d4aa2b243', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e85ebc890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e838f2090>]}
+[0m10:13:37.155240 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.65917826, "process_in_blocks": "3888", "process_kernel_time": 0.226596, "process_mem_max_rss": "103612", "process_out_blocks": "3088", "process_user_time": 2.33578}
+[0m10:13:37.155938 [debug] [MainThread]: Command `dbt deps` succeeded at 10:13:37.155807 after 0.66 seconds
+[0m10:13:37.156351 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e84003d70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e844312b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75e84634e00>]}
+[0m10:13:37.156820 [debug] [MainThread]: Flushing usage events
+[0m10:13:37.206206 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:43:48.648447 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe2965f9394c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe2965fc7e7b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe2965fc7f380>]}
+
+
+============================== 12:43:48.652677 | dfdcd4af-03b5-4303-9f49-f185845c4a04 ==============================
+[0m12:43:48.652677 [info ] [MainThread]: Running with dbt=1.10.9
+[0m12:43:48.653391 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'debug': 'False', 'send_anonymous_usage_stats': 'True', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'printer_width': '80', 'invocation_command': 'dbt debug --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'version_check': 'True', 'log_format': 'default', 'warn_error': 'None', 'static_parser': 'True', 'no_print': 'None', 'empty': 'None', 'profiles_dir': '/home/dbt/.dbt', 'target_path': 'None', 'quiet': 'False', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'introspect': 'True', 'log_cache_events': 'False', 'fail_fast': 'False', 'write_json': 'True'}
+[0m12:43:48.664147 [info ] [MainThread]: dbt version: 1.10.9
+[0m12:43:48.664710 [info ] [MainThread]: python version: 3.12.3
+[0m12:43:48.665065 [info ] [MainThread]: python path: /home/dbt/.venvs/dbt/bin/python3
+[0m12:43:48.665391 [info ] [MainThread]: os info: Linux-6.14.0-1011-aws-aarch64-with-glibc2.39
+[0m12:43:48.665782 [info ] [MainThread]: Using profiles dir at /home/dbt/.dbt
+[0m12:43:48.666099 [info ] [MainThread]: Using profiles.yml file at /home/dbt/.dbt/profiles.yml
+[0m12:43:48.666408 [info ] [MainThread]: Using dbt_project.yml file at /home/dbt/fhir-analytics-repo/engage-analytics/dbt/dbt_project.yml
+[0m12:43:48.837047 [info ] [MainThread]: Configuration:
+[0m12:43:48.837636 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m12:43:48.838017 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m12:43:48.838352 [info ] [MainThread]: Required dependencies:
+[0m12:43:48.838739 [debug] [MainThread]: Executing "git --help"
+[0m12:43:48.842134 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m12:43:48.842741 [debug] [MainThread]: STDERR: "b''"
+[0m12:43:48.843077 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m12:43:48.843453 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m12:43:48.843815 [info ] [MainThread]: [31m1 check failed:[0m
+[0m12:43:48.844146 [info ] [MainThread]: dbt looked for a profiles.yml file in /home/dbt/.dbt/profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m12:43:48.845227 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.2901169, "process_in_blocks": "0", "process_kernel_time": 0.21309, "process_mem_max_rss": "101804", "process_out_blocks": "16", "process_user_time": 2.050695}
+[0m12:43:48.845818 [debug] [MainThread]: Command `dbt debug` failed at 12:43:48.845697 after 0.29 seconds
+[0m12:43:48.846227 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe2965f54d130>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe2965f2a5160>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe296621cd700>]}
+[0m12:43:48.846706 [debug] [MainThread]: Flushing usage events
+[0m12:43:48.897164 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:03:02.194665 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xef514a1219d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xef514853de80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xef514853f1a0>]}
+
+
+============================== 13:03:02.199716 | e6b7240e-85d9-41b9-bd13-692989f68423 ==============================
+[0m13:03:02.199716 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:03:02.200521 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'no_print': 'None', 'invocation_command': 'dbt debug --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'log_cache_events': 'False', 'empty': 'None', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'use_colors': 'True', 'log_format': 'default', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'warn_error': 'None', 'quiet': 'False', 'introspect': 'True', 'profiles_dir': '/home/dbt/.dbt', 'version_check': 'True', 'printer_width': '80', 'fail_fast': 'False', 'static_parser': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'partial_parse': 'True'}
+[0m13:03:02.225941 [info ] [MainThread]: dbt version: 1.10.9
+[0m13:03:02.226515 [info ] [MainThread]: python version: 3.12.3
+[0m13:03:02.226917 [info ] [MainThread]: python path: /home/dbt/.venvs/dbt/bin/python3
+[0m13:03:02.227257 [info ] [MainThread]: os info: Linux-6.14.0-1011-aws-aarch64-with-glibc2.39
+[0m13:03:02.227643 [info ] [MainThread]: Using profiles dir at /home/dbt/.dbt
+[0m13:03:02.228000 [info ] [MainThread]: Using profiles.yml file at /home/dbt/.dbt/profiles.yml
+[0m13:03:02.228332 [info ] [MainThread]: Using dbt_project.yml file at /home/dbt/fhir-analytics-repo/engage-analytics/dbt/dbt_project.yml
+[0m13:03:02.406641 [info ] [MainThread]: Configuration:
+[0m13:03:02.407266 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m13:03:02.407681 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:03:02.408031 [info ] [MainThread]: Required dependencies:
+[0m13:03:02.408393 [debug] [MainThread]: Executing "git --help"
+[0m13:03:02.410821 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:03:02.411388 [debug] [MainThread]: STDERR: "b''"
+[0m13:03:02.411765 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:03:02.412137 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m13:03:02.412507 [info ] [MainThread]: [31m1 check failed:[0m
+[0m13:03:02.412867 [info ] [MainThread]: dbt looked for a profiles.yml file in /home/dbt/.dbt/profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m13:03:02.414002 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.3329806, "process_in_blocks": "2704", "process_kernel_time": 0.246151, "process_mem_max_rss": "101488", "process_out_blocks": "16", "process_user_time": 2.307822}
+[0m13:03:02.414636 [debug] [MainThread]: Command `dbt debug` failed at 13:03:02.414501 after 0.33 seconds
+[0m13:03:02.415083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xef51476e3740>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xef514941c3e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xef51475b8c20>]}
+[0m13:03:02.415575 [debug] [MainThread]: Flushing usage events
+[0m13:03:02.469099 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:04:03.687714 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe26749bd6cc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe26749bd5e50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe26749bd7b90>]}
+
+
+============================== 13:04:03.691982 | f36eb368-f490-4f74-9756-fb7f343d0719 ==============================
+[0m13:04:03.691982 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:04:03.692739 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt debug --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'quiet': 'False', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'write_json': 'True', 'target_path': 'None', 'fail_fast': 'False', 'no_print': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'None', 'static_parser': 'True', 'use_colors': 'True', 'log_format': 'default', 'debug': 'False', 'printer_width': '80', 'version_check': 'True', 'partial_parse': 'True', 'profiles_dir': '/home/dbt/.dbt'}
+[0m13:04:03.703507 [info ] [MainThread]: dbt version: 1.10.9
+[0m13:04:03.704066 [info ] [MainThread]: python version: 3.12.3
+[0m13:04:03.704480 [info ] [MainThread]: python path: /home/dbt/.venvs/dbt/bin/python3
+[0m13:04:03.704856 [info ] [MainThread]: os info: Linux-6.14.0-1011-aws-aarch64-with-glibc2.39
+[0m13:04:03.705237 [info ] [MainThread]: Using profiles dir at /home/dbt/.dbt
+[0m13:04:03.705609 [info ] [MainThread]: Using profiles.yml file at /home/dbt/.dbt/profiles.yml
+[0m13:04:03.705963 [info ] [MainThread]: Using dbt_project.yml file at /home/dbt/fhir-analytics-repo/engage-analytics/dbt/dbt_project.yml
+[0m13:04:03.881766 [info ] [MainThread]: Configuration:
+[0m13:04:03.882374 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m13:04:03.882820 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:04:03.883199 [info ] [MainThread]: Required dependencies:
+[0m13:04:03.883624 [debug] [MainThread]: Executing "git --help"
+[0m13:04:03.885931 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:04:03.886499 [debug] [MainThread]: STDERR: "b''"
+[0m13:04:03.886874 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:04:03.887250 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m13:04:03.887674 [info ] [MainThread]: [31m1 check failed:[0m
+[0m13:04:03.888043 [info ] [MainThread]: dbt looked for a profiles.yml file in /home/dbt/.dbt/profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m13:04:03.889174 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.2935214, "process_in_blocks": "0", "process_kernel_time": 0.203237, "process_mem_max_rss": "101508", "process_out_blocks": "16", "process_user_time": 2.056288}
+[0m13:04:03.889768 [debug] [MainThread]: Command `dbt debug` failed at 13:04:03.889644 after 0.29 seconds
+[0m13:04:03.890188 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe2674a146cc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe26749228cb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe26749d9ee70>]}
+[0m13:04:03.890685 [debug] [MainThread]: Flushing usage events
+[0m13:04:03.944022 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:09:23.765951 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xec0da51f0350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xec0da51f2420>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xec0da51f3d10>]}
+
+
+============================== 13:09:23.770074 | 24a7266f-b1cf-4236-bfee-ca36987c499d ==============================
+[0m13:09:23.770074 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:09:23.770807 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'empty': 'None', 'invocation_command': 'dbt debug --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'quiet': 'False', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'write_json': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'profiles_dir': '/home/dbt/.dbt', 'fail_fast': 'False', 'introspect': 'True', 'static_parser': 'True', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'use_colors': 'True', 'partial_parse': 'True', 'log_cache_events': 'False', 'debug': 'False', 'printer_width': '80'}
+[0m13:09:23.781110 [info ] [MainThread]: dbt version: 1.10.9
+[0m13:09:23.781695 [info ] [MainThread]: python version: 3.12.3
+[0m13:09:23.782071 [info ] [MainThread]: python path: /home/dbt/.venvs/dbt/bin/python3
+[0m13:09:23.782453 [info ] [MainThread]: os info: Linux-6.14.0-1011-aws-aarch64-with-glibc2.39
+[0m13:09:23.782857 [info ] [MainThread]: Using profiles dir at /home/dbt/.dbt
+[0m13:09:23.783222 [info ] [MainThread]: Using profiles.yml file at /home/dbt/.dbt/profiles.yml
+[0m13:09:23.783632 [info ] [MainThread]: Using dbt_project.yml file at /home/dbt/fhir-analytics-repo/engage-analytics/dbt/dbt_project.yml
+[0m13:09:23.956153 [info ] [MainThread]: Configuration:
+[0m13:09:23.956772 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m13:09:23.957176 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:09:23.957562 [info ] [MainThread]: Required dependencies:
+[0m13:09:23.957963 [debug] [MainThread]: Executing "git --help"
+[0m13:09:23.960168 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:09:23.960682 [debug] [MainThread]: STDERR: "b''"
+[0m13:09:23.960998 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:09:23.961347 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m13:09:23.961713 [info ] [MainThread]: [31m1 check failed:[0m
+[0m13:09:23.962045 [info ] [MainThread]: dbt looked for a profiles.yml file in /home/dbt/.dbt/profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m13:09:23.963214 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.28584993, "process_in_blocks": "0", "process_kernel_time": 0.219086, "process_mem_max_rss": "101500", "process_out_blocks": "16", "process_user_time": 1.973769}
+[0m13:09:23.963842 [debug] [MainThread]: Command `dbt debug` failed at 13:09:23.963713 after 0.29 seconds
+[0m13:09:23.964312 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xec0da5143740>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xec0da5926870>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xec0da600e480>]}
+[0m13:09:23.964809 [debug] [MainThread]: Flushing usage events
+[0m13:09:24.017754 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:47:59.299853 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75376ba5ee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75376be7530>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75376be67e0>]}
+
+
+============================== 13:47:59.303961 | e8febfe8-7f95-4003-a625-44b3031fddef ==============================
+[0m13:47:59.303961 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:47:59.304673 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'profiles_dir': '/home/dbt/.dbt', 'invocation_command': 'dbt debug --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'use_colors': 'True', 'cache_selected_only': 'False', 'introspect': 'True', 'warn_error': 'None', 'empty': 'None', 'target_path': 'None', 'use_experimental_parser': 'False', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'static_parser': 'True', 'log_cache_events': 'False', 'log_format': 'default', 'no_print': 'None', 'printer_width': '80', 'write_json': 'True', 'version_check': 'True', 'indirect_selection': 'eager', 'debug': 'False'}
+[0m13:47:59.315092 [info ] [MainThread]: dbt version: 1.10.9
+[0m13:47:59.315695 [info ] [MainThread]: python version: 3.12.3
+[0m13:47:59.316072 [info ] [MainThread]: python path: /home/dbt/.venvs/dbt/bin/python3
+[0m13:47:59.316431 [info ] [MainThread]: os info: Linux-6.14.0-1011-aws-aarch64-with-glibc2.39
+[0m13:47:59.394529 [info ] [MainThread]: Using profiles dir at /home/dbt/.dbt
+[0m13:47:59.395104 [info ] [MainThread]: Using profiles.yml file at /home/dbt/.dbt/profiles.yml
+[0m13:47:59.395478 [info ] [MainThread]: Using dbt_project.yml file at /home/dbt/fhir-analytics-repo/engage-analytics/dbt/dbt_project.yml
+[0m13:47:59.396047 [info ] [MainThread]: adapter type: postgres
+[0m13:47:59.396410 [info ] [MainThread]: adapter version: 1.9.0
+[0m13:47:59.566189 [info ] [MainThread]: Configuration:
+[0m13:47:59.566804 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m13:47:59.567173 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:47:59.567533 [info ] [MainThread]: Required dependencies:
+[0m13:47:59.567902 [debug] [MainThread]: Executing "git --help"
+[0m13:47:59.570099 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:47:59.570644 [debug] [MainThread]: STDERR: "b''"
+[0m13:47:59.570978 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:47:59.571337 [info ] [MainThread]: Connection:
+[0m13:47:59.571725 [info ] [MainThread]:   host: omh-engage-production-postgres.cwb4kemo2n2s.us-east-1.rds.amazonaws.com
+[0m13:47:59.572059 [info ] [MainThread]:   port: 5432
+[0m13:47:59.572377 [info ] [MainThread]:   user: data_warehouse_user
+[0m13:47:59.572730 [info ] [MainThread]:   database: data_warehouse
+[0m13:47:59.573046 [info ] [MainThread]:   schema: engage_analytics
+[0m13:47:59.573359 [info ] [MainThread]:   connect_timeout: 30
+[0m13:47:59.573705 [info ] [MainThread]:   role: None
+[0m13:47:59.574016 [info ] [MainThread]:   search_path: None
+[0m13:47:59.574322 [info ] [MainThread]:   keepalives_idle: 0
+[0m13:47:59.574676 [info ] [MainThread]:   sslmode: prefer
+[0m13:47:59.574988 [info ] [MainThread]:   sslcert: None
+[0m13:47:59.575293 [info ] [MainThread]:   sslkey: None
+[0m13:47:59.575635 [info ] [MainThread]:   sslrootcert: None
+[0m13:47:59.575943 [info ] [MainThread]:   application_name: dbt
+[0m13:47:59.576243 [info ] [MainThread]:   retries: 1
+[0m13:47:59.576759 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m13:47:59.656681 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m13:47:59.683811 [debug] [MainThread]: Using postgres connection "debug"
+[0m13:47:59.684338 [debug] [MainThread]: On debug: select 1 as id
+[0m13:47:59.684728 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:47:59.717829 [debug] [MainThread]: SQL status: SELECT 1 in 0.033 seconds
+[0m13:47:59.719222 [debug] [MainThread]: On debug: Close
+[0m13:47:59.719891 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m13:47:59.720443 [info ] [MainThread]: [32mAll checks passed![0m
+[0m13:47:59.721591 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 0.5095776, "process_in_blocks": "3544", "process_kernel_time": 0.243036, "process_mem_max_rss": "113096", "process_out_blocks": "24", "process_user_time": 2.134505}
+[0m13:47:59.722161 [debug] [MainThread]: Command `dbt debug` succeeded at 13:47:59.722041 after 0.51 seconds
+[0m13:47:59.722557 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m13:47:59.722975 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75376654bc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe75375613410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe753766e55b0>]}
+[0m13:47:59.723455 [debug] [MainThread]: Flushing usage events
+[0m13:47:59.774734 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:48:34.169730 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b5f9cc80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b5b78fb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b7e5bda0>]}
+
+
+============================== 13:48:34.173846 | b779320c-d25b-4b38-b646-e3be3881b705 ==============================
+[0m13:48:34.173846 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:48:34.174579 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'printer_width': '80', 'debug': 'False', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'use_colors': 'True', 'fail_fast': 'False', 'quiet': 'False', 'invocation_command': 'dbt deps --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'empty': 'None', 'write_json': 'True', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'cache_selected_only': 'False', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'use_experimental_parser': 'False', 'profiles_dir': '/home/dbt/.dbt', 'introspect': 'True', 'log_cache_events': 'False', 'indirect_selection': 'eager', 'log_format': 'default'}
+[0m13:48:34.353222 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b779320c-d25b-4b38-b646-e3be3881b705', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b4d02f90>]}
+[0m13:48:34.380948 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-1ozgoumh'
+[0m13:48:34.381543 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m13:48:34.434410 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m13:48:34.436905 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m13:48:34.484402 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m13:48:34.490643 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/codegen.json
+[0m13:48:34.539256 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/codegen.json 200
+[0m13:48:34.543512 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m13:48:34.641635 [info ] [MainThread]: Installed from version 1.3.0
+[0m13:48:34.642168 [info ] [MainThread]: Up to date!
+[0m13:48:34.642658 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'b779320c-d25b-4b38-b646-e3be3881b705', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b5ced580>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b5cedf70>]}
+[0m13:48:34.643121 [info ] [MainThread]: Installing dbt-labs/codegen
+[0m13:48:34.718940 [info ] [MainThread]: Installed from version 0.13.1
+[0m13:48:34.719600 [info ] [MainThread]: Up to date!
+[0m13:48:34.720176 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'b779320c-d25b-4b38-b646-e3be3881b705', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b4aa19d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b4aa1a30>]}
+[0m13:48:34.721981 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.6419058, "process_in_blocks": "8", "process_kernel_time": 0.237602, "process_mem_max_rss": "103176", "process_out_blocks": "3080", "process_user_time": 2.270049}
+[0m13:48:34.722786 [debug] [MainThread]: Command `dbt deps` succeeded at 13:48:34.722635 after 0.64 seconds
+[0m13:48:34.723295 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b55973b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b4db39b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8e6b4d01850>]}
+[0m13:48:34.723895 [debug] [MainThread]: Flushing usage events
+[0m13:48:34.780975 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:48:48.226070 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a8a0fbf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a8a0ebd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0aadb5820>]}
+
+
+============================== 13:48:48.230250 | 610d1e8e-09e5-47a9-9841-73c1a97527d2 ==============================
+[0m13:48:48.230250 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:48:48.230987 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'quiet': 'False', 'invocation_command': 'dbt build --project-dir /home/dbt/fhir-analytics-repo/engage-analytics/dbt --profiles-dir /home/dbt/.dbt', 'partial_parse': 'True', 'printer_width': '80', 'use_experimental_parser': 'False', 'log_format': 'default', 'debug': 'False', 'write_json': 'True', 'static_parser': 'True', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'introspect': 'True', 'empty': 'False', 'no_print': 'None', 'target_path': 'None', 'profiles_dir': '/home/dbt/.dbt', 'fail_fast': 'False', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'warn_error': 'None'}
+[0m13:48:48.485997 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a800af90>]}
+[0m13:48:48.593540 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a74ff590>]}
+[0m13:48:48.594586 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m13:48:48.698212 [debug] [MainThread]: checksum: 2980a21a4fc584f27f03453e4d43c980470d5de79693c5ce0bc2b462a52f088e, vars: {}, profile: , target: prod, version: 1.10.9
+[0m13:48:48.699173 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m13:48:48.699774 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a7f3c620>]}
+[0m13:48:50.677161 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a6fb4e30>]}
+[0m13:48:50.775237 [debug] [MainThread]: Wrote artifact WritableManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/manifest.json
+[0m13:48:50.777661 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/semantic_manifest.json
+[0m13:48:50.812551 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a68fb4d0>]}
+[0m13:48:50.813211 [info ] [MainThread]: Found 12 models, 1 seed, 11 sources, 575 macros
+[0m13:48:50.816464 [info ] [MainThread]: 
+[0m13:48:50.817017 [info ] [MainThread]: Concurrency: 4 threads (target='prod')
+[0m13:48:50.817408 [info ] [MainThread]: 
+[0m13:48:50.818067 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m13:48:50.823733 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:48:50.824522 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:48:50.825256 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:48:50.836502 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:48:50.993200 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:48:50.993749 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:48:50.994255 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:48:50.994673 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:48:50.995076 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:48:50.995553 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:48:50.995988 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:48:50.996409 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:48:50.996851 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:48:50.997252 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:48:50.997662 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:48:50.998292 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:48:51.027776 [debug] [ThreadPool]: SQL status: SELECT 22 in 0.030 seconds
+[0m13:48:51.028821 [debug] [ThreadPool]: SQL status: SELECT 22 in 0.031 seconds
+[0m13:48:51.028371 [debug] [ThreadPool]: SQL status: SELECT 22 in 0.032 seconds
+[0m13:48:51.030756 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:48:51.031488 [debug] [ThreadPool]: SQL status: SELECT 22 in 0.033 seconds
+[0m13:48:51.033241 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:48:51.034990 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:48:51.036846 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:48:51.038963 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now create_data_warehouse_engage_analytics_mart)
+[0m13:48:51.039525 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now create_data_warehouse_engage_analytics_int)
+[0m13:48:51.040173 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now create_data_warehouse_engage_analytics_stg)
+[0m13:48:51.040780 [debug] [ThreadPool]: Creating schema "database: "data_warehouse"
+schema: "engage_analytics_mart"
+"
+[0m13:48:51.041276 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now create_data_warehouse_engage_analytics)
+[0m13:48:51.042015 [debug] [ThreadPool]: Creating schema "database: "data_warehouse"
+schema: "engage_analytics_int"
+"
+[0m13:48:51.042690 [debug] [ThreadPool]: Creating schema "database: "data_warehouse"
+schema: "engage_analytics_stg"
+"
+[0m13:48:51.050348 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_mart"
+[0m13:48:51.051148 [debug] [ThreadPool]: Creating schema "database: "data_warehouse"
+schema: "engage_analytics"
+"
+[0m13:48:51.053831 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_int"
+[0m13:48:51.056742 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_stg"
+[0m13:48:51.057338 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_mart: BEGIN
+[0m13:48:51.062865 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics"
+[0m13:48:51.063497 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_int: BEGIN
+[0m13:48:51.063990 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_stg: BEGIN
+[0m13:48:51.064493 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.064943 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics: BEGIN
+[0m13:48:51.065367 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.065863 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.066724 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.087292 [debug] [ThreadPool]: SQL status: BEGIN in 0.022 seconds
+[0m13:48:51.087876 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_int"
+[0m13:48:51.088248 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_int: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "create_data_warehouse_engage_analytics_int"} */
+create schema if not exists "engage_analytics_int"
+[0m13:48:51.089150 [debug] [ThreadPool]: SQL status: BEGIN in 0.023 seconds
+[0m13:48:51.089589 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_stg"
+[0m13:48:51.089967 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_stg: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "create_data_warehouse_engage_analytics_stg"} */
+create schema if not exists "engage_analytics_stg"
+[0m13:48:51.092132 [debug] [ThreadPool]: SQL status: BEGIN in 0.025 seconds
+[0m13:48:51.092635 [debug] [ThreadPool]: SQL status: BEGIN in 0.028 seconds
+[0m13:48:51.093086 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.004 seconds
+[0m13:48:51.093515 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics"
+[0m13:48:51.094044 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.004 seconds
+[0m13:48:51.094471 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_mart"
+[0m13:48:51.095832 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_int: COMMIT
+[0m13:48:51.096312 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "create_data_warehouse_engage_analytics"} */
+create schema if not exists "engage_analytics"
+[0m13:48:51.097606 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_stg: COMMIT
+[0m13:48:51.098094 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_mart: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "create_data_warehouse_engage_analytics_mart"} */
+create schema if not exists "engage_analytics_mart"
+[0m13:48:51.098571 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_int"
+[0m13:48:51.099130 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_stg"
+[0m13:48:51.099662 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_int: COMMIT
+[0m13:48:51.100136 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_stg: COMMIT
+[0m13:48:51.100536 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.002 seconds
+[0m13:48:51.100910 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.001 seconds
+[0m13:48:51.102501 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics: COMMIT
+[0m13:48:51.103057 [debug] [ThreadPool]: SQL status: COMMIT in 0.002 seconds
+[0m13:48:51.103481 [debug] [ThreadPool]: SQL status: COMMIT in 0.002 seconds
+[0m13:48:51.104766 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_mart: COMMIT
+[0m13:48:51.105317 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics"
+[0m13:48:51.105818 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_int: Close
+[0m13:48:51.106319 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_stg: Close
+[0m13:48:51.106843 [debug] [ThreadPool]: Using postgres connection "create_data_warehouse_engage_analytics_mart"
+[0m13:48:51.107273 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics: COMMIT
+[0m13:48:51.108711 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_mart: COMMIT
+[0m13:48:51.110444 [debug] [ThreadPool]: SQL status: COMMIT in 0.001 seconds
+[0m13:48:51.110903 [debug] [ThreadPool]: SQL status: COMMIT in 0.002 seconds
+[0m13:48:51.111412 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics_mart: Close
+[0m13:48:51.111919 [debug] [ThreadPool]: On create_data_warehouse_engage_analytics: Close
+[0m13:48:51.115105 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_data_warehouse_engage_analytics, now list_data_warehouse_engage_analytics_mart)
+[0m13:48:51.115921 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_data_warehouse_engage_analytics_mart, now list_data_warehouse_engage_analytics_int)
+[0m13:48:51.116684 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_data_warehouse_engage_analytics_int, now list_data_warehouse_engage_analytics_stg)
+[0m13:48:51.122631 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_data_warehouse_engage_analytics_stg, now list_data_warehouse_engage_analytics)
+[0m13:48:51.125630 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_mart"
+[0m13:48:51.128622 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_int"
+[0m13:48:51.131476 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_stg"
+[0m13:48:51.134110 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics"
+[0m13:48:51.134692 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: BEGIN
+[0m13:48:51.135153 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: BEGIN
+[0m13:48:51.135663 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: BEGIN
+[0m13:48:51.136094 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: BEGIN
+[0m13:48:51.136530 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.136947 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.137377 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.137823 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:48:51.159605 [debug] [ThreadPool]: SQL status: BEGIN in 0.022 seconds
+[0m13:48:51.160145 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics"
+[0m13:48:51.160540 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics'
+  
+[0m13:48:51.161146 [debug] [ThreadPool]: SQL status: BEGIN in 0.024 seconds
+[0m13:48:51.161566 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_stg"
+[0m13:48:51.161919 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics_stg"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics_stg'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics_stg'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics_stg'
+  
+[0m13:48:51.163179 [debug] [ThreadPool]: SQL status: BEGIN in 0.027 seconds
+[0m13:48:51.163630 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_mart"
+[0m13:48:51.163998 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics_mart"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics_mart'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics_mart'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics_mart'
+  
+[0m13:48:51.164920 [debug] [ThreadPool]: SQL status: BEGIN in 0.028 seconds
+[0m13:48:51.165308 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_int"
+[0m13:48:51.165709 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics_int"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics_int'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics_int'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics_int'
+  
+[0m13:48:51.166241 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.005 seconds
+[0m13:48:51.167936 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: ROLLBACK
+[0m13:48:51.168533 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.004 seconds
+[0m13:48:51.168974 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.007 seconds
+[0m13:48:51.170725 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: ROLLBACK
+[0m13:48:51.171179 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: Close
+[0m13:48:51.171636 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.006 seconds
+[0m13:48:51.173159 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: ROLLBACK
+[0m13:48:51.175165 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: ROLLBACK
+[0m13:48:51.175914 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: Close
+[0m13:48:51.176900 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: Close
+[0m13:48:51.177315 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: Close
+[0m13:48:51.184402 [debug] [MainThread]: Using postgres connection "master"
+[0m13:48:51.184952 [debug] [MainThread]: On master: BEGIN
+[0m13:48:51.185265 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:48:51.200289 [debug] [MainThread]: SQL status: BEGIN in 0.015 seconds
+[0m13:48:51.200834 [debug] [MainThread]: Using postgres connection "master"
+[0m13:48:51.201264 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m13:48:51.222057 [debug] [MainThread]: SQL status: SELECT 0 in 0.020 seconds
+[0m13:48:51.223750 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a44790d0>]}
+[0m13:48:51.224378 [debug] [MainThread]: On master: ROLLBACK
+[0m13:48:51.225220 [debug] [MainThread]: Using postgres connection "master"
+[0m13:48:51.225629 [debug] [MainThread]: On master: BEGIN
+[0m13:48:51.226579 [debug] [MainThread]: SQL status: BEGIN in 0.001 seconds
+[0m13:48:51.226977 [debug] [MainThread]: On master: COMMIT
+[0m13:48:51.227301 [debug] [MainThread]: Using postgres connection "master"
+[0m13:48:51.227644 [debug] [MainThread]: On master: COMMIT
+[0m13:48:51.228280 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m13:48:51.228672 [debug] [MainThread]: On master: Close
+[0m13:48:51.233355 [debug] [Thread-1 (]: Began running node model.opensrp_mh.stg_encounter
+[0m13:48:51.233985 [debug] [Thread-2 (]: Began running node model.opensrp_mh.stg_patient
+[0m13:48:51.234595 [debug] [Thread-3 (]: Began running node model.opensrp_mh.stg_practitioner
+[0m13:48:51.235732 [debug] [Thread-4 (]: Began running node model.opensrp_mh.stg_questionnaire_response
+[0m13:48:51.235262 [info ] [Thread-1 (]: 1 of 13 START sql view model engage_analytics_stg.stg_encounter ................ [RUN]
+[0m13:48:51.236600 [info ] [Thread-2 (]: 2 of 13 START sql view model engage_analytics_stg.stg_patient .................. [RUN]
+[0m13:48:51.237390 [info ] [Thread-3 (]: 3 of 13 START sql view model engage_analytics_stg.stg_practitioner ............. [RUN]
+[0m13:48:51.238757 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics_stg, now model.opensrp_mh.stg_encounter)
+[0m13:48:51.240650 [debug] [Thread-1 (]: Began compiling node model.opensrp_mh.stg_encounter
+[0m13:48:51.238129 [info ] [Thread-4 (]: 4 of 13 START sql view model engage_analytics_stg.stg_questionnaire_response ... [RUN]
+[0m13:48:51.240072 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics_int, now model.opensrp_mh.stg_practitioner)
+[0m13:48:51.239338 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics_mart, now model.opensrp_mh.stg_patient)
+[0m13:48:51.251058 [debug] [Thread-1 (]: Writing injected SQL for node "model.opensrp_mh.stg_encounter"
+[0m13:48:51.251824 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics, now model.opensrp_mh.stg_questionnaire_response)
+[0m13:48:51.252378 [debug] [Thread-3 (]: Began compiling node model.opensrp_mh.stg_practitioner
+[0m13:48:51.252907 [debug] [Thread-2 (]: Began compiling node model.opensrp_mh.stg_patient
+[0m13:48:51.253614 [debug] [Thread-4 (]: Began compiling node model.opensrp_mh.stg_questionnaire_response
+[0m13:48:51.257773 [debug] [Thread-3 (]: Writing injected SQL for node "model.opensrp_mh.stg_practitioner"
+[0m13:48:51.261994 [debug] [Thread-2 (]: Writing injected SQL for node "model.opensrp_mh.stg_patient"
+[0m13:48:51.267106 [debug] [Thread-4 (]: Writing injected SQL for node "model.opensrp_mh.stg_questionnaire_response"
+[0m13:48:51.268015 [debug] [Thread-1 (]: Began executing node model.opensrp_mh.stg_encounter
+[0m13:48:51.268598 [debug] [Thread-3 (]: Began executing node model.opensrp_mh.stg_practitioner
+[0m13:48:51.279895 [debug] [Thread-4 (]: Began executing node model.opensrp_mh.stg_questionnaire_response
+[0m13:48:51.280552 [debug] [Thread-2 (]: Began executing node model.opensrp_mh.stg_patient
+[0m13:48:51.361168 [debug] [Thread-4 (]: Writing runtime sql for node "model.opensrp_mh.stg_questionnaire_response"
+[0m13:48:51.360542 [debug] [Thread-1 (]: Writing runtime sql for node "model.opensrp_mh.stg_encounter"
+[0m13:48:51.367289 [debug] [Thread-3 (]: Writing runtime sql for node "model.opensrp_mh.stg_practitioner"
+[0m13:48:51.371536 [debug] [Thread-2 (]: Writing runtime sql for node "model.opensrp_mh.stg_patient"
+[0m13:48:51.373090 [debug] [Thread-1 (]: Using postgres connection "model.opensrp_mh.stg_encounter"
+[0m13:48:51.373822 [debug] [Thread-4 (]: Using postgres connection "model.opensrp_mh.stg_questionnaire_response"
+[0m13:48:51.374565 [debug] [Thread-3 (]: Using postgres connection "model.opensrp_mh.stg_practitioner"
+[0m13:48:51.375111 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: BEGIN
+[0m13:48:51.375612 [debug] [Thread-2 (]: Using postgres connection "model.opensrp_mh.stg_patient"
+[0m13:48:51.376121 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: BEGIN
+[0m13:48:51.376641 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: BEGIN
+[0m13:48:51.377140 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m13:48:51.377640 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: BEGIN
+[0m13:48:51.378162 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m13:48:51.378710 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m13:48:51.379380 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:48:51.400292 [debug] [Thread-4 (]: SQL status: BEGIN in 0.022 seconds
+[0m13:48:51.400946 [debug] [Thread-4 (]: Using postgres connection "model.opensrp_mh.stg_questionnaire_response"
+[0m13:48:51.401450 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_questionnaire_response"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_questionnaire_response__dbt_tmp"
+    
+    
+  as (
+    with base as (
+    select
+        id as fhir_id,
+        resource,
+        resource ->> 'id'                          as resource_id,
+        resource ->> 'status'                      as status,
+        resource ->> 'questionnaire'               as questionnaire_canonical,
+        
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'subject' ->> 'reference', '^\w+/', ''))
+    as patient_id,
+        
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'encounter' ->> 'reference', '^\w+/', ''))
+  as encounter_id,
+        
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'author' ->> 'reference', '^\w+/', ''))
+     as author_id,
+        
+    -- Handle ISO strings from FHIR meta/fields safely
+    (resource ->> 'authored'::timestamptz)
+ as authored_ts,
+        
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+        as lastUpdated_ts,
+        _airbyte_extracted_at
+    from "data_warehouse"."airbyte"."questionnaire_response"
+)
+select * from base;
+  );
+[0m13:48:51.401966 [debug] [Thread-3 (]: SQL status: BEGIN in 0.023 seconds
+[0m13:48:51.402729 [debug] [Thread-3 (]: Using postgres connection "model.opensrp_mh.stg_practitioner"
+[0m13:48:51.403214 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_practitioner"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_practitioner__dbt_tmp"
+    
+    
+  as (
+    select
+    id as fhir_id,
+    resource,
+    resource ->> 'id'                            as resource_id,
+    resource -> 'name' -> 0 ->> 'family'         as family_name,
+    resource -> 'name' -> 0 -> 'given' ->> 0     as given_name,
+    resource -> 'telecom' -> 0 ->> 'value'       as phone_raw,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+          as lastUpdated_ts,
+    _airbyte_extracted_at
+from "data_warehouse"."airbyte"."practitioner";
+  );
+[0m13:48:51.403820 [debug] [Thread-4 (]: Postgres adapter: Postgres error: syntax error at or near ";"
+LINE 37: select * from base;
+                           ^
+
+[0m13:48:51.404565 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: ROLLBACK
+[0m13:48:51.405152 [debug] [Thread-2 (]: SQL status: BEGIN in 0.026 seconds
+[0m13:48:51.405667 [debug] [Thread-1 (]: SQL status: BEGIN in 0.029 seconds
+[0m13:48:51.406237 [debug] [Thread-3 (]: Postgres adapter: Postgres error: syntax error at or near ";"
+LINE 19: from "data_warehouse"."airbyte"."practitioner";
+                                                       ^
+
+[0m13:48:51.406886 [debug] [Thread-2 (]: Using postgres connection "model.opensrp_mh.stg_patient"
+[0m13:48:51.407500 [debug] [Thread-1 (]: Using postgres connection "model.opensrp_mh.stg_encounter"
+[0m13:48:51.408106 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: Close
+[0m13:48:51.408634 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: ROLLBACK
+[0m13:48:51.409176 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_patient"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_patient__dbt_tmp"
+    
+    
+  as (
+    with src as (
+    select
+        id as fhir_id,
+        resource,
+        resource ->> 'id'                  as resource_id,
+        resource -> 'meta' ->> 'versionId' as version_id,
+        resource -> 'meta' ->> 'lastUpdated' as meta_last_updated,
+        resource ->> 'gender'              as gender,
+        resource ->> 'birthDate'           as birth_date,
+        resource ->> 'active'              as active,
+        
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+ as lastUpdated_ts,
+        _airbyte_extracted_at
+    from "data_warehouse"."airbyte"."patient"
+)
+select * from src;
+  );
+[0m13:48:51.409791 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_encounter"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_encounter__dbt_tmp"
+    
+    
+  as (
+    select
+    id as fhir_id,
+    resource,
+    resource ->> 'id'                                 as resource_id,
+    resource ->> 'status'                             as status,
+    resource -> 'class' ->> 'code'                    as class_code,
+    resource -> 'type'  -> 0 -> 'coding' -> 0 ->> 'code' as type_code,
+    resource -> 'type'  -> 0 -> 'coding' -> 0 ->> 'display' as type_display,
+    
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'subject' ->> 'reference', '^\w+/', ''))
+ as patient_id,
+    
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'participant' -> 0 -> 'individual' ->> 'reference', '^\w+/', ''))
+ as practitioner_id,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (resource ->> 'period' ->> 'start'::timestamptz)
+ as period_start,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (resource ->> 'period' ->> 'end'::timestamptz)
+   as period_end,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+                       as lastUpdated_ts,
+    _airbyte_extracted_at
+from "data_warehouse"."airbyte"."encounter";
+  );
+[0m13:48:51.412083 [debug] [Thread-2 (]: Postgres adapter: Postgres error: syntax error at or near ";"
+LINE 24: select * from src;
+                          ^
+
+[0m13:48:51.414911 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: ROLLBACK
+[0m13:48:51.414177 [debug] [Thread-1 (]: Postgres adapter: Postgres error: syntax error at or near ";"
+LINE 36: from "data_warehouse"."airbyte"."encounter";
+                                                    ^
+
+[0m13:48:51.413615 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: Close
+[0m13:48:51.416463 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: Close
+[0m13:48:51.416946 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: ROLLBACK
+[0m13:48:51.422940 [debug] [Thread-4 (]: Database Error in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)
+  syntax error at or near ";"
+  LINE 37: select * from base;
+                             ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_questionnaire_response.sql
+[0m13:48:51.425342 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: Close
+[0m13:48:51.427290 [debug] [Thread-2 (]: Database Error in model stg_patient (models/staging/stg_patient.sql)
+  syntax error at or near ";"
+  LINE 24: select * from src;
+                            ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_patient.sql
+[0m13:48:51.429333 [debug] [Thread-3 (]: Database Error in model stg_practitioner (models/staging/stg_practitioner.sql)
+  syntax error at or near ";"
+  LINE 19: from "data_warehouse"."airbyte"."practitioner";
+                                                         ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_practitioner.sql
+[0m13:48:51.431250 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a6a2b260>]}
+[0m13:48:51.432959 [debug] [Thread-1 (]: Database Error in model stg_encounter (models/staging/stg_encounter.sql)
+  syntax error at or near ";"
+  LINE 36: from "data_warehouse"."airbyte"."encounter";
+                                                      ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_encounter.sql
+[0m13:48:51.433670 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a68e8e60>]}
+[0m13:48:51.434264 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a45e7aa0>]}
+[0m13:48:51.435768 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a69c5cd0>]}
+[0m13:48:51.435167 [error] [Thread-4 (]: 4 of 13 ERROR creating sql view model engage_analytics_stg.stg_questionnaire_response  [[31mERROR[0m in 0.17s]
+[0m13:48:51.436830 [error] [Thread-2 (]: 2 of 13 ERROR creating sql view model engage_analytics_stg.stg_patient ......... [[31mERROR[0m in 0.19s]
+[0m13:48:51.437616 [error] [Thread-3 (]: 3 of 13 ERROR creating sql view model engage_analytics_stg.stg_practitioner .... [[31mERROR[0m in 0.19s]
+[0m13:48:51.438662 [error] [Thread-1 (]: 1 of 13 ERROR creating sql view model engage_analytics_stg.stg_encounter ....... [[31mERROR[0m in 0.20s]
+[0m13:48:51.439576 [debug] [Thread-4 (]: Finished running node model.opensrp_mh.stg_questionnaire_response
+[0m13:48:51.440251 [debug] [Thread-2 (]: Finished running node model.opensrp_mh.stg_patient
+[0m13:48:51.440909 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.stg_practitioner
+[0m13:48:51.441655 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.stg_encounter
+[0m13:48:51.442236 [debug] [Thread-4 (]: Began running node seed.opensrp_mh.score_map
+[0m13:48:51.442968 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_questionnaire_response' to be skipped because of status 'error'.  Reason: Database Error in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)
+  syntax error at or near ";"
+  LINE 37: select * from base;
+                             ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_questionnaire_response.sql.
+[0m13:48:51.445089 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_patient' to be skipped because of status 'error'.  Reason: Database Error in model stg_patient (models/staging/stg_patient.sql)
+  syntax error at or near ";"
+  LINE 24: select * from src;
+                            ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_patient.sql.
+[0m13:48:51.443968 [info ] [Thread-4 (]: 5 of 13 START seed file engage_analytics.score_map ............................. [RUN]
+[0m13:48:51.446049 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_practitioner' to be skipped because of status 'error'.  Reason: Database Error in model stg_practitioner (models/staging/stg_practitioner.sql)
+  syntax error at or near ";"
+  LINE 19: from "data_warehouse"."airbyte"."practitioner";
+                                                         ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_practitioner.sql.
+[0m13:48:51.446622 [debug] [Thread-2 (]: Began running node model.opensrp_mh.int_qr_answers_long
+[0m13:48:51.447641 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.opensrp_mh.stg_questionnaire_response, now seed.opensrp_mh.score_map)
+[0m13:48:51.447138 [debug] [Thread-1 (]: Began running node model.opensrp_mh.dim_patient
+[0m13:48:51.448339 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_encounter' to be skipped because of status 'error'.  Reason: Database Error in model stg_encounter (models/staging/stg_encounter.sql)
+  syntax error at or near ";"
+  LINE 36: from "data_warehouse"."airbyte"."encounter";
+                                                      ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_encounter.sql.
+[0m13:48:51.449526 [debug] [Thread-3 (]: Began running node model.opensrp_mh.dim_practitioner
+[0m13:48:51.449031 [info ] [Thread-2 (]: 6 of 13 SKIP relation engage_analytics_int.int_qr_answers_long ................. [[33mSKIP[0m]
+[0m13:48:51.450185 [debug] [Thread-4 (]: Began compiling node seed.opensrp_mh.score_map
+[0m13:48:51.450770 [info ] [Thread-1 (]: 7 of 13 SKIP relation engage_analytics_mart.dim_patient ........................ [[33mSKIP[0m]
+[0m13:48:51.451571 [info ] [Thread-3 (]: 8 of 13 SKIP relation engage_analytics_mart.dim_practitioner ................... [[33mSKIP[0m]
+[0m13:48:51.452327 [debug] [Thread-2 (]: Finished running node model.opensrp_mh.int_qr_answers_long
+[0m13:48:51.452914 [debug] [Thread-4 (]: Began executing node seed.opensrp_mh.score_map
+[0m13:48:51.453458 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.dim_patient
+[0m13:48:51.453976 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.dim_practitioner
+[0m13:48:51.454585 [debug] [Thread-2 (]: Began running node model.opensrp_mh.fact_encounter
+[0m13:48:51.455034 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.int_qr_answers_long' to be skipped because of status 'skipped'. 
+[0m13:48:51.485908 [debug] [Thread-4 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:48:51.486746 [info ] [Thread-2 (]: 9 of 13 SKIP relation engage_analytics_mart.fact_encounter ..................... [[33mSKIP[0m]
+[0m13:48:51.487540 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.dim_patient' to be skipped because of status 'skipped'. 
+[0m13:48:51.488201 [debug] [Thread-4 (]: On seed.opensrp_mh.score_map: BEGIN
+[0m13:48:51.488717 [debug] [Thread-1 (]: Began running node model.opensrp_mh.fact_qr_latest_scores
+[0m13:48:51.489261 [debug] [Thread-2 (]: Finished running node model.opensrp_mh.fact_encounter
+[0m13:48:51.489811 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.dim_practitioner' to be skipped because of status 'skipped'. 
+[0m13:48:51.490292 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m13:48:51.491489 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.fact_encounter' to be skipped because of status 'skipped'. 
+[0m13:48:51.490866 [info ] [Thread-1 (]: 10 of 13 SKIP relation engage_analytics_mart.fact_qr_latest_scores ............. [[33mSKIP[0m]
+[0m13:48:51.492633 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.fact_qr_latest_scores
+[0m13:48:51.493302 [debug] [Thread-3 (]: Began running node model.opensrp_mh.core_counts
+[0m13:48:51.493854 [debug] [Thread-2 (]: Began running node model.opensrp_mh.patients_no_followup
+[0m13:48:51.494390 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.fact_qr_latest_scores' to be skipped because of status 'skipped'. 
+[0m13:48:51.494912 [info ] [Thread-3 (]: 11 of 13 SKIP relation engage_analytics_mart.core_counts ....................... [[33mSKIP[0m]
+[0m13:48:51.495581 [info ] [Thread-2 (]: 12 of 13 SKIP relation engage_analytics_mart.patients_no_followup .............. [[33mSKIP[0m]
+[0m13:48:51.496628 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.core_counts
+[0m13:48:51.497171 [debug] [Thread-2 (]: Finished running node model.opensrp_mh.patients_no_followup
+[0m13:48:51.497688 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.core_counts' to be skipped because of status 'skipped'. 
+[0m13:48:51.498214 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.patients_no_followup' to be skipped because of status 'skipped'. 
+[0m13:48:51.508605 [debug] [Thread-4 (]: SQL status: BEGIN in 0.018 seconds
+[0m13:48:51.509179 [debug] [Thread-4 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:48:51.509630 [debug] [Thread-4 (]: On seed.opensrp_mh.score_map: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "seed.opensrp_mh.score_map"} */
+
+    create table "data_warehouse"."engage_analytics"."score_map" ("questionnaire_match" text,"link_id" text,"coding_code" integer,"numeric_value" integer)
+  
+[0m13:48:51.517006 [debug] [Thread-4 (]: SQL status: CREATE TABLE in 0.007 seconds
+[0m13:48:51.536929 [debug] [Thread-4 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:48:51.537514 [debug] [Thread-4 (]: On seed.opensrp_mh.score_map: 
+          insert into "data_warehouse"."engage_analytics"."score_map" ("questionnaire_match", "link_id", "coding_code", "numeric_value") values
+          (%s,%s,%s,%s),(%s,%s,%s,%s),(%s,%s,%s,%s),(%s,%s,%s,%s)
+      ...
+[0m13:48:51.539660 [debug] [Thread-4 (]: SQL status: INSERT 0 4 in 0.002 seconds
+[0m13:48:51.549336 [debug] [Thread-4 (]: Writing runtime SQL for node "seed.opensrp_mh.score_map"
+[0m13:48:51.571234 [debug] [Thread-4 (]: On seed.opensrp_mh.score_map: COMMIT
+[0m13:48:51.571859 [debug] [Thread-4 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:48:51.572267 [debug] [Thread-4 (]: On seed.opensrp_mh.score_map: COMMIT
+[0m13:48:51.573897 [debug] [Thread-4 (]: SQL status: COMMIT in 0.001 seconds
+[0m13:48:51.576183 [debug] [Thread-4 (]: On seed.opensrp_mh.score_map: Close
+[0m13:48:51.577178 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '610d1e8e-09e5-47a9-9841-73c1a97527d2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a4313740>]}
+[0m13:48:51.577875 [info ] [Thread-4 (]: 5 of 13 OK loaded seed file engage_analytics.score_map ......................... [[32mINSERT 4[0m in 0.13s]
+[0m13:48:51.578594 [debug] [Thread-4 (]: Finished running node seed.opensrp_mh.score_map
+[0m13:48:51.579466 [debug] [Thread-1 (]: Began running node model.opensrp_mh.int_qr_answers_scored
+[0m13:48:51.580176 [info ] [Thread-1 (]: 13 of 13 SKIP relation engage_analytics_int.int_qr_answers_scored .............. [[33mSKIP[0m]
+[0m13:48:51.580729 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.int_qr_answers_scored
+[0m13:48:51.581172 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.int_qr_answers_scored' to be skipped because of status 'skipped'. 
+[0m13:48:51.582900 [debug] [MainThread]: Using postgres connection "master"
+[0m13:48:51.583268 [debug] [MainThread]: On master: BEGIN
+[0m13:48:51.583602 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m13:48:51.598901 [debug] [MainThread]: SQL status: BEGIN in 0.015 seconds
+[0m13:48:51.599481 [debug] [MainThread]: On master: COMMIT
+[0m13:48:51.599858 [debug] [MainThread]: Using postgres connection "master"
+[0m13:48:51.600172 [debug] [MainThread]: On master: COMMIT
+[0m13:48:51.600871 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m13:48:51.601275 [debug] [MainThread]: On master: Close
+[0m13:48:51.602007 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:48:51.602398 [debug] [MainThread]: Connection 'seed.opensrp_mh.score_map' was properly closed.
+[0m13:48:51.602750 [debug] [MainThread]: Connection 'model.opensrp_mh.stg_encounter' was properly closed.
+[0m13:48:51.603038 [debug] [MainThread]: Connection 'model.opensrp_mh.stg_practitioner' was properly closed.
+[0m13:48:51.603324 [debug] [MainThread]: Connection 'model.opensrp_mh.stg_patient' was properly closed.
+[0m13:48:51.603819 [info ] [MainThread]: 
+[0m13:48:51.604295 [info ] [MainThread]: Finished running 1 seed, 12 view models in 0 hours 0 minutes and 0.79 seconds (0.79s).
+[0m13:48:51.606026 [debug] [MainThread]: Command end result
+[0m13:48:51.640024 [debug] [MainThread]: Wrote artifact WritableManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/manifest.json
+[0m13:48:51.642747 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/semantic_manifest.json
+[0m13:48:51.650011 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/run_results.json
+[0m13:48:51.650520 [info ] [MainThread]: 
+[0m13:48:51.651067 [info ] [MainThread]: [31mCompleted with 4 errors, 0 partial successes, and 0 warnings:[0m
+[0m13:48:51.651592 [info ] [MainThread]: 
+[0m13:48:51.652134 [error] [MainThread]: [31mFailure in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)[0m
+[0m13:48:51.652661 [error] [MainThread]:   Database Error in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)
+  syntax error at or near ";"
+  LINE 37: select * from base;
+                             ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_questionnaire_response.sql
+[0m13:48:51.653077 [info ] [MainThread]: 
+[0m13:48:51.653579 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_questionnaire_response.sql
+[0m13:48:51.654009 [info ] [MainThread]: 
+[0m13:48:51.654511 [error] [MainThread]: [31mFailure in model stg_patient (models/staging/stg_patient.sql)[0m
+[0m13:48:51.655020 [error] [MainThread]:   Database Error in model stg_patient (models/staging/stg_patient.sql)
+  syntax error at or near ";"
+  LINE 24: select * from src;
+                            ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_patient.sql
+[0m13:48:51.655459 [info ] [MainThread]: 
+[0m13:48:51.655925 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_patient.sql
+[0m13:48:51.656336 [info ] [MainThread]: 
+[0m13:48:51.656827 [error] [MainThread]: [31mFailure in model stg_practitioner (models/staging/stg_practitioner.sql)[0m
+[0m13:48:51.657301 [error] [MainThread]:   Database Error in model stg_practitioner (models/staging/stg_practitioner.sql)
+  syntax error at or near ";"
+  LINE 19: from "data_warehouse"."airbyte"."practitioner";
+                                                         ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_practitioner.sql
+[0m13:48:51.657715 [info ] [MainThread]: 
+[0m13:48:51.658172 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_practitioner.sql
+[0m13:48:51.658632 [info ] [MainThread]: 
+[0m13:48:51.659105 [error] [MainThread]: [31mFailure in model stg_encounter (models/staging/stg_encounter.sql)[0m
+[0m13:48:51.659595 [error] [MainThread]:   Database Error in model stg_encounter (models/staging/stg_encounter.sql)
+  syntax error at or near ";"
+  LINE 36: from "data_warehouse"."airbyte"."encounter";
+                                                      ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_encounter.sql
+[0m13:48:51.659996 [info ] [MainThread]: 
+[0m13:48:51.660475 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_encounter.sql
+[0m13:48:51.660926 [info ] [MainThread]: 
+[0m13:48:51.661369 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=4 SKIP=8 NO-OP=0 TOTAL=13
+[0m13:48:51.662581 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 3.5255148, "process_in_blocks": "3224", "process_kernel_time": 0.313719, "process_mem_max_rss": "132736", "process_out_blocks": "4040", "process_user_time": 5.002381}
+[0m13:48:51.663125 [debug] [MainThread]: Command `dbt build` failed at 13:48:51.663016 after 3.53 seconds
+[0m13:48:51.663560 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a8103c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a86c78c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe8d0a80a9340>]}
+[0m13:48:51.663995 [debug] [MainThread]: Flushing usage events
+[0m13:48:51.718248 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:55:28.918348 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c90a2240>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c97f9c40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c97f9340>]}
+
+
+============================== 13:55:28.922627 | 9d402b8c-3783-4d0e-a0eb-1e355f05a5d3 ==============================
+[0m13:55:28.922627 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:55:28.923361 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'log_cache_events': 'False', 'log_format': 'default', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt clean', 'version_check': 'True', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'target_path': 'None', 'printer_width': '80', 'use_colors': 'True', 'fail_fast': 'False', 'indirect_selection': 'eager', 'empty': 'None', 'use_experimental_parser': 'False', 'debug': 'False', 'introspect': 'True', 'profiles_dir': '/home/dbt/.dbt', 'warn_error': 'None', 'no_print': 'None', 'static_parser': 'True', 'write_json': 'True', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:55:29.103000 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9d402b8c-3783-4d0e-a0eb-1e355f05a5d3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c88bf410>]}
+[0m13:55:29.115226 [debug] [MainThread]: Resource report: {"command_name": "clean", "command_success": true, "command_wall_clock_time": 0.2837246, "process_in_blocks": "0", "process_kernel_time": 0.216056, "process_mem_max_rss": "101604", "process_out_blocks": "8", "process_user_time": 1.958595}
+[0m13:55:29.115799 [debug] [MainThread]: Command `dbt clean` succeeded at 13:55:29.115684 after 0.28 seconds
+[0m13:55:29.116190 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c88bf410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c916e7e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xf857c97f9c40>]}
+[0m13:55:29.116614 [debug] [MainThread]: Flushing usage events
+[0m13:55:29.168817 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:55:43.388697 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412c446ba0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412c1d1970>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412c20f110>]}
+
+
+============================== 13:55:43.392843 | 90f5753b-73f9-4b90-a09f-e4dbfa524bab ==============================
+[0m13:55:43.392843 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:55:43.393549 [debug] [MainThread]: running dbt with arguments {'target_path': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt deps', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'indirect_selection': 'eager', 'warn_error': 'None', 'quiet': 'False', 'introspect': 'True', 'printer_width': '80', 'static_parser': 'True', 'log_format': 'default', 'version_check': 'True', 'partial_parse': 'True', 'debug': 'False', 'profiles_dir': '/home/dbt/.dbt', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'None', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'no_print': 'None'}
+[0m13:55:43.573115 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '90f5753b-73f9-4b90-a09f-e4dbfa524bab', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412ba7af90>]}
+[0m13:55:43.600659 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-qt_q8clm'
+[0m13:55:43.601229 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m13:55:43.655786 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m13:55:43.658269 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m13:55:43.708195 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m13:55:43.714519 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/codegen.json
+[0m13:55:43.761904 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/codegen.json 200
+[0m13:55:43.766016 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m13:55:43.857799 [info ] [MainThread]: Installed from version 1.3.0
+[0m13:55:43.858344 [info ] [MainThread]: Up to date!
+[0m13:55:43.858858 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '90f5753b-73f9-4b90-a09f-e4dbfa524bab', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412b6fbcb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412b6fb8c0>]}
+[0m13:55:43.859347 [info ] [MainThread]: Installing dbt-labs/codegen
+[0m13:55:43.926730 [info ] [MainThread]: Installed from version 0.13.1
+[0m13:55:43.927268 [info ] [MainThread]: Up to date!
+[0m13:55:43.927754 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '90f5753b-73f9-4b90-a09f-e4dbfa524bab', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412c967e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412b6fb8c0>]}
+[0m13:55:43.929170 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.6275617, "process_in_blocks": "0", "process_kernel_time": 0.230079, "process_mem_max_rss": "103328", "process_out_blocks": "3080", "process_user_time": 2.292745}
+[0m13:55:43.929787 [debug] [MainThread]: Command `dbt deps` succeeded at 13:55:43.929663 after 0.63 seconds
+[0m13:55:43.930193 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412ba977a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412c11be30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xfd412be4e960>]}
+[0m13:55:43.930658 [debug] [MainThread]: Flushing usage events
+[0m13:55:43.980517 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:55:54.788110 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c415e540>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c22811f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c2283da0>]}
+
+
+============================== 13:55:54.792253 | a483f185-88c2-4ac1-970a-6a736435334b ==============================
+[0m13:55:54.792253 [info ] [MainThread]: Running with dbt=1.10.9
+[0m13:55:54.792983 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'write_json': 'True', 'log_format': 'default', 'debug': 'False', 'cache_selected_only': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'invocation_command': 'dbt build', 'introspect': 'True', 'log_path': '/home/dbt/fhir-analytics-repo/engage-analytics/dbt/logs', 'empty': 'False', 'no_print': 'None', 'version_check': 'True', 'partial_parse': 'True', 'target_path': 'None', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'quiet': 'False', 'profiles_dir': '/home/dbt/.dbt', 'printer_width': '80'}
+[0m13:55:55.044383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c1292f90>]}
+[0m13:55:55.151502 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c2283410>]}
+[0m13:55:55.152523 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m13:55:55.252089 [debug] [MainThread]: checksum: 2980a21a4fc584f27f03453e4d43c980470d5de79693c5ce0bc2b462a52f088e, vars: {}, profile: , target: prod, version: 1.10.9
+[0m13:55:55.252968 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m13:55:55.253447 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c11eddf0>]}
+[0m13:55:57.218411 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c04b8500>]}
+[0m13:55:57.315404 [debug] [MainThread]: Wrote artifact WritableManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/manifest.json
+[0m13:55:57.317784 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/semantic_manifest.json
+[0m13:55:57.347526 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936bfb9ed20>]}
+[0m13:55:57.348156 [info ] [MainThread]: Found 12 models, 1 seed, 11 sources, 575 macros
+[0m13:55:57.351359 [info ] [MainThread]: 
+[0m13:55:57.351916 [info ] [MainThread]: Concurrency: 4 threads (target='prod')
+[0m13:55:57.352296 [info ] [MainThread]: 
+[0m13:55:57.352929 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m13:55:57.358512 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:55:57.359284 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:55:57.360004 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:55:57.360700 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_warehouse'
+[0m13:55:57.520929 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:55:57.521489 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:55:57.521995 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:55:57.522399 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:55:57.522854 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse"
+[0m13:55:57.523328 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:55:57.523796 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:55:57.524219 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:55:57.524667 [debug] [ThreadPool]: On list_data_warehouse: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:55:57.525108 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:55:57.525543 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:55:57.526193 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:55:57.550697 [debug] [ThreadPool]: SQL status: SELECT 26 in 0.026 seconds
+[0m13:55:57.552640 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:55:57.553384 [debug] [ThreadPool]: SQL status: SELECT 26 in 0.028 seconds
+[0m13:55:57.555466 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:55:57.556014 [debug] [ThreadPool]: SQL status: SELECT 26 in 0.030 seconds
+[0m13:55:57.556498 [debug] [ThreadPool]: SQL status: SELECT 26 in 0.031 seconds
+[0m13:55:57.558215 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:55:57.560149 [debug] [ThreadPool]: On list_data_warehouse: Close
+[0m13:55:57.563249 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now list_data_warehouse_engage_analytics_stg)
+[0m13:55:57.564008 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now list_data_warehouse_engage_analytics_mart)
+[0m13:55:57.564760 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now list_data_warehouse_engage_analytics)
+[0m13:55:57.572697 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_stg"
+[0m13:55:57.579458 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: BEGIN
+[0m13:55:57.576464 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_mart"
+[0m13:55:57.578951 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics"
+[0m13:55:57.573930 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_warehouse, now list_data_warehouse_engage_analytics_int)
+[0m13:55:57.579824 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:55:57.580238 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: BEGIN
+[0m13:55:57.580681 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: BEGIN
+[0m13:55:57.583117 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_int"
+[0m13:55:57.583831 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:55:57.584278 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:55:57.585099 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: BEGIN
+[0m13:55:57.586015 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:55:57.605731 [debug] [ThreadPool]: SQL status: BEGIN in 0.022 seconds
+[0m13:55:57.606278 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_mart"
+[0m13:55:57.606783 [debug] [ThreadPool]: SQL status: BEGIN in 0.022 seconds
+[0m13:55:57.607370 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics_mart"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics_mart'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics_mart'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics_mart'
+  
+[0m13:55:57.607956 [debug] [ThreadPool]: SQL status: BEGIN in 0.028 seconds
+[0m13:55:57.608399 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics"
+[0m13:55:57.608885 [debug] [ThreadPool]: SQL status: BEGIN in 0.023 seconds
+[0m13:55:57.609351 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_stg"
+[0m13:55:57.609823 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics'
+  
+[0m13:55:57.610284 [debug] [ThreadPool]: Using postgres connection "list_data_warehouse_engage_analytics_int"
+[0m13:55:57.610753 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics_stg"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics_stg'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics_stg'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics_stg'
+  
+[0m13:55:57.611340 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "list_data_warehouse_engage_analytics_int"} */
+select
+      'data_warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'engage_analytics_int'
+    union all
+    select
+      'data_warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'engage_analytics_int'
+    union all
+    select
+      'data_warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'engage_analytics_int'
+  
+[0m13:55:57.612688 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.003 seconds
+[0m13:55:57.614324 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: ROLLBACK
+[0m13:55:57.615592 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.004 seconds
+[0m13:55:57.616020 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_mart: Close
+[0m13:55:57.617517 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: ROLLBACK
+[0m13:55:57.617990 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.007 seconds
+[0m13:55:57.618358 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.007 seconds
+[0m13:55:57.620214 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: ROLLBACK
+[0m13:55:57.620997 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_int: Close
+[0m13:55:57.622463 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: ROLLBACK
+[0m13:55:57.623464 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics: Close
+[0m13:55:57.623830 [debug] [ThreadPool]: On list_data_warehouse_engage_analytics_stg: Close
+[0m13:55:57.633614 [debug] [MainThread]: Using postgres connection "master"
+[0m13:55:57.634108 [debug] [MainThread]: On master: BEGIN
+[0m13:55:57.634448 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:55:57.649649 [debug] [MainThread]: SQL status: BEGIN in 0.015 seconds
+[0m13:55:57.650170 [debug] [MainThread]: Using postgres connection "master"
+[0m13:55:57.650672 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m13:55:57.668927 [debug] [MainThread]: SQL status: SELECT 0 in 0.018 seconds
+[0m13:55:57.670642 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c035f080>]}
+[0m13:55:57.671278 [debug] [MainThread]: On master: ROLLBACK
+[0m13:55:57.672104 [debug] [MainThread]: Using postgres connection "master"
+[0m13:55:57.672522 [debug] [MainThread]: On master: BEGIN
+[0m13:55:57.673647 [debug] [MainThread]: SQL status: BEGIN in 0.001 seconds
+[0m13:55:57.674047 [debug] [MainThread]: On master: COMMIT
+[0m13:55:57.674387 [debug] [MainThread]: Using postgres connection "master"
+[0m13:55:57.674776 [debug] [MainThread]: On master: COMMIT
+[0m13:55:57.675529 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m13:55:57.675916 [debug] [MainThread]: On master: Close
+[0m13:55:57.679308 [debug] [Thread-1 (]: Began running node model.opensrp_mh.stg_encounter
+[0m13:55:57.680236 [debug] [Thread-2 (]: Began running node model.opensrp_mh.stg_patient
+[0m13:55:57.680831 [debug] [Thread-3 (]: Began running node model.opensrp_mh.stg_practitioner
+[0m13:55:57.681932 [debug] [Thread-4 (]: Began running node model.opensrp_mh.stg_questionnaire_response
+[0m13:55:57.681503 [info ] [Thread-1 (]: 1 of 13 START sql view model engage_analytics_stg.stg_encounter ................ [RUN]
+[0m13:55:57.682741 [info ] [Thread-2 (]: 2 of 13 START sql view model engage_analytics_stg.stg_patient .................. [RUN]
+[0m13:55:57.684642 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics_stg, now model.opensrp_mh.stg_encounter)
+[0m13:55:57.685225 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics, now model.opensrp_mh.stg_patient)
+[0m13:55:57.683328 [info ] [Thread-3 (]: 3 of 13 START sql view model engage_analytics_stg.stg_practitioner ............. [RUN]
+[0m13:55:57.687148 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics_int, now model.opensrp_mh.stg_practitioner)
+[0m13:55:57.686616 [debug] [Thread-2 (]: Began compiling node model.opensrp_mh.stg_patient
+[0m13:55:57.684074 [info ] [Thread-4 (]: 4 of 13 START sql view model engage_analytics_stg.stg_questionnaire_response ... [RUN]
+[0m13:55:57.685948 [debug] [Thread-1 (]: Began compiling node model.opensrp_mh.stg_encounter
+[0m13:55:57.687641 [debug] [Thread-3 (]: Began compiling node model.opensrp_mh.stg_practitioner
+[0m13:55:57.696628 [debug] [Thread-2 (]: Writing injected SQL for node "model.opensrp_mh.stg_patient"
+[0m13:55:57.697285 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly list_data_warehouse_engage_analytics_mart, now model.opensrp_mh.stg_questionnaire_response)
+[0m13:55:57.702158 [debug] [Thread-1 (]: Writing injected SQL for node "model.opensrp_mh.stg_encounter"
+[0m13:55:57.706189 [debug] [Thread-3 (]: Writing injected SQL for node "model.opensrp_mh.stg_practitioner"
+[0m13:55:57.707067 [debug] [Thread-4 (]: Began compiling node model.opensrp_mh.stg_questionnaire_response
+[0m13:55:57.712506 [debug] [Thread-4 (]: Writing injected SQL for node "model.opensrp_mh.stg_questionnaire_response"
+[0m13:55:57.713283 [debug] [Thread-3 (]: Began executing node model.opensrp_mh.stg_practitioner
+[0m13:55:57.727225 [debug] [Thread-1 (]: Began executing node model.opensrp_mh.stg_encounter
+[0m13:55:57.727793 [debug] [Thread-4 (]: Began executing node model.opensrp_mh.stg_questionnaire_response
+[0m13:55:57.728255 [debug] [Thread-2 (]: Began executing node model.opensrp_mh.stg_patient
+[0m13:55:57.783592 [debug] [Thread-1 (]: Writing runtime sql for node "model.opensrp_mh.stg_encounter"
+[0m13:55:57.784959 [debug] [Thread-4 (]: Writing runtime sql for node "model.opensrp_mh.stg_questionnaire_response"
+[0m13:55:57.786772 [debug] [Thread-3 (]: Writing runtime sql for node "model.opensrp_mh.stg_practitioner"
+[0m13:55:57.790752 [debug] [Thread-2 (]: Writing runtime sql for node "model.opensrp_mh.stg_patient"
+[0m13:55:57.792604 [debug] [Thread-1 (]: Using postgres connection "model.opensrp_mh.stg_encounter"
+[0m13:55:57.793217 [debug] [Thread-2 (]: Using postgres connection "model.opensrp_mh.stg_patient"
+[0m13:55:57.793838 [debug] [Thread-3 (]: Using postgres connection "model.opensrp_mh.stg_practitioner"
+[0m13:55:57.794331 [debug] [Thread-4 (]: Using postgres connection "model.opensrp_mh.stg_questionnaire_response"
+[0m13:55:57.794815 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: BEGIN
+[0m13:55:57.795306 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: BEGIN
+[0m13:55:57.795809 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: BEGIN
+[0m13:55:57.796279 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: BEGIN
+[0m13:55:57.796767 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m13:55:57.797230 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:55:57.797716 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m13:55:57.798175 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m13:55:57.820611 [debug] [Thread-2 (]: SQL status: BEGIN in 0.023 seconds
+[0m13:55:57.821195 [debug] [Thread-2 (]: Using postgres connection "model.opensrp_mh.stg_patient"
+[0m13:55:57.821679 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_patient"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_patient__dbt_tmp"
+    
+    
+  as (
+    with src as (
+    select
+        id as fhir_id,
+        resource,
+        resource ->> 'id'                  as resource_id,
+        resource -> 'meta' ->> 'versionId' as version_id,
+        resource -> 'meta' ->> 'lastUpdated' as meta_last_updated,
+        resource ->> 'gender'              as gender,
+        resource ->> 'birthDate'           as birth_date,
+        resource ->> 'active'              as active,
+        
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+ as lastUpdated_ts,
+        _airbyte_extracted_at
+    from "data_warehouse"."airbyte"."patient"
+)
+select * from src
+  );
+[0m13:55:57.822198 [debug] [Thread-4 (]: SQL status: BEGIN in 0.024 seconds
+[0m13:55:57.822903 [debug] [Thread-4 (]: Using postgres connection "model.opensrp_mh.stg_questionnaire_response"
+[0m13:55:57.824016 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_questionnaire_response"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_questionnaire_response__dbt_tmp"
+    
+    
+  as (
+    with base as (
+    select
+        id as fhir_id,
+        resource,
+        resource ->> 'id'                          as resource_id,
+        resource ->> 'status'                      as status,
+        resource ->> 'questionnaire'               as questionnaire_canonical,
+        
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'subject' ->> 'reference', '^\w+/', ''))
+    as patient_id,
+        
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'encounter' ->> 'reference', '^\w+/', ''))
+  as encounter_id,
+        
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'author' ->> 'reference', '^\w+/', ''))
+     as author_id,
+        
+    -- Handle ISO strings from FHIR meta/fields safely
+    (resource ->> 'authored'::timestamptz)
+ as authored_ts,
+        
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+        as lastUpdated_ts,
+        _airbyte_extracted_at
+    from "data_warehouse"."airbyte"."questionnaire_response"
+)
+select * from base
+  );
+[0m13:55:57.823503 [debug] [Thread-3 (]: SQL status: BEGIN in 0.026 seconds
+[0m13:55:57.824568 [debug] [Thread-2 (]: Postgres adapter: Postgres error: column "lastupdated" does not exist
+LINE 19:     (lastUpdated::timestamptz)
+              ^
+HINT:  Perhaps you meant to reference the column "patient.lastUpdated".
+
+[0m13:55:57.825281 [debug] [Thread-3 (]: Using postgres connection "model.opensrp_mh.stg_practitioner"
+[0m13:55:57.825848 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: ROLLBACK
+[0m13:55:57.826408 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_practitioner"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_practitioner__dbt_tmp"
+    
+    
+  as (
+    select
+    id as fhir_id,
+    resource,
+    resource ->> 'id'                            as resource_id,
+    resource -> 'name' -> 0 ->> 'family'         as family_name,
+    resource -> 'name' -> 0 -> 'given' ->> 0     as given_name,
+    resource -> 'telecom' -> 0 ->> 'value'       as phone_raw,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+          as lastUpdated_ts,
+    _airbyte_extracted_at
+from "data_warehouse"."airbyte"."practitioner"
+  );
+[0m13:55:57.826948 [debug] [Thread-1 (]: SQL status: BEGIN in 0.030 seconds
+[0m13:55:57.827408 [debug] [Thread-4 (]: Postgres adapter: Postgres error: invalid input syntax for type timestamp with time zone: "authored"
+LINE 28:     (resource ->> 'authored'::timestamptz)
+                           ^
+
+[0m13:55:57.828139 [debug] [Thread-1 (]: Using postgres connection "model.opensrp_mh.stg_encounter"
+[0m13:55:57.828772 [debug] [Thread-2 (]: On model.opensrp_mh.stg_patient: Close
+[0m13:55:57.829272 [debug] [Thread-3 (]: Postgres adapter: Postgres error: column "lastupdated" does not exist
+LINE 16:     (lastUpdated::timestamptz)
+              ^
+HINT:  Perhaps you meant to reference the column "practitioner.lastUpdated".
+
+[0m13:55:57.829729 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: ROLLBACK
+[0m13:55:57.830284 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "model.opensrp_mh.stg_encounter"} */
+
+  create view "data_warehouse"."engage_analytics_stg"."stg_encounter__dbt_tmp"
+    
+    
+  as (
+    select
+    id as fhir_id,
+    resource,
+    resource ->> 'id'                                 as resource_id,
+    resource ->> 'status'                             as status,
+    resource -> 'class' ->> 'code'                    as class_code,
+    resource -> 'type'  -> 0 -> 'coding' -> 0 ->> 'code' as type_code,
+    resource -> 'type'  -> 0 -> 'coding' -> 0 ->> 'display' as type_display,
+    
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'subject' ->> 'reference', '^\w+/', ''))
+ as patient_id,
+    
+    -- ref_text looks like 'Patient/123' -> return '123'
+    (regexp_replace(resource -> 'participant' -> 0 -> 'individual' ->> 'reference', '^\w+/', ''))
+ as practitioner_id,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (resource ->> 'period' ->> 'start'::timestamptz)
+ as period_start,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (resource ->> 'period' ->> 'end'::timestamptz)
+   as period_end,
+    
+    -- Handle ISO strings from FHIR meta/fields safely
+    (lastUpdated::timestamptz)
+                       as lastUpdated_ts,
+    _airbyte_extracted_at
+from "data_warehouse"."airbyte"."encounter"
+  );
+[0m13:55:57.830957 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: ROLLBACK
+[0m13:55:57.833333 [debug] [Thread-4 (]: On model.opensrp_mh.stg_questionnaire_response: Close
+[0m13:55:57.834348 [debug] [Thread-3 (]: On model.opensrp_mh.stg_practitioner: Close
+[0m13:55:57.835074 [debug] [Thread-1 (]: Postgres adapter: Postgres error: invalid input syntax for type timestamp with time zone: "start"
+LINE 25:     (resource ->> 'period' ->> 'start'::timestamptz)
+                                        ^
+
+[0m13:55:57.839679 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: ROLLBACK
+[0m13:55:57.842052 [debug] [Thread-2 (]: Database Error in model stg_patient (models/staging/stg_patient.sql)
+  column "lastupdated" does not exist
+  LINE 19:     (lastUpdated::timestamptz)
+                ^
+  HINT:  Perhaps you meant to reference the column "patient.lastUpdated".
+  compiled code at target/run/opensrp_mh/models/staging/stg_patient.sql
+[0m13:55:57.843859 [debug] [Thread-3 (]: Database Error in model stg_practitioner (models/staging/stg_practitioner.sql)
+  column "lastupdated" does not exist
+  LINE 16:     (lastUpdated::timestamptz)
+                ^
+  HINT:  Perhaps you meant to reference the column "practitioner.lastUpdated".
+  compiled code at target/run/opensrp_mh/models/staging/stg_practitioner.sql
+[0m13:55:57.845701 [debug] [Thread-4 (]: Database Error in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)
+  invalid input syntax for type timestamp with time zone: "authored"
+  LINE 28:     (resource ->> 'authored'::timestamptz)
+                             ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_questionnaire_response.sql
+[0m13:55:57.846332 [debug] [Thread-1 (]: On model.opensrp_mh.stg_encounter: Close
+[0m13:55:57.848827 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936bfce3ce0>]}
+[0m13:55:57.849364 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c224c650>]}
+[0m13:55:57.849886 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c02e0530>]}
+[0m13:55:57.850932 [error] [Thread-2 (]: 2 of 13 ERROR creating sql view model engage_analytics_stg.stg_patient ......... [[31mERROR[0m in 0.16s]
+[0m13:55:57.851839 [error] [Thread-3 (]: 3 of 13 ERROR creating sql view model engage_analytics_stg.stg_practitioner .... [[31mERROR[0m in 0.16s]
+[0m13:55:57.855878 [debug] [Thread-1 (]: Database Error in model stg_encounter (models/staging/stg_encounter.sql)
+  invalid input syntax for type timestamp with time zone: "start"
+  LINE 25:     (resource ->> 'period' ->> 'start'::timestamptz)
+                                          ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_encounter.sql
+[0m13:55:57.854148 [error] [Thread-4 (]: 4 of 13 ERROR creating sql view model engage_analytics_stg.stg_questionnaire_response  [[31mERROR[0m in 0.15s]
+[0m13:55:57.856838 [debug] [Thread-2 (]: Finished running node model.opensrp_mh.stg_patient
+[0m13:55:57.857593 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.stg_practitioner
+[0m13:55:57.858182 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c02753d0>]}
+[0m13:55:57.858902 [debug] [Thread-4 (]: Finished running node model.opensrp_mh.stg_questionnaire_response
+[0m13:55:57.859489 [debug] [Thread-2 (]: Began running node seed.opensrp_mh.score_map
+[0m13:55:57.860138 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_patient' to be skipped because of status 'error'.  Reason: Database Error in model stg_patient (models/staging/stg_patient.sql)
+  column "lastupdated" does not exist
+  LINE 19:     (lastUpdated::timestamptz)
+                ^
+  HINT:  Perhaps you meant to reference the column "patient.lastUpdated".
+  compiled code at target/run/opensrp_mh/models/staging/stg_patient.sql.
+[0m13:55:57.861112 [error] [Thread-1 (]: 1 of 13 ERROR creating sql view model engage_analytics_stg.stg_encounter ....... [[31mERROR[0m in 0.17s]
+[0m13:55:57.861941 [info ] [Thread-2 (]: 5 of 13 START seed file engage_analytics.score_map ............................. [RUN]
+[0m13:55:57.863102 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_practitioner' to be skipped because of status 'error'.  Reason: Database Error in model stg_practitioner (models/staging/stg_practitioner.sql)
+  column "lastupdated" does not exist
+  LINE 16:     (lastUpdated::timestamptz)
+                ^
+  HINT:  Perhaps you meant to reference the column "practitioner.lastUpdated".
+  compiled code at target/run/opensrp_mh/models/staging/stg_practitioner.sql.
+[0m13:55:57.863924 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.stg_encounter
+[0m13:55:57.864986 [debug] [Thread-3 (]: Began running node model.opensrp_mh.dim_patient
+[0m13:55:57.864530 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.opensrp_mh.stg_patient, now seed.opensrp_mh.score_map)
+[0m13:55:57.865669 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_questionnaire_response' to be skipped because of status 'error'.  Reason: Database Error in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)
+  invalid input syntax for type timestamp with time zone: "authored"
+  LINE 28:     (resource ->> 'authored'::timestamptz)
+                             ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_questionnaire_response.sql.
+[0m13:55:57.866385 [info ] [Thread-3 (]: 6 of 13 SKIP relation engage_analytics_mart.dim_patient ........................ [[33mSKIP[0m]
+[0m13:55:57.868823 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.dim_patient
+[0m13:55:57.867484 [debug] [Thread-2 (]: Began compiling node seed.opensrp_mh.score_map
+[0m13:55:57.868189 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.stg_encounter' to be skipped because of status 'error'.  Reason: Database Error in model stg_encounter (models/staging/stg_encounter.sql)
+  invalid input syntax for type timestamp with time zone: "start"
+  LINE 25:     (resource ->> 'period' ->> 'start'::timestamptz)
+                                          ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_encounter.sql.
+[0m13:55:57.867005 [debug] [Thread-4 (]: Began running node model.opensrp_mh.dim_practitioner
+[0m13:55:57.869315 [debug] [Thread-3 (]: Began running node model.opensrp_mh.int_qr_answers_long
+[0m13:55:57.869832 [debug] [Thread-2 (]: Began executing node seed.opensrp_mh.score_map
+[0m13:55:57.870328 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.dim_patient' to be skipped because of status 'skipped'. 
+[0m13:55:57.871486 [debug] [Thread-1 (]: Began running node model.opensrp_mh.fact_encounter
+[0m13:55:57.870994 [info ] [Thread-4 (]: 7 of 13 SKIP relation engage_analytics_mart.dim_practitioner ................... [[33mSKIP[0m]
+[0m13:55:57.872022 [info ] [Thread-3 (]: 8 of 13 SKIP relation engage_analytics_int.int_qr_answers_long ................. [[33mSKIP[0m]
+[0m13:55:57.905805 [debug] [Thread-2 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:55:57.905032 [info ] [Thread-1 (]: 9 of 13 SKIP relation engage_analytics_mart.fact_encounter ..................... [[33mSKIP[0m]
+[0m13:55:57.906624 [debug] [Thread-4 (]: Finished running node model.opensrp_mh.dim_practitioner
+[0m13:55:57.907183 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.int_qr_answers_long
+[0m13:55:57.907707 [debug] [Thread-2 (]: On seed.opensrp_mh.score_map: BEGIN
+[0m13:55:57.908217 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.fact_encounter
+[0m13:55:57.908747 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.dim_practitioner' to be skipped because of status 'skipped'. 
+[0m13:55:57.909317 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:55:57.909975 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.int_qr_answers_long' to be skipped because of status 'skipped'. 
+[0m13:55:57.911249 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.fact_encounter' to be skipped because of status 'skipped'. 
+[0m13:55:57.912233 [debug] [Thread-4 (]: Began running node model.opensrp_mh.fact_qr_latest_scores
+[0m13:55:57.912757 [debug] [Thread-3 (]: Began running node model.opensrp_mh.core_counts
+[0m13:55:57.913311 [info ] [Thread-4 (]: 10 of 13 SKIP relation engage_analytics_mart.fact_qr_latest_scores ............. [[33mSKIP[0m]
+[0m13:55:57.914962 [debug] [Thread-4 (]: Finished running node model.opensrp_mh.fact_qr_latest_scores
+[0m13:55:57.914354 [info ] [Thread-3 (]: 11 of 13 SKIP relation engage_analytics_mart.core_counts ....................... [[33mSKIP[0m]
+[0m13:55:57.913862 [debug] [Thread-1 (]: Began running node model.opensrp_mh.patients_no_followup
+[0m13:55:57.915481 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.fact_qr_latest_scores' to be skipped because of status 'skipped'. 
+[0m13:55:57.916018 [debug] [Thread-3 (]: Finished running node model.opensrp_mh.core_counts
+[0m13:55:57.916581 [info ] [Thread-1 (]: 12 of 13 SKIP relation engage_analytics_mart.patients_no_followup .............. [[33mSKIP[0m]
+[0m13:55:57.917356 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.core_counts' to be skipped because of status 'skipped'. 
+[0m13:55:57.917876 [debug] [Thread-1 (]: Finished running node model.opensrp_mh.patients_no_followup
+[0m13:55:57.918493 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.patients_no_followup' to be skipped because of status 'skipped'. 
+[0m13:55:57.925386 [debug] [Thread-2 (]: SQL status: BEGIN in 0.016 seconds
+[0m13:55:57.925956 [debug] [Thread-2 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:55:57.926357 [debug] [Thread-2 (]: On seed.opensrp_mh.score_map: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "opensrp_mh", "target_name": "prod", "node_id": "seed.opensrp_mh.score_map"} */
+truncate table "data_warehouse"."engage_analytics"."score_map"
+[0m13:55:57.930302 [debug] [Thread-2 (]: SQL status: TRUNCATE TABLE in 0.003 seconds
+[0m13:55:57.950380 [debug] [Thread-2 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:55:57.950979 [debug] [Thread-2 (]: On seed.opensrp_mh.score_map: 
+          insert into "data_warehouse"."engage_analytics"."score_map" ("questionnaire_match", "link_id", "coding_code", "numeric_value") values
+          (%s,%s,%s,%s),(%s,%s,%s,%s),(%s,%s,%s,%s),(%s,%s,%s,%s)
+      ...
+[0m13:55:57.952379 [debug] [Thread-2 (]: SQL status: INSERT 0 4 in 0.001 seconds
+[0m13:55:57.958998 [debug] [Thread-2 (]: Writing runtime SQL for node "seed.opensrp_mh.score_map"
+[0m13:55:57.976623 [debug] [Thread-2 (]: On seed.opensrp_mh.score_map: COMMIT
+[0m13:55:57.977180 [debug] [Thread-2 (]: Using postgres connection "seed.opensrp_mh.score_map"
+[0m13:55:57.977603 [debug] [Thread-2 (]: On seed.opensrp_mh.score_map: COMMIT
+[0m13:55:57.979650 [debug] [Thread-2 (]: SQL status: COMMIT in 0.002 seconds
+[0m13:55:57.981812 [debug] [Thread-2 (]: On seed.opensrp_mh.score_map: Close
+[0m13:55:57.982767 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a483f185-88c2-4ac1-970a-6a736435334b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c3c965d0>]}
+[0m13:55:57.983409 [info ] [Thread-2 (]: 5 of 13 OK loaded seed file engage_analytics.score_map ......................... [[32mINSERT 4[0m in 0.12s]
+[0m13:55:57.984123 [debug] [Thread-2 (]: Finished running node seed.opensrp_mh.score_map
+[0m13:55:57.984919 [debug] [Thread-4 (]: Began running node model.opensrp_mh.int_qr_answers_scored
+[0m13:55:57.985617 [info ] [Thread-4 (]: 13 of 13 SKIP relation engage_analytics_int.int_qr_answers_scored .............. [[33mSKIP[0m]
+[0m13:55:57.986138 [debug] [Thread-4 (]: Finished running node model.opensrp_mh.int_qr_answers_scored
+[0m13:55:57.986557 [debug] [Thread-7 (]: Marking all children of 'model.opensrp_mh.int_qr_answers_scored' to be skipped because of status 'skipped'. 
+[0m13:55:57.988156 [debug] [MainThread]: Using postgres connection "master"
+[0m13:55:57.988597 [debug] [MainThread]: On master: BEGIN
+[0m13:55:57.988926 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m13:55:58.008533 [debug] [MainThread]: SQL status: BEGIN in 0.019 seconds
+[0m13:55:58.009128 [debug] [MainThread]: On master: COMMIT
+[0m13:55:58.009562 [debug] [MainThread]: Using postgres connection "master"
+[0m13:55:58.009957 [debug] [MainThread]: On master: COMMIT
+[0m13:55:58.010700 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m13:55:58.011165 [debug] [MainThread]: On master: Close
+[0m13:55:58.012092 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:55:58.012519 [debug] [MainThread]: Connection 'model.opensrp_mh.stg_practitioner' was properly closed.
+[0m13:55:58.012836 [debug] [MainThread]: Connection 'seed.opensrp_mh.score_map' was properly closed.
+[0m13:55:58.013126 [debug] [MainThread]: Connection 'model.opensrp_mh.stg_encounter' was properly closed.
+[0m13:55:58.013439 [debug] [MainThread]: Connection 'model.opensrp_mh.stg_questionnaire_response' was properly closed.
+[0m13:55:58.013932 [info ] [MainThread]: 
+[0m13:55:58.014375 [info ] [MainThread]: Finished running 1 seed, 12 view models in 0 hours 0 minutes and 0.66 seconds (0.66s).
+[0m13:55:58.016187 [debug] [MainThread]: Command end result
+[0m13:55:58.052968 [debug] [MainThread]: Wrote artifact WritableManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/manifest.json
+[0m13:55:58.055836 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/semantic_manifest.json
+[0m13:55:58.063327 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/dbt/fhir-analytics-repo/engage-analytics/dbt/target/run_results.json
+[0m13:55:58.063852 [info ] [MainThread]: 
+[0m13:55:58.064334 [info ] [MainThread]: [31mCompleted with 4 errors, 0 partial successes, and 0 warnings:[0m
+[0m13:55:58.064782 [info ] [MainThread]: 
+[0m13:55:58.065260 [error] [MainThread]: [31mFailure in model stg_patient (models/staging/stg_patient.sql)[0m
+[0m13:55:58.065744 [error] [MainThread]:   Database Error in model stg_patient (models/staging/stg_patient.sql)
+  column "lastupdated" does not exist
+  LINE 19:     (lastUpdated::timestamptz)
+                ^
+  HINT:  Perhaps you meant to reference the column "patient.lastUpdated".
+  compiled code at target/run/opensrp_mh/models/staging/stg_patient.sql
+[0m13:55:58.066108 [info ] [MainThread]: 
+[0m13:55:58.066553 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_patient.sql
+[0m13:55:58.067001 [info ] [MainThread]: 
+[0m13:55:58.067471 [error] [MainThread]: [31mFailure in model stg_practitioner (models/staging/stg_practitioner.sql)[0m
+[0m13:55:58.067911 [error] [MainThread]:   Database Error in model stg_practitioner (models/staging/stg_practitioner.sql)
+  column "lastupdated" does not exist
+  LINE 16:     (lastUpdated::timestamptz)
+                ^
+  HINT:  Perhaps you meant to reference the column "practitioner.lastUpdated".
+  compiled code at target/run/opensrp_mh/models/staging/stg_practitioner.sql
+[0m13:55:58.068256 [info ] [MainThread]: 
+[0m13:55:58.068674 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_practitioner.sql
+[0m13:55:58.069020 [info ] [MainThread]: 
+[0m13:55:58.069451 [error] [MainThread]: [31mFailure in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)[0m
+[0m13:55:58.069879 [error] [MainThread]:   Database Error in model stg_questionnaire_response (models/staging/stg_questionnaire_response.sql)
+  invalid input syntax for type timestamp with time zone: "authored"
+  LINE 28:     (resource ->> 'authored'::timestamptz)
+                             ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_questionnaire_response.sql
+[0m13:55:58.070217 [info ] [MainThread]: 
+[0m13:55:58.070639 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_questionnaire_response.sql
+[0m13:55:58.070992 [info ] [MainThread]: 
+[0m13:55:58.071384 [error] [MainThread]: [31mFailure in model stg_encounter (models/staging/stg_encounter.sql)[0m
+[0m13:55:58.071901 [error] [MainThread]:   Database Error in model stg_encounter (models/staging/stg_encounter.sql)
+  invalid input syntax for type timestamp with time zone: "start"
+  LINE 25:     (resource ->> 'period' ->> 'start'::timestamptz)
+                                          ^
+  compiled code at target/run/opensrp_mh/models/staging/stg_encounter.sql
+[0m13:55:58.072276 [info ] [MainThread]: 
+[0m13:55:58.072679 [info ] [MainThread]:   compiled code at target/compiled/opensrp_mh/models/staging/stg_encounter.sql
+[0m13:55:58.073001 [info ] [MainThread]: 
+[0m13:55:58.073369 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=4 SKIP=8 NO-OP=0 TOTAL=13
+[0m13:55:58.074662 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 3.3741932, "process_in_blocks": "0", "process_kernel_time": 0.265651, "process_mem_max_rss": "132012", "process_out_blocks": "4032", "process_user_time": 4.940746}
+[0m13:55:58.075383 [debug] [MainThread]: Command `dbt build` failed at 13:55:58.075263 after 3.38 seconds
+[0m13:55:58.075866 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c224f380>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c1aeb110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xe936c1ae8440>]}
+[0m13:55:58.076296 [debug] [MainThread]: Flushing usage events
+[0m13:55:58.130936 [debug] [MainThread]: An error was encountered while trying to flush usage events

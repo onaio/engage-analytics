@@ -12,4 +12,4 @@ select
     {{ as_timestamptz("resource ->> 'period' ->> 'end'") }}   as period_end,
     {{ as_timestamptz("lastUpdated") }}                       as lastUpdated_ts,
     _airbyte_extracted_at
-from {{ source('airbyte','encounter') }};
+from {{ source('airbyte','encounter') }}
