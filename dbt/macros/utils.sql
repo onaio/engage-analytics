@@ -3,9 +3,8 @@
     (regexp_replace({{ ref_text }}, '^\w+/', ''))
 {% endmacro %}
 
-{% macro as_timestamptz(text_col) %}
-    -- Handle ISO strings from FHIR meta/fields safely
-    ({{ text_col }}::timestamptz)
+{% macro as_timestamptz(expr) %}
+  (nullif({{ expr }}, '')::timestamptz)
 {% endmacro %}
 
 {% macro jsonb_text(obj, key) %}

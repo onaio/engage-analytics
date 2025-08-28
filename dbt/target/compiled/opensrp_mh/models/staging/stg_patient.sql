@@ -8,10 +8,10 @@ with src as (
         resource ->> 'gender'              as gender,
         resource ->> 'birthDate'           as birth_date,
         resource ->> 'active'              as active,
+
         
-    -- Handle ISO strings from FHIR meta/fields safely
-    (lastUpdated::timestamptz)
- as lastUpdated_ts,
+  (nullif("lastUpdated", '')::timestamptz)
+ as lastUpdated_ts,   -- << quote the column
         _airbyte_extracted_at
     from "data_warehouse"."airbyte"."patient"
 )

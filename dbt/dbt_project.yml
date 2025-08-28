@@ -14,4 +14,10 @@ models:
     marts:
       +schema: mart
 
-# (Optional) dbt semantic layer can be added later if needed.
+seeds:
+  opensrp_mh:
+    score_map:
+      +column_types:
+        coding_code: text
+        link_id: text
+        questionnaire_match: text

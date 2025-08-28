@@ -8,7 +8,8 @@ with src as (
         resource ->> 'gender'              as gender,
         resource ->> 'birthDate'           as birth_date,
         resource ->> 'active'              as active,
-        {{ as_timestamptz("lastUpdated") }} as lastUpdated_ts,
+
+        {{ as_timestamptz('"lastUpdated"') }} as lastUpdated_ts,   -- << quote the column
         _airbyte_extracted_at
     from {{ source('airbyte','patient') }}
 )
