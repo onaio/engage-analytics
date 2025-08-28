@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: airbyte
+    database: "{{ env_var('DBT_DATABASE', target.database) }}"
+    schema: "{{ env_var('DBT_AIRBYTE_SCHEMA', 'airbyte') }}"
+    tables:
+      - name: patient
+      - name: practitioner
+      - name: practitioner_role
+      - name: encounter
+      - name: questionnaire_response
+      - name: organization
+      - name: task
+      - name: group
+      - name: location
+      - name: care_team
+      - name: observation

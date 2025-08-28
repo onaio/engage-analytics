@@ -1,0 +1,17 @@
+name: 'opensrp_mh'
+version: '1.0.0'
+config-version: 2
+
+profile: 'opensrp_mh'  # define in ~/.dbt/profiles.yml
+
+models:
+  opensrp_mh:
+    +materialized: view
+    staging:
+      +schema: stg
+    intermediate:
+      +schema: int
+    marts:
+      +schema: mart
+
+# (Optional) dbt semantic layer can be added later if needed.
