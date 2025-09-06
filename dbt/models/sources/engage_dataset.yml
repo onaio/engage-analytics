@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: engage_dataset
+    database: "{{ env_var('DBT_DATABASE') }}"
+    schema: "{{ env_var('DBT_AIRBYTE_SCHEMA', 'airbyte') }}"
+    tables:
+      - name: patient
+      - name: practitioner
+      - name: encounter
+      - name: task
+      - name: questionnaire_response
+      - name: location
+      - name: observation
+      - name: practitioner_role
+      - name: care_team
+      - name: organization_affiliation
+      - name: care_plan
+      - name: organization

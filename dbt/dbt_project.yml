@@ -1,23 +1,15 @@
-name: 'opensrp_mh'
+name: 'engage_analytics'
 version: '1.0.0'
 config-version: 2
 
-profile: 'opensrp_mh'  # define in ~/.dbt/profiles.yml
+profile: 'engage_analytics'
 
 models:
-  opensrp_mh:
+  engage_analytics:
     +materialized: view
     staging:
-      +schema: stg
+      +schema: engage_analytics_stg
     intermediate:
-      +schema: int
+      +schema: engage_analytics_int
     marts:
-      +schema: mart
-
-seeds:
-  opensrp_mh:
-    score_map:
-      +column_types:
-        coding_code: text
-        link_id: text
-        questionnaire_match: text
+      +schema: engage_analytics_mart

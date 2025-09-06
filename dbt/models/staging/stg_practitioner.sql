@@ -1,11 +1,12 @@
-select
-    id as fhir_id,
-    resource,
-    resource ->> 'id'                            as resource_id,
-    resource -> 'name' -> 0 ->> 'family'         as family_name,
-    resource -> 'name' -> 0 -> 'given' ->> 0     as given_name,
-    resource -> 'telecom' -> 0 ->> 'value'       as phone_raw,
+{{ config(materialized='incremental', unique_key='id') }}
 
-    {{ as_timestamptz('"lastUpdated"') }}        as lastUpdated_ts,   -- << quote the column
-    _airbyte_extracted_at
-from {{ source('airbyte','practitioner') }}
+{% set level_1_keys = ['id','meta','active','identifier','resourceType'] %}
+{% set nested_keys = ['name','telecom'] %}
+
+{{ resource_level_1_extraction(level_1_keys, nested_keys) }},
+_airbyte_extracted_at as _airbyte_emitted_at
+from {{ source('engage_dataset','practitioner') }}
+
+{% if is_incremental() %}
+  where _airbyte_extracted_at > (select max(_airbyte_emitted_at) from {{ this }})
+{% endif %}

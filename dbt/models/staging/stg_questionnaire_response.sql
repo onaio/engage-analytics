@@ -1,18 +1,22 @@
-with base as (
-    select
-        id as fhir_id,
-        resource,
-        resource ->> 'id'            as resource_id,
-        resource ->> 'status'        as status,
-        resource ->> 'questionnaire' as questionnaire_canonical,
+{{ config(materialized='incremental', unique_key='id') }}
 
-        {{ ref_id_from_reference("resource -> 'subject'   ->> 'reference'") }} as patient_id,
-        {{ ref_id_from_reference("resource -> 'encounter' ->> 'reference'") }} as encounter_id,
-        {{ ref_id_from_reference("resource -> 'author'    ->> 'reference'") }} as author_id,
-
-        {{ as_timestamptz("resource ->> 'authored'") }} as authored_ts,
-        {{ as_timestamptz('"lastUpdated"') }}           as lastUpdated_ts,
-        _airbyte_extracted_at
-    from {{ source('airbyte','questionnaire_response') }}
+with src as (
+  select
+    id,
+    resource,
+    lower(resource::jsonb ->> 'status') as status,
+    resource::jsonb ->> 'questionnaire' as questionnaire_id,
+    split_part((resource::jsonb -> 'subject'    ->> 'reference'), '/', 2) as subject_patient_id,
+    split_part((resource::jsonb -> 'encounter'  ->> 'reference'), '/', 2) as encounter_id,
+    split_part((resource::jsonb -> 'author'     ->> 'reference'), '/', 2) as author_practitioner_id,
+    resource::jsonb -> 'item' as items,
+    resource::jsonb -> 'meta' ->> 'lastUpdated' as meta_lastupdated,
+    resource::jsonb -> 'meta' as meta,
+    _airbyte_extracted_at as _airbyte_emitted_at
+  from {{ source('engage_dataset','questionnaire_response') }}
+  where lower(resource::jsonb ->> 'status') = 'completed'
 )
-select * from base
+select * from src
+{% if is_incremental() %}
+  where _airbyte_emitted_at > (select coalesce(max(_airbyte_emitted_at),'1900-01-01') from {{ this }})
+{% endif %}

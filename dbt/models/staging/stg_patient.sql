@@ -1,16 +1,20 @@
-with src as (
-    select
-        id as fhir_id,
-        resource,
-        resource ->> 'id'                  as resource_id,
-        resource -> 'meta' ->> 'versionId' as version_id,
-        resource -> 'meta' ->> 'lastUpdated' as meta_last_updated,
-        resource ->> 'gender'              as gender,
-        resource ->> 'birthDate'           as birth_date,
-        resource ->> 'active'              as active,
+{{ config(materialized='incremental', unique_key='id') }}
 
-        {{ as_timestamptz('"lastUpdated"') }} as lastUpdated_ts,   -- << quote the column
-        _airbyte_extracted_at
-    from {{ source('airbyte','patient') }}
-)
-select * from src
+{% set level_1_keys = [
+  'id','meta','gender','resourceType','birthDate','managingOrganization',
+  'deceasedBoolean','active','text','identifier'
+] %}
+{% set nested_keys = [] %}
+
+{{ resource_level_1_extraction(level_1_keys, nested_keys) }},
+((resource::jsonb -> 'telecom')::jsonb->>0)::jsonb ->> 'value'  as telecom_value,
+((resource::jsonb -> 'generalPractitioner')::jsonb->>0)::jsonb ->> 'reference' as generalPractitioner_reference,
+((resource::jsonb -> 'name')::jsonb->>0)::jsonb ->> 'given' as name_given,
+((resource::jsonb -> 'name')::jsonb->>0)::jsonb ->> 'family' as name_family,
+((resource::jsonb -> 'identifier')::jsonb->>0)::jsonb -> 'period' ->> 'start' as period_start,
+_airbyte_extracted_at as _airbyte_emitted_at
+from {{ source('engage_dataset','patient') }}
+
+{% if is_incremental() %}
+  where _airbyte_extracted_at > (select max(_airbyte_emitted_at) from {{ this }})
+{% endif %}
