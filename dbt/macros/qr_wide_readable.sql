@@ -89,8 +89,14 @@
   pivoted as (
     select
       b.qr_id
+      {%- set seen_names = [] -%}
       {%- for item in linkid_data -%}
-        ,max(case when linkid = '{{ item.linkid }}' then answer_value_text end) as "{{ item.readable_name }}"
+        {%- set col_name = item.readable_name -%}
+        {%- if col_name in seen_names -%}
+          {%- set col_name = col_name ~ "_" ~ loop.index -%}
+        {%- endif -%}
+        {%- do seen_names.append(col_name) -%}
+        ,max(case when linkid = '{{ item.linkid }}' then answer_value_text end) as "{{ col_name[:63] }}"
       {%- endfor %}
     from base b
     group by b.qr_id
