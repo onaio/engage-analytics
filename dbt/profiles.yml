@@ -3,12 +3,12 @@ engage_analytics:
   outputs:
     prod:
       type: postgres
-      host: "{{ env_var('DBT_HOST') }}"
-      port: "{{ env_var('DBT_PORT', '5432') | int }}"
-      user: "{{ env_var('DBT_USER') }}"
-      password: "{{ env_var('DBT_PASSWORD') }}"
-      dbname: "{{ env_var('DBT_DATABASE') }}"
-      schema: "{{ env_var('DBT_SCHEMA', 'engage_analytics') }}"
+      host: localhost
+      port: 5432
+      user: "postgres"
+      password: "knox48"
+      dbname: "airbyte"
+      schema: "engage_analytics"
       threads: 4
       keepalives_idle: 0
       connect_timeout: 30

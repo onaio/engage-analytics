@@ -1,0 +1,1359 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient",
+            "display": "Patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "worry",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='f1a2b3c4-5e6f-4a1b-8c7d-9e0f1a2b3c4d').answer.value.exists(), %resource.descendants().where(linkId='f1a2b3c4-5e6f-4a1b-8c7d-9e0f1a2b3c4d').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "afford-basics",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='3456789a-bcde-f012-3456-789abcdef012').answer.value.exists(), %resource.descendants().where(linkId='3456789a-bcde-f012-3456-789abcdef012').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "run-out",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='6789abcd-ef01-2345-6789-abcdef012345').answer.value.exists(), %resource.descendants().where(linkId='6789abcd-ef01-2345-6789-abcdef012345').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "food-worry",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='cdef0123-4567-89ab-cdef-0123456789ab').answer.value.exists(), %resource.descendants().where(linkId='cdef0123-4567-89ab-cdef-0123456789ab').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "food-last",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='f0123456-789a-bcde-f012-3456789abcde').answer.value.exists(), %resource.descendants().where(linkId='f0123456-789a-bcde-f012-3456789abcde').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "rent",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='31234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='31234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "move-in",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='61234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='61234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "shelter",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='91234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='91234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "bills",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='c1234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='c1234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "cut-off",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='f1234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='f1234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "medical",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='21234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='21234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "debt",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='51234567-89ab-cdef-0123-456789abcdef').answer.value.exists(), %resource.descendants().where(linkId='51234567-89ab-cdef-0123-456789abcdef').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "worry-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%worry.code = 'not-at-all', 1, 0) + iif(%worry.code = 'a-little', 2, 0) + iif(%worry.code = 'somewhat', 3, 0) + iif(%worry.code = 'a-lot', 4, 0) + iif(%worry.code = 'a-great-deal', 5, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "afford-basics-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%afford-basics.code = 'not-hard-at-all', 1, 0) + iif(%afford-basics.code = 'somewhat-hard', 2, 0) + iif(%afford-basics.code = 'very-hard', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "run-out-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%run-out.code = 'never', 1, 0) + iif(%run-out.code = 'rarely', 2, 0) + iif(%run-out.code = 'sometimes', 3, 0) + iif(%run-out.code = 'often', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "food-worry-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%food-worry.code = 'never-true', 1, 0) + iif(%food-worry.code = 'sometimes-true', 2, 0) + iif(%food-worry.code = 'often-true', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "food-last-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%food-last.code = 'never-true', 1, 0) + iif(%food-last.code = 'sometimes-true', 2, 0) + iif(%food-last.code = 'often-true', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "food-sum-score",
+        "language": "text/fhirpath",
+        "expression": "%food-worry-score + %food-last-score"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "rent-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%rent.code = 'no', 1, 0) + iif(%rent.code = 'yes', 2, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "move-in-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%move-in.code = 'no', 1, 0) + iif(%move-in.code = 'yes', 2, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "shelter-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%shelter.code = 'no', 1, 0) + iif(%shelter.code = 'yes', 2, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "bills-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%bills.code = 'no', 1, 0) + iif(%bills.code = 'yes', 2, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "cut-off-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%cut-off.code = 'no', 1, 0) + iif(%cut-off.code = 'yes', 2, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "medical-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%medical.code = 'no', 1, 0) + iif(%medical.code = 'yes', 2, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "debt-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%debt.code = 'strongly-disagree', 1, 0) + iif(%debt.code = 'disagree', 2, 0) + iif(%debt.code = 'neither-agree-nor-disagree', 3, 0) + iif(%debt.code = 'agree', 4, 0) + iif(%debt.code = 'strongly-agree', 5, 0)"
+      }
+    }
+  ],
+  "version": "0.0.1",
+  "title": "Financial Wellness Tool",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "http://www.smartregister.org/"
+    }
+  ],
+  "description": "Financial Wellness Tool form",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "e5d3f2a1-8b9c-4d7e-8a3f-5b6c7d8e9f01",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "a1b2c3d4-4e5f-4a6b-8c7d-9e0f1a2b3c4d",
+          "text": "Financial Wellness Tool",
+          "type": "group"
+        },
+        {
+          "linkId": "f0e1d2c3-4b5a-4c6d-8e7f-9a0b1c2d3e4f",
+          "text": "These days, many people experience financial difficulties. To better understand how we can best assist you, I'd like to ask you a few questions about your financial situation.",
+          "type": "display",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "2b3c4d5e-6f7a-4b8c-8d9e-0f1a2b3c4d5e",
+              "text": "<span style=\"color:#006BBA\"><b>Tip #1</b></span><br>The Financial Wellness Tool is a brief survey that will help you identify the areas of financial hardship that are of greatest need for your client.<br><br><span style=\"color:#006BBA\"><b>Tip #2</b></span><br>The first set of questions measure the level of financial stress (subjective perception of your clients). The next sets of questions will help you objectively categorize the most pressing areas of need, such as food insecurity.",
+              "type": "display"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "3c4d5e6f-7a8b-4c9d-8e0f-1a2b3c4d5e6f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "4d5e6f7a-8b9c-4d0e-8f1a-2b3c4d5e6f70",
+          "text": "Overall Financial Situation",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1a2b3c4-5e6f-4a1b-8c7d-9e0f1a2b3c4d",
+          "text": "When you think about your financial situation, how much do you worry?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little",
+                "display": "A little"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "somewhat",
+                "display": "Somewhat"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-lot",
+                "display": "A lot"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-great-deal",
+                "display": "A great deal"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "5e6f7a8b-9c0d-4e1f-8a2b-3c4d5e6f7a8b",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "6f7a8b9c-0d1e-4f2a-8b3c-4d5e6f7a8b9c",
+          "text": "Overall Financial Situation",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "3456789a-bcde-f012-3456-789abcdef012",
+          "text": "How hard is it for you to pay for the very basics, like food, housing, medical care, and heating? Would you say it is...?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-hard-at-all",
+                "display": "Not hard at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "somewhat-hard",
+                "display": "Somewhat hard"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "very-hard",
+                "display": "Very hard"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "7a8b9c0d-1e2f-4a3b-8c4d-5e6f7a8b9c0d",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "8b9c0d1e-2f3a-4b5c-8d6e-7f8a9b0c1d2e",
+          "text": "Overall Financial Situation",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "6789abcd-ef01-2345-6789-abcdef012345",
+          "text": "In the past 12 months, how often did you run out of money between paychecks or before the end of the month? Would you say that happened…?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "never",
+                "display": "Never"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "rarely",
+                "display": "Rarely"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "sometimes",
+                "display": "Sometimes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "often",
+                "display": "Often"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "9c0d1e2f-3a4b-4c5d-8e6f-7a8b9c0d1e2f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "acbd1234-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+          "text": "Food",
+          "type": "group"
+        },
+        {
+          "linkId": "bdce2345-6f7a-4b8c-8d9e-0f1a2b3c4d5e",
+          "text": "The following are two statements that some people have made about their food situation. Please indicate whether each statement was often true, sometimes true, or never true for you in the last 12 months.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "cdef3456-7a8b-4c9d-8e0f-1a2b3c4d5e6f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "def45678-9abc-4d0e-8f1a-2b3c4d5e6f70",
+          "text": "Food",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "cdef0123-4567-89ab-cdef-0123456789ab",
+          "text": "\"I worried whether my food would run out before I got money to buy more.\"",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "never-true",
+                "display": "Never true"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "sometimes-true",
+                "display": "Sometimes true"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "often-true",
+                "display": "Often true"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "e0f1a2b3-4c5d-4e6f-8a7b-9c0d1e2f3a4b",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "f1a2b3c4-5d6e-4f7a-8b9c-0d1e2f3a4b5c",
+          "text": "Food",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f0123456-789a-bcde-f012-3456789abcde",
+          "text": "\"The food that I bought just didn't last and I didn't have money to get more.\"",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "never-true",
+                "display": "Never true"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "sometimes-true",
+                "display": "Sometimes true"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "often-true",
+                "display": "Often true"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%"
+              }
+            }
+          ],
+          "linkId": "0123abcd-4567-4e89-8f01-2345abcdef67",
+          "text": "Sum food",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "1234bcde-5678-4f90-8a1b-2c3d4e5f6789",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2345cdef-6789-4a01-8b2c-3d4e5f6a7b8c",
+          "text": "Housing",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "31234567-89ab-cdef-0123-456789abcdef",
+          "text": "In the past 12 months, did you not pay the full amount of rent or mortgage because there wasn't enough money?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "3456def0-789a-4b12-8c3d-4e5f6a7b8c9d",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "4567ef01-89ab-4c23-8d4e-5f6a7b8c9d0e",
+          "text": "Housing",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "61234567-89ab-cdef-0123-456789abcdef",
+          "text": "In the past 12 months, did you move in with other people even for a little while because of financial problems?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "5678f012-9abc-4d34-8e5f-6a7b8c9d0e1f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "6789a123-bcde-4f45-8a6b-7c8d9e0f1a2b",
+          "text": "Housing",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "91234567-89ab-cdef-0123-456789abcdef",
+          "text": "In the past 12 months, did you stay at a shelter, in an abandoned building, an automobile, or any other place not meant for regular housing, even for one night?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "789ab234-cdef-4a56-8b7c-9d0e1f2a3b4c",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "89ab3456-cdef-4b67-8c7d-0e1f2a3b4c5d",
+          "text": "Utilities",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "c1234567-89ab-cdef-0123-456789abcdef",
+          "text": "In the past 12 months, did you not pay the full amount of your phone, gas, heating, water, or electricity bill because there wasn’t enough money?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "90ab4567-cdef-4c78-8d9e-0f1a2b3c4d5e",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "a0bc5678-def0-4d89-8e9f-1a2b3c4d5e6f",
+          "text": "Utilities",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1234567-89ab-cdef-0123-456789abcdef",
+          "text": "In the past 12 months, was your phone, gas, heating, water, or electricity service ever cut off because there wasn't enough money to pay the bills?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "b1cd6789-ef01-4e9a-8f0b-2c3d4e5f6789",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "c2de789a-f012-4fab-8c1d-3e4f5a6b7c8d",
+          "text": "Medical Care",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "21234567-89ab-cdef-0123-456789abcdef",
+          "text": "In the past 12 months, was there a time when you or anyone else in your household needed to see a doctor, a dentist, or go to the hospital but couldn't go because of the cost?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "d3ef89ab-0123-4bcd-8e9f-0a1b2c3d4e5f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "e4f091bc-1234-4cde-8f0a-1b2c3d4e5f60",
+          "text": "Debts",
+          "type": "group"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "51234567-89ab-cdef-0123-456789abcdef",
+          "text": "How strongly do you agree or disagree with the following statement? \"I have too much debt right now\"",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "strongly-disagree",
+                "display": "Strongly disagree"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "disagree",
+                "display": "Disagree"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "neither-agree-nor-disagree",
+                "display": "Neither agree nor disagree"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "agree",
+                "display": "Agree"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "strongly-agree",
+                "display": "Strongly agree"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f5a1023c-4567-4d8e-8f9a-0b1c2d3e4f50",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "0a1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4e",
+          "text": "Results",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "e4515c13-46db-431f-96bc-4ca1fd52d132",
+              "text": "Tip and Example dialogue",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "485716e7-9743-4ba4-b200-86fb14cb8fb7",
+              "text": "<span style=\"color:#006BBA\"><b>Tip</b></span><br>Mention areas of moderate or high hardship using language that will be easy for the client to understand. For example, instead of saying \"food insecurity\", you could say \"difficulties with food\" and instead of saying \"housing hardship\", you could say \"issues with your housing.\"<br><br><span style=\"color:#006BBA\"><b>Example dialogue #1</b></span><br>\"Would you mind taking a few minutes to talk with me about your answers to the screening questions that you answered earlier about your financial situation?\"<br><br><span style=\"color:#006BBA\"><b>Example dialogue #2</b></span><br>\"It sounds like you’re facing some financial difficulties. This is very common, and it can be very distressing.\"",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "1b2c3d4e-5f6a-4b7c-8d9e-0f1a2b3c4d5f",
+          "text": "The client's Financial Wellness Tool results:",
+          "type": "display"
+        },
+        {
+          "linkId": "2c3d4e5f-6a7b-4c8d-8e9f-0a1b2c3d4e5f",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "(%worry-score = 3 or %worry-score = 4 or %worry-score = 5) or (%afford-basics-score = 2 or %afford-basics-score = 3) or (%run-out-score = 3 or %run-out-score = 4)"
+                  }
+                }
+              ],
+              "linkId": "3d4e5f6a-7b8c-4d9e-8f0a-1b2c3d4e5f6a",
+              "text": "Probable Overall Financial Hardship",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%food-sum-score = 3 or %food-sum-score = 4"
+                  }
+                }
+              ],
+              "linkId": "4e5f6a7b-8c9d-4e0f-8a1b-2c3d4e5f6a7b",
+              "text": "Probable Moderate Food Insecurity",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%food-sum-score = 5 or %food-sum-score = 6"
+                  }
+                }
+              ],
+              "linkId": "5f6a7b8c-9d0e-4f1a-8b2c-3d4e5f6a7b8c",
+              "text": "Probable High Food Insecurity",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "(%rent-score = 2 or %move-in-score = 2) and %shelter-score = 1"
+                  }
+                }
+              ],
+              "linkId": "6a7b8c9d-0e1f-4a2b-8c3d-4e5f6a7b8c9d",
+              "text": "Probable Moderate Housing Insecurity",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%shelter-score = 2"
+                  }
+                }
+              ],
+              "linkId": "7b8c9d0e-1f2a-4b3c-8d4e-5f6a7b8c9d0e",
+              "text": "Probable High Housing Insecurity",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%bills-score = 2 and %cut-off-score = 1"
+                  }
+                }
+              ],
+              "linkId": "8c9d0e1f-2a3b-4c5d-8e6f-7a8b9c0d1e2f",
+              "text": "Probable Moderate Hardship Paying Bills (basic services)",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%cut-off-score = 2"
+                  }
+                }
+              ],
+              "linkId": "9d0e1f2a-3b4c-4d5e-8f7a-0b1c2d3e4f5a",
+              "text": "Probable High Hardship Paying Bills (basic services)",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%medical-score = 2"
+                  }
+                }
+              ],
+              "linkId": "ad1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4e",
+              "text": "Probable Moderate/High Medical Hardships",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%debt-score = 3 or %debt-score = 4"
+                  }
+                }
+              ],
+              "linkId": "bf3c4d5e-6f7a-4c8d-8e9f-0a1b2c3d4e5f",
+              "text": "Probable Moderate Indebtedness",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%debt-score = 5"
+                  }
+                }
+              ],
+              "linkId": "cf4d5e6f-7a8b-4d9e-8f0a-1b2c3d4e5f6a",
+              "text": "Probable High Indebtedness",
+              "type": "display"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -13,3 +13,7 @@ models:
       +schema: engage_analytics_int
     marts:
       +schema: engage_analytics_mart
+
+seeds:
+  engage_analytics:
+    +schema: engage_analytics_stg

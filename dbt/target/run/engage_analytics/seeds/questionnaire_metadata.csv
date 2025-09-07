@@ -1,0 +1,14 @@
+
+    
+    
+    
+    create table "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata" ("questionnaire_id" text,"linkid" text,"question_text" text,"question_alias" text,"question_order" integer)
+  ;
+    -- dbt seed --
+    
+          insert into "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata" ("questionnaire_id", "linkid", "question_text", "question_alias", "question_order") values
+          (%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s)
+      
+
+;
+  

@@ -10,7 +10,7 @@
 
 {% set nested_keys=['type']%} 
     
-    {{resource_level_1_extraction(level_1_keys, nested_keys)}},
+    {{resource_level_1_extraction(level_1_keys, nested_keys) }},
      _airbyte_extracted_at as _airbyte_emitted_at 
 
     from {{ source("engage_dataset", "organization") }}
