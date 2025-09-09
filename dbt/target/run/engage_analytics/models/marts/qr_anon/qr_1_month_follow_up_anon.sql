@@ -6,19 +6,8 @@
     
 
 -- Anonymized view for qr_1_month_follow_up with PII fields masked based on questionnaire_metadata.anon flag
--- Auto-generated to mask fields marked as anon=TRUE in questionnaire_metadata
-
-with metadata_pii as (
-    select distinct
-        question_alias
-    from "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata"
-    where questionnaire_id in ('Questionnaire/1-month-follow-up')
-    and anon = 'TRUE'
-),
-
-source_data as (
-    select * from "airbyte"."engage_analytics_engage_analytics_mart"."qr_1_month_follow_up"
-)
+-- Questionnaire: 1 Month Follow Up (Questionnaire/1-month-follow-up)
+-- PII fields masked: 1 fields
 
 select 
     MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
@@ -31,17 +20,9 @@ select
     practitioner_id,
     practitioner_careteam_id,
     application_version,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'completed-all-recommended-interventions')
-        THEN 'REDACTED'
-        ELSE "completed-all-recommended-interventions"::text
-    END as "completed-all-recommended-interventions",
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'schedule-this-meeting')
-        THEN 'REDACTED'
-        ELSE "schedule-this-meeting"::text
-    END as "schedule-this-meeting",
+        "completed-all-recommended-interventions",
+        'REDACTED' as "schedule-this-meeting",
         CURRENT_TIMESTAMP as anonymized_at
 
-from source_data
+from "airbyte"."engage_analytics_engage_analytics_mart"."qr_1_month_follow_up"
   );

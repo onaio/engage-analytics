@@ -6,19 +6,8 @@
     
 
 -- Anonymized view for qr_mood_rating_s1 with PII fields masked based on questionnaire_metadata.anon flag
--- Auto-generated to mask fields marked as anon=TRUE in questionnaire_metadata
-
-with metadata_pii as (
-    select distinct
-        question_alias
-    from "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata"
-    where questionnaire_id in ('Questionnaire/203')
-    and anon = 'TRUE'
-),
-
-source_data as (
-    select * from "airbyte"."engage_analytics_engage_analytics_mart"."qr_mood_rating_s1"
-)
+-- Questionnaire: Mood Rating (IPC Session 1) (Questionnaire/203)
+-- PII fields masked: 1 fields
 
 select 
     MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
@@ -31,47 +20,15 @@ select
     practitioner_id,
     practitioner_careteam_id,
     application_version,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'mood_s1_on_a_scale_of_1_to_10_with_1_being_the_worst_mood_')
-        THEN 'REDACTED'
-        ELSE mood_s1_on_a_scale_of_1_to_10_with_1_being_the_worst_mood_::text
-    END as mood_s1_on_a_scale_of_1_to_10_with_1_being_the_worst_mood_,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'mood_s1_8085cded8e0f497f9e3d5fab3981d727')
-        THEN 'REDACTED'
-        ELSE mood_s1_8085cded8e0f497f9e3d5fab3981d727::text
-    END as mood_s1_8085cded8e0f497f9e3d5fab3981d727,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'mood_s1_total_score')
-        THEN 'REDACTED'
-        ELSE mood_s1_total_score::text
-    END as mood_s1_total_score,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'date_of_birth')
-        THEN 'REDACTED'
-        ELSE date_of_birth::text
-    END as date_of_birth,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'age')
-        THEN 'REDACTED'
-        ELSE age::text
-    END as age,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'birth_month')
-        THEN 'REDACTED'
-        ELSE birth_month::text
-    END as birth_month,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'age_years')
-        THEN 'REDACTED'
-        ELSE age_years::text
-    END as age_years,
-        CASE 
-        WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'encounter_reference')
-        THEN 'REDACTED'
-        ELSE encounter_reference::text
-    END as encounter_reference,
+        mood_s1_on_a_scale_of_1_to_10_with_1_being_the_worst_mood_,
+        mood_s1_8085cded8e0f497f9e3d5fab3981d727,
+        mood_s1_total_score,
+        'REDACTED' as date_of_birth,
+        age,
+        birth_month,
+        age_years,
+        encounter_reference,
         CURRENT_TIMESTAMP as anonymized_at
 
-from source_data
+from "airbyte"."engage_analytics_engage_analytics_mart"."qr_mood_rating_s1"
   );
