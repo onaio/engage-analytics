@@ -28,17 +28,21 @@
 
   {# 1) collect distinct linkIds and their readable names for these questionnaires #}
   {% set q %}
-    with ids(ident) as ( {{ ids_values }} )
+    with ids(ident) as ( {{ ids_values }} ),
+    table_name as (
+      select '{{ relation_name }}' as table_name
+    )
     select distinct 
       a.linkid,
-      coalesce(m.question_alias, a.linkid) as readable_name,
-      m.question_order
+      coalesce(m.short_name, a.linkid) as readable_name,
+      null::integer as question_order
     from {{ ref('int_qr_answers_long') }} a
     join ids on a.questionnaire_id = ids.ident
+    cross join table_name t
     left join {{ ref('questionnaire_metadata') }} m 
-      on m.questionnaire_id = a.questionnaire_id
-      and m.linkid = a.linkid
-    order by m.question_order nulls last, a.linkid
+      on m.table = t.table_name
+      and m.column = a.linkid
+    order by a.linkid
   {% endset %}
 
   {% set res = run_query(q) %}

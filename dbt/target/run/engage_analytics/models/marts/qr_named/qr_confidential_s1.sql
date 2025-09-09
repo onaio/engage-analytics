@@ -62,7 +62,7 @@
   ),
   pivoted as (
     select
-      b.qr_id,max(case when linkid = 'cd8e3d6d-e9ff-458d-d122-57070bebffaf' then answer_value_text end) as "date_of_birth",max(case when linkid = 'b5bc7f80-4a0c-486c-e5eb-32c750036f94' then answer_value_text end) as "age",max(case when linkid = 'calculated-month' then answer_value_text end) as "birth_month",max(case when linkid = 'calculated-year' then answer_value_text end) as "age_years",max(case when linkid = 'LINK_ID_THAT_CONTAINS_ENCOUNTER_ID_AS_ANSWER' then answer_value_text end) as "encounter_reference"
+      b.qr_id,max(case when linkid = 'b5bc7f80-4a0c-486c-e5eb-32c750036f94' then answer_value_text end) as "add_family_member",max(case when linkid = 'calculated-month' then answer_value_text end) as "add_family_member_2",max(case when linkid = 'calculated-year' then answer_value_text end) as "add_family_member_3",max(case when linkid = 'cd8e3d6d-e9ff-458d-d122-57070bebffaf' then answer_value_text end) as "add_family_member_4",max(case when linkid = 'LINK_ID_THAT_CONTAINS_ENCOUNTER_ID_AS_ANSWER' then answer_value_text end) as "LINK_ID_THAT_CONTAINS_ENCOUNTER_ID_AS_ANSWER"
     from base b
     group by b.qr_id
   )

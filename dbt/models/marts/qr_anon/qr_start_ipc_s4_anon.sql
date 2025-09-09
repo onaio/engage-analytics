@@ -1,0 +1,65 @@
+{{
+    config(
+        materialized='view'
+    )
+}}
+
+-- Anonymized view for qr_start_ipc_s4
+-- Automatically generated based on questionnaire_metadata.csv
+
+select 
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    after_today_session as after_today_session,
+    you_remember_why as you_remember_why,
+    you_think_some as you_think_some,
+    you_think_some_4 as you_think_some_4,
+    going_provide_you as going_provide_you,
+    supervisor_recommendation_form as supervisor_recommendation_form,
+    place_declare_values as place_declare_values,
+    make_you_feel as make_you_feel,
+    supervisor_recommendation_form_9 as supervisor_recommendation_form_9,
+    survey_response as survey_response,
+    let_talk_skills as let_talk_skills,
+    let_talk_skills_12 as let_talk_skills_12,
+    let_look_your as let_look_your,
+    mood_rating_ipc as mood_rating_ipc,
+    you_feel_today as you_feel_today,
+    supervisor_recommendation_form_16 as supervisor_recommendation_form_16,
+    format_you_deliver as format_you_deliver,
+    you_know_your as you_know_your,
+    after_today_session_19 as after_today_session_19,
+    survey_response_20 as survey_response_20,
+    some_skills_you as some_skills_you,
+    place_declare_values_22 as place_declare_values_22,
+    place_declare_values_23 as place_declare_values_23,
+    please_select_you as please_select_you,
+    you_think_you as you_think_you,
+    know_symptoms_come as know_symptoms_come,
+    you_think_you_27 as you_think_you_27,
+    you_complete_required as you_complete_required,
+    survey_response_29 as survey_response_29,
+    total_score as total_score,
+    some_skills_you_31 as some_skills_you_31,
+    let_look_your_32 as let_look_your_32,
+    place_declare_values_33 as place_declare_values_33,
+    you_remember_why_34 as you_remember_why_34,
+    survey_response_35 as survey_response_35,
+    phq_total as phq_total,
+    gad_total as gad_total,
+    ptsd_total as ptsd_total,
+    mood_rating_ipc_39 as mood_rating_ipc_39,
+    supervisor_recommendation_form_40 as supervisor_recommendation_form_40,
+    connected_clinical_care as connected_clinical_care,
+    connected_clinical_care_42 as connected_clinical_care_42,
+    CURRENT_TIMESTAMP as anonymized_at
+
+from {{ ref('qr_start_ipc_s4') }}

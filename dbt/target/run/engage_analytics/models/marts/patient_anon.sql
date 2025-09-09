@@ -12,7 +12,7 @@
 with patient_with_registration as (
     select 
         p.*,
-        r."phone-number" as registration_phone
+        r.phone_number as registration_phone
     from "airbyte"."engage_analytics_engage_analytics_mart"."patient" p
     left join "airbyte"."engage_analytics_engage_analytics_mart"."qr_registration_info" r on p.id = r.subject_patient_id
 )

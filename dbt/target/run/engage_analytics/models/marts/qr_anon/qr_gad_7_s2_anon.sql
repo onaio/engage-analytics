@@ -5,34 +5,33 @@
   as (
     
 
--- Anonymized view for qr_gad_7_s2 with PII fields masked based on questionnaire_metadata.anon flag
--- Questionnaire: Gad 7 S2 (Questionnaire/205)
--- PII fields masked: 0 fields
+-- Anonymized view for qr_gad_7_s2
+-- Automatically generated based on questionnaire_metadata.csv
 
 select 
-    MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
-    questionnaire_id,
-    MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
-    encounter_id,
-    author_practitioner_id,
-    practitioner_location_id,
-    practitioner_organization_id,
-    practitioner_id,
-    practitioner_careteam_id,
-    application_version,
-        ipc_s2_encounter_id_of_gad7_session_2,
-        ipc_s2_q1_anxious,
-        ipc_s2_q2_control_worry,
-        ipc_s2_q3_worry_too_much,
-        ipc_s2_q4_trouble_relaxing,
-        ipc_s2_q5_restless,
-        ipc_s2_q6_irritable,
-        ipc_s2_q7_afraid,
-        ipc_s2_observation_id_of_gad7_session_2_score,
-        ipc_s2_total_score,
-        ipc_s2_score_meaning,
-        ipc_s2_score_meaning_12,
-        CURRENT_TIMESTAMP as anonymized_at
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    gad_place_declare_values as gad_place_declare_values,
+    gad_place_declare_values_2 as gad_place_declare_values_2,
+    gad_place_declare_values_3 as gad_place_declare_values_3,
+    gad_place_declare_values_4 as gad_place_declare_values_4,
+    feeling_nervous as feeling_nervous,
+    gad_gad_ipc_session as gad_gad_ipc_session,
+    excessive_worry as excessive_worry,
+    trouble_relaxing as trouble_relaxing,
+    restlessness as restlessness,
+    irritability as irritability,
+    feeling_afraid as feeling_afraid,
+    gad_place_declare_values_12 as gad_place_declare_values_12,
+    CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_gad_7_s2"
   );

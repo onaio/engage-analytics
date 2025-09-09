@@ -1,22 +1,21 @@
 
 
--- Anonymized view for qr_1_month_follow_up with PII fields masked based on questionnaire_metadata.anon flag
--- Questionnaire: 1 Month Follow Up (Questionnaire/1-month-follow-up)
--- PII fields masked: 1 fields
+-- Anonymized view for qr_1_month_follow_up
+-- Automatically generated based on questionnaire_metadata.csv
 
 select 
-    MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
-    questionnaire_id,
-    MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
-    encounter_id,
-    author_practitioner_id,
-    practitioner_location_id,
-    practitioner_organization_id,
-    practitioner_id,
-    practitioner_careteam_id,
-    application_version,
-        "completed-all-recommended-interventions",
-        'REDACTED' as "schedule-this-meeting",
-        CURRENT_TIMESTAMP as anonymized_at
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    completed_all_recommended as completed_all_recommended,
+    schedule_meeting as schedule_meeting,
+    CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_1_month_follow_up"

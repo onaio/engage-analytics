@@ -11,7 +11,7 @@
 with patient_with_registration as (
     select 
         p.*,
-        r."phone-number" as registration_phone
+        r.phone_number as registration_phone
     from {{ ref('patient') }} p
     left join {{ ref('qr_registration_info') }} r on p.id = r.subject_patient_id
 )

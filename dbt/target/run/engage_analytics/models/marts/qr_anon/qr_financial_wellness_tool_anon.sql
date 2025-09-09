@@ -5,51 +5,44 @@
   as (
     
 
--- Anonymized view for qr_financial_wellness_tool with PII fields masked based on questionnaire_metadata.anon flag
--- Questionnaire: Financial Wellness Tool (Questionnaire/q-financial-wellness-tool)
--- PII fields masked: 4 fields
+-- Anonymized view for qr_financial_wellness_tool
+-- Automatically generated based on questionnaire_metadata.csv
 
 select 
-    MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
-    questionnaire_id,
-    MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
-    encounter_id,
-    author_practitioner_id,
-    practitioner_location_id,
-    practitioner_organization_id,
-    practitioner_id,
-    practitioner_careteam_id,
-    application_version,
-        financial_in_the_past_12_months_was_there_a_time_when_you_or,
-        'REDACTED' as financial_in_the_past_12_months_did_you_not_pay_the_full_amo,
-        'REDACTED' as financial_how_hard_is_it_for_you_to_pay_for_the_very_basics_,
-        financial_how_strongly_do_you_agree_or_disagree_with_the_fol,
-        financial_in_the_past_12_months_did_you_move_in_with_other_p,
-        financial_in_the_past_12_months_how_often_did_you_run_out_of,
-        'REDACTED' as financial_in_the_past_12_months_did_you_stay_at_a_shelter_in,
-        financial_in_the_past_12_months_did_you_not_pay_the_full_amo_8,
-        financial_i_worried_whether_my_food_would_run_out_before_i_g,
-        financial_the_food_that_i_bought_just_didnt_last_and_i_didnt,
-        CASE 
-        WHEN financial_in_the_past_12_months_was_your_phone_gas_heating_w IS NOT NULL AND LENGTH(financial_in_the_past_12_months_was_your_phone_gas_heating_w::text) >= 4
-        THEN 'XXX-XXX-' || RIGHT(financial_in_the_past_12_months_was_your_phone_gas_heating_w::text, 4)
-        WHEN financial_in_the_past_12_months_was_your_phone_gas_heating_w IS NOT NULL
-        THEN 'XXX-XXX-' || financial_in_the_past_12_months_was_your_phone_gas_heating_w::text
-        ELSE 'NO PHONE'
-    END as financial_in_the_past_12_months_was_your_phone_gas_heating_w,
-        financial_when_you_think_about_your_financial_situation_how_,
-        "high-debt",
-        "high-food-insecurity",
-        "high-housing-insecurity",
-        "high-paying-bills",
-        "moderate-debt",
-        "moderate-food-insecurity",
-        "moderate-housing-insecurity",
-        "moderate-medical-hardships",
-        "moderate-paying-bills",
-        "no-financial-hardship",
-        "overall-financial-hardship",
-        CURRENT_TIMESTAMP as anonymized_at
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    fin_there_you as fin_there_you,
+    fin_you_not_pay as fin_you_not_pay,
+    pay_basics_difficulty as pay_basics_difficulty,
+    fin_strongly_you_agree as fin_strongly_you_agree,
+    fin_you_move_other as fin_you_move_other,
+    fin_you_run_out as fin_you_run_out,
+    shelter_stay as shelter_stay,
+    fin_you_not_pay_8 as fin_you_not_pay_8,
+    food_insecurity as food_insecurity,
+    fin_food_bought_just as fin_food_bought_just,
+    fin_your_phone_gas as fin_your_phone_gas,
+    fin_you_think_your as fin_you_think_your,
+    fin_high_debt as fin_high_debt,
+    high_food_insecurity as high_food_insecurity,
+    high_housing_insecurity as high_housing_insecurity,
+    fin_high_paying_bills as fin_high_paying_bills,
+    fin_moderate_debt as fin_moderate_debt,
+    moderate_food_insecurity as moderate_food_insecurity,
+    moderate_housing_insecurity as moderate_housing_insecurity,
+    moderate_medical_hardships as moderate_medical_hardships,
+    moderate_paying_bills as moderate_paying_bills,
+    fin_financial_hardship as fin_financial_hardship,
+    overall_financial_hardship as overall_financial_hardship,
+    CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_financial_wellness_tool"
   );

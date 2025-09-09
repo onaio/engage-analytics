@@ -1,26 +1,25 @@
 
 
--- Anonymized view for qr_mood_rating_s2 with PII fields masked based on questionnaire_metadata.anon flag
--- Questionnaire: Mood Rating (IPC Session 2) (Questionnaire/206)
--- PII fields masked: 1 fields
+-- Anonymized view for qr_mood_rating_s2
+-- Automatically generated based on questionnaire_metadata.csv
 
 select 
-    MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
-    questionnaire_id,
-    MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
-    encounter_id,
-    author_practitioner_id,
-    practitioner_location_id,
-    practitioner_organization_id,
-    practitioner_id,
-    practitioner_careteam_id,
-    application_version,
-        mood_s2_on_a_scale_of_1_to_10_with_1_being_the_worst_mood_,
-        mood_s2_total_score,
-        'REDACTED' as date_of_birth,
-        age,
-        birth_month,
-        age_years,
-        CURRENT_TIMESTAMP as anonymized_at
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    mood_rating_ipc as mood_rating_ipc,
+    add_family_member as add_family_member,
+    add_family_member_3 as add_family_member_3,
+    add_family_member_4 as add_family_member_4,
+    add_family_member_5 as add_family_member_5,
+    mood_rating_ipc_6 as mood_rating_ipc_6,
+    CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_mood_rating_s2"

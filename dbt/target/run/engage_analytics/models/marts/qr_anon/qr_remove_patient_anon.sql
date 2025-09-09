@@ -5,30 +5,29 @@
   as (
     
 
--- Anonymized view for qr_remove_patient with PII fields masked based on questionnaire_metadata.anon flag
--- Questionnaire: eCBIS Remove Family Form (Questionnaire/69)
--- PII fields masked: 1 fields
+-- Anonymized view for qr_remove_patient
+-- Automatically generated based on questionnaire_metadata.csv
 
 select 
-    MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
-    questionnaire_id,
-    MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
-    encounter_id,
-    author_practitioner_id,
-    practitioner_location_id,
-    practitioner_organization_id,
-    practitioner_id,
-    practitioner_careteam_id,
-    application_version,
-        remove_family_date_of_death,
-        remove_family_give_other_reasons_for_removal,
-        remove_family_age_at_death_year,
-        remove_family_a11ebb0dacb34038956b293a41acb85b,
-        remove_family_date_moved_away,
-        remove_family_reason_for_removal,
-        'REDACTED' as remove_family_patientbirthdate,
-        reason_unknown,
-        CURRENT_TIMESTAMP as anonymized_at
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    ecbis_remove_family as ecbis_remove_family,
+    ecbis_remove_family_2 as ecbis_remove_family_2,
+    ecbis_remove_family_3 as ecbis_remove_family_3,
+    ecbis_remove_family_4 as ecbis_remove_family_4,
+    ecbis_remove_family_5 as ecbis_remove_family_5,
+    survey_response as survey_response,
+    ecbis_remove_family_7 as ecbis_remove_family_7,
+    'REDACTED' as patient_birthdate,
+    CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_remove_patient"
   );

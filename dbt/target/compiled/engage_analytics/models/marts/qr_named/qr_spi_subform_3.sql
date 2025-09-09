@@ -49,7 +49,7 @@
   ),
   pivoted as (
     select
-      b.qr_id,max(case when linkid = 'encounter-id' then answer_value_text end) as "spi_encounter_id_of_spi_sub_3"
+      b.qr_id,max(case when linkid = 'encounter-id' then answer_value_text end) as "place_declare_values"
     from base b
     group by b.qr_id
   )

@@ -5,60 +5,49 @@
   as (
     
 
--- Anonymized view for qr_registration_info with PII fields masked based on questionnaire_metadata.anon flag
--- Questionnaire: Add Family Member Registration (Questionnaire/221)
--- PII fields masked: 11 fields
+-- Anonymized view for qr_registration_info
+-- Automatically generated based on questionnaire_metadata.csv
 
 select 
-    MD5(COALESCE(qr_id, '')::text) as qr_id_hash,
-    questionnaire_id,
-    MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
-    encounter_id,
-    author_practitioner_id,
-    practitioner_location_id,
-    practitioner_organization_id,
-    practitioner_id,
-    practitioner_careteam_id,
-    application_version,
-        registration_36d39dbe00e24e29f0793ec8f0119aff,
-        'REDACTED' as registration_middle_name,
-        registration_which_of_the_following_best_represents_how_you_thi,
-        registration_age,
-        'REDACTED' as registration_surname,
-        registration_age_6,
-        registration_calculated_age,
-        'REDACTED' as registration_unique_id,
-        registration_has_this_person_received_engage_services_in_the_pa,
-        registration_calculated_month,
-        registration_calculated_year,
-        'REDACTED' as registration_date_of_birth_dob,
-        'REDACTED' as registration_first_name,
-        registration_what_was_your_biological_sex_assigned_at_birth,
-        "choice-gender-identity",
-        "choice-pronouns",
-        'REDACTED' as "do-you-have-medicaid",
-        'REDACTED' as "email-address",
-        'REDACTED' as "medicaid-number",
-        "other-best-represents-how-you-think-of-yourself",
-        "other-biological-sex-at-birth",
-        "other-gender-identity",
-        "other-pronouns",
-        "other-where-did-you-first-learn-about-engage",
-        CASE 
-        WHEN "phone-number" IS NOT NULL AND LENGTH("phone-number"::text) >= 4
-        THEN 'XXX-XXX-' || RIGHT("phone-number"::text, 4)
-        WHEN "phone-number" IS NOT NULL
-        THEN 'XXX-XXX-' || "phone-number"::text
-        ELSE 'NO PHONE'
-    END as "phone-number",
-        'REDACTED' as "physical-address",
-        "where-did-you-first-learn-about-engage",
-        CASE 
-        WHEN "zip-code" IS NOT NULL 
-        THEN LEFT("zip-code"::text, 3) || 'XX'
-        ELSE NULL
-    END as "zip-code",
-        CURRENT_TIMESTAMP as anonymized_at
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    add_family_member as add_family_member,
+    add_family_member_2 as add_family_member_2,
+    add_family_member_3 as add_family_member_3,
+    add_family_member_4 as add_family_member_4,
+    add_family_member_5 as add_family_member_5,
+    q_age as q_age,
+    add_family_member_7 as add_family_member_7,
+    add_family_member_8 as add_family_member_8,
+    add_family_member_9 as add_family_member_9,
+    add_family_member_10 as add_family_member_10,
+    add_family_member_11 as add_family_member_11,
+    add_family_member_12 as add_family_member_12,
+    choice_gender_identity as choice_gender_identity,
+    choice_pronouns as choice_pronouns,
+    you_medicaid as you_medicaid,
+    add_family_member_16 as add_family_member_16,
+    email_address as email_address,
+    add_family_member_18 as add_family_member_18,
+    medicaid_number as medicaid_number,
+    other_best_represents as other_best_represents,
+    other_biological_sex as other_biological_sex,
+    other_gender_identity as other_gender_identity,
+    other_pronouns as other_pronouns,
+    other_you_first as other_you_first,
+    phone_number as phone_number,
+    physical_address as physical_address,
+    you_first_learn as you_first_learn,
+    zip_code as zip_code,
+    CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_registration_info"
   );
