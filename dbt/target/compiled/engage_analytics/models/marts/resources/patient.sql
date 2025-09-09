@@ -117,6 +117,7 @@ select
     stp.id,
     stp.gender,
     stp.birthDate::date as birth_date,
+    DATE_PART('year', AGE(stp.birthDate::date))::integer as age_years,
     stp.deceasedBoolean as deceased,
     stp.active,
     stp.period_start::date as registration_date,
