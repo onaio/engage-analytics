@@ -1,7 +1,20 @@
 
 
--- Anonymized registration info with masked PII fields
--- Masks: Unique ID, Names, DOB, Phone, Email, Physical address, Zip code, Medicaid number
+-- Anonymized registration info with PII fields dynamically masked based on questionnaire_metadata.anon flag
+-- Uses the anon column to determine which fields should be masked
+
+with metadata_pii as (
+    select 
+        question_alias,
+        question_text
+    from "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata"
+    where questionnaire_id = 'Questionnaire/221'
+    and anon = 'TRUE'
+),
+
+registration_data as (
+    select * from "airbyte"."engage_analytics_engage_analytics_mart"."qr_registration_info"
+)
 
 select 
     -- Non-PII identifiers (hashed for referential integrity)
@@ -20,20 +33,46 @@ select
     -- Application metadata
     application_version,
     
-    -- Masked PII fields
-    'REDACTED' as registration_unique_id_masked,
-    'REDACTED' as registration_first_name_masked,
-    'REDACTED' as registration_middle_name_masked,
-    'REDACTED' as registration_surname_masked,
+    -- Mask PII fields based on metadata
+    -- Unique ID
+    CASE WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'registration_unique_id')
+        THEN 'REDACTED'
+        ELSE registration_unique_id
+    END as registration_unique_id_masked,
     
-    -- Age fields (keep age, mask DOB)
+    -- Names
+    CASE WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'registration_first_name')
+        THEN 'REDACTED'
+        ELSE registration_first_name
+    END as registration_first_name_masked,
+    
+    CASE WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'registration_middle_name')
+        THEN 'REDACTED'
+        ELSE registration_middle_name
+    END as registration_middle_name_masked,
+    
+    CASE WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'registration_surname')
+        THEN 'REDACTED'
+        ELSE registration_surname
+    END as registration_surname_masked,
+    
+    -- Date of birth
+    CASE WHEN EXISTS (SELECT 1 FROM metadata_pii WHERE question_alias = 'registration_date_of_birth_dob')
+        THEN 'REDACTED'
+        ELSE registration_date_of_birth_dob
+    END as registration_date_of_birth_dob_masked,
+    
+    -- Age fields (keep these as they're derived/less sensitive)
     registration_age,
     registration_age_6,
     registration_calculated_age,
-    'REDACTED' as registration_date_of_birth_dob_masked,
     
-    -- Masked contact information
-    'REDACTED' as "email-address_masked",
+    -- Contact information (if they exist in the data)
+    CASE 
+        WHEN "email-address" IS NOT NULL THEN 'REDACTED'
+        ELSE NULL
+    END as "email-address_masked",
+    
     CASE 
         WHEN "phone-number" IS NOT NULL AND LENGTH("phone-number") >= 4
         THEN 'XXX-XXX-' || RIGHT("phone-number", 4)
@@ -41,22 +80,26 @@ select
         THEN 'XXX-XXX-' || "phone-number"
         ELSE 'NO PHONE'
     END as "phone-number_masked",
-    'REDACTED' as "physical-address_masked",
+    
+    CASE 
+        WHEN "physical-address" IS NOT NULL THEN 'REDACTED'
+        ELSE NULL
+    END as "physical-address_masked",
+    
     CASE 
         WHEN "zip-code" IS NOT NULL 
         THEN LEFT("zip-code", 3) || 'XX'
         ELSE NULL
     END as "zip-code_masked",
     
-    -- Masked Medicaid information
+    -- Medicaid information
+    "do-you-have-medicaid",
     CASE 
-        WHEN "do-you-have-medicaid" = 'Yes' 
-        THEN 'Yes'
-        ELSE "do-you-have-medicaid"
-    END as "do-you-have-medicaid",
-    'REDACTED' as "medicaid-number_masked",
+        WHEN "medicaid-number" IS NOT NULL THEN 'REDACTED'
+        ELSE NULL
+    END as "medicaid-number_masked",
     
-    -- Non-PII demographic fields
+    -- Non-PII demographic fields (keep as-is)
     registration_which_of_the_following_best_represents_how_you_thi,
     registration_what_was_your_biological_sex_assigned_at_birth,
     "choice-gender-identity",
@@ -73,4 +116,4 @@ select
     -- Metadata
     CURRENT_TIMESTAMP as anonymized_at
 
-from "airbyte"."engage_analytics_engage_analytics_mart"."qr_registration_info"
+from registration_data
