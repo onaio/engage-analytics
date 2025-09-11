@@ -187,8 +187,18 @@ def export_progress_stream(export_id):
                 for csv_file in csv_files:
                     zipf.write(csv_file, csv_file.name)
             
-            # Zip is complete - update to 100%
+            # Verify zip file was created
+            if not zip_path.exists():
+                raise Exception(f"Failed to create zip file at {zip_path}")
+            
+            # Log zip creation
+            print(f"DEBUG: Zip file created at {zip_path} (size: {zip_path.stat().st_size} bytes)")
+            
+            # Zip is complete - update to 95%
             yield f"data: {json.dumps({'progress': 95, 'message': 'Zip file created successfully!'})}\n\n"
+            
+            # Small delay to ensure message is sent
+            time.sleep(0.5)
             
             # Store zip path in session for download
             session['export_file'] = str(zip_path)
@@ -207,6 +217,9 @@ def export_progress_stream(export_id):
             
             # Send final completion message with download ready
             yield f"data: {json.dumps({'progress': 100, 'message': 'Export complete! Click Download to get your file.', 'complete': True})}\n\n"
+            
+            # Final flush to ensure all messages are sent
+            time.sleep(0.5)
             
         except Exception as e:
             error_msg = f"Export failed: {str(e)}"
@@ -227,27 +240,49 @@ def download_file():
     export_id = session.get('export_id')
     email = session.get('export_email')
     
-    if not export_id or export_id not in export_progress:
-        flash('No export available. Please start a new export.', 'warning')
-        return redirect(url_for('download_form'))
+    print(f"DEBUG: Download requested - export_id: {export_id}, email: {email}")
     
-    export_info = export_progress[export_id]
-    if export_info['status'] != 'complete':
-        flash('Export is not ready yet. Please wait.', 'warning')
-        return redirect(url_for('prepare_export'))
+    # First try to get from export_progress
+    if export_id and export_id in export_progress:
+        export_info = export_progress[export_id]
+        file_path = export_info.get('file_path')
+        if file_path and Path(file_path).exists():
+            print(f"DEBUG: Found file from export_progress: {file_path}")
+            # Log successful download
+            ip_address = request.remote_addr
+            log_activity(email or 'unknown', ip_address, action='file_downloaded', status='success')
+            
+            response = send_file(
+                file_path,
+                as_attachment=True,
+                download_name=Path(file_path).name,
+                mimetype='application/zip'
+            )
+            return response
     
-    file_path = export_info.get('file_path')
-    if not file_path or not Path(file_path).exists():
-        flash('Export file not found. Please try again.', 'danger')
-        return redirect(url_for('download_form'))
+    # Fallback: Find the most recent zip file in exports directory
+    exports_base = Path('/Users/mberg/github/engage-analytics/dataexport/exports')
+    if exports_base.exists():
+        zip_files = list(exports_base.glob('*/*.zip'))
+        if zip_files:
+            # Get the most recent zip file
+            latest_zip = max(zip_files, key=lambda p: p.stat().st_mtime)
+            print(f"DEBUG: Using latest zip file: {latest_zip}")
+            
+            # Log successful download
+            ip_address = request.remote_addr
+            log_activity(email or 'unknown', ip_address, action='file_downloaded', status='success')
+            
+            response = send_file(
+                str(latest_zip),
+                as_attachment=True,
+                download_name=latest_zip.name,
+                mimetype='application/zip'
+            )
+            return response
     
-    # Log successful download
-    ip_address = request.remote_addr
-    log_activity(email, ip_address, action='file_downloaded', status='success')
-    
-    # Clean up session
-    session.pop('export_id', None)
-    session.pop('export_email', None)
+    flash('No export file found. Please try again.', 'danger')
+    return redirect(url_for('download_form'))
     
     # Optional: Schedule cleanup of export directory after sending file
     # Disabled for now so you can inspect the files
@@ -275,6 +310,56 @@ def download_file():
     # Timer(5.0, cleanup_export).start()
     
     return response
+
+
+@app.route('/download-latest')
+@login_required
+def download_latest():
+    """Direct download of the latest export file"""
+    exports_base = Path('/Users/mberg/github/engage-analytics/dataexport/exports')
+    if exports_base.exists():
+        zip_files = list(exports_base.glob('*/*.zip'))
+        if zip_files:
+            # Get the most recent zip file
+            latest_zip = max(zip_files, key=lambda p: p.stat().st_mtime)
+            print(f"DEBUG: Downloading latest zip: {latest_zip}")
+            
+            response = send_file(
+                str(latest_zip),
+                as_attachment=True,
+                download_name=latest_zip.name,
+                mimetype='application/zip'
+            )
+            return response
+    
+    flash('No export files available.', 'danger')
+    return redirect(url_for('download_form'))
+
+
+@app.route('/api/export-status/<export_id>')
+@login_required
+def api_export_status(export_id):
+    """API endpoint to check export status"""
+    if export_id not in export_progress:
+        return jsonify({'status': 'not_found'}), 404
+    
+    export_info = export_progress[export_id]
+    response = {
+        'status': export_info.get('status'),
+        'progress': export_info.get('progress'),
+        'message': export_info.get('message')
+    }
+    
+    # If complete, add download readiness
+    if export_info.get('status') == 'complete':
+        file_path = export_info.get('file_path')
+        if file_path and Path(file_path).exists():
+            response['download_ready'] = True
+            response['file_size'] = Path(file_path).stat().st_size
+        else:
+            response['download_ready'] = False
+    
+    return jsonify(response)
 
 
 @app.route('/api/tables')

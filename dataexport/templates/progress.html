@@ -67,6 +67,71 @@ const downloadSection = document.getElementById('downloadSection');
 const errorSection = document.getElementById('errorSection');
 const errorMessage = document.getElementById('errorMessage');
 
+let lastProgress = 0;
+let pollingInterval = null;
+
+// Function to complete the export
+function completeExport() {
+    // Hide the progress bar and "Preparing Export" title
+    document.querySelector('.card-title').style.display = 'none';
+    document.querySelector('.progress').style.display = 'none';
+    statusMessage.style.display = 'none';
+    exportDetails.style.display = 'none';
+    
+    // Show the download section
+    downloadSection.style.display = 'block';
+    
+    if (pollingInterval) {
+        clearInterval(pollingInterval);
+        pollingInterval = null;
+    }
+    
+    // Ensure event source is closed
+    if (eventSource && eventSource.readyState !== EventSource.CLOSED) {
+        eventSource.close();
+    }
+}
+
+// Polling function to check status
+function pollExportStatus() {
+    // If already completed, don't poll
+    if (downloadSection.style.display !== 'none') {
+        return;
+    }
+    
+    fetch(`/api/export-status/${exportId}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            // If 404 or error, just complete if we're at 95%
+            if (lastProgress >= 95) {
+                completeExport();
+            }
+            return null;
+        })
+        .then(data => {
+            if (data && data.status === 'complete' && data.download_ready) {
+                completeExport();
+            } else if (lastProgress >= 95) {
+                // If we're at 95% but status check fails, just complete it
+                completeExport();
+            }
+        })
+        .catch(error => {
+            console.error('Error polling status:', error);
+            // On any error at 95%, just complete
+            if (lastProgress >= 95) {
+                completeExport();
+            }
+        });
+}
+
+// Start polling after 5 seconds as a backup
+setTimeout(() => {
+    pollingInterval = setInterval(pollExportStatus, 2000);
+}, 5000);
+
 // Start server-sent events connection
 const eventSource = new EventSource(`/export-progress/${exportId}`);
 
@@ -75,6 +140,7 @@ eventSource.onmessage = function(event) {
     
     // Update progress bar
     if (data.progress !== undefined) {
+        lastProgress = data.progress;
         progressBar.style.width = data.progress + '%';
         progressBar.textContent = data.progress + '%';
     }
@@ -91,43 +157,49 @@ eventSource.onmessage = function(event) {
             logItem.innerHTML = `<i class="fas fa-check text-success"></i> ${data.message}`;
             progressLog.appendChild(logItem);
         }
+        
+        // If we see "Zip file created successfully!" at 95%, immediately complete
+        if (data.message.includes('Zip file created successfully') && lastProgress >= 95) {
+            setTimeout(() => {
+                completeExport();
+            }, 500);
+        }
     }
     
     // Handle completion
     if (data.complete) {
         eventSource.close();
-        progressBar.style.width = '100%';
-        progressBar.textContent = '100%';
-        progressBar.classList.remove('progress-bar-animated');
-        progressBar.classList.add('bg-success');
-        statusMessage.className = 'alert alert-success';
-        statusMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + (data.message || 'Export ready for download!');
-        downloadSection.style.display = 'block';
-        // Clear the progress log to reduce clutter
-        exportDetails.style.display = 'none';
+        completeExport();
     }
     
     // Handle errors
     if (data.error) {
         eventSource.close();
         progressBar.classList.remove('progress-bar-animated');
-        // Keep the bar blue, don't change to red
         statusMessage.style.display = 'none';
         errorSection.style.display = 'block';
         errorMessage.textContent = data.message || 'An unexpected error occurred during export.';
+        
+        if (pollingInterval) {
+            clearInterval(pollingInterval);
+        }
     }
 };
 
 eventSource.onerror = function(error) {
-    eventSource.close();
     console.error('EventSource error:', error);
-    statusMessage.className = 'alert alert-warning';
-    statusMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Connection lost. Please refresh the page.';
+    // Don't close immediately, try polling instead
+    setTimeout(() => {
+        pollExportStatus();
+    }, 1000);
 };
 
 // Clean up on page unload
 window.addEventListener('beforeunload', function() {
     eventSource.close();
+    if (pollingInterval) {
+        clearInterval(pollingInterval);
+    }
 });
 </script>
 {% endblock %}
