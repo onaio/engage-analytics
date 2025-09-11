@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Exporting Data - Engage Analytics{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h2 class="card-title text-center mb-4">
+                    <i class="fas fa-cog fa-spin text-primary"></i> Preparing Export
+                </h2>
+                
+                <div class="progress mb-3" style="height: 30px;">
+                    <div id="progressBar" 
+                         class="progress-bar progress-bar-striped progress-bar-animated" 
+                         role="progressbar" 
+                         style="width: 0%">
+                        0%
+                    </div>
+                </div>
+                
+                <div id="statusMessage" class="alert alert-info">
+                    <i class="fas fa-hourglass-start"></i> Initializing export process...
+                </div>
+                
+                <div id="exportDetails" class="mt-4" style="display: none;">
+                    <h5>Export Progress:</h5>
+                    <ul id="progressLog" class="list-group">
+                    </ul>
+                </div>
+                
+                <div id="downloadSection" class="text-center mt-4" style="display: none;">
+                    <h4 class="text-success mb-3">
+                        <i class="fas fa-check-circle"></i> Export Complete!
+                    </h4>
+                    <a href="{{ url_for('download_file') }}" class="btn btn-success btn-lg">
+                        <i class="fas fa-download"></i> Download Export
+                    </a>
+                    <hr class="my-4">
+                    <a href="{{ url_for('download_form') }}" class="btn btn-link">
+                        <i class="fas fa-redo"></i> Start New Export
+                    </a>
+                </div>
+                
+                <div id="errorSection" class="alert alert-danger mt-4" style="display: none;">
+                    <h5><i class="fas fa-exclamation-triangle"></i> Export Failed</h5>
+                    <p id="errorMessage"></p>
+                    <a href="{{ url_for('download_form') }}" class="btn btn-warning">
+                        <i class="fas fa-arrow-left"></i> Try Again
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const exportId = "{{ export_id }}";
+const progressBar = document.getElementById('progressBar');
+const statusMessage = document.getElementById('statusMessage');
+const progressLog = document.getElementById('progressLog');
+const exportDetails = document.getElementById('exportDetails');
+const downloadSection = document.getElementById('downloadSection');
+const errorSection = document.getElementById('errorSection');
+const errorMessage = document.getElementById('errorMessage');
+
+// Start server-sent events connection
+const eventSource = new EventSource(`/export-progress/${exportId}`);
+
+eventSource.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    
+    // Update progress bar
+    if (data.progress !== undefined) {
+        progressBar.style.width = data.progress + '%';
+        progressBar.textContent = data.progress + '%';
+    }
+    
+    // Update status message
+    if (data.message) {
+        statusMessage.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${data.message}`;
+        
+        // Add to progress log
+        if (data.progress > 10) {
+            exportDetails.style.display = 'block';
+            const logItem = document.createElement('li');
+            logItem.className = 'list-group-item';
+            logItem.innerHTML = `<i class="fas fa-check text-success"></i> ${data.message}`;
+            progressLog.appendChild(logItem);
+        }
+    }
+    
+    // Handle completion
+    if (data.complete) {
+        eventSource.close();
+        progressBar.style.width = '100%';
+        progressBar.textContent = '100%';
+        progressBar.classList.remove('progress-bar-animated');
+        progressBar.classList.add('bg-success');
+        statusMessage.className = 'alert alert-success';
+        statusMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + (data.message || 'Export ready for download!');
+        downloadSection.style.display = 'block';
+        // Clear the progress log to reduce clutter
+        exportDetails.style.display = 'none';
+    }
+    
+    // Handle errors
+    if (data.error) {
+        eventSource.close();
+        progressBar.classList.remove('progress-bar-animated');
+        // Keep the bar blue, don't change to red
+        statusMessage.style.display = 'none';
+        errorSection.style.display = 'block';
+        errorMessage.textContent = data.message || 'An unexpected error occurred during export.';
+    }
+};
+
+eventSource.onerror = function(error) {
+    eventSource.close();
+    console.error('EventSource error:', error);
+    statusMessage.className = 'alert alert-warning';
+    statusMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Connection lost. Please refresh the page.';
+};
+
+// Clean up on page unload
+window.addEventListener('beforeunload', function() {
+    eventSource.close();
+});
+</script>
+{% endblock %}

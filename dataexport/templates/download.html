@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Download Data - Engage Analytics Export{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h2 class="card-title text-center mb-4">
+                    <i class="fas fa-download text-primary"></i> Export Data
+                </h2>
+                
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle"></i> 
+                    <strong>Data Privacy Notice:</strong> 
+                    This export contains anonymized healthcare data. 
+                    All personally identifiable information has been removed or masked.
+                </div>
+                
+                <form method="POST" action="{{ url_for('download_form') }}" id="downloadForm">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <input type="email" 
+                                   class="form-control" 
+                                   id="email" 
+                                   name="email" 
+                                   required 
+                                   placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-text">
+                            Your email will be logged for audit purposes.
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title">Export Contents:</h6>
+                                <ul class="mb-0">
+                                    <li>Anonymized patient records</li>
+                                    <li>Questionnaire responses (de-identified)</li>
+                                    <li>Healthcare provider information</li>
+                                    <li>Organization and encounter data</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               id="consent" 
+                               name="consent" 
+                               required>
+                        <label class="form-check-label" for="consent">
+                            I understand that this data is confidential and agree to handle it 
+                            in accordance with applicable privacy regulations.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-play"></i> Start Export Process
+                    </button>
+                </form>
+                
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#tablesModal">
+                        <i class="fas fa-list"></i> View tables to be exported
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tables Modal -->
+<div class="modal fade" id="tablesModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tables to be Exported</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="tablesList">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.getElementById('tablesModal').addEventListener('shown.bs.modal', function () {
+    fetch('/api/tables')
+        .then(response => response.json())
+        .then(data => {
+            if (data.tables) {
+                const tablesList = document.getElementById('tablesList');
+                let html = `<p>Total tables: ${data.count}</p><ul class="list-group">`;
+                data.tables.forEach(table => {
+                    html += `<li class="list-group-item">${table}</li>`;
+                });
+                html += '</ul>';
+                tablesList.innerHTML = html;
+            }
+        })
+        .catch(error => {
+            document.getElementById('tablesList').innerHTML = 
+                '<div class="alert alert-danger">Failed to load tables list</div>';
+        });
+});
+</script>
+{% endblock %}

@@ -2,3 +2,4 @@
 *.env
 .env.*
 dbt/data/
+dbt/logs/dbt.log
