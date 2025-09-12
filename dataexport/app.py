@@ -142,6 +142,10 @@ def prepare_export():
 @login_required
 def export_progress_stream(export_id):
     """Server-sent events endpoint for progress updates"""
+    # Get email from session before entering generator
+    email = session.get('export_email', 'unknown')
+    ip_address = request.remote_addr
+    
     def generate():
         """Generate server-sent events"""
         # Initialize progress
@@ -155,6 +159,9 @@ def export_progress_stream(export_id):
         export_dir.mkdir(parents=True, exist_ok=True)
         
         try:
+            # Log export started
+            log_activity(email, ip_address, action='export_started', status='success')
+            
             # Create exporter instance
             exporter = DataExporter()
             
@@ -211,8 +218,6 @@ def export_progress_stream(export_id):
             }
             
             # Log successful export completion
-            email = session.get('export_email', 'unknown')
-            ip_address = request.remote_addr if request else 'unknown'
             log_activity(email, ip_address, action='export_completed', status='success')
             
             # Send final completion message with download ready
