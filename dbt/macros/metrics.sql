@@ -92,6 +92,33 @@
   expression: "count(distinct subject_patient_id)"
   description: "Clients eligible for FWS (Financial Wellness Services)"
   version: v1
+
+- id: encounters_in_person
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: encounters_by_delivery_format
+  expression: "count(distinct case when format_you_deliver = 'In-person' then subject_patient_id end)"
+  description: "Daily in-person encounters"
+  version: v1
+
+- id: encounters_video_telehealth
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: encounters_by_delivery_format
+  expression: "count(distinct case when format_you_deliver = 'Video telehealth' then subject_patient_id end)"
+  description: "Daily video telehealth encounters"
+  version: v1
+
+- id: encounters_phone_telehealth
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: encounters_by_delivery_format
+  expression: "count(distinct case when format_you_deliver = 'Phone telehealth' then subject_patient_id end)"
+  description: "Daily phone telehealth encounters"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}

@@ -24,6 +24,8 @@ base_{{ src }} as (
   select
     {%- if src == 'encounters' %}
     period_start::date as period_date,
+    {%- elif src == 'encounters_by_delivery_format' %}
+    session_date as period_date,
     {%- elif src == 'clients_eligible_for_ipc' or src == 'clients_sbirt_mi_eligible' or src == 'clients_eligible_spi' or src == 'clients_eligible_referral' or src == 'clients_eligible_fws' %}
     period_date,
     {%- else %}
@@ -58,6 +60,8 @@ base_{{ src }} as (
   group by
     {%- if src == 'encounters' %}
     period_start::date,
+    {%- elif src == 'encounters_by_delivery_format' %}
+    session_date,
     {%- elif src == 'clients_eligible_for_ipc' or src == 'clients_sbirt_mi_eligible' or src == 'clients_eligible_spi' or src == 'clients_eligible_referral' or src == 'clients_eligible_fws' %}
     period_date,
     {%- endif %}

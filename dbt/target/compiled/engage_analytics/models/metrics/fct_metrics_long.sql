@@ -95,6 +95,18 @@ base_clients_eligible_fws as (
   
   group by
     period_date, organization_id
+),
+base_encounters_by_delivery_format as (
+  select
+    session_date as period_date,
+    organization_id,
+    count(distinct case when format_you_deliver = 'In-person' then subject_patient_id end) as encounters_in_person_value,
+    count(distinct case when format_you_deliver = 'Video telehealth' then subject_patient_id end) as encounters_video_telehealth_value,
+    count(distinct case when format_you_deliver = 'Phone telehealth' then subject_patient_id end) as encounters_phone_telehealth_value
+  from "airbyte"."engage_analytics"."encounters_by_delivery_format"
+  
+  group by
+    session_date, organization_id
 )
   select
     period_date,
@@ -205,4 +217,37 @@ base_clients_eligible_fws as (
     'Clients eligible for FWS (Financial Wellness Services)' as description,
     'prod' as status
   from base_clients_eligible_fws
+  union all
+  select
+    period_date,
+    organization_id,
+    'encounters_in_person' as metric_id,
+    encounters_in_person_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Daily in-person encounters' as description,
+    'prod' as status
+  from base_encounters_by_delivery_format
+  union all
+  select
+    period_date,
+    organization_id,
+    'encounters_video_telehealth' as metric_id,
+    encounters_video_telehealth_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Daily video telehealth encounters' as description,
+    'prod' as status
+  from base_encounters_by_delivery_format
+  union all
+  select
+    period_date,
+    organization_id,
+    'encounters_phone_telehealth' as metric_id,
+    encounters_phone_telehealth_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Daily phone telehealth encounters' as description,
+    'prod' as status
+  from base_encounters_by_delivery_format
   
