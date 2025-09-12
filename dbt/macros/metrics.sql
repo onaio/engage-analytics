@@ -19,6 +19,43 @@
   expression: "count(distinct id)"
   description: "Total number of unique patients"
   version: v1
+
+- id: client_encounters
+  unit: count
+  grain: day
+  entity_keys: [practitioner_organization_id]
+  source_model: encounters
+  expression: "count(distinct subject_id)"
+  description: "Total unique clients seen (one encounter per patient per day)"
+  version: v1
+
+- id: active_providers
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: active_providers
+  expression: "count(distinct case when is_active_30d then practitioner_id end)"
+  description: "Providers who submitted QRs in past 30 days"
+  version: v1
+
+- id: percent_active_providers
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: active_providers
+  numerator: "count(distinct case when is_active_30d then practitioner_id end)"
+  denominator: "nullif(count(distinct practitioner_id), 0)"
+  description: "Percentage of providers active in past 30 days"
+  version: v1
+
+- id: clients_with_probable_mental_health
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_with_mental_health
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients with probable mental health issues (MW Tool)"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}
@@ -29,7 +66,7 @@
   {%- if m.expression is defined -%}
     ({{ m.expression }})
   {%- else -%}
-    ({{ m.numerator }})::numeric / {{ m.denominator }}
+    (({{ m.numerator }})::numeric / {{ m.denominator }} * 100)
   {%- endif -%}
 {% endmacro %}
 

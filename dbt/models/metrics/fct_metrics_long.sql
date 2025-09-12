@@ -22,21 +22,45 @@ with
 {%- for src, metrics_list in by_source.items() %}
 base_{{ src }} as (
   select
+    {%- if src == 'encounters' %}
+    period_start::date as period_date,
+    {%- elif src == 'clients_with_mental_health' %}
+    period_date,
+    {%- else %}
     current_date as period_date,
-    {%- for m in metrics_list %}
-    {%- for key in m.get('entity_keys', ['organization_id']) %}
-    {{ key }},
+    {%- endif %}
+    {%- set all_entity_keys = [] -%}
+    {%- for m in metrics_list -%}
+      {%- for key in m.get('entity_keys', ['organization_id']) -%}
+        {%- if key not in all_entity_keys -%}
+          {%- do all_entity_keys.append(key) -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
+    {%- for key in all_entity_keys %}
+    {{ key }},
     {%- endfor %}
-    {{ metrics_list[0].expression }} as {{ metrics_list[0].id }}_value
-    {%- for m in metrics_list[1:] %},
+    {%- for m in metrics_list %}
+    {%- if m.expression is defined %}
     {{ m.expression }} as {{ m.id }}_value
+    {%- else %}
+    {{ m.numerator }} as {{ m.id }}_numerator,
+    {{ m.denominator }} as {{ m.id }}_denominator
+    {%- endif %}
+    {%- if not loop.last %},{% endif %}
     {%- endfor %}
   from {{ ref(src) }}
   {% if src == 'practitioners' or src == 'patient' %}
   where active = 'true'
+  {% elif src == 'encounters' %}
+  where period_start is not null
   {% endif %}
   group by
+    {%- if src == 'encounters' %}
+    period_start::date,
+    {%- elif src == 'clients_with_mental_health' %}
+    period_date,
+    {%- endif %}
     {%- set all_keys = [] -%}
     {%- for m in metrics_list -%}
       {%- for key in m.get('entity_keys', ['organization_id']) -%}
@@ -56,7 +80,11 @@ base_{{ src }} as (
     period_date,
     {{ metric_keys_clause(m) }},
     '{{ m.id }}' as metric_id,
+    {%- if m.expression is defined %}
     {{ m.id }}_value::numeric as value,
+    {%- else %}
+    ({{ m.id }}_numerator::numeric / {{ m.id }}_denominator * 100) as value,
+    {%- endif %}
     '{{ m.unit }}' as unit,
     '{{ m.version }}' as method_version,
     '{{ m.description }}' as description,
