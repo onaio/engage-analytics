@@ -56,6 +56,42 @@
   expression: "count(distinct subject_patient_id)"
   description: "Clients eligible for IPC (Integrated Primary Care)"
   version: v1
+
+- id: clients_sbirt_mi_eligible
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_sbirt_mi_eligible
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients eligible for SBIRT/MI (alcohol or drug problems)"
+  version: v1
+
+- id: clients_eligible_spi
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_eligible_spi
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients eligible for SPI (Suicide Prevention Intervention)"
+  version: v1
+
+- id: clients_eligible_referral
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_eligible_referral
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients eligible for referral (severe mental health)"
+  version: v1
+
+- id: clients_eligible_fws
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_eligible_fws
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients eligible for FWS (Financial Wellness Services)"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}

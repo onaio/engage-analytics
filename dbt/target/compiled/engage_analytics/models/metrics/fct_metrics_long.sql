@@ -55,6 +55,46 @@ base_clients_eligible_for_ipc as (
   
   group by
     period_date, organization_id
+),
+base_clients_sbirt_mi_eligible as (
+  select
+    period_date,
+    organization_id,
+    count(distinct subject_patient_id) as clients_sbirt_mi_eligible_value
+  from "airbyte"."engage_analytics"."clients_sbirt_mi_eligible"
+  
+  group by
+    period_date, organization_id
+),
+base_clients_eligible_spi as (
+  select
+    period_date,
+    organization_id,
+    count(distinct subject_patient_id) as clients_eligible_spi_value
+  from "airbyte"."engage_analytics"."clients_eligible_spi"
+  
+  group by
+    period_date, organization_id
+),
+base_clients_eligible_referral as (
+  select
+    period_date,
+    organization_id,
+    count(distinct subject_patient_id) as clients_eligible_referral_value
+  from "airbyte"."engage_analytics"."clients_eligible_referral"
+  
+  group by
+    period_date, organization_id
+),
+base_clients_eligible_fws as (
+  select
+    period_date,
+    organization_id,
+    count(distinct subject_patient_id) as clients_eligible_fws_value
+  from "airbyte"."engage_analytics"."clients_eligible_fws"
+  
+  group by
+    period_date, organization_id
 )
   select
     period_date,
@@ -121,4 +161,48 @@ base_clients_eligible_for_ipc as (
     'Clients eligible for IPC (Integrated Primary Care)' as description,
     'prod' as status
   from base_clients_eligible_for_ipc
+  union all
+  select
+    period_date,
+    organization_id,
+    'clients_sbirt_mi_eligible' as metric_id,
+    clients_sbirt_mi_eligible_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Clients eligible for SBIRT/MI (alcohol or drug problems)' as description,
+    'prod' as status
+  from base_clients_sbirt_mi_eligible
+  union all
+  select
+    period_date,
+    organization_id,
+    'clients_eligible_spi' as metric_id,
+    clients_eligible_spi_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Clients eligible for SPI (Suicide Prevention Intervention)' as description,
+    'prod' as status
+  from base_clients_eligible_spi
+  union all
+  select
+    period_date,
+    organization_id,
+    'clients_eligible_referral' as metric_id,
+    clients_eligible_referral_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Clients eligible for referral (severe mental health)' as description,
+    'prod' as status
+  from base_clients_eligible_referral
+  union all
+  select
+    period_date,
+    organization_id,
+    'clients_eligible_fws' as metric_id,
+    clients_eligible_fws_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Clients eligible for FWS (Financial Wellness Services)' as description,
+    'prod' as status
+  from base_clients_eligible_fws
   
