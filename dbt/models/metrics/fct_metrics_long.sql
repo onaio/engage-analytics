@@ -24,7 +24,7 @@ base_{{ src }} as (
   select
     {%- if src == 'encounters' %}
     period_start::date as period_date,
-    {%- elif src == 'clients_with_mental_health' %}
+    {%- elif src == 'clients_eligible_for_ipc' %}
     period_date,
     {%- else %}
     current_date as period_date,
@@ -58,7 +58,7 @@ base_{{ src }} as (
   group by
     {%- if src == 'encounters' %}
     period_start::date,
-    {%- elif src == 'clients_with_mental_health' %}
+    {%- elif src == 'clients_eligible_for_ipc' %}
     period_date,
     {%- endif %}
     {%- set all_keys = [] -%}

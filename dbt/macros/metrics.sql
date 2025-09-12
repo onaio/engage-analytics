@@ -48,13 +48,13 @@
   description: "Percentage of providers active in past 30 days"
   version: v1
 
-- id: clients_with_probable_mental_health
+- id: clients_eligible_for_ipc
   unit: count
   grain: day
   entity_keys: [organization_id]
-  source_model: clients_with_mental_health
+  source_model: clients_eligible_for_ipc
   expression: "count(distinct subject_patient_id)"
-  description: "Clients with probable mental health issues (MW Tool)"
+  description: "Clients eligible for IPC (Integrated Primary Care)"
   version: v1
   {% endset %}
   

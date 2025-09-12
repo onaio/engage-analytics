@@ -46,12 +46,12 @@ base_active_providers as (
   
   group by organization_id
 ),
-base_clients_with_mental_health as (
+base_clients_eligible_for_ipc as (
   select
     period_date,
     organization_id,
-    count(distinct subject_patient_id) as clients_with_probable_mental_health_value
-  from "airbyte"."engage_analytics"."clients_with_mental_health"
+    count(distinct subject_patient_id) as clients_eligible_for_ipc_value
+  from "airbyte"."engage_analytics"."clients_eligible_for_ipc"
   
   group by
     period_date, organization_id
@@ -114,11 +114,11 @@ base_clients_with_mental_health as (
   select
     period_date,
     organization_id,
-    'clients_with_probable_mental_health' as metric_id,
-    clients_with_probable_mental_health_value::numeric as value,
+    'clients_eligible_for_ipc' as metric_id,
+    clients_eligible_for_ipc_value::numeric as value,
     'count' as unit,
     'v1' as method_version,
-    'Clients with probable mental health issues (MW Tool)' as description,
+    'Clients eligible for IPC (Integrated Primary Care)' as description,
     'prod' as status
-  from base_clients_with_mental_health
+  from base_clients_eligible_for_ipc
   
