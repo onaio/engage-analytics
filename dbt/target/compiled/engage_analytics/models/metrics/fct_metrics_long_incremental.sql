@@ -86,6 +86,21 @@ base_clients_eligible_for_ipc as (
     
   group by organization_id
 ),
+base_clients_accepted_ipc as (
+  select
+    current_date as period_date,organization_id,
+    count(distinct subject_patient_id) as clients_accepted_ipc_value
+  from "airbyte"."engage_analytics"."clients_accepted_ipc"
+  where 1=1
+    
+    
+    
+      -- For dimension tables, always use current snapshot
+      and 1=1
+    
+    
+  group by organization_id
+),
 base_clients_sbirt_mi_eligible as (
   select
     current_date as period_date,organization_id,
@@ -269,6 +284,25 @@ base_encounters_by_delivery_format as (
     'prod' as status,
     current_timestamp as _last_updated
   from base_clients_eligible_for_ipc
+  
+  
+    -- Only include dates we're updating
+    where 1=1
+    and period_date = current_date
+  
+  
+  union all
+  select
+    period_date,
+    organization_id,
+    'clients_accepted_ipc' as metric_id,
+    clients_accepted_ipc_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Clients who accepted IPC (scheduled IPC session)' as description,
+    'prod' as status,
+    current_timestamp as _last_updated
+  from base_clients_accepted_ipc
   
   
     -- Only include dates we're updating

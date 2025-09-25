@@ -66,6 +66,15 @@ base_clients_eligible_for_ipc as (
   group by
     period_date, organization_id
 ),
+base_clients_accepted_ipc as (
+  select
+    current_date as period_date,
+    organization_id,
+    count(distinct subject_patient_id) as clients_accepted_ipc_value
+  from "airbyte"."engage_analytics"."clients_accepted_ipc"
+  
+  group by organization_id
+),
 base_clients_sbirt_mi_eligible as (
   select
     period_date,
@@ -183,6 +192,17 @@ base_encounters_by_delivery_format as (
     'Clients eligible for IPC (Integrated Primary Care)' as description,
     'prod' as status
   from base_clients_eligible_for_ipc
+  union all
+  select
+    period_date,
+    organization_id,
+    'clients_accepted_ipc' as metric_id,
+    clients_accepted_ipc_value::numeric as value,
+    'count' as unit,
+    'v1' as method_version,
+    'Clients who accepted IPC (scheduled IPC session)' as description,
+    'prod' as status
+  from base_clients_accepted_ipc
   union all
   select
     period_date,

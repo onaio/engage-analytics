@@ -57,6 +57,15 @@
   description: "Clients eligible for IPC (Integrated Primary Care)"
   version: v1
 
+- id: clients_accepted_ipc
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_accepted_ipc
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients who accepted IPC (scheduled IPC session)"
+  version: v1
+
 - id: clients_sbirt_mi_eligible
   unit: count
   grain: day
