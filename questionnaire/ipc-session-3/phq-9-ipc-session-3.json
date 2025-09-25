@@ -1,16 +1,16 @@
 {
   "resourceType": "Questionnaire",
-  "id": "34008037",
+  "id": "61",
   "meta": {
-    "versionId": "1",
-    "lastUpdated": "2024-10-04T09:44:06.166+00:00",
+    "versionId": "3",
+    "lastUpdated": "2023-11-17T01:40:46.991+00:00",
     "source": "#f8965f54d2b576b4"
   },
   "language": "en",
   "extension": [
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/34008163"
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
@@ -2690,15 +2690,16 @@
                 }
               ],
               "linkId": "a348a13c-1c34-4704-a7c6-95a4e3377388",
-              "text": "If the client endorses suicidality, please follow your agency's local safety protocol.",
+              "text": "If the client endorses suicidality, please complete the Suicide Prevention module immediately if you haven't already.",
               "type": "display"
             }
           ]
         },
         {
           "linkId": "ce27c079-de13-49d2-809e-c1196b8cfcb5",
-          "text": "<span style=\"color:#006BBA\"><i>Note: The client endorses suicidality. Please follow your agency's local safety protocol.</i></span>",
+          "text": "<span style=\"color:#006BBA\"><i>Note: The client endorses suicidality. Please complete the Suicide Prevention module immediately if you haven't already.</i></span>",
           "type": "display",
+          "enableBehavior": "any",
           "enableWhen": [
             {
               "question": "f1.11.1",
@@ -2721,8 +2722,7 @@
                 "code": "nearly-every-day"
               }
             }
-          ],
-          "enableBehavior": "any"
+          ]
         }
       ]
     },

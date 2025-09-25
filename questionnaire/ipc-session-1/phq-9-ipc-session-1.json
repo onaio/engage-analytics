@@ -1,16 +1,16 @@
 {
   "resourceType": "Questionnaire",
-  "id": "34008029",
+  "id": "54",
   "meta": {
-    "versionId": "1",
-    "lastUpdated": "2024-10-04T09:31:33.677+00:00",
+    "versionId": "4",
+    "lastUpdated": "2023-12-16T03:23:19.519+00:00",
     "source": "#a3d99118f73648eb"
   },
   "language": "en",
   "extension": [
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/34008163"
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
@@ -123,6 +123,14 @@
         "name": "patient-name-and-age",
         "language": "text/fhirpath",
         "expression": "%patient-name-given + %patient-name-family-space + %patient-age-space"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name",
+        "language": "text/fhirpath",
+        "expression": "%patient-name-given + %patient-name-family-space"
       }
     },
     {
@@ -466,6 +474,60 @@
           "linkId": "observation-phq-score-id",
           "text": "Observation ID of PHQ-9 Session 1 Score",
           "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient-name"
+              }
+            }
+          ],
+          "linkId": "patient-name",
+          "text": "name",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient-age"
+              }
+            }
+          ],
+          "linkId": "patient-age",
+          "text": "age",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.birthDate"
+              }
+            }
+          ],
+          "linkId": "patient-dob",
+          "text": "DOB",
+          "type": "date"
         },
         {
           "extension": [
@@ -2757,15 +2819,16 @@
                 }
               ],
               "linkId": "039a650b-2491-4edf-82b8-c658cc849b71",
-              "text": "If the client endorses suicidality, please follow your agency's local safety protocol.",
+              "text": "If the client endorses suicidality, please complete the Suicide Prevention module immediately if you haven't already.",
               "type": "display"
             }
           ]
         },
         {
           "linkId": "c7d9478a-b48e-4e79-acff-cf3f92e2f086",
-          "text": "<span style=\"color:#006BBA\"><i>Note: The client endorses suicidality. Please follow your agency's local safety protocol.</i></span>",
+          "text": "<span style=\"color:#006BBA\"><i>Note: The client endorses suicidality. Please complete the Suicide Prevention module immediately if you haven't already.</i></span>",
           "type": "display",
+          "enableBehavior": "any",
           "enableWhen": [
             {
               "question": "f1.11.1",
@@ -2788,8 +2851,7 @@
                 "code": "nearly-every-day"
               }
             }
-          ],
-          "enableBehavior": "any"
+          ]
         }
       ]
     },

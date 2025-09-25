@@ -1,10 +1,89 @@
 {
   "resourceType": "Questionnaire",
-  "id": "34755452",
+  "id": "1613531",
   "meta": {
     "versionId": "1",
-    "lastUpdated": "2024-12-13T05:45:21.637+00:00"
+    "lastUpdated": "2024-12-13T09:14:46.810+00:00"
   },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/close-sociodemographic-survey"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient",
+            "display": "Patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-given",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.given.first().exists(), %patient.name.given.first(), '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.family.exists(), %patient.name.family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-name-family.exists(), ' ' + %patient-name-family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name",
+        "language": "text/fhirpath",
+        "expression": "%patient-name-given + %patient-name-family-space"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-month",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), ((today().toString().substring(5, 2).toInteger() + 12) - %patient.birthDate.toString().substring(5, 2).toInteger() + 1), (today().toString().substring(5, 2).toInteger() - %patient.birthDate.toString().substring(5, 2).toInteger()) + 1)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-year",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), (today().toString().substring(0, 4).toInteger() - 1) - %patient.birthDate.toString().substring(0, 4).toInteger(), today().toString().substring(0, 4).toInteger() - %patient.birthDate.toString().substring(0, 4).toInteger())"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age",
+        "language": "text/fhirpath",
+        "expression": "(((%patient-calculated-year.toString().toInteger() * 365.25) + (%patient-calculated-month.toString().toInteger() * 365.25 / 12)) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger().toString()"
+      }
+    }
+  ],
   "version": "0.0.1",
   "title": "Sociodemographic Survey",
   "status": "draft",
@@ -20,11 +99,6 @@
   "description": "Sociodemographic Survey Form",
   "item": [
     {
-      "linkId": "9f8e1c9f-4c28-404b-889c-716c62f2ce53",
-      "text": "I would like to start by asking a few questions about you. We ask these questions to everyone so we can better know you and the communities we serve.",
-      "type": "display"
-    },
-    {
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -32,537 +106,495 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+                "code": "page",
+                "display": "Page"
               }
             ],
-            "text": "Checkbox"
+            "text": "Page"
           }
-        },
-        {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
         }
       ],
-      "linkId": "92fed595-49f2-4fab-81ff-885941f31e07",
-      "text": "Where did this client first learn about ENGAGE?",
-      "type": "choice",
-      "answerOption": [
+      "linkId": "536f2285-2258-4fc6-8ef0-374466065ec4",
+      "type": "group",
+      "item": [
         {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "mental-health-clinic",
-            "display": "Mental health clinic"
-          }
+          "linkId": "a6dee0a3-f2eb-4b55-85c1-e577d23eacde",
+          "text": "<b>Sociodemographic Survey</b>",
+          "type": "group"
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "primary-healthcare-clinic",
-            "display": "Primary healthcare clinic"
-          }
+          "linkId": "9f8e1c9f-4c28-404b-889c-716c62f2ce53",
+          "text": "I would like to start by asking a few questions about you. We ask these questions to everyone so we can better know you and the communities we serve.",
+          "type": "display"
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "substance-use-clinic-or-program",
-            "display": "Substance use clinic or program"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "other-healthcare-setting",
-            "display": "Other healthcare setting"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "shelter",
-            "display": "Shelter"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "community-outreach-setting",
-            "display": "Community outreach setting"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "other",
-            "display": "Other"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "d821b1f9-c536-4c2c-8be5-0593f9d20d24",
-      "text": "Please specify",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "92fed595-49f2-4fab-81ff-885941f31e07",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:dd22d3ee-b3a1-44e9-8af6-d0d3cd4fd91d",
-            "code": "other"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ],
+                "text": "Checkbox"
               }
-            ],
-            "text": "Checkbox"
-          }
-        },
-        {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
-        }
-      ],
-      "linkId": "7b68e9a3-703a-4b57-876e-8dd400826db9",
-      "prefix": "1.",
-      "text": "What is your race and/or ethnicity?",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "american-indian-or-alaska-native",
-            "display": "American Indian or Alaska Native, For example, Navajo Nation, Blackfeet Tribe of the Blackfeet Indian Reservation of Montana, Native Village of Barrow Inupiat Traditional Government, Nome Eskimo Community, Aztec, Maya, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "asian-chinese-asian-indian",
-            "display": "Asian, For example, Chinese, Asian Indian, Filipino, Vietnamese, Korean, Japanese, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "black-or-african-american",
-            "display": "Black or African American, For example, African American, Jamaican, Haitian, Nigerian, Ethiopian, Somali, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "hispanic-or-latino-mexican",
-            "display": "Hispanic or Latino, For example, Mexican, Puerto Rican, Salvadoran, Cuban, Dominican, Guatemalan, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "middle-eastern-or-north-african",
-            "display": "Middle Eastern or North African, For example, Lebanese, Iranian, Egyptian, Syrian, Iraqi, Israeli, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "native-hawaiian-or-pacific-islander",
-            "display": "Native Hawaiian or Pacific Islander, For example, Native Hawaiian, Samoan, Chamorro, Tongan, Fijian, Marshallese, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "white-english-german-irish",
-            "display": "White, For example, English, German, Irish, Italian, Polish, Scottish, etc."
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "some-other-race",
-            "display": "Some other race and/or ethnicity?"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "1fdf1a17-7af6-413f-81e9-cf6823fe7fde",
-      "text": "Please specify",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "7b68e9a3-703a-4b57-876e-8dd400826db9",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:e8409dd8-1d3d-4b65-84ab-96420f563b65",
-            "code": "some-other-race"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
-                "code": "drop-down"
+            }
+          ],
+          "linkId": "7b68e9a3-703a-4b57-876e-8dd400826db9",
+          "text": "What is your race and/or ethnicity?",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "american-indian-or-alaska-native",
+                "display": "American Indian or Alaska Native"
               }
-            ]
-          }
-        }
-      ],
-      "linkId": "2f8a7973-d9bb-493b-aa68-fb01e0f1aefe",
-      "prefix": "2.",
-      "text": "Where were you born?",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:f9ec1a3f-8da8-4dc3-891e-959d8724e5e3",
-            "code": "in-the-united-states",
-            "display": "In the United States (NOT Puerto Rico or other U.S. Territory/Commonwealth)"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:f9ec1a3f-8da8-4dc3-891e-959d8724e5e3",
-            "code": "outside-the-united-states",
-            "display": "Outside the United States (including Puerto Rico or other U.S. Territory/Commonwealth)."
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "f11fe547-9be9-4693-8a85-f252e4a6262f",
-      "text": "Please specify the U.S. Territory/Commonwealth (e.g., Puerto Rico, U.S. Virgin Islands, Guam) ",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "2f8a7973-d9bb-493b-aa68-fb01e0f1aefe",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:f9ec1a3f-8da8-4dc3-891e-959d8724e5e3",
-            "code": "outside-the-united-states"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
-                "code": "drop-down"
+            },
+            {
+              "valueCoding": {
+                "code": "asian-chinese-asian-indian",
+                "display": "Asian"
               }
-            ]
-          }
-        }
-      ],
-      "linkId": "05990b62-11a8-4ab7-8988-1d2a17edcff7",
-      "prefix": "2.1",
-      "text": "If you were NOT born in the US, how long have you lived in the United States?",
-      "type": "choice",
-      "enableWhen": [
-        {
-          "question": "2f8a7973-d9bb-493b-aa68-fb01e0f1aefe",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:f9ec1a3f-8da8-4dc3-891e-959d8724e5e3",
-            "code": "outside-the-united-states"
-          }
-        }
-      ],
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:edd7207b-3c51-4ed0-8ccf-3e45a0e0ef06",
-            "code": "one-year-or-more",
-            "display": "One year or more"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:edd7207b-3c51-4ed0-8ccf-3e45a0e0ef06",
-            "code": "less-than-one-year",
-            "display": "Less than one year"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "4baa9e68-fe7a-489a-8b03-cc045b53d93d",
-      "text": "Please enter the number of years",
-      "type": "integer",
-      "enableWhen": [
-        {
-          "question": "05990b62-11a8-4ab7-8988-1d2a17edcff7",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:edd7207b-3c51-4ed0-8ccf-3e45a0e0ef06",
-            "code": "one-year-or-more"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "6e621fcc-a25c-4070-8fda-894bb9df68e4",
-      "text": "Please enter the number of months",
-      "type": "integer",
-      "enableWhen": [
-        {
-          "question": "05990b62-11a8-4ab7-8988-1d2a17edcff7",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:edd7207b-3c51-4ed0-8ccf-3e45a0e0ef06",
-            "code": "less-than-one-year"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+            },
+            {
+              "valueCoding": {
+                "code": "black-or-african-american",
+                "display": "Black or African American"
               }
-            ],
-            "text": "Checkbox"
-          }
-        },
-        {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
-        }
-      ],
-      "linkId": "9cce9788-d7e7-4456-d455-5bd8dc3d2f2a",
-      "prefix": "3.",
-      "text": "What is your marital status? ",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:0fb93e39-b3e0-47a5-8b65-e7277383e888",
-            "code": "now-married",
-            "display": "Now married"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:0fb93e39-b3e0-47a5-8b65-e7277383e888",
-            "code": "widowed",
-            "display": "Widowed"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:0fb93e39-b3e0-47a5-8b65-e7277383e888",
-            "code": "divorced",
-            "display": "Divorced"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:0fb93e39-b3e0-47a5-8b65-e7277383e888",
-            "code": "separated",
-            "display": "Separated"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:0fb93e39-b3e0-47a5-8b65-e7277383e888",
-            "code": "never-married",
-            "display": "Never married"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+            },
+            {
+              "valueCoding": {
+                "code": "hispanic-or-latino-mexican",
+                "display": "Hispanic or Latino"
               }
-            ],
-            "text": "Checkbox"
-          }
-        },
-        {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
-        }
-      ],
-      "linkId": "5b133a13-0303-4d2f-8884-ffa931d2c173",
-      "prefix": "4.",
-      "text": "We would like to know about what you do, are you…",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "working-now",
-            "display": "Working now"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "only-temporarily-laid-off",
-            "display": "Only temporarily laid off, in sick leave, or maternity leave"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "looking-for-work",
-            "display": "Looking for work, unemployed"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "retired",
-            "display": "Retired"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "disabled-permanently-or-temporarily",
-            "display": "Disabled, permanently, or temporarily"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "keeping-house",
-            "display": "Keeping house"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "a-student",
-            "display": "A student"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "other",
-            "display": "Other"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "0e027468-c1e9-4977-f5f5-1cfa00ab8af5",
-      "text": "Please specify: ",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "5b133a13-0303-4d2f-8884-ffa931d2c173",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:c5dd115b-e5b5-4276-e897-2bad8b62c794",
-            "code": "other"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+            },
+            {
+              "valueCoding": {
+                "code": "middle-eastern-or-north-african",
+                "display": "Middle Eastern or North African"
               }
-            ],
-            "text": "Checkbox"
-          }
+            },
+            {
+              "valueCoding": {
+                "code": "native-hawaiian-or-pacific-islander",
+                "display": "Native Hawaiian or Pacific Islander"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "white-english-german-irish",
+                "display": "White"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "some-other-race",
+                "display": "Some other race and/or ethnicity"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "d3f17da0-f4c6-4a4a-9f3d-d854cb160291",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "b545b5ec-88e7-48d3-882d-b57de37cc699",
+              "text": "<ul><li>&nbsp;American Indian or Alaska Native: For example, Navajo Nation, Blackfeet Tribe of the Blackfeet Indian Reservation of Montana, Native Village of Barrow Inupiat Traditional Government, Nome Eskimo Community, Aztec, Maya, etc.</li><li>&nbsp;Asian: For example, Chinese, Asian Indian, Filipino, Vietnamese, Korean, Japanese, etc.</li><li>&nbsp;Black or African American: For example, African American, Jamaican, Haitian, Nigerian, Ethiopian, Somali, etc.</li><li>&nbsp;Hispanic or Latino: For example, Mexican, Puerto Rican, Salvadoran, Cuban, Dominican, Guatemalan, etc.</li><li>&nbsp;Middle Eastern or North African: For example, Lebanese, Iranian, Egyptian, Syrian, Iraqi, Israeli, etc.</li><li>&nbsp;Native Hawaiian or Pacific Islander: For example, Native Hawaiian, Samoan, Chamorro, Tongan, Fijian, Marshallese, etc.</li><li>&nbsp;White: For example, English, German, Irish, Italian, Polish, Scottish, etc.</li></ul>",
+              "type": "display"
+            }
+          ]
         },
         {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
-        }
-      ],
-      "linkId": "d7e0e5c9-35bd-40bc-9224-9cf9e4b9dbba",
-      "prefix": "5.",
-      "text": "What was the highest grade or level of school that you have completed?",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:747349ee-8b13-409e-8045-f888b49b0007",
-            "code": "8th-grade-or-less",
-            "display": "8th grade or less"
-          }
+          "linkId": "1fdf1a17-7af6-413f-81e9-cf6823fe7fde",
+          "text": "Please specify:",
+          "type": "string",
+          "enableWhen": [
+            {
+              "question": "7b68e9a3-703a-4b57-876e-8dd400826db9",
+              "operator": "=",
+              "answerCoding": {
+                "code": "some-other-race"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "2cb94e9f-0673-4d4b-9487-f980e1fd6f61",
+              "text": "Specifics",
+              "type": "display"
+            }
+          ]
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:747349ee-8b13-409e-8045-f888b49b0007",
-            "code": "some-high-school",
-            "display": "Some high school, but did not graduate"
-          }
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "2f8a7973-d9bb-493b-aa68-fb01e0f1aefe",
+          "text": "Where were you born?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "in-the-united-states",
+                "display": "In the United States (NOT Puerto Rico or other U.S. Territory/Commonwealth)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "outside-the-united-states",
+                "display": "Outside the United States (including Puerto Rico or other U.S. Territory/Commonwealth)."
+              }
+            }
+          ]
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:747349ee-8b13-409e-8045-f888b49b0007",
-            "code": "high-school-graduate-or-ged",
-            "display": "High school graduate or GED"
-          }
+          "linkId": "f11fe547-9be9-4693-8a85-f252e4a6262f",
+          "text": "Please specify:",
+          "type": "string",
+          "enableWhen": [
+            {
+              "question": "2f8a7973-d9bb-493b-aa68-fb01e0f1aefe",
+              "operator": "=",
+              "answerCoding": {
+                "code": "outside-the-united-states"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "f7a3f35d-d535-46e8-9e27-0d3f3e5f0040",
+              "text": "Specifics",
+              "type": "display"
+            }
+          ]
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:747349ee-8b13-409e-8045-f888b49b0007",
-            "code": "some-college-or-associates-degree",
-            "display": "Some college or Associates degree"
-          }
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "05990b62-11a8-4ab7-8988-1d2a17edcff7",
+          "text": "If you were NOT born in the US, how long have you lived in the United States?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "2f8a7973-d9bb-493b-aa68-fb01e0f1aefe",
+              "operator": "=",
+              "answerCoding": {
+                "code": "outside-the-united-states"
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "one-year-or-more",
+                "display": "One year or more"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "less-than-one-year",
+                "display": "Less than one year"
+              }
+            }
+          ]
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:747349ee-8b13-409e-8045-f888b49b0007",
-            "code": "bachelors-degree",
-            "display": "Bachelor's degree (B.A., B.S., etc.)"
-          }
+          "linkId": "4baa9e68-fe7a-489a-8b03-cc045b53d93d",
+          "text": "Please enter the number of years",
+          "type": "integer",
+          "enableWhen": [
+            {
+              "question": "05990b62-11a8-4ab7-8988-1d2a17edcff7",
+              "operator": "=",
+              "answerCoding": {
+                "code": "one-year-or-more"
+              }
+            }
+          ]
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:747349ee-8b13-409e-8045-f888b49b0007",
-            "code": "graduate-professional-degree",
-            "display": "Graduate/professional degree (MA, PhD, MD, etc.)"
-          }
+          "linkId": "6e621fcc-a25c-4070-8fda-894bb9df68e4",
+          "text": "Please enter the number of months",
+          "type": "integer",
+          "enableWhen": [
+            {
+              "question": "05990b62-11a8-4ab7-8988-1d2a17edcff7",
+              "operator": "=",
+              "answerCoding": {
+                "code": "less-than-one-year"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "9cce9788-d7e7-4456-d455-5bd8dc3d2f2a",
+          "text": "What is your marital status? ",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "now-married",
+                "display": "Now married"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "widowed",
+                "display": "Widowed"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "divorced",
+                "display": "Divorced"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "separated",
+                "display": "Separated"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "never-married",
+                "display": "Never married"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient-name"
+              }
+            }
+          ],
+          "linkId": "patient-name",
+          "text": "name",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/pronouns').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-pronouns",
+          "text": "pronouns",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/biological-sex-at-birth').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-biological-sex",
+          "text": "biological sex",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/gender-identity').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-gender-identity",
+          "text": "gender identity",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/best-represents-how-you-think-of-yourself').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-how-you-think-of-yourself",
+          "text": "how you think of yourself",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient-age"
+              }
+            }
+          ],
+          "linkId": "patient-age",
+          "text": "age",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.birthDate"
+              }
+            }
+          ],
+          "linkId": "patient-dob",
+          "text": "DOB",
+          "type": "date"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "task-id-socio-pdf",
+          "text": "taskId of socio pdf",
+          "type": "string"
         }
       ]
     },
@@ -574,233 +606,190 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+                "code": "page",
+                "display": "Page"
               }
             ],
-            "text": "Checkbox"
+            "text": "Page"
           }
-        },
-        {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
         }
       ],
-      "linkId": "3960c72d-b6e7-418e-86e9-f8348a49e739",
-      "prefix": "6.",
-      "text": "What was your biological sex at birth?",
-      "type": "choice",
-      "answerOption": [
+      "linkId": "9be5485d-9242-42d0-bea2-5cbd07beee1d",
+      "type": "group",
+      "item": [
         {
-          "valueCoding": {
-            "system": "urn:uuid:31eae5e7-c117-4d56-82e5-30848e69618e",
-            "code": "female",
-            "display": "Female"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:31eae5e7-c117-4d56-82e5-30848e69618e",
-            "code": "male",
-            "display": "Male"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:31eae5e7-c117-4d56-82e5-30848e69618e",
-            "code": "other",
-            "display": "Other"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:31eae5e7-c117-4d56-82e5-30848e69618e",
-            "code": "prefer-not-to-answer",
-            "display": "Prefer not to answer"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "861f2201-2ba1-42af-857d-11b0a138fc91",
-      "text": "Please describe",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "3960c72d-b6e7-418e-86e9-f8348a49e739",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:31eae5e7-c117-4d56-82e5-30848e69618e",
-            "code": "other"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
               }
-            ],
-            "text": "Checkbox"
-          }
-        },
-        {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
-        }
-      ],
-      "linkId": "b4afce83-4279-4d19-8a8b-1e0b7e1ba73c",
-      "prefix": "7.",
-      "text": "What term best expresses how you describe your gender identity?",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:72da4686-2b57-4937-a2c9-3f4c4f097a7e",
-            "code": "man",
-            "display": "Man"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:72da4686-2b57-4937-a2c9-3f4c4f097a7e",
-            "code": "woman",
-            "display": "Woman"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:72da4686-2b57-4937-a2c9-3f4c4f097a7e",
-            "code": "non-binary",
-            "display": "Non-binary"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:72da4686-2b57-4937-a2c9-3f4c4f097a7e",
-            "code": "transgender",
-            "display": "Transgender"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:72da4686-2b57-4937-a2c9-3f4c4f097a7e",
-            "code": "none-of-these-describe-me",
-            "display": "None of these describe me"
-          }
-        }
-      ]
-    },
-    {
-      "linkId": "ad9ff879-eb82-43c1-8b0d-3eee510c987c",
-      "text": "Please specify ",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "b4afce83-4279-4d19-8a8b-1e0b7e1ba73c",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:72da4686-2b57-4937-a2c9-3f4c4f097a7e",
-            "code": "none-of-these-describe-me"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "check-box",
-                "display": "Checkbox"
+            }
+          ],
+          "linkId": "5b133a13-0303-4d2f-8884-ffa931d2c173",
+          "text": "We would like to know about what you do, are you…",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "working-now",
+                "display": "Working now"
               }
-            ],
-            "text": "Checkbox"
-          }
+            },
+            {
+              "valueCoding": {
+                "code": "working-but-looking-for-work",
+                "display": "Working but looking for work"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "self-employed",
+                "display": "Self-employed"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "only-temporarily-laid-off",
+                "display": "Only temporarily laid off, in sick leave, or maternity leave"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "looking-for-work",
+                "display": "Looking for work, unemployed"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "retired",
+                "display": "Retired"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "disabled-permanently-or-temporarily",
+                "display": "Disabled, permanently, or temporarily"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "keeping-house",
+                "display": "Keeping house"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-student",
+                "display": "A student"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "other",
+                "display": "Other"
+              }
+            }
+          ]
         },
         {
-          "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
-          "valueString": "placeholder"
-        }
-      ],
-      "linkId": "8f600ee9-8d17-43df-ed68-c9a7de2da7d0",
-      "prefix": "8.",
-      "text": "Which of the following best represents how you think of yourself?",
-      "type": "choice",
-      "answerOption": [
-        {
-          "valueCoding": {
-            "system": "urn:uuid:fe1f12a3-54fd-4c0d-87b1-1762c7575891",
-            "code": "straight",
-            "display": "Straight: that is, not gay or lesbian, etc. "
-          }
+          "linkId": "0e027468-c1e9-4977-f5f5-1cfa00ab8af5",
+          "text": "Please specify:",
+          "type": "string",
+          "enableWhen": [
+            {
+              "question": "5b133a13-0303-4d2f-8884-ffa931d2c173",
+              "operator": "=",
+              "answerCoding": {
+                "code": "other"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "e69b93de-1217-4fb8-a05a-bda9400e36bc",
+              "text": "Specifics",
+              "type": "display"
+            }
+          ]
         },
         {
-          "valueCoding": {
-            "system": "urn:uuid:fe1f12a3-54fd-4c0d-87b1-1762c7575891",
-            "code": "gay",
-            "display": "Gay"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:fe1f12a3-54fd-4c0d-87b1-1762c7575891",
-            "code": "lesbian",
-            "display": "Lesbian"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:fe1f12a3-54fd-4c0d-87b1-1762c7575891",
-            "code": "bisexual",
-            "display": "Bisexual"
-          }
-        },
-        {
-          "valueCoding": {
-            "system": "urn:uuid:fe1f12a3-54fd-4c0d-87b1-1762c7575891",
-            "code": "none-of-these",
-            "display": "None of these describe me"
-          }
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "d7e0e5c9-35bd-40bc-9224-9cf9e4b9dbba",
+          "text": "What was the highest grade or level of school that you have completed?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "8th-grade-or-less",
+                "display": "8th grade or less"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "some-high-school",
+                "display": "Some high school, but did not graduate"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "high-school-graduate-or-ged",
+                "display": "High school graduate or GED"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "some-college-or-associates-degree",
+                "display": "Some college or Associates degree"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "bachelors-degree",
+                "display": "Bachelor's degree (B.A., B.S., etc.)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "graduate-professional-degree",
+                "display": "Graduate/professional degree (MA, PhD, MD, etc.)"
+              }
+            }
+          ]
         }
       ]
-    },
-    {
-      "linkId": "ee9b38cd-4551-4f82-81ff-b79dbd5163cf",
-      "text": "Please explain:",
-      "type": "string",
-      "enableWhen": [
-        {
-          "question": "8f600ee9-8d17-43df-ed68-c9a7de2da7d0",
-          "operator": "=",
-          "answerCoding": {
-            "system": "urn:uuid:fe1f12a3-54fd-4c0d-87b1-1762c7575891",
-            "code": "none-of-these"
-          }
-        }
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
-          "valueMarkdown": "Please enter zip code"
-        }
-      ],
-      "linkId": "3409c1f0-adf5-4b3b-8ea3-e7672e4cb5af",
-      "prefix": "9.",
-      "text": "What is the zip code of where you currently live?",
-      "type": "string"
     }
   ]
 }

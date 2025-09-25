@@ -1,16 +1,16 @@
 {
   "resourceType": "Questionnaire",
-  "id": "34008035",
+  "id": "56",
   "meta": {
-    "versionId": "1",
-    "lastUpdated": "2024-10-04T09:40:52.447+00:00",
+    "versionId": "3",
+    "lastUpdated": "2023-12-16T03:28:13.670+00:00",
     "source": "#ba92998b2cd32250"
   },
   "language": "en",
   "extension": [
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/34008163"
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
@@ -519,6 +519,7 @@
           "linkId": "dd349377-e542-4b4f-8fba-795f91431f7d",
           "text": "I am going to list some of these events. Please tell me if you have experienced any of them before:",
           "type": "choice",
+          "repeats": true,
           "enableWhen": [
             {
               "question": "931dc4ee-b677-4812-9372-3fea7012e9bc",
@@ -526,7 +527,6 @@
               "answerBoolean": true
             }
           ],
-          "repeats": true,
           "answerOption": [
             {
               "valueCoding": {

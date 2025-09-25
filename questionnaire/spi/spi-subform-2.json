@@ -1,15 +1,15 @@
 {
   "resourceType": "Questionnaire",
-  "id": "34008155",
+  "id": "104453",
   "meta": {
-    "versionId": "1",
-    "lastUpdated": "2024-10-05T03:03:11.028+00:00"
+    "versionId": "2",
+    "lastUpdated": "2024-02-26T12:27:51.429+00:00"
   },
   "language": "en",
   "extension": [
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/34008163"
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
@@ -145,7 +145,7 @@
       "valueExpression": {
         "name": "qr-search-subform1",
         "language": "application/x-fhir-query",
-        "expression": "QuestionnaireResponse?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&questionnaire=Questionnaire/34008154&_sort=-_lastUpdated&_count=1"
+        "expression": "QuestionnaireResponse?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&questionnaire=Questionnaire/104455&_sort=-_lastUpdated&_count=1"
       }
     },
     {
@@ -178,6 +178,14 @@
         "name": "rec-plan",
         "language": "text/fhirpath",
         "expression": "%resource.descendants().where(linkId='ed537539-d317-43fc-a4b3-38de5e15ea4f').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "talk-to-supervisor",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value"
       }
     }
   ],
@@ -459,11 +467,13 @@
       ],
       "linkId": "56f90a89-5aca-4bdc-b14e-47dddc1e23c0",
       "type": "group",
-      "enableWhen": [
+      "extension": [
         {
-          "question": "f4b782e5-18e1-4edf-a3ff-409feb207253",
-          "operator": "=",
-          "answerBoolean": true
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true"
+          }
         }
       ],
       "item": [
@@ -499,7 +509,7 @@
             }
           ],
           "linkId": "ed537539-d317-43fc-a4b3-38de5e15ea4f",
-          "text": "What is the recommended plan to address the probable suicide risk for this client?<br><br><i>Select all that apply</i>",
+          "text": "What is the recommended plan to address the probable suicide risk for this client?<br><br><span style=\"color:#006BBA\"><i>Select all that apply</i></span>",
           "type": "choice",
           "repeats": true,
           "answerOption": [
@@ -662,6 +672,15 @@
               }
             },
             {
+              "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+              "extension": [
+                {
+                  "url": "question_text_view",
+                  "valueString": "Body_Large_Blue_Italic"
+                }
+              ]
+            },
+            {
               "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
               "valueExpression": {
                 "language": "text/fhirpath",
@@ -699,7 +718,7 @@
             }
           ],
           "linkId": "2dd6c90f-ea68-45ba-9d30-58e02ab0812b",
-          "text": "<span style=\"color:#006BBA\"><i>This client scored in the moderate to high range on the C-SSRS. Please confirm that you have spoken to a supervisor and would like to proceed with this plan:</i></span>",
+          "text": "This client scored in the moderate to high range on the C-SSRS. Please confirm that you have spoken to a supervisor and would like to proceed with this plan:",
           "type": "choice",
           "answerOption": [
             {
@@ -736,6 +755,15 @@
       ],
       "linkId": "cd2ddb53-755e-473d-984a-2f3216115fc6",
       "type": "group",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true and (%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.empty() or %resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value.code != 'no-i-have-not-spoken')"
+          }
+        }
+      ],
       "item": [
         {
           "linkId": "7b31c8ee-aeb3-420a-a186-8dfaa466a742",
@@ -778,11 +806,13 @@
       ],
       "linkId": "cd813fe5-58d2-4102-9726-df80aca0eaac",
       "type": "group",
-      "enableWhen": [
+      "extension": [
         {
-          "question": "18c6510f-b294-4741-ae43-9cbbc4ba7e36",
-          "operator": "=",
-          "answerBoolean": true
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true and (%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.empty() or %resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value.code != 'no-i-have-not-spoken') and %resource.descendants().where(linkId='18c6510f-b294-4741-ae43-9cbbc4ba7e36').answer.value = true"
+          }
         }
       ],
       "item": [
@@ -870,6 +900,18 @@
               "type": "display"
             }
           ]
+        },
+        {
+          "linkId": "dbd07788-4597-4b54-8ed0-b3353c33fd81",
+          "text": "<span style=\"color:#006BBA\"><i>Please discuss with a supervisor before proceeding</i></span>",
+          "type": "display",
+          "enableWhen": [
+            {
+              "question": "27b1e829-9ad9-41c2-8cb5-01ce1f469896",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ]
         }
       ]
     },
@@ -891,11 +933,13 @@
       ],
       "linkId": "cce86a96-9a1c-4117-93ce-aaaa053f9151",
       "type": "group",
-      "enableWhen": [
+      "extension": [
         {
-          "question": "27b1e829-9ad9-41c2-8cb5-01ce1f469896",
-          "operator": "=",
-          "answerBoolean": true
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true and (%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.empty() or %resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value.code != 'no-i-have-not-spoken') and %resource.descendants().where(linkId='18c6510f-b294-4741-ae43-9cbbc4ba7e36').answer.value = true and %resource.descendants().where(linkId='27b1e829-9ad9-41c2-8cb5-01ce1f469896').answer.value = true"
+          }
         }
       ],
       "item": [
@@ -931,7 +975,7 @@
             }
           ],
           "linkId": "4c804862-f4b9-49df-aae4-c7802e723c76",
-          "text": "What is the recommended plan to address the probable severe mental health problem for this client?<br><br>Select all that apply",
+          "text": "What is the recommended plan to address the probable severe mental health problem for this client?<br><br><span style=\"color:#006BBA\"><i>Select all that apply</i></span>",
           "type": "choice",
           "repeats": true,
           "answerOption": [
@@ -1037,15 +1081,6 @@
         {
           "linkId": "53b30f12-74eb-474c-941c-5f0e81b7eb9f",
           "type": "text",
-          "enableWhen": [
-            {
-              "question": "4c804862-f4b9-49df-aae4-c7802e723c76",
-              "operator": "=",
-              "answerCoding": {
-                "code": "referral-to-emergency-services"
-              }
-            }
-          ],
           "item": [
             {
               "extension": [
@@ -1064,7 +1099,7 @@
                 }
               ],
               "linkId": "7d78ffcb-5dcd-4ef1-88aa-4e0ef9244cf2",
-              "text": "Referral Details",
+              "text": "Referral details if the client is referred out",
               "type": "display"
             }
           ]

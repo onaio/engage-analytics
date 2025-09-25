@@ -1,15 +1,15 @@
 {
   "resourceType": "Questionnaire",
-  "id": "34008157",
+  "id": "104394",
   "meta": {
     "versionId": "1",
-    "lastUpdated": "2024-10-05T03:04:05.046+00:00"
+    "lastUpdated": "2024-02-26T13:33:14.556+00:00"
   },
   "language": "en",
   "extension": [
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/34008163"
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
@@ -2070,32 +2070,83 @@
           "item": [
             {
               "linkId": "db90a54e-68b2-4b1b-8dbf-308c8e1acf06",
-              "text": "<span style=\"color:#006BBA\"><i>Use the following ideas to prompt the client if they cannot think of warning signs themselves.</i></span>",
+              "text": "<span style=\"color:#006BBA\"><i>Please choose the categories that were discussed above:</i></span>",
               "type": "display"
             },
             {
-              "linkId": "d58d9e48-de6e-4ec4-b8d4-fa980ebb662e",
-              "text": "<b>Thought or emotions</b>",
-              "type": "group",
-              "item": [
+              "extension": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-display-category",
-                            "code": "instructions"
-                          }
-                        ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "check-box",
+                        "display": "Checkbox"
                       }
-                    }
-                  ],
-                  "linkId": "16ff4e46-1ae9-4dfd-96d2-36321e203453",
-                  "text": "Examples",
-                  "type": "display"
+                    ],
+                    "text": "Checkbox"
+                  }
                 },
+                {
+                  "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
+                  "valueString": "placeholder"
+                }
+              ],
+              "linkId": "33ae3bce-ebd5-4dbc-b40c-a4cbc30736e6",
+              "type": "choice",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "hopeless",
+                    "display": "Feeling hopeless"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "empty",
+                    "display": "Feeling empty"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "lonely",
+                    "display": "Feeling lonely and alone"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "failed",
+                    "display": "Feeling that you failed"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "guilty",
+                    "display": "Feeling guilty or ashamed"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "useless",
+                    "display": "Feeling useless/has no purpose"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "angry",
+                    "display": "Feeling angry and feel like nothing is going to change/get better"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
                 {
                   "extension": [
                     {
@@ -2104,41 +2155,31 @@
                         "coding": [
                           {
                             "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help"
+                            "code": "flyover"
                           }
                         ]
                       }
                     }
                   ],
-                  "linkId": "83f0aaa2-b437-4f08-9ab3-b69fbda0a8c7",
-                  "text": "<ul><li>&nbsp; Feeling hopeless</li><li>&nbsp; Feeling empty</li><li>&nbsp; Feeling lonely and alone</li><li>&nbsp; Feeling that you failed</li><li>&nbsp; Feeling guilty or ashamed</li><li>&nbsp; Feeling useless/has no purpose</li><li>&nbsp; Feeling angry and like nothing is going to change/get better</li></ul>",
+                  "linkId": "e2b65a3f-3b48-436f-9a49-1cf458df59bc",
+                  "text": "Thought or emotions",
                   "type": "display"
                 }
               ]
             },
             {
-              "linkId": "c99b74d4-d706-43af-b820-a90dd07909d6",
-              "text": "<b>Behaviors</b>",
-              "type": "group",
-              "item": [
+              "linkId": "other-thought-or-emotions-textbox",
+              "type": "string",
+              "enableWhen": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-display-category",
-                            "code": "instructions"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "linkId": "987168d5-5beb-4a70-8aa1-a5ff72ecf620",
-                  "text": "Examples",
-                  "type": "display"
-                },
+                  "question": "33ae3bce-ebd5-4dbc-b40c-a4cbc30736e6",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "item": [
                 {
                   "extension": [
                     {
@@ -2147,41 +2188,84 @@
                         "coding": [
                           {
                             "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help"
+                            "code": "flyover",
+                            "display": "Fly-over"
                           }
-                        ]
+                        ],
+                        "text": "Flyover"
                       }
                     }
                   ],
-                  "linkId": "1ba77d12-5769-4974-b42a-66f1766dc50a",
-                  "text": "<ul><li>&nbsp; Alcohol</li><li>&nbsp; Drugs</li><li>&nbsp; Isolation</li></ul>",
+                  "linkId": "other-thought-or-emotions-display",
+                  "text": "Other thought or emotions",
                   "type": "display"
                 }
               ]
             },
             {
-              "linkId": "0cb95fca-69fa-4742-afc0-25b771e1b7af",
-              "text": "<b>Physical signs</b>",
-              "type": "group",
-              "item": [
+              "linkId": "space-other-thought-or-emotions-display",
+              "text": "",
+              "type": "display",
+              "enableWhen": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-display-category",
-                            "code": "instructions"
-                          }
-                        ]
+                  "question": "33ae3bce-ebd5-4dbc-b40c-a4cbc30736e6",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "check-box",
+                        "display": "Checkbox"
                       }
-                    }
-                  ],
-                  "linkId": "23381698-ae08-4315-b639-19bc85a19e67",
-                  "text": "Examples",
-                  "type": "display"
+                    ],
+                    "text": "Checkbox"
+                  }
                 },
+                {
+                  "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
+                  "valueString": "placeholder"
+                }
+              ],
+              "linkId": "4a1c4c0d-158f-494c-a33f-1f7f8e41f21f",
+              "type": "choice",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "alcohol",
+                    "display": "Alcohol"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "drugs",
+                    "display": "Drugs"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "isolation",
+                    "display": "Isolation"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
                 {
                   "extension": [
                     {
@@ -2190,17 +2274,263 @@
                         "coding": [
                           {
                             "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help"
+                            "code": "flyover"
                           }
                         ]
                       }
                     }
                   ],
-                  "linkId": "e0baf382-6248-4e7a-95ac-aad66fe8a0e0",
-                  "text": "<ul><li>&nbsp; Pain</li><li>&nbsp; Insomnia</li><li>&nbsp; Increased sleep</li><li>&nbsp; Lack of appetite</li><li>&nbsp; Tiredness</li></ul>",
+                  "linkId": "d2a44529-9344-4ec1-ac7a-10dddbf27467",
+                  "text": "Behaviors",
                   "type": "display"
                 }
               ]
+            },
+            {
+              "linkId": "other-behaviors-textbox",
+              "type": "string",
+              "enableWhen": [
+                {
+                  "question": "4a1c4c0d-158f-494c-a33f-1f7f8e41f21f",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "other-behaviors-display",
+                  "text": "Other behaviors",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "space-other-behaviors-display",
+              "text": "",
+              "type": "display",
+              "enableWhen": [
+                {
+                  "question": "4a1c4c0d-158f-494c-a33f-1f7f8e41f21f",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "check-box",
+                        "display": "Checkbox"
+                      }
+                    ],
+                    "text": "Checkbox"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
+                  "valueString": "placeholder"
+                }
+              ],
+              "linkId": "658e8c22-d6ba-480a-81e0-dc4b6164de13",
+              "type": "choice",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "pain",
+                    "display": "Pain"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "insomnia",
+                    "display": "Insomnia"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "increased-sleep",
+                    "display": "Increased sleep"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "lack-of-appetite",
+                    "display": "Lack of appetite"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "tiredness",
+                    "display": "Tiredness"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "linkId": "874cd5de-7719-40d6-841b-8e79ae92d84f",
+                  "text": "Physical signs",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "other-physical-signs-textbox",
+              "type": "string",
+              "enableWhen": [
+                {
+                  "question": "658e8c22-d6ba-480a-81e0-dc4b6164de13",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "other-physical-signs-display",
+                  "text": "Other physical signs",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "space-other-physical-signs-display",
+              "text": "",
+              "type": "display",
+              "enableWhen": [
+                {
+                  "question": "658e8c22-d6ba-480a-81e0-dc4b6164de13",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "other-signs-step-1",
+              "type": "text",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "linkId": "other-signs-step-1-flyover",
+                  "text": "Other signs",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAABkAAAAAjCAYAAADMvMZpAAAACXBIWXMAACBWAAAgVgEro3jgAAABkklEQVR4nO3cMQ0CURRE0bdkBVChAwdgCwW0SEAKOEACNRUOPib4eZvJOQqmv8ksY4wCAAAAAABIsuseAAAAAAAA8G8CCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABxBBAAAAAAACCOAAIAAAAAAMQRQAAAAAAAgDgCCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABx1u4BMy3Xz7Gq9t07AAAAAABgg77jcnh1j5glOoBU1a2qTt0jAAAAAABgg55Vde4eMYsLLAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIizdg+Y7F5Vj+YNAAAAAACwRe/uATMtY4zuDQAAAAAAAH/lAgsAAAAAAIgjgAAAAAAAAHEEEAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIjzA5RID1U/qAKmAAAAAElFTkSuQmCC",
+                "title": "Divider"
+              }
+            }
+          ],
+          "linkId": "divider-no-response-step-1",
+          "text": "",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "no-response-step-1",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no-response",
+                "display": "<span style=\"color:#006BBA\">Client declined to answer/no response</span"
+              }
             }
           ]
         }
@@ -2470,32 +2800,59 @@
           "item": [
             {
               "linkId": "d5ffb583-be53-4c80-82f3-a91485b338e6",
-              "text": "<span style=\"color:#006BBA\"><i>Possible ideas for discussion if the client cannot come up with ideas themselves</i></span>",
+              "text": "<span style=\"color:#006BBA\"><i>Please choose the categories that were discussed above:</i></span>",
               "type": "display"
             },
             {
-              "linkId": "c318dce9-ce73-4579-8e95-1d347595416d",
-              "text": "<b>Entertainment</b>",
-              "type": "group",
-              "item": [
+              "extension": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-display-category",
-                            "code": "instructions"
-                          }
-                        ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "check-box",
+                        "display": "Checkbox"
                       }
-                    }
-                  ],
-                  "linkId": "58d03518-9bb8-4ba6-9760-096c1ac35bdf",
-                  "text": "Examples",
-                  "type": "display"
+                    ],
+                    "text": "Checkbox"
+                  }
                 },
+                {
+                  "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
+                  "valueString": "placeholder"
+                }
+              ],
+              "linkId": "2e03fdf1-5274-494d-88e9-dd4b41ec90e6",
+              "type": "choice",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "tv",
+                    "display": "Watching TV"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "music",
+                    "display": "Listening to music"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "social-media",
+                    "display": "Using social media"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
                 {
                   "extension": [
                     {
@@ -2504,41 +2861,31 @@
                         "coding": [
                           {
                             "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help"
+                            "code": "flyover"
                           }
                         ]
                       }
                     }
                   ],
-                  "linkId": "9d44a3c0-f763-4af8-b6c3-c610b95a0976",
-                  "text": "<ul><li>&nbsp; Watching TV</li><li>&nbsp; Listening to music</li><li>&nbsp; Using social media</li></ul>",
+                  "linkId": "64759d21-9497-47a4-871d-4b1766aa88bd",
+                  "text": "Entertainment",
                   "type": "display"
                 }
               ]
             },
             {
-              "linkId": "a37296f7-a429-4d21-86d6-614d4c5d770a",
-              "text": "<b>Physical activities</b>",
-              "type": "group",
-              "item": [
+              "linkId": "other-entertainment-textbox",
+              "type": "string",
+              "enableWhen": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-display-category",
-                            "code": "instructions"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "linkId": "f06350ab-5d79-462a-854e-e79aed54852e",
-                  "text": "Examples",
-                  "type": "display"
-                },
+                  "question": "2e03fdf1-5274-494d-88e9-dd4b41ec90e6",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "item": [
                 {
                   "extension": [
                     {
@@ -2547,41 +2894,108 @@
                         "coding": [
                           {
                             "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help"
+                            "code": "flyover",
+                            "display": "Fly-over"
                           }
-                        ]
+                        ],
+                        "text": "Flyover"
                       }
                     }
                   ],
-                  "linkId": "d303abe9-95b1-4e95-bc69-fb95aa21c882",
-                  "text": "<ul><li>&nbsp; Walking</li><li>&nbsp; Walking in the park</li><li>&nbsp; Exercising</li><li>&nbsp; Going to the gym</li><li>&nbsp; Playing sports</li><li>&nbsp; Gardening</li><li>&nbsp; Meditating</li></ul>",
+                  "linkId": "other-entertainment-display",
+                  "text": "Other entertainments",
                   "type": "display"
                 }
               ]
             },
             {
-              "linkId": "de8c328d-c3f7-4b9d-9dea-34261bd6a5a6",
-              "text": "<b>Activities and hobbies</b>",
-              "type": "group",
-              "item": [
+              "linkId": "space-other-entertainment-display",
+              "text": "",
+              "type": "display",
+              "enableWhen": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-display-category",
-                            "code": "instructions"
-                          }
-                        ]
+                  "question": "2e03fdf1-5274-494d-88e9-dd4b41ec90e6",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "check-box",
+                        "display": "Checkbox"
                       }
-                    }
-                  ],
-                  "linkId": "f4fa6b72-698e-4194-8f02-ddfe86943d2e",
-                  "text": "Examples",
-                  "type": "display"
+                    ],
+                    "text": "Checkbox"
+                  }
                 },
+                {
+                  "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
+                  "valueString": "placeholder"
+                }
+              ],
+              "linkId": "d0aa3679-e465-4225-85d6-5822efb10eba",
+              "type": "choice",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "walk",
+                    "display": "Walking"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "walk-at-park",
+                    "display": "Walking in the park"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "exercise",
+                    "display": "Exercising"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "gym",
+                    "display": "Going to the gym"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "play-sports",
+                    "display": "Playing sports"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "gardening",
+                    "display": "Gardening"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "meditation",
+                    "display": "Meditating"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
                 {
                   "extension": [
                     {
@@ -2590,17 +3004,231 @@
                         "coding": [
                           {
                             "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help"
+                            "code": "flyover"
                           }
                         ]
                       }
                     }
                   ],
-                  "linkId": "8df1317e-1df8-4a82-9d83-aa13c9dc8a37",
-                  "text": "<ul><li>&nbsp; Playing video games</li><li>&nbsp; Reading</li><li>&nbsp; Cooking</li><li>&nbsp; Painting</li><li>&nbsp; Crafting</li><li>&nbsp; Cleaning</li></ul>",
+                  "linkId": "c2144600-2d55-48e3-bebd-f395a3434ccb",
+                  "text": "Physical activities",
                   "type": "display"
                 }
               ]
+            },
+            {
+              "linkId": "other-physical-activities-textbox",
+              "type": "string",
+              "enableWhen": [
+                {
+                  "question": "d0aa3679-e465-4225-85d6-5822efb10eba",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "other-physical-activities-display",
+                  "text": "Other physical activities",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "space-other-physical-activities-display",
+              "text": "",
+              "type": "display",
+              "enableWhen": [
+                {
+                  "question": "d0aa3679-e465-4225-85d6-5822efb10eba",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "check-box",
+                        "display": "Checkbox"
+                      }
+                    ],
+                    "text": "Checkbox"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/StructureDefinition/dialog",
+                  "valueString": "placeholder"
+                }
+              ],
+              "linkId": "e6262800-1e24-4348-9bf2-9bb070d2f20a",
+              "type": "choice",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "video-games",
+                    "display": "Playing video games"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "reading",
+                    "display": "Reading"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "cooking",
+                    "display": "Cooking"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "painting",
+                    "display": "Painting"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "crafting",
+                    "display": "Crafting"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "cleaning",
+                    "display": "Cleaning"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "linkId": "d1a4eb56-5d6a-4859-af71-33ef2d879e37",
+                  "text": "Activities and hobbies",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "other-hobbies-textbox",
+              "type": "string",
+              "enableWhen": [
+                {
+                  "question": "e6262800-1e24-4348-9bf2-9bb070d2f20a",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "other-hobbies-display",
+                  "text": "Other activities and hobbies",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAABkAAAAAjCAYAAADMvMZpAAAACXBIWXMAACBWAAAgVgEro3jgAAABkklEQVR4nO3cMQ0CURRE0bdkBVChAwdgCwW0SEAKOEACNRUOPib4eZvJOQqmv8ksY4wCAAAAAABIsuseAAAAAAAA8G8CCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABxBBAAAAAAACCOAAIAAAAAAMQRQAAAAAAAgDgCCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABx1u4BMy3Xz7Gq9t07AAAAAABgg77jcnh1j5glOoBU1a2qTt0jAAAAAABgg55Vde4eMYsLLAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIizdg+Y7F5Vj+YNAAAAAACwRe/uATMtY4zuDQAAAAAAAH/lAgsAAAAAAIgjgAAAAAAAAHEEEAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIjzA5RID1U/qAKmAAAAAElFTkSuQmCC",
+                "title": "Divider"
+              }
+            }
+          ],
+          "linkId": "divider-no-response-step-2",
+          "text": "",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "no-response-step-2",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no-response",
+                "display": "<span style=\"color:#006BBA\">Client declined to answer/no response</span"
+              }
             }
           ]
         }
@@ -3257,6 +3885,48 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAABkAAAAAjCAYAAADMvMZpAAAACXBIWXMAACBWAAAgVgEro3jgAAABkklEQVR4nO3cMQ0CURRE0bdkBVChAwdgCwW0SEAKOEACNRUOPib4eZvJOQqmv8ksY4wCAAAAAABIsuseAAAAAAAA8G8CCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABxBBAAAAAAACCOAAIAAAAAAMQRQAAAAAAAgDgCCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABx1u4BMy3Xz7Gq9t07AAAAAABgg77jcnh1j5glOoBU1a2qTt0jAAAAAABgg55Vde4eMYsLLAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIizdg+Y7F5Vj+YNAAAAAACwRe/uATMtY4zuDQAAAAAAAH/lAgsAAAAAAIgjgAAAAAAAAHEEEAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIjzA5RID1U/qAKmAAAAAElFTkSuQmCC",
+                "title": "Divider"
+              }
+            }
+          ],
+          "linkId": "divider-no-response-step-3",
+          "text": "",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "no-response-step-3",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no-response",
+                "display": "<span style=\"color:#006BBA\">Client declined to answer/no response</span"
+              }
             }
           ]
         }
@@ -3952,6 +4622,48 @@
                   "type": "boolean"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAABkAAAAAjCAYAAADMvMZpAAAACXBIWXMAACBWAAAgVgEro3jgAAABkklEQVR4nO3cMQ0CURRE0bdkBVChAwdgCwW0SEAKOEACNRUOPib4eZvJOQqmv8ksY4wCAAAAAABIsuseAAAAAAAA8G8CCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABxBBAAAAAAACCOAAIAAAAAAMQRQAAAAAAAgDgCCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABx1u4BMy3Xz7Gq9t07AAAAAABgg77jcnh1j5glOoBU1a2qTt0jAAAAAABgg55Vde4eMYsLLAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIizdg+Y7F5Vj+YNAAAAAACwRe/uATMtY4zuDQAAAAAAAH/lAgsAAAAAAIgjgAAAAAAAAHEEEAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIjzA5RID1U/qAKmAAAAAElFTkSuQmCC",
+                "title": "Divider"
+              }
+            }
+          ],
+          "linkId": "divider-no-response-step-4",
+          "text": "",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "no-response-step-4",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no-response",
+                "display": "<span style=\"color:#006BBA\">Client declined to answer/no response</span"
+              }
             }
           ]
         }
@@ -6289,6 +7001,48 @@
               "linkId": "75b213a7-a624-4f03-8c20-e8fff047871a",
               "text": "Take detailed history",
               "type": "display"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAABkAAAAAjCAYAAADMvMZpAAAACXBIWXMAACBWAAAgVgEro3jgAAABkklEQVR4nO3cMQ0CURRE0bdkBVChAwdgCwW0SEAKOEACNRUOPib4eZvJOQqmv8ksY4wCAAAAAABIsuseAAAAAAAA8G8CCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABxBBAAAAAAACCOAAIAAAAAAMQRQAAAAAAAgDgCCAAAAAAAEEcAAQAAAAAA4gggAAAAAABAHAEEAAAAAACII4AAAAAAAABx1u4BMy3Xz7Gq9t07AAAAAABgg77jcnh1j5glOoBU1a2qTt0jAAAAAABgg55Vde4eMYsLLAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIizdg+Y7F5Vj+YNAAAAAACwRe/uATMtY4zuDQAAAAAAAH/lAgsAAAAAAIgjgAAAAAAAAHEEEAAAAAAAII4AAgAAAAAAxBFAAAAAAACAOAIIAAAAAAAQRwABAAAAAADiCCAAAAAAAEAcAQQAAAAAAIjzA5RID1U/qAKmAAAAAElFTkSuQmCC",
+                "title": "Divider"
+              }
+            }
+          ],
+          "linkId": "divider-no-response-step-6a",
+          "text": "",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "no-response-step-6a",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no-response",
+                "display": "<span style=\"color:#006BBA\">Client declined to answer/no response</span"
+              }
             }
           ]
         }
