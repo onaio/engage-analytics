@@ -31,14 +31,26 @@ base_{{ src }} as (
     {%- else %}
     current_date as period_date,
     {%- endif %}
-    {%- for m in metrics_list %}
-    {%- for key in m.get('entity_keys', ['organization_id']) %}
-    {{ key }},
+    {%- set all_keys = [] -%}
+    {%- for m in metrics_list -%}
+      {%- for key in m.get('entity_keys', ['organization_id']) -%}
+        {%- if key not in all_keys -%}
+          {%- do all_keys.append(key) -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
-    {%- endfor %}
+    {{ all_keys | join(',\n    ') }},
+    {%- if metrics_list[0].get('expression') %}
     {{ metrics_list[0].expression }} as {{ metrics_list[0].id }}_value
+    {%- elif metrics_list[0].get('numerator') and metrics_list[0].get('denominator') %}
+    ({{ metrics_list[0].numerator }}::decimal / {{ metrics_list[0].denominator }}) * 100 as {{ metrics_list[0].id }}_value
+    {%- endif %}
     {%- for m in metrics_list[1:] %},
+    {%- if m.get('expression') %}
     {{ m.expression }} as {{ m.id }}_value
+    {%- elif m.get('numerator') and m.get('denominator') %}
+    ({{ m.numerator }}::decimal / {{ m.denominator }}) * 100 as {{ m.id }}_value
+    {%- endif %}
     {%- endfor %}
   from {{ ref(src) }}
   where 1=1
