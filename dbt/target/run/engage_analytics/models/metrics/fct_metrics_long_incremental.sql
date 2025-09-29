@@ -19,7 +19,7 @@
     
 
     merge into "airbyte"."engage_analytics"."fct_metrics_long_incremental" as DBT_INTERNAL_DEST
-        using "fct_metrics_long_incremental__dbt_tmp144430085881" as DBT_INTERNAL_SOURCE
+        using "fct_metrics_long_incremental__dbt_tmp170521782736" as DBT_INTERNAL_SOURCE
         on (
                     DBT_INTERNAL_SOURCE.period_date = DBT_INTERNAL_DEST.period_date
                 ) and (
