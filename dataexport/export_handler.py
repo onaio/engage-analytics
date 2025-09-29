@@ -60,10 +60,10 @@ class DataExporter:
             )
             ORDER BY table_name
             """
-            
+
             self.cur.execute(query)
             views = [row[0] for row in self.cur.fetchall()]
-            
+
             # Also include other anonymized resource tables if they exist
             resource_tables = [
                 'encounters',
@@ -72,12 +72,12 @@ class DataExporter:
                 'current_practitioner_role',
                 'unnested_careteams'
             ]
-            
+
             for table in resource_tables:
                 # Check if table exists
                 check_query = f"""
                 SELECT EXISTS (
-                    SELECT FROM information_schema.tables 
+                    SELECT FROM information_schema.tables
                     WHERE table_schema = '{self.schema}'
                     AND table_name = '{table}'
                 )
@@ -85,11 +85,66 @@ class DataExporter:
                 self.cur.execute(check_query)
                 if self.cur.fetchone()[0]:
                     views.append(table)
-            
+
             return views
-            
+
         except Exception as e:
             raise Exception(f"Failed to get table list: {str(e)}")
+
+    def get_pii_tables(self):
+        """Get list of PII tables/views to export (non-anonymized)"""
+        try:
+            # Query for non-anonymized questionnaire views
+            query = f"""
+            SELECT table_name
+            FROM information_schema.views
+            WHERE table_schema = '{self.schema}'
+            AND table_name LIKE 'qr_%'
+            AND table_name NOT LIKE 'qr_%_anon'
+            ORDER BY table_name
+            """
+
+            self.cur.execute(query)
+            views = [row[0] for row in self.cur.fetchall()]
+
+            # Also check for patient table (non-anonymized)
+            patient_check = f"""
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables
+                WHERE table_schema = '{self.schema}'
+                AND table_name = 'patient'
+            )
+            """
+            self.cur.execute(patient_check)
+            if self.cur.fetchone()[0]:
+                views.insert(0, 'patient')
+
+            # Include other resource tables
+            resource_tables = [
+                'encounters',
+                'practitioners',
+                'organizations',
+                'current_practitioner_role',
+                'unnested_careteams'
+            ]
+
+            for table in resource_tables:
+                # Check if table exists
+                check_query = f"""
+                SELECT EXISTS (
+                    SELECT FROM information_schema.tables
+                    WHERE table_schema = '{self.schema}'
+                    AND table_name = '{table}'
+                )
+                """
+                self.cur.execute(check_query)
+                if self.cur.fetchone()[0]:
+                    views.append(table)
+
+            return views
+
+        except Exception as e:
+            raise Exception(f"Failed to get PII table list: {str(e)}")
     
     def export_table_to_csv(self, table_name, output_file):
         """Export a single table/view to CSV file"""

@@ -67,7 +67,52 @@
     
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='app.js') }}"></script>
-    
+
+    <!-- Session Security -->
+    {% if session.authenticated %}
+    <script>
+    // Clear session on browser close/refresh
+    let isNavigatingWithinSite = false;
+
+    // Track internal navigation
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (link && link.hostname === window.location.hostname) {
+            isNavigatingWithinSite = true;
+            setTimeout(() => { isNavigatingWithinSite = false; }, 100);
+        }
+    });
+
+    // Clear session on page unload (browser close/refresh)
+    window.addEventListener('beforeunload', function(e) {
+        if (!isNavigatingWithinSite) {
+            // Send synchronous request to logout
+            navigator.sendBeacon('{{ url_for("logout") }}');
+        }
+    });
+
+    // Handle visibility change (tab close, switching tabs)
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') {
+            // Store timestamp when page becomes hidden
+            sessionStorage.setItem('pageHiddenTime', Date.now());
+        }
+    });
+
+    // Handle page focus - check if too much time passed
+    window.addEventListener('focus', function() {
+        const hiddenTime = sessionStorage.getItem('pageHiddenTime');
+        if (hiddenTime) {
+            const elapsed = Date.now() - parseInt(hiddenTime);
+            // If hidden for more than 5 minutes, logout
+            if (elapsed > 300000) {
+                window.location.href = '{{ url_for("logout") }}';
+            }
+        }
+    });
+    </script>
+    {% endif %}
+
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>

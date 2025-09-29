@@ -27,10 +27,15 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600  # 1 hour
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
+app.config['SESSION_COOKIE_HTTPONLY'] = True
 
-# Authentication password
-AUTH_PASSWORD = os.getenv('AUTH_PASSWORD', 'secure_password_123')
-PASSWORD_HASH = generate_password_hash(AUTH_PASSWORD)
+# Authentication passwords
+AUTH_PASSWORD_ANON = os.getenv('AUTH_PASSWORD_ANON', 'secure_password_123')
+AUTH_PASSWORD_PII = os.getenv('AUTH_PASSWORD_PII', 'pii_secure_password_456')
+PASSWORD_HASH_ANON = generate_password_hash(AUTH_PASSWORD_ANON)
+PASSWORD_HASH_PII = generate_password_hash(AUTH_PASSWORD_PII)
 
 # Ensure downloads.log exists
 LOG_FILE = Path(__file__).parent / 'downloads.log'
@@ -80,23 +85,46 @@ def login():
     """Login page with password authentication"""
     if request.method == 'POST':
         password = request.form.get('password', '')
-        
-        if check_password_hash(PASSWORD_HASH, password):
+
+        # Check password to determine access level
+        has_pii_access = check_password_hash(PASSWORD_HASH_PII, password)
+        has_anon_access = check_password_hash(PASSWORD_HASH_ANON, password)
+
+        if has_pii_access:
             session['authenticated'] = True
-            session.permanent = True
-            flash('Successfully logged in!', 'success')
+            session['access_level'] = 'pii'
+            session.permanent = False  # Session expires when browser closes
+            flash('Successfully logged in with full access!', 'success')
+            return redirect(url_for('download_form'))
+        elif has_anon_access:
+            session['authenticated'] = True
+            session['access_level'] = 'anon'
+            session.permanent = False  # Session expires when browser closes
+            flash('Successfully logged in with anonymized data access.', 'success')
             return redirect(url_for('download_form'))
         else:
             flash('Invalid password. Please try again.', 'danger')
-    
+
     return render_template('login.html')
 
 
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     """Logout and clear session"""
+    email = session.get('export_email', 'unknown')
+    ip_address = request.remote_addr
+
+    # Log logout activity
+    if session.get('authenticated'):
+        log_activity(email, ip_address, action='logout', status='success')
+
     session.clear()
-    flash('You have been logged out.', 'info')
+
+    # Handle beacon requests (don't redirect)
+    if request.method == 'POST' or request.headers.get('Content-Type') == 'text/plain':
+        return '', 204  # No content response for beacon
+
+    flash('You have been logged out for security.', 'info')
     return redirect(url_for('login'))
 
 
@@ -106,19 +134,30 @@ def download_form():
     """Download form page to collect email before export"""
     if request.method == 'POST':
         email = request.form.get('email', '').strip()
-        
+        export_type = request.form.get('export_type', 'anon')
+
+        # Verify user has access to requested export type
+        access_level = session.get('access_level', 'anon')
+        if export_type == 'pii' and access_level != 'pii':
+            flash('Access denied. PII export requires elevated access.', 'danger')
+            return render_template('download.html')
+
         if not email or '@' not in email:
             flash('Please provide a valid email address.', 'warning')
             return render_template('download.html')
-        
+
+        # Store export type in session
+        session['export_type'] = export_type
+
         # Log export request
         ip_address = request.remote_addr
-        log_activity(email, ip_address, action='export_requested', status='success')
-        
+        export_label = 'PII' if export_type == 'pii' else 'ANON'
+        log_activity(email, ip_address, action=f'export_requested_{export_label}', status='success')
+
         # Store email in session for export process
         session['export_email'] = email
         return redirect(url_for('prepare_export'))
-    
+
     return render_template('download.html')
 
 
@@ -142,36 +181,41 @@ def prepare_export():
 @login_required
 def export_progress_stream(export_id):
     """Server-sent events endpoint for progress updates"""
-    # Get email from session before entering generator
+    # Get email and export type from session before entering generator
     email = session.get('export_email', 'unknown')
+    export_type = session.get('export_type', 'anon')
     ip_address = request.remote_addr
-    
+
     def generate():
         """Generate server-sent events"""
         # Initialize progress
         export_progress[export_id] = {'status': 'starting', 'progress': 0, 'message': 'Initializing export...'}
-        
+
         # Create a timestamp-based folder for this export in the dataexport directory
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         exports_base = Path('/Users/mberg/github/engage-analytics/dataexport/exports')
         exports_base.mkdir(exist_ok=True)
-        export_dir = exports_base / f"export_{timestamp}"
+        export_dir = exports_base / f"export_{timestamp}_{export_type}"
         export_dir.mkdir(parents=True, exist_ok=True)
-        
+
         try:
             # Log export started
-            log_activity(email, ip_address, action='export_started', status='success')
-            
+            export_label = 'PII' if export_type == 'pii' else 'ANON'
+            log_activity(email, ip_address, action=f'export_started_{export_label}', status='success')
+
             # Create exporter instance
             exporter = DataExporter()
-            
+
             # Connect to database
             yield f"data: {json.dumps({'progress': 5, 'message': 'Connecting to database...'})}\n\n"
             exporter.connect()
-            
-            # Get list of tables to export
+
+            # Get list of tables to export based on type
             yield f"data: {json.dumps({'progress': 10, 'message': 'Fetching table list...'})}\n\n"
-            tables = exporter.get_anonymized_tables()
+            if export_type == 'pii':
+                tables = exporter.get_pii_tables()
+            else:
+                tables = exporter.get_anonymized_tables()
             total_tables = len(tables)
             
             # Export each table to disk
@@ -184,8 +228,9 @@ def export_progress_stream(export_id):
             
             # Create zip file
             yield f"data: {json.dumps({'progress': 90, 'message': 'Creating zip archive...'})}\n\n"
-            
-            zip_filename = f"engage_analytics_export_{timestamp}.zip"
+
+            export_label = 'pii' if export_type == 'pii' else 'anon'
+            zip_filename = f"engage_analytics_export_{export_label}_{timestamp}.zip"
             zip_path = export_dir / zip_filename
             
             # Create the zip file without sending progress updates during compression
@@ -218,7 +263,8 @@ def export_progress_stream(export_id):
             }
             
             # Log successful export completion
-            log_activity(email, ip_address, action='export_completed', status='success')
+            export_label = 'PII' if export_type == 'pii' else 'ANON'
+            log_activity(email, ip_address, action=f'export_completed_{export_label}', status='success')
             
             # Send final completion message with download ready
             yield f"data: {json.dumps({'progress': 100, 'message': 'Export complete! Click Download to get your file.', 'complete': True})}\n\n"
@@ -372,11 +418,15 @@ def api_export_status(export_id):
 def api_tables():
     """API endpoint to get list of tables that will be exported"""
     try:
+        export_type = request.args.get('export_type', session.get('export_type', 'anon'))
         exporter = DataExporter()
         exporter.connect()
-        tables = exporter.get_anonymized_tables()
+        if export_type == 'pii':
+            tables = exporter.get_pii_tables()
+        else:
+            tables = exporter.get_anonymized_tables()
         exporter.disconnect()
-        return jsonify({'tables': tables, 'count': len(tables)})
+        return jsonify({'tables': tables, 'count': len(tables), 'export_type': export_type})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -385,6 +435,7 @@ if __name__ == '__main__':
     port = int(os.getenv('FLASK_PORT', 5001))
     print("Starting Flask Data Export Application")
     print(f"Access the application at: http://localhost:{port}")
-    print(f"Default password: {AUTH_PASSWORD}")
+    print(f"Anonymized data password: {AUTH_PASSWORD_ANON}")
+    print(f"PII data password: {AUTH_PASSWORD_PII}")
     print("-" * 50)
     app.run(debug=True, host='0.0.0.0', port=port)

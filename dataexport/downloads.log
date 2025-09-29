@@ -4,3 +4,16 @@
 {"timestamp": "2025-09-11T11:06:06.734323", "email": "mberg@ona.io", "ip_address": "127.0.0.1", "action": "export_requested", "status": "success", "error": null}
 {"timestamp": "2025-09-11T11:16:10.812928", "email": "mberg@ona.io", "ip_address": "127.0.0.1", "action": "file_downloaded", "status": "success", "error": null}
 {"timestamp": "2025-09-11T11:18:55.496891", "email": "mberg@ona.io", "ip_address": "127.0.0.1", "action": "file_downloaded", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:25:11.248776", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_requested_PII", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:30:03.829513", "email": "asdfa@joe.com", "ip_address": "192.168.1.18", "action": "export_requested_ANON", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:31:14.580057", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_requested_ANON", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:32:52.172248", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_requested_ANON", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:32:52.231012", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_started_ANON", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:34:46.482161", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "file_downloaded", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:35:02.326953", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "file_downloaded", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:35:31.608997", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_started_ANON", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:35:33.577528", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_started_ANON", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:36:57.181741", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_requested_PII", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:36:57.189352", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "logout", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:36:57.271019", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "export_started_PII", "status": "success", "error": null}
+{"timestamp": "2025-09-29T17:39:26.142571", "email": "mlberg@gmail.com", "ip_address": "192.168.1.18", "action": "file_downloaded", "status": "success", "error": null}
