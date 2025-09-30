@@ -56,7 +56,7 @@
   ),
   pivoted as (
     select
-      b.qr_id,max(case when linkid = 'completed-all-recommended-interventions' then answer_value_text end) as "completed_all_recommended",max(case when linkid = 'schedule-this-meeting' then answer_value_text end) as "schedule_meeting"
+      b.qr_id,max(case when linkid = 'completed-all-recommended-interventions' then answer_value_text end) as "one_follow_scheduling",max(case when linkid = 'schedule-this-meeting' then answer_value_text end) as "describe_one_follow"
     from base b
     group by b.qr_id
   )

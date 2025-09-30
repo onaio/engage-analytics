@@ -19,8 +19,8 @@ select
     practitioner_careteam_id as practitioner_careteam_id,
     application_version as application_version,
     qr_id as qr_id,
-    completed_all_recommended as completed_all_recommended,
-    schedule_meeting as schedule_meeting,
+    one_follow_scheduling as one_follow_scheduling,
+    describe_one_follow as describe_one_follow,
     CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_1_month_follow_up"

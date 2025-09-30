@@ -1,9 +1,7 @@
 
     
     
-    
-    create table "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata" ("table" text,"column" text,"short_name" text,"label" text,"data_type" text,"questionnaire_title" text,"source" text,"anon" boolean)
-  ;
+    truncate table "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata";
     -- dbt seed --
     
           insert into "airbyte"."engage_analytics_engage_analytics_stg"."questionnaire_metadata" ("table", "column", "short_name", "label", "data_type", "questionnaire_title", "source", "anon") values

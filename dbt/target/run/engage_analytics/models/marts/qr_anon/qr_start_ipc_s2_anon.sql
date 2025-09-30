@@ -105,11 +105,11 @@ select
     decision_analysis_example_84 as decision_analysis_example_84,
     guiding_prompts_disagreements as guiding_prompts_disagreements,
     place_declare_values_86 as place_declare_values_86,
-    task as task,
-    task_88 as task_88,
-    task_89 as task_89,
-    task_90 as task_90,
-    task_91 as task_91,
+    place_declare_values_87 as place_declare_values_87,
+    place_declare_values_88 as place_declare_values_88,
+    place_declare_values_89 as place_declare_values_89,
+    place_declare_values_90 as place_declare_values_90,
+    place_declare_values_91 as place_declare_values_91,
     CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_start_ipc_s2"

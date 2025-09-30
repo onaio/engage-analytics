@@ -39,7 +39,7 @@
     from {{ ref('int_qr_answers_long') }} a
     join ids on a.questionnaire_id = ids.ident
     cross join table_name t
-    left join {{ ref('questionnaire_metadata') }} m 
+    left join {{ ref('questionnaire_metadata') }} m
       on m.table = t.table_name
       and m.column = a.linkid
     order by a.linkid

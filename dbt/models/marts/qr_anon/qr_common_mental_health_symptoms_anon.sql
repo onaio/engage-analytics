@@ -36,7 +36,7 @@ select
     psychomotor as psychomotor,
     suicidal_thoughts as suicidal_thoughts,
     feeling_nervous as feeling_nervous,
-    gad_ipc_session as gad_ipc_session,
+    common_mental_health as common_mental_health,
     excessive_worry as excessive_worry,
     trouble_relaxing as trouble_relaxing,
     restlessness as restlessness,
@@ -52,8 +52,8 @@ select
     'REDACTED' as patient_age,
     'REDACTED' as patient_dob,
     'REDACTED' as patient_name,
-    show_pcl_questions as show_pcl_questions,
-    task_common_mental as task_common_mental,
+    place_declare_values_35 as place_declare_values_35,
+    place_declare_values_36 as place_declare_values_36,
     CURRENT_TIMESTAMP as anonymized_at
 
 from {{ ref('qr_common_mental_health_symptoms') }}

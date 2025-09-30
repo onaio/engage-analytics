@@ -105,12 +105,12 @@ select
     guiding_prompts_disagreements as guiding_prompts_disagreements,
     feelings_change as feelings_change,
     place_declare_values_91 as place_declare_values_91,
-    task as task,
-    task_93 as task_93,
-    task_94 as task_94,
-    task_95 as task_95,
-    task_96 as task_96,
-    task_97 as task_97,
+    place_declare_values_92 as place_declare_values_92,
+    place_declare_values_93 as place_declare_values_93,
+    place_declare_values_94 as place_declare_values_94,
+    place_declare_values_95 as place_declare_values_95,
+    place_declare_values_96 as place_declare_values_96,
+    place_declare_values_97 as place_declare_values_97,
     CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_start_ipc_s3"

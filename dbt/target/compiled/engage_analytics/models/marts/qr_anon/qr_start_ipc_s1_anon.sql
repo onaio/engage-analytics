@@ -120,10 +120,10 @@ select
     ipc_session_104 as ipc_session_104,
     you_experiencing_105 as you_experiencing_105,
     place_declare_values_107 as place_declare_values_107,
-    task as task,
-    task_109 as task_109,
-    task_110 as task_110,
-    task_111 as task_111,
+    place_declare_values_108 as place_declare_values_108,
+    place_declare_values_109 as place_declare_values_109,
+    place_declare_values_110 as place_declare_values_110,
+    place_declare_values_111 as place_declare_values_111,
     CURRENT_TIMESTAMP as anonymized_at
 
 from "airbyte"."engage_analytics_engage_analytics_mart"."qr_start_ipc_s1"

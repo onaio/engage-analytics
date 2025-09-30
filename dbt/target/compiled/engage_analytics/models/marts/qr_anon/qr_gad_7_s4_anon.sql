@@ -18,7 +18,7 @@ select
     gad_place_declare_values_2 as gad_place_declare_values_2,
     gad_place_declare_values_3 as gad_place_declare_values_3,
     feeling_nervous as feeling_nervous,
-    gad_gad_ipc_session as gad_gad_ipc_session,
+    gad_common_mental_health as gad_common_mental_health,
     excessive_worry as excessive_worry,
     trouble_relaxing as trouble_relaxing,
     restlessness as restlessness,

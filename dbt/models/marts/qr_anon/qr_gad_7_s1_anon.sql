@@ -28,7 +28,7 @@ select
     gad_add_family_member_8 as gad_add_family_member_8,
     gad_place_declare_values_9 as gad_place_declare_values_9,
     feeling_nervous as feeling_nervous,
-    gad_gad_ipc_session as gad_gad_ipc_session,
+    gad_common_mental_health as gad_common_mental_health,
     excessive_worry as excessive_worry,
     trouble_relaxing as trouble_relaxing,
     restlessness as restlessness,
