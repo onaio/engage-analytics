@@ -594,15 +594,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-age' OR linkid = 'patient-age' OR short_name = 'patient-age')
+                    WHERE ("column" = 'patient_age' OR linkid = 'patient_age' OR short_name = 'patient_age')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-age"
-            END as "patient-age",
+                ELSE "patient_age"
+            END as "patient_age",
         
     
         
@@ -611,15 +611,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-dob' OR linkid = 'patient-dob' OR short_name = 'patient-dob')
+                    WHERE ("column" = 'patient_date_of_birth' OR linkid = 'patient_date_of_birth' OR short_name = 'patient_date_of_birth')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-dob"
-            END as "patient-dob",
+                ELSE "patient_date_of_birth"
+            END as "patient_date_of_birth",
         
     
         
@@ -628,15 +628,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-name' OR linkid = 'patient-name' OR short_name = 'patient-name')
+                    WHERE ("column" = 'patient_name' OR linkid = 'patient_name' OR short_name = 'patient_name')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-name"
-            END as "patient-name",
+                ELSE "patient_name"
+            END as "patient_name",
         
     
         

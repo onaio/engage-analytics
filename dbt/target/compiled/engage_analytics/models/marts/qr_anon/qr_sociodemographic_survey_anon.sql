@@ -351,15 +351,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-age' OR linkid = 'patient-age' OR short_name = 'patient-age')
+                    WHERE ("column" = 'patient_age_6' OR linkid = 'patient_age_6' OR short_name = 'patient_age_6')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-age"
-            END as "patient-age",
+                ELSE "patient_age_6"
+            END as "patient_age_6",
         
     
         
@@ -368,15 +368,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-biological-sex' OR linkid = 'patient-biological-sex' OR short_name = 'patient-biological-sex')
+                    WHERE ("column" = 'patient_biological_sex_3' OR linkid = 'patient_biological_sex_3' OR short_name = 'patient_biological_sex_3')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-biological-sex"
-            END as "patient-biological-sex",
+                ELSE "patient_biological_sex_3"
+            END as "patient_biological_sex_3",
         
     
         
@@ -385,15 +385,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-dob' OR linkid = 'patient-dob' OR short_name = 'patient-dob')
+                    WHERE ("column" = 'patient_date_of_birth_6' OR linkid = 'patient_date_of_birth_6' OR short_name = 'patient_date_of_birth_6')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-dob"
-            END as "patient-dob",
+                ELSE "patient_date_of_birth_6"
+            END as "patient_date_of_birth_6",
         
     
         
@@ -402,15 +402,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-gender-identity' OR linkid = 'patient-gender-identity' OR short_name = 'patient-gender-identity')
+                    WHERE ("column" = 'patient_gender_identity_3' OR linkid = 'patient_gender_identity_3' OR short_name = 'patient_gender_identity_3')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-gender-identity"
-            END as "patient-gender-identity",
+                ELSE "patient_gender_identity_3"
+            END as "patient_gender_identity_3",
         
     
         
@@ -419,15 +419,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-how-you-think-of-yourself' OR linkid = 'patient-how-you-think-of-yourself' OR short_name = 'patient-how-you-think-of-yourself')
+                    WHERE ("column" = 'patient_how_you_think_of_yourself_3' OR linkid = 'patient_how_you_think_of_yourself_3' OR short_name = 'patient_how_you_think_of_yourself_3')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-how-you-think-of-yourself"
-            END as "patient-how-you-think-of-yourself",
+                ELSE "patient_how_you_think_of_yourself_3"
+            END as "patient_how_you_think_of_yourself_3",
         
     
         
@@ -436,15 +436,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-name' OR linkid = 'patient-name' OR short_name = 'patient-name')
+                    WHERE ("column" = 'patient_name_6' OR linkid = 'patient_name_6' OR short_name = 'patient_name_6')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-name"
-            END as "patient-name",
+                ELSE "patient_name_6"
+            END as "patient_name_6",
         
     
         
@@ -453,15 +453,15 @@ select
             CASE
                 WHEN EXISTS (
                     SELECT 1 FROM metadata_pii
-                    WHERE ("column" = 'patient-pronouns' OR linkid = 'patient-pronouns' OR short_name = 'patient-pronouns')
+                    WHERE ("column" = 'patient_pronouns_3' OR linkid = 'patient_pronouns_3' OR short_name = 'patient_pronouns_3')
                     AND anon = 'TRUE'
                 )
                 THEN
                     
                         'REDACTED'
                     
-                ELSE "patient-pronouns"
-            END as "patient-pronouns",
+                ELSE "patient_pronouns_3"
+            END as "patient_pronouns_3",
         
     
         
