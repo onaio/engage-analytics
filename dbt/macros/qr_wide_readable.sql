@@ -32,16 +32,16 @@
     table_name as (
       select '{{ relation_name }}' as table_name
     )
-    select distinct 
+    select distinct
       a.linkid,
-      coalesce(m.short_name, a.linkid) as readable_name,
+      coalesce(m.column, a.linkid) as readable_name,
       null::integer as question_order
     from {{ ref('int_qr_answers_long') }} a
     join ids on a.questionnaire_id = ids.ident
     cross join table_name t
     left join {{ ref('questionnaire_metadata') }} m
-      on m.table = t.table_name
-      and m.column = a.linkid
+      on m."table" = t.table_name
+      and m.linkid = a.linkid
     order by a.linkid
   {% endset %}
 

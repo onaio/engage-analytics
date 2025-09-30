@@ -49,7 +49,7 @@
   ),
   pivoted as (
     select
-      b.qr_id,max(case when linkid = 'encounter-id' then answer_value_text end) as "place_declare_values"
+      b.qr_id,max(case when linkid = 'encounter-id' then answer_value_text end) as "a_place_to_declare_values_that_cannot_be_created_using_fhirp_67"
     from base b
     group by b.qr_id
   )

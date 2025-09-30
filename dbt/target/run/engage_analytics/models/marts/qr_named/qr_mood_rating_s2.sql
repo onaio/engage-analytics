@@ -64,7 +64,7 @@
   ),
   pivoted as (
     select
-      b.qr_id,max(case when linkid = '85a3f14c-e4d8-4c45-9088-967ec4ea0d07' then answer_value_text end) as "mood_rating_ipc",max(case when linkid = 'b5bc7f80-4a0c-486c-e5eb-32c750036f94' then answer_value_text end) as "add_family_member",max(case when linkid = 'calculated-month' then answer_value_text end) as "add_family_member_3",max(case when linkid = 'calculated-year' then answer_value_text end) as "add_family_member_4",max(case when linkid = 'cd8e3d6d-e9ff-458d-d122-57070bebffaf' then answer_value_text end) as "add_family_member_5",max(case when linkid = 'f1.33.6' then answer_value_text end) as "mood_rating_ipc_6"
+      b.qr_id,max(case when linkid = '85a3f14c-e4d8-4c45-9088-967ec4ea0d07' then answer_value_text end) as "mood_rating_ipc_session_2_total_score",max(case when linkid = 'b5bc7f80-4a0c-486c-e5eb-32c750036f94' then answer_value_text end) as "add_family_member_registration_calculated_age_4",max(case when linkid = 'calculated-month' then answer_value_text end) as "add_family_member_registration_calculated_month_4",max(case when linkid = 'calculated-year' then answer_value_text end) as "add_family_member_registration_calculated_year_4",max(case when linkid = 'cd8e3d6d-e9ff-458d-d122-57070bebffaf' then answer_value_text end) as "add_family_member_registration_date_of_birth_4",max(case when linkid = 'f1.33.6' then answer_value_text end) as "mood_rating_ipc_session_2_on_a_scale_of_1_to_10_with_1_being__2"
     from base b
     group by b.qr_id
   )

@@ -51,7 +51,7 @@
   ),
   pivoted as (
     select
-      b.qr_id,max(case when linkid = '2fb4f2f4-23b5-4f36-b444-683563ea4fb3' then answer_value_text end) as "mood_rating_ipc",max(case when linkid = 'f1.33.6' then answer_value_text end) as "mood_rating_ipc_2"
+      b.qr_id,max(case when linkid = '2fb4f2f4-23b5-4f36-b444-683563ea4fb3' then answer_value_text end) as "mood_rating_ipc_session_3_total_score",max(case when linkid = 'f1.33.6' then answer_value_text end) as "mood_rating_ipc_session_2_on_a_scale_of_1_to_10_with_1_being__3"
     from base b
     group by b.qr_id
   )
