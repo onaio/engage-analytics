@@ -3,4 +3,5 @@
 .env.*
 !.env.example
 dbt/data/
-dbt/logs/dbt.log
+dbt/logs/
+dbt/target/
