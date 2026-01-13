@@ -1,130 +1,148 @@
-# Engage Analytics Data Export Web Application
+# Engage Analytics Data Export
 
-A secure Flask web application for exporting anonymized healthcare data from the Engage Analytics database.
+Export Engage Analytics data to S3 buckets. Supports both anonymized and PII exports to separate buckets.
 
-## Features
+## Prerequisites
 
-- **Password Protection**: Static password authentication to secure access
-- **User Audit Trail**: Logs email and timestamp for every download
-- **Real-time Progress**: Shows export progress with Server-Sent Events
-- **Anonymized Data Only**: Exports only de-identified data from `*_anon` views
-- **On-Demand Generation**: Data is exported fresh each time (not cached)
-- **Bulk Download**: All tables exported as CSV files in a single ZIP archive
+- Python 3.10+
+- [UV](https://docs.astral.sh/uv/) package manager
+- AWS account with S3 access
+- PostgreSQL database with Engage Analytics data
 
 ## Installation
 
-1. Install Python dependencies:
 ```bash
 cd dataexport
-pip install -r requirements.txt
+uv sync
 ```
 
-2. Configure environment variables:
+## AWS Configuration
+
+### Create IAM User
+
+1. Log into [AWS Console](https://console.aws.amazon.com)
+2. Go to **IAM** → **Users** → **Create user**
+3. Name it (e.g., `engage-dataexport`)
+4. Attach the `AmazonS3FullAccess` policy (or a custom policy scoped to your buckets)
+5. Go to **Security credentials** → **Create access key**
+6. Choose "Command Line Interface (CLI)"
+7. Save the Access Key ID and Secret Access Key
+
+### Create S3 Buckets
+
+Using AWS CLI:
+```bash
+aws s3 mb s3://engage-analytics-exports-anon --region us-east-1
+aws s3 mb s3://engage-analytics-exports-pii --region us-east-1
+```
+
+Or create them in the AWS Console under S3.
+
+## Environment Configuration
+
+Copy `.env.example` to `.env` and fill in your values:
+
 ```bash
 cp .env.example .env
-# Edit .env with your database credentials and password
 ```
 
-3. Ensure database access:
-- The application needs access to the PostgreSQL database
-- Database credentials are inherited from the parent `.envrc` file
+Edit `.env`:
 
-## Running the Application
-
-### Development Mode
-```bash
-python app.py
 ```
-The application will be available at `http://localhost:5000`
+# Database Configuration
+DBT_HOST=localhost
+DBT_PORT=5432
+DBT_USER=postgres
+DBT_PASSWORD=your_password
+DBT_DATABASE=airbyte
 
-### Production Mode
-For production, use a WSGI server like Gunicorn:
-```bash
-pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
+# AWS Configuration
+AWS_ACCESS_KEY_ID=AKIA...
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_REGION=us-east-1
+
+# S3 Buckets
+S3_BUCKET_ANON=engage-analytics-exports-anon
+S3_BUCKET_PII=engage-analytics-exports-pii
 ```
 
 ## Usage
 
-1. **Login**: Navigate to the application and enter the password
-2. **Provide Email**: Enter your email address for audit logging
-3. **Confirm Consent**: Check the consent box to proceed
-4. **Start Export**: Click "Start Export Process"
-5. **Monitor Progress**: Watch real-time progress as tables are exported
-6. **Download**: Once complete, download the ZIP file
+### Direct Export (export_to_s3.py)
 
-## Configuration
+Export both anonymized and PII data:
+```bash
+uv run python export_to_s3.py --type both
+```
 
-### Environment Variables
+Export only anonymized data:
+```bash
+uv run python export_to_s3.py --type anon
+```
 
-- `AUTH_PASSWORD`: The password for accessing the application
-- `SECRET_KEY`: Flask secret key for session management
-- `DBT_HOST`, `DBT_DATABASE`, etc.: Database connection parameters
+Export only PII data:
+```bash
+uv run python export_to_s3.py --type pii
+```
 
-### Security Considerations
+Delete local files after upload:
+```bash
+uv run python export_to_s3.py --type both --delete-local
+```
 
-- Always use HTTPS in production
-- Change the default password immediately
-- Use a strong, unique `SECRET_KEY`
-- Regularly rotate passwords
-- Monitor the `downloads.log` file for unauthorized access
+### Full Pipeline (run_export.sh)
+
+The wrapper script refreshes dbt models before exporting:
+
+```bash
+./run_export.sh          # Export both (default)
+./run_export.sh anon     # Export anonymized only
+./run_export.sh pii      # Export PII only
+```
+
+This runs:
+1. `dbt run` to refresh all models
+2. `export_to_s3.py` to export and upload
+
+## S3 File Structure
+
+Exports are organized by date:
+```
+s3://engage-analytics-exports-anon/
+  └── 2024/01/12/
+      └── engage_analytics_export_anon_20240112_143022.zip
+
+s3://engage-analytics-exports-pii/
+  └── 2024/01/12/
+      └── engage_analytics_export_pii_20240112_143022.zip
+```
 
 ## Data Exported
 
-The application exports only anonymized data from:
-- `qr_*_anon` views (questionnaire responses)
-- `patient_anon` table (de-identified patient data)
-- Other resource tables (practitioners, organizations, encounters)
+**Anonymized exports** include:
+- `qr_*_anon` views (questionnaire responses with PII removed)
+- `patient_anon` (de-identified patient data)
+- Resource tables (encounters, practitioners, organizations, etc.)
 
-All personally identifiable information (PII) is excluded or masked.
-
-## Audit Logging
-
-All downloads are logged to `downloads.log` with:
-- Timestamp
-- User email
-- IP address
-- Status (success/failure)
-- Error messages (if any)
+**PII exports** include:
+- `qr_*` views (full questionnaire responses)
+- `patient` table (full patient data)
+- Resource tables
 
 ## Troubleshooting
 
-### Database Connection Issues
+**"Missing environment variable: S3_BUCKET_ANON"**
+- Check that `.env` file exists and has the bucket names set
+
+**"Failed to connect to database"**
 - Verify database credentials in `.env`
-- Ensure PostgreSQL is running
-- Check network connectivity
+- Ensure PostgreSQL is running and accessible
 
-### Export Failures
-- Check available disk space
-- Verify database permissions
-- Review error messages in the web interface
+**"Access Denied" on S3 upload**
+- Check AWS credentials are correct
+- Verify IAM user has S3 permissions
+- Ensure bucket names match what's in `.env`
 
-### Performance Issues
-- Large exports may take several minutes
-- Consider implementing pagination for very large tables
-- Monitor database load during exports
-
-## Development
-
-### Testing the Export Handler
-```bash
-python export_handler.py
-# To test actual export:
-python export_handler.py --export
-```
-
-### File Structure
-```
-dataexport/
-├── app.py                 # Main Flask application
-├── export_handler.py      # Database export logic
-├── templates/            # HTML templates
-├── static/              # CSS and JavaScript
-├── requirements.txt     # Python dependencies
-├── .env                # Environment configuration
-└── downloads.log       # Audit log file
-```
-
-## License
-
-This application is part of the Engage Analytics project and follows the same licensing terms.
+**dbt errors in run_export.sh**
+- Ensure dbt is configured correctly in the `dbt/` directory
+- Check that `profiles.yml` has valid database credentials
