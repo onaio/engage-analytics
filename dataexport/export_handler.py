@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-"""
-Data export handler for PostgreSQL database
-Exports anonymized views to CSV format
-"""
+# ABOUTME: Data export handler for PostgreSQL database.
+# ABOUTME: Exports anonymized and PII views to CSV format with S3 upload support.
 
 import os
-import csv
 import psycopg2
+import boto3
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -200,62 +198,34 @@ class DataExporter:
         except Exception as e:
             raise Exception(f"Failed to get info for {table_name}: {str(e)}")
     
-    def export_all_to_directory(self, output_dir):
-        """Export all anonymized tables to a directory"""
+    def export_all_to_directory(self, output_dir, export_type='anon'):
+        """Export tables to a directory based on export type"""
         output_path = Path(output_dir)
-        output_path.mkdir(exist_ok=True)
-        
+        output_path.mkdir(exist_ok=True, parents=True)
+
         results = []
-        tables = self.get_anonymized_tables()
-        
+        if export_type == 'anon':
+            tables = self.get_anonymized_tables()
+        else:
+            tables = self.get_pii_tables()
+
         for table in tables:
             csv_file = output_path / f"{table}.csv"
             result = self.export_table_to_csv(table, csv_file)
             results.append(result)
             print(f"Exported {table}: {result['rows']} rows")
-        
+
         return results
 
+    def upload_to_s3(self, local_path, bucket, s3_key):
+        """Upload a file to S3"""
+        s3 = boto3.client(
+            's3',
+            region_name=os.getenv('AWS_REGION', 'us-east-1')
+        )
+        s3.upload_file(str(local_path), bucket, s3_key)
+        print(f"Uploaded {local_path} to s3://{bucket}/{s3_key}")
 
-# Command-line interface for testing
+
 if __name__ == '__main__':
-    import sys
-    
-    print("Data Exporter Test")
-    print("-" * 50)
-    
-    exporter = DataExporter()
-    
-    try:
-        print("Connecting to database...")
-        exporter.connect()
-        print("Connected successfully!")
-        
-        print("\nFetching anonymized tables...")
-        tables = exporter.get_anonymized_tables()
-        print(f"Found {len(tables)} tables to export:")
-        for table in tables[:10]:  # Show first 10
-            print(f"  - {table}")
-        if len(tables) > 10:
-            print(f"  ... and {len(tables) - 10} more")
-        
-        # Export to test directory if requested
-        if len(sys.argv) > 1 and sys.argv[1] == '--export':
-            output_dir = Path('test_export')
-            print(f"\nExporting to {output_dir}...")
-            results = exporter.export_all_to_directory(output_dir)
-            
-            total_size = sum(r['size'] for r in results) / (1024 * 1024)
-            total_rows = sum(r['rows'] for r in results)
-            
-            print(f"\nExport complete!")
-            print(f"Total files: {len(results)}")
-            print(f"Total rows: {total_rows:,}")
-            print(f"Total size: {total_size:.2f} MB")
-    
-    except Exception as e:
-        print(f"Error: {e}")
-    
-    finally:
-        exporter.disconnect()
-        print("\nDisconnected from database")
+    print("Use export_to_s3.py for CLI functionality")
