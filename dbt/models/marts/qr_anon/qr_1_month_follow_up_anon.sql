@@ -5,6 +5,21 @@
 }}
 
 -- Anonymized view for qr_1_month_follow_up
--- Uses questionnaire_metadata.anon column to mask PII fields
+-- Automatically generated based on questionnaire_metadata.csv
 
-{{ create_anonymized_qr_view('qr_1_month_follow_up', []) }}
+select
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    one_month_follow_up_scheduling_have_you_completed_all_recommend as one_month_follow_up_scheduling_have_you_completed_all_recommend,
+    describe_one_month_follow_up_let_s_schedule_this_meeting_now as describe_one_month_follow_up_let_s_schedule_this_meeting_now,
+    CURRENT_TIMESTAMP as anonymized_at
+
+from {{ ref('qr_1_month_follow_up') }}

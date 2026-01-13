@@ -5,6 +5,39 @@
 }}
 
 -- Anonymized view for qr_phq_9_s1
--- Uses questionnaire_metadata.anon column to mask PII fields
+-- Automatically generated based on questionnaire_metadata.csv
 
-{{ create_anonymized_qr_view('qr_phq_9_s1', []) }}
+select
+    questionnaire_id as questionnaire_id,
+    subject_patient_id as subject_patient_id,
+    encounter_id as encounter_id,
+    author_practitioner_id as author_practitioner_id,
+    practitioner_location_id as practitioner_location_id,
+    practitioner_organization_id as practitioner_organization_id,
+    practitioner_id as practitioner_id,
+    practitioner_careteam_id as practitioner_careteam_id,
+    application_version as application_version,
+    qr_id as qr_id,
+    a_place_to_declare_values_that_cannot_be_created_using_fhirp_26 as a_place_to_declare_values_that_cannot_be_created_using_fhirp_26,
+    a_place_to_declare_values_that_cannot_be_created_using_fhirp_27 as a_place_to_declare_values_that_cannot_be_created_using_fhirp_27,
+    phq_9_ipc_session_2_how_difficult_have_these_problems_made_it_2 as phq_9_ipc_session_2_how_difficult_have_these_problems_made_it_2,
+    a_place_to_declare_values_that_cannot_be_created_using_fhirp_28 as a_place_to_declare_values_that_cannot_be_created_using_fhirp_28,
+    add_family_member_registration_calculated_age_5 as add_family_member_registration_calculated_age_5,
+    add_family_member_registration_calculated_month_5 as add_family_member_registration_calculated_month_5,
+    add_family_member_registration_calculated_year_5 as add_family_member_registration_calculated_year_5,
+    add_family_member_registration_date_of_birth_5 as add_family_member_registration_date_of_birth_5,
+    a_place_to_declare_values_that_cannot_be_created_using_fhirp_29 as a_place_to_declare_values_that_cannot_be_created_using_fhirp_29,
+    common_mental_health_symptoms_moving_or_speaking_so_slowly_th_2 as common_mental_health_symptoms_moving_or_speaking_so_slowly_th_2,
+    common_mental_health_symptoms_thoughts_that_you_would_be_bett_2 as common_mental_health_symptoms_thoughts_that_you_would_be_bett_2,
+    common_mental_health_symptoms_little_interest_or_pleasure_in__2 as common_mental_health_symptoms_little_interest_or_pleasure_in__2,
+    common_mental_health_symptoms_feeling_down_depressed_or_hopel_2 as common_mental_health_symptoms_feeling_down_depressed_or_hopel_2,
+    common_mental_health_symptoms_trouble_falling_or_staying_asle_2 as common_mental_health_symptoms_trouble_falling_or_staying_asle_2,
+    common_mental_health_symptoms_feeling_tired_or_having_little__2 as common_mental_health_symptoms_feeling_tired_or_having_little__2,
+    common_mental_health_symptoms_poor_appetite_or_overeating_2 as common_mental_health_symptoms_poor_appetite_or_overeating_2,
+    common_mental_health_symptoms_feeling_bad_about_yourself_or_t_2 as common_mental_health_symptoms_feeling_bad_about_yourself_or_t_2,
+    common_mental_health_symptoms_trouble_concentrating_on_things_2 as common_mental_health_symptoms_trouble_concentrating_on_things_2,
+    a_place_to_declare_values_that_cannot_be_created_using_fhirp_30 as a_place_to_declare_values_that_cannot_be_created_using_fhirp_30,
+    a_place_to_declare_values_that_cannot_be_created_using_fhirp_31 as a_place_to_declare_values_that_cannot_be_created_using_fhirp_31,
+    CURRENT_TIMESTAMP as anonymized_at
+
+from {{ ref('qr_phq_9_s1') }}
