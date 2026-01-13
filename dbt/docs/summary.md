@@ -548,14 +548,20 @@ uv run dbt run --profiles-dir .
 # Run specific model
 uv run dbt run --profiles-dir . --select patient
 
-# Run model and its dependencies
+# Run model + its upstream dependencies
 uv run dbt run --profiles-dir . --select +patient
 
-# Run only questionnaire models
-uv run dbt run --profiles-dir . --select qr_*
+# Run model + downstream dependents
+uv run dbt run --profiles-dir . --select patient+
 
-# Reload seed data
+# Run only questionnaire models
+uv run dbt run --profiles-dir . --select "qr_*"
+
+# Reload seed data (questionnaire_metadata.csv)
 uv run dbt seed --profiles-dir .
+
+# Full rebuild (seed + run)
+uv run dbt seed --profiles-dir . && uv run dbt run --profiles-dir .
 
 # Test models
 uv run dbt test --profiles-dir .
@@ -564,6 +570,8 @@ uv run dbt test --profiles-dir .
 uv run dbt docs generate --profiles-dir .
 uv run dbt docs serve --profiles-dir .
 ```
+
+The `--profiles-dir .` tells dbt to use the local `profiles.yml` instead of looking in `~/.dbt/`.
 
 ### Using the Wrapper Script
 
