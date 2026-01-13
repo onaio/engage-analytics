@@ -1,0 +1,778 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "221",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2023-10-27T02:42:49.125+00:00",
+    "source": "#ed3bb47e22775ba4",
+    "profile": [
+      "http://ehelse.no/fhir/StructureDefinition/sdf-Questionnaire"
+    ],
+    "tag": [
+      {
+        "system": "urn:ietf:bcp:47",
+        "code": "nb-NO",
+        "display": "Norsk Bokmål"
+      },
+      {
+        "system": "urn:ietf:bcp:47",
+        "code": "en-GB",
+        "display": "English"
+      }
+    ]
+  },
+  "language": "en-GB",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/222"
+    }
+  ],
+  "version": "0.0.3",
+  "name": "Add Family Member Registration",
+  "title": "Add Family Member Registration",
+  "status": "active",
+  "subjectType": [
+    "Patient",
+    "RelatedPerson"
+  ],
+  "date": "2022-02-14T00:00:00.000Z",
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "https://www.smartregister.org/"
+    }
+  ],
+  "description": "Add Family Member Registration",
+  "purpose": "Family Member Registration",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "Patient.identifier.where(use='official').value"
+          }
+        }
+      ],
+      "linkId": "c02a80e7-ebf0-48b5-9752-28a48dba487f",
+      "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.identifier.value",
+      "text": "Unique ID",
+      "type": "string",
+      "required": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "Patient.name.given"
+          }
+        }
+      ],
+      "linkId": "e6306275-b989-4375-8527-3a56092081b8",
+      "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.name.given",
+      "text": "First Name",
+      "type": "string",
+      "required": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "Patient.name.text"
+          }
+        }
+      ],
+      "linkId": "597f4425-72b3-4bc4-8f38-b742aa3e99cd",
+      "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.name.text",
+      "text": "Middle name",
+      "type": "string",
+      "required": false
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "Patient.name.family"
+          }
+        }
+      ],
+      "linkId": "8fb87910-d900-4eea-dbba-dcf76ee6806d",
+      "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.name.family",
+      "text": "Last name",
+      "type": "string",
+      "required": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "Patient.birthDate"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+          "_valueDate": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-calculatedValue",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "today() - 36159.75 days"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "_valueDate": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-calculatedValue",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "today() - 3652.5 days"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "url": "http://ehelse.no/fhir/StructureDefinition/validationtext",
+          "valueString": "Age must be within 10 to 99 years"
+        }
+      ],
+      "linkId": "cd8e3d6d-e9ff-458d-d122-57070bebffaf",
+      "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.birthDate",
+      "text": "Date of birth",
+      "type": "date",
+      "enableWhen": [
+        {
+          "question": "36d39dbe-00e2-4e29-f079-3ec8f0119aff",
+          "operator": "exists",
+          "answerBoolean": false
+        }
+      ],
+      "required": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "check-box",
+                "display": "Check-box"
+              }
+            ],
+            "text": "Check-box"
+          }
+        }
+      ],
+      "linkId": "36d39dbe-00e2-4e29-f079-3ec8f0119aff",
+      "type": "choice",
+      "required": false,
+      "repeats": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "system": "urn:uuid:d2f70cf6-9320-4f5c-ce52-02f67f2a99e2",
+            "code": "date-of-birth-unknown",
+            "display": "Date of Birth Unknown"
+          }
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://ehelse.no/fhir/StructureDefinition/sdf-fhirpath",
+          "valueString": "Patient.extension.where(url = 'http://helsenorge.no/fhir/StructureDefinition/sdf-age').value"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "valueInteger": 99
+        }
+      ],
+      "linkId": "8460d986-ef71-4997-80ee-7887d8c345e7",
+      "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.age",
+      "text": "Age (estimate if unknown)",
+      "type": "integer",
+      "enableWhen": [
+        {
+          "question": "36d39dbe-00e2-4e29-f079-3ec8f0119aff",
+          "operator": "=",
+          "answerCoding": {
+            "system": "urn:uuid:d2f70cf6-9320-4f5c-ce52-02f67f2a99e2",
+            "code": "date-of-birth-unknown"
+          }
+        }
+      ],
+      "enableBehavior": "all",
+      "required": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "phone-number",
+                "display": "Phone number"
+              }
+            ],
+            "text": "Phone number"
+          }
+        }
+      ],
+      "linkId": "phone-number",
+      "text": "Phone number",
+      "type": "string"
+    },
+    {
+      "linkId": "email-address",
+      "text": "Email address",
+      "type": "string"
+    },
+    {
+      "linkId": "physical-address",
+      "text": "Physical address",
+      "type": "string",
+      "required": true
+    },
+    {
+      "linkId": "zip-code",
+      "text": "Zip code",
+      "type": "string",
+      "required": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "drop-down",
+                "display": "Drop down"
+              }
+            ],
+            "text": "Drop down"
+          }
+        }
+      ],
+      "linkId": "f9aa068d-8d94-4b3d-b9da-ce05a59cecdd",
+      "text": "What was your biological sex at birth?",
+      "type": "choice",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/biological-sex-at-birth",
+            "code": "female",
+            "display": "Female"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/biological-sex-at-birth",
+            "code": "male",
+            "display": "Male"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/biological-sex-at-birth",
+            "code": "intersex",
+            "display": "Intersex"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/biological-sex-at-birth",
+            "code": "other",
+            "display": "Other"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/biological-sex-at-birth",
+            "code": "no-answer",
+            "display": "Prefer not to answer"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "other-biological-sex-at-birth",
+      "type": "string",
+      "enableWhen": [
+        {
+          "question": "f9aa068d-8d94-4b3d-b9da-ce05a59cecdd",
+          "operator": "=",
+          "answerCoding": {
+            "system": "http://ona.org/fhir/biological-sex-at-birth",
+            "code": "other"
+          }
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "drop-down",
+                "display": "Drop down"
+              }
+            ],
+            "text": "Drop down"
+          }
+        }
+      ],
+      "linkId": "choice-gender-identity",
+      "text": "What term best expresses how you describe your gender identity?",
+      "type": "choice",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "man",
+            "display": "Man"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "woman",
+            "display": "Woman"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "non-binary",
+            "display": "Non-binary"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "transgender-man",
+            "display": "Transgender man"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "transgender-woman",
+            "display": "Transgender woman"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "other",
+            "display": "Other"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "no-answer",
+            "display": "Prefer not to answer"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "other-gender-identity",
+      "type": "string",
+      "enableWhen": [
+        {
+          "question": "choice-gender-identity",
+          "operator": "=",
+          "answerCoding": {
+            "system": "http://ona.org/fhir/gender-identity",
+            "code": "other"
+          }
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "drop-down",
+                "display": "Drop down"
+              }
+            ],
+            "text": "Drop down"
+          }
+        }
+      ],
+      "linkId": "choice-pronouns",
+      "text": "What are your preferred pronouns?",
+      "type": "choice",
+      "answerOption": [
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/pronouns",
+            "code": "she-her-hers",
+            "display": "She/her/hers"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/pronouns",
+            "code": "he-him-his",
+            "display": "He/him/his"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/pronouns",
+            "code": "they-them-theirs",
+            "display": "They/them/theirs"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/pronouns",
+            "code": "other",
+            "display": "Other"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/pronouns",
+            "code": "no-answer",
+            "display": "Prefer not to answer"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "other-pronouns",
+      "type": "string",
+      "enableWhen": [
+        {
+          "question": "choice-pronouns",
+          "operator": "=",
+          "answerCoding": {
+            "system": "http://ona.org/fhir/pronouns",
+            "code": "other"
+          }
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "drop-down",
+                "display": "Drop down"
+              }
+            ],
+            "text": "Drop down"
+          }
+        }
+      ],
+      "linkId": "77e32953-0679-48b5-f004-1ab4a4ac0271",
+      "text": "Which of the following best represents how you think of yourself?",
+      "type": "choice",
+      "answerOption": [
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "straight",
+            "display": "Straight"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "gay",
+            "display": "Gay"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "lesbian",
+            "display": "Lesbian"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "bisexual",
+            "display": "Bisexual"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "other",
+            "display": "Other"
+          }
+        },
+        {
+          "valueCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "no-answer",
+            "display": "Prefer not to answer"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "other-best-represents-how-you-think-of-yourself",
+      "type": "string",
+      "enableWhen": [
+        {
+          "question": "77e32953-0679-48b5-f004-1ab4a4ac0271",
+          "operator": "=",
+          "answerCoding": {
+            "system": "http://ona.org/fhir/best-represents-how-you-think-of-yourself",
+            "code": "other"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "do-you-have-medicaid",
+      "text": "Do you have Medicaid?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "linkId": "medicaid-number",
+      "text": "Medicaid number",
+      "type": "string",
+      "required": true,
+      "enableWhen": [
+        {
+          "question": "do-you-have-medicaid",
+          "operator": "=",
+          "answerBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "c31ef6d1-336b-4260-9881-67ba7b477ae0",
+      "text": "Have you received ENGAGE services in the past?",
+      "type": "boolean"
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "drop-down",
+                "display": "Drop down"
+              }
+            ],
+            "text": "Drop down"
+          }
+        }
+      ],
+      "linkId": "where-did-you-first-learn-about-engage",
+      "text": "Where did you first learn about ENGAGE?",
+      "type": "choice",
+      "enableWhen": [
+        {
+          "question": "c31ef6d1-336b-4260-9881-67ba7b477ae0",
+          "operator": "=",
+          "answerBoolean": false
+        }
+      ],
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "mental-health-clinic",
+            "display": "Mental health clinic"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "primary-healthcare-clinic",
+            "display": "Primary healthcare clinic"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "substance-use-clinic-or-program",
+            "display": "Substance use clinic or program"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "other-healthcare-setting",
+            "display": "Other healthcare setting"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "shelter",
+            "display": "Shelter"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "community-outreach-setting",
+            "display": "Community outreach setting"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "other-agency-program",
+            "display": "Other agency program"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "other",
+            "display": "Other"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "other-where-did-you-first-learn-about-engage",
+      "type": "string",
+      "enableBehavior": "any",
+      "enableWhen": [
+        {
+          "question": "where-did-you-first-learn-about-engage",
+          "operator": "=",
+          "answerCoding": {
+            "code": "other-healthcare-setting"
+          }
+        },
+        {
+          "question": "where-did-you-first-learn-about-engage",
+          "operator": "=",
+          "answerCoding": {
+            "code": "other-agency-program"
+          }
+        },
+        {
+          "question": "where-did-you-first-learn-about-engage",
+          "operator": "=",
+          "answerCoding": {
+            "code": "other"
+          }
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "iif(%resource.descendants().where(linkId='cd8e3d6d-e9ff-458d-d122-57070bebffaf').answer.value.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), ((today().toString().substring(5, 2).toInteger() + 12) - %resource.descendants().where(linkId='cd8e3d6d-e9ff-458d-d122-57070bebffaf').answer.value.toString().substring(5, 2).toInteger() + 1), (today().toString().substring(5, 2).toInteger() - %resource.descendants().where(linkId='cd8e3d6d-e9ff-458d-d122-57070bebffaf').answer.value.toString().substring(5, 2).toInteger()) + 1)"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "calculated-month",
+      "text": "calculated month",
+      "type": "integer"
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "iif(%resource.descendants().where(linkId='cd8e3d6d-e9ff-458d-d122-57070bebffaf').answer.value.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), (today().toString().substring(0, 4).toInteger() - 1) - %resource.descendants().where(linkId='cd8e3d6d-e9ff-458d-d122-57070bebffaf').answer.value.toString().substring(0, 4).toInteger(), today().toString().substring(0, 4).toInteger() - %resource.descendants().where(linkId='cd8e3d6d-e9ff-458d-d122-57070bebffaf').answer.value.toString().substring(0, 4).toInteger())"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "calculated-year",
+      "text": "calculated year",
+      "type": "integer"
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "(((%resource.descendants().where(linkId='calculated-year').answer.value.toString().toInteger() * 365.25) + (%resource.descendants().where(linkId='calculated-month').answer.value.toString().toInteger() * 365.25 / 12)) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger()"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "b5bc7f80-4a0c-486c-e5eb-32c750036f94",
+      "text": "Calculated Age",
+      "type": "integer",
+      "readOnly": true
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "iif(%resource.descendants().where(linkId='36d39dbe-00e2-4e29-f079-3ec8f0119aff').answer.value.code = 'date-of-birth-unknown', %resource.descendants().where(linkId='8460d986-ef71-4997-80ee-7887d8c345e7').answer.value.toString().toInteger(), %resource.descendants().where(linkId='b5bc7f80-4a0c-486c-e5eb-32c750036f94').answer.value.toString().toInteger())"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "age",
+      "text": "Age",
+      "type": "integer",
+      "readOnly": true
+    }
+  ]
+}

@@ -1,0 +1,2459 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "1613532",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2025-02-10T08:39:38.068+00:00"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/close-mw-tool"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient",
+            "display": "Patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "biological-gender",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.extension.where(url = 'http://ona.org/fhir/biological-sex-at-birth').last().value.code.exists(), %patient.extension.where(url = 'http://ona.org/fhir/biological-sex-at-birth').last().value.code, %patient.gender)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "down",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='59ae2c65-3a25-4acb-9db5-7aa035c54a63').answer.value.exists(), %resource.descendants().where(linkId='59ae2c65-3a25-4acb-9db5-7aa035c54a63').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "nervous",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='99f0d10e-9522-457f-8432-fd489c53acb3').answer.value.exists(), %resource.descendants().where(linkId='99f0d10e-9522-457f-8432-fd489c53acb3').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "restless",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='b9ecb840-8515-4091-8cef-863ed297012e').answer.value.exists(), %resource.descendants().where(linkId='b9ecb840-8515-4091-8cef-863ed297012e').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "alcohol",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='156fce37-203f-4760-a9f9-1b8ab0ae0642').answer.value.exists(), %resource.descendants().where(linkId='156fce37-203f-4760-a9f9-1b8ab0ae0642').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "alcohol-how-much",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='94f913ce-e837-48b3-906d-a0613ac72b73').answer.value.exists(), %resource.descendants().where(linkId='94f913ce-e837-48b3-906d-a0613ac72b73').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "drug",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='69a559db-c97b-4bcb-aae4-81465fdd1d20').answer.value.exists(), %resource.descendants().where(linkId='69a559db-c97b-4bcb-aae4-81465fdd1d20').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "thought",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='11e90302-2ae0-4e7d-be11-754b2a91ab20').answer.value.exists(), %resource.descendants().where(linkId='11e90302-2ae0-4e7d-be11-754b2a91ab20').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "harm",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='f35bbaa2-5e2e-4c74-b9b4-f0aa1eabe47d').answer.value.exists(), %resource.descendants().where(linkId='f35bbaa2-5e2e-4c74-b9b4-f0aa1eabe47d').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "strange",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='0ee3228d-28b6-4c88-8119-808fc121aaa6').answer.value.exists(), %resource.descendants().where(linkId='0ee3228d-28b6-4c88-8119-808fc121aaa6').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "voice",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='364e4271-e89d-4206-85a1-45ad595e4cab').answer.value.exists(), %resource.descendants().where(linkId='364e4271-e89d-4206-85a1-45ad595e4cab').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "dead",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='2c50fee4-7a5d-4d62-80aa-73329934d7dc').answer.value.exists(), %resource.descendants().where(linkId='2c50fee4-7a5d-4d62-80aa-73329934d7dc').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "kill",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='a669eaea-2f12-49ff-ac91-d54009d6ab77').answer.value.exists(), %resource.descendants().where(linkId='a669eaea-2f12-49ff-ac91-d54009d6ab77').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "end",
+        "language": "text/fhirpath",
+        "expression": "iif(%resource.descendants().where(linkId='97f2ed48-11d2-4417-a4b2-57a333c5157f').answer.value.exists(), %resource.descendants().where(linkId='97f2ed48-11d2-4417-a4b2-57a333c5157f').answer.value, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q1-to-q3-negative",
+        "language": "text/fhirpath",
+        "expression": "%down.code = 'not-at-all' and %nervous.code = 'not-at-all' and %restless.code = 'not-at-all'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "other-qs-positive",
+        "language": "text/fhirpath",
+        "expression": "(%down.code = 'several-days' or %down.code = 'more-than-half' or %down.code = 'nearly-every-day' or %nervous.code = 'several-days' or %nervous.code = 'more-than-half' or %nervous.code = 'nearly-every-day' or %restless.code = 'several-days' or %restless.code = 'more-than-half' or %restless.code = 'nearly-every-day') and %qs-incomplete-q1-to-q3 = false"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "qs-incomplete-q1-to-q3",
+        "language": "text/fhirpath",
+        "expression": "%down.code = 'dont-know' or %nervous.code = 'dont-know' or %restless.code = 'dont-know'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "alcohol-never",
+        "language": "text/fhirpath",
+        "expression": "%alcohol.code != 'never'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "suicide-risk",
+        "language": "text/fhirpath",
+        "expression": "%dead.code = 'yes' or %kill.code = 'yes' or %end.code = 'yes'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "severe-mental-health",
+        "language": "text/fhirpath",
+        "expression": "%thought.code = 'yes' or %harm.code = 'yes' or %strange.code = 'yes' or %voice.code = 'yes'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "common-mental-health",
+        "language": "text/fhirpath",
+        "expression": "%down.code = 'several-days' or %down.code = 'more-than-half' or %down.code = 'nearly-every-day' or %restless.code = 'several-days' or %restless.code = 'more-than-half' or %restless.code = 'nearly-every-day'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "alcohol-problem",
+        "language": "text/fhirpath",
+        "expression": "%alcohol.code = '2-4-times-month' or %alcohol.code = '2-3-times-week' or %alcohol.code = '4-or-more-times-week' or %alcohol-how-much-by-gender"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "alcohol-how-much-by-gender",
+        "language": "text/fhirpath",
+        "expression": "iif(%biological-gender = 'male', %alcohol-how-much.code = '5-or-6' or %alcohol-how-much.code = '7-to-9' or %alcohol-how-much.code = '10-or-more', %alcohol-how-much.code = '3-or-4' or %alcohol-how-much.code = '5-or-6' or %alcohol-how-much.code = '7-to-9' or %alcohol-how-much.code = '10-or-more')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "drug-problem",
+        "language": "text/fhirpath",
+        "expression": "%drug.code = 'once-or-twice' or %drug.code = 'monthly' or %drug.code = 'weekly' or  %drug.code = 'daily-or-almost-daily'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "no-mental-problem",
+        "language": "text/fhirpath",
+        "expression": "%down.code = 'not-at-all' and %restless.code = 'not-at-all' and %alcohol.code = 'never' and %alcohol-how-much.code = '1-or-2' and %drug.code = 'never' and %thought.code = 'no' and %harm.code = 'no' and %strange.code = 'no' and %voice.code = 'no' and %dead.code = 'no' and %kill.code = 'no' and %end.code = 'no'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "dont-know",
+        "language": "text/fhirpath",
+        "expression": "%alcohol.code = 'dont-know' or iif(%alcohol-how-much.code.exists(), %alcohol-how-much.code = 'dont-know', false) or %drug.code = 'dont-know' or %thought.code = 'dont-know' or %harm.code = 'dont-know' or %strange.code = 'dont-know' or %voice.code = 'dont-know' or %dead.code = 'dont-know' or %kill.code = 'dont-know' or %end.code = 'dont-know'"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "qs-incomplete-q4-to-q13",
+        "language": "text/fhirpath",
+        "expression": "%dont-know"
+      }
+    },{
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-given",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.given.first().exists(), %patient.name.given.first(), '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.family.exists(), %patient.name.family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-name-family.exists(), ' ' + %patient-name-family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name",
+        "language": "text/fhirpath",
+        "expression": "%patient-name-given + %patient-name-family-space"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-month",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), ((today().toString().substring(5, 2).toInteger() + 12) - %patient.birthDate.toString().substring(5, 2).toInteger() + 1), (today().toString().substring(5, 2).toInteger() - %patient.birthDate.toString().substring(5, 2).toInteger()) + 1)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-year",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), (today().toString().substring(0, 4).toInteger() - 1) - %patient.birthDate.toString().substring(0, 4).toInteger(), today().toString().substring(0, 4).toInteger() - %patient.birthDate.toString().substring(0, 4).toInteger())"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age",
+        "language": "text/fhirpath",
+        "expression": "(((%patient-calculated-year.toString().toInteger() * 365.25) + (%patient-calculated-month.toString().toInteger() * 365.25 / 12)) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger().toString()"
+      }
+    }
+  ],
+  "version": "0.0.1",
+  "title": "Mental Wellness Tool",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "http://www.smartregister.org/"
+    }
+  ],
+  "description": "Mental Wellness Tool form",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "bb66cdb3-60f5-4b98-94e9-9835c2a4271c",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "title-mw-tool-1",
+          "text": "<b>Mental Wellness Tool</b>",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "de8a9ccd-038c-469e-982c-15188434e2cc",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "30ec41a4-a135-401a-9923-6e348d55d155",
+              "text": "The Mental Wellness Tool aims to catch as many people with mental health problems as possible, even if it means that there might be some people who in the end don’t have the disorder that they screened positive for (false positives). This approach reduces the chance of missing anyone who has mental health problems.",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "bf774379-46bc-4043-a24e-beb71e90c2cb",
+          "text": "<span style=\"color:#006BBA\"><i>Proceed only if the client has no acute medical or psychiatric issues that could require immediate clinical attention – for example:</i></span><ul><li><span style=\"color:#006BBA\">&nbsp;being intoxicated</span></li><li><span style=\"color:#006BBA\">&nbsp;being confused</span></li><li><span style=\"color:#006BBA\">&nbsp;disorganized thinking</span></li><li><span style=\"color:#006BBA\">&nbsp;unable to communicate or sit down for a period</span></li><li><span style=\"color:#006BBA\">&nbsp;looks very medically ill</span></li></ul>",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "task-id-mwtool-pdf",
+          "text": "taskId of pdf",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "task-id-common-mental-health-form",
+          "text": "taskId of common mental health form",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient-name"
+              }
+            }
+          ],
+          "linkId": "patient-name",
+          "text": "name",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/pronouns').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-pronouns",
+          "text": "pronouns",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/biological-sex-at-birth').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-biological-sex",
+          "text": "biological sex",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/gender-identity').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-gender-identity",
+          "text": "gender identity",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.extension.where(url = 'http://ona.org/fhir/best-represents-how-you-think-of-yourself').value.display"
+              }
+            }
+          ],
+          "linkId": "patient-how-you-think-of-yourself",
+          "text": "how you think of yourself",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient-age"
+              }
+            }
+          ],
+          "linkId": "patient-age",
+          "text": "age",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%patient.birthDate"
+              }
+            }
+          ],
+          "linkId": "patient-dob",
+          "text": "DOB",
+          "type": "date"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.descendants().where(linkId='94f913ce-e837-48b3-906d-a0613ac72b73').answer.value.exists(), %resource.descendants().where(linkId='94f913ce-e837-48b3-906d-a0613ac72b73').answer.value.display, 'N/A')"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "how-many-drinks",
+          "text": "how-many-drinks",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%suicide-risk.exists(), %suicide-risk, false)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "suicide-risk",
+          "text": "suicide-risk",
+          "type": "boolean"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%severe-mental-health.exists(), %severe-mental-health, false)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "severe-mental-health",
+          "text": "severe-mental-health",
+          "type": "boolean"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%common-mental-health.exists(), %common-mental-health, false)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "common-mental-health",
+          "text": "common-mental-health",
+          "type": "boolean"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%alcohol-problem.exists(), %alcohol-problem, false)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "alcohol-problem",
+          "text": "alcohol-problem",
+          "type": "boolean"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%drug-problem.exists(), %drug-problem, false)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "drug-problem",
+          "text": "drug-problem",
+          "type": "boolean"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%no-mental-problem.exists(), %no-mental-problem, true)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            }
+          ],
+          "linkId": "no-mental-problem",
+          "text": "no-mental-problem",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "51ae5485-128e-493a-9639-9b48fa1369dc",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "title-mw-tool-2",
+          "text": "<b>Mental Wellness Tool</b>",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "07d1282d-f741-42c2-bde4-24baa06d215b",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "fcd8235e-18c3-43c9-aeb1-54899af4ff3e",
+              "text": "<span style=\"color:#006BBA\"><b>Tip #1</b></span><br>The Mental Wellness Tool (mwTool) is a brief survey that screens for severe mental disorders (including psychosis and mania), common mental disorders (including depression, anxiety, and post-traumatic disorder), alcohol use disorders, and suicide risk.<br><br><span style=\"color:#006BBA\"><b>Tip #2</b></span><br>Note that the Mental Wellness Tool is a screening tool, so its results are not diagnostic. Use the tool to better understand the client's problems and determine next steps, but do not provide definite diagnoses (e.g., \"you are diagnosed with alcohol use disorder\").",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "49f10dc9-6dbb-4737-ab2e-fec0c5b13d70",
+          "text": "I would like to ask you a few questions so we can figure out together what you are dealing with. The following 3 questions ask about your experience in the past two weeks.",
+          "type": "display"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "2a383f51-5366-47b6-ae8b-73ff147b0d5a",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueId": "constraint-1"
+                },
+                {
+                  "url": "requirements",
+                  "valueString": "Answer must not be 'dont know' when the why text box is shown and empty"
+                },
+                {
+                  "url": "severity",
+                  "valueCode": "error"
+                },
+                {
+                  "url": "expression",
+                  "valueString": "iif((%context.answer.value.code = 'dont-know') and (%resource.descendants().where(linkId='80499f94-3f2a-4f0f-9a21-7fa252b33e29').answer.value.exists().not() or %resource.descendants().where(linkId='80499f94-3f2a-4f0f-9a21-7fa252b33e29').answer.value.exists().not()), false, true)"
+                },
+                {
+                  "url": "human",
+                  "valueString": "Please describe what the supervisor recommended at the end of this set of questions"
+                },
+                {
+                  "url": "location",
+                  "valueString": "59ae2c65-3a25-4acb-9db5-7aa035c54a63"
+                }
+              ]
+            }
+          ],
+          "linkId": "59ae2c65-3a25-4acb-9db5-7aa035c54a63",
+          "text": "In the last 2 weeks, how often have you been feeling down, depressed, or hopeless?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half",
+                "display": "More than half the days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "bee6e482-41c1-4a10-a73a-996b39ad3f12",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueId": "constraint-2"
+                },
+                {
+                  "url": "requirements",
+                  "valueString": "Answer must not be 'dont know' when the why text box is shown and empty"
+                },
+                {
+                  "url": "severity",
+                  "valueCode": "error"
+                },
+                {
+                  "url": "expression",
+                  "valueString": "iif((%context.answer.value.code = 'dont-know') and (%resource.descendants().where(linkId='80499f94-3f2a-4f0f-9a21-7fa252b33e29').answer.value.exists().not() or %resource.descendants().where(linkId='80499f94-3f2a-4f0f-9a21-7fa252b33e29').answer.value.exists().not()), false, true)"
+                },
+                {
+                  "url": "human",
+                  "valueString": "Please describe what the supervisor recommended at the end of this set of questions"
+                },
+                {
+                  "url": "location",
+                  "valueString": "99f0d10e-9522-457f-8432-fd489c53acb3"
+                }
+              ]
+            }
+          ],
+          "linkId": "99f0d10e-9522-457f-8432-fd489c53acb3",
+          "text": "In the last 2 weeks, how often have you been feeling nervous, anxious, or on edge?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half",
+                "display": "More than half the days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "d3952c5c-ae00-453d-ac0d-8a857e85dd9f",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueId": "constraint-3"
+                },
+                {
+                  "url": "requirements",
+                  "valueString": "Answer must not be 'dont know' when the why text box is shown and empty"
+                },
+                {
+                  "url": "severity",
+                  "valueCode": "error"
+                },
+                {
+                  "url": "expression",
+                  "valueString": "iif((%context.answer.value.code = 'dont-know') and (%resource.descendants().where(linkId='80499f94-3f2a-4f0f-9a21-7fa252b33e29').answer.value.exists().not() or %resource.descendants().where(linkId='80499f94-3f2a-4f0f-9a21-7fa252b33e29').answer.value.exists().not()), false, true)"
+                },
+                {
+                  "url": "human",
+                  "valueString": "Please describe what the supervisor recommended at the end of this set of questions"
+                },
+                {
+                  "url": "location",
+                  "valueString": "b9ecb840-8515-4091-8cef-863ed297012e"
+                }
+              ]
+            }
+          ],
+          "linkId": "b9ecb840-8515-4091-8cef-863ed297012e",
+          "text": "In the last 2 weeks, how often have you been so restless that it's hard to sit still?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half",
+                "display": "More than half the days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%q1-to-q3-negative"
+          }
+        }
+      ],
+      "linkId": "6756f656-40b7-49dd-b887-fceaeef32ceb",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "bb7fceaa-dcb3-4568-b0b8-e15a77a834fb",
+          "text": "<b>The client's Mental Wellness Tool results:</b>",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "ba7e1b09-1c8c-419c-8f2e-d33342fbf335",
+              "text": "<b>&bull; The client shows no signs of any mental health problems</b>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%q1-to-q3-negative"
+                  }
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+                  "valueBoolean": true
+                }
+              ],
+              "linkId": "q1-to-q3-negative",
+              "text": "q1-to-q3-negative",
+              "type": "boolean"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%qs-incomplete-q1-to-q3"
+          }
+        }
+      ],
+      "linkId": "e89b1be1-5e88-43a6-912b-d5bb0e8595dd",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "d0a7837e-704a-4c61-9171-39e4bcde1c67",
+          "text": "<b>Discussion with Supervisor (for incomplete answers)</b>",
+          "type": "group",
+          "item": [
+            {
+              "linkId": "b545b5ec-88e7-48d3-882d-b57de37cc699",
+              "text": "Based on the determination of the supervisor, either:<br><ul><li>&nbsp;Go back and fill out the Mental Wellness Tool questions which have incomplete answers or;</li><li>&nbsp;Write down what the supervisor recommended for this client or the reasons for terminating the session, and end the screening process.</li>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Large_Blue_Italic"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "80499f94-3f2a-4f0f-9a21-7fa252b33e29",
+              "text": "Since responses are incomplete, please contact your supervisor.",
+              "type": "text",
+              "required": true,
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "6ef2ffaa-16d4-41ae-b63b-6addee5b9ea1",
+                  "text": "Please describe what the supervisor recommended",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "f388df98-78ff-4512-b6a2-5d6d1e5645e9",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "156fce37-203f-4760-a9f9-1b8ab0ae0642",
+          "text": "In the past year, how often do you have a drink containing alcohol?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "never",
+                "display": "Never"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "monthly-or-less",
+                "display": "Monthly or less"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "2-4-times-month",
+                "display": "Between 2 and 4 times a month"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "2-3-times-week",
+                "display": "Between 2 and 3 times a week"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "4-or-more-times-week",
+                "display": "4 or more times per week"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive and %alcohol-never"
+          }
+        }
+      ],
+      "linkId": "8ccad7e3-7577-4405-8c50-636ba2c6d53d",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "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",
+                "title": "Standard Alcohol Drink"
+              }
+            }
+          ],
+          "linkId": "94f913ce-e837-48b3-906d-a0613ac72b73",
+          "text": "In the past year, how many drinks containing alcohol do you have on a typical day when you are drinking?<br><br>By a 'standard drink' I mean a bottle or can of beer, a small glass of wine, a shot or a small cocktail.",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "1-or-2",
+                "display": "1 or 2"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "3-or-4",
+                "display": "3 or 4"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "5-or-6",
+                "display": "5 or 6"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "7-to-9",
+                "display": "7 to 9"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "10-or-more",
+                "display": "10 or more"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "52fc97ac-4a15-434c-a4b4-00cb4003f1b0",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "69a559db-c97b-4bcb-aae4-81465fdd1d20",
+          "text": "In the past year, how many times have you used a recreational drug or used a prescription medication for non-medical reasons?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "never",
+                "display": "Never"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "once-or-twice",
+                "display": "Once or twice"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "monthly",
+                "display": "Monthly"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "weekly",
+                "display": "Weekly"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "daily-or-almost-daily",
+                "display": "Daily or almost daily"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "182b705e-7d4b-48d1-b663-6b04e05c8435",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "11e90302-2ae0-4e7d-be11-754b2a91ab20",
+          "text": "In the past year, have you ever felt that your thoughts were being directly interfered with or controlled by some outside force or person in a way that many people would find hard to believe (for instance, through telepathy)?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "93fc8f5d-6c4d-4125-9c00-01f944aae2b7",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f35bbaa2-5e2e-4c74-b9b4-f0aa1eabe47d",
+          "text": "In the past year, have there been times when you felt that a group of people was plotting to cause you serious harm or injury?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "819ca7e5-fb69-4710-9da2-116f80b4486f",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "0ee3228d-28b6-4c88-8119-808fc121aaa6",
+          "text": "In the past year, have there been times when you felt that something so strange was going on that other people would find it very hard to believe?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "50c608d9-59cc-4f71-ad06-35da58805033",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "364e4271-e89d-4206-85a1-45ad595e4cab",
+          "text": "In the past year, did you at any time hear voices saying quite a few words or sentences when there was no one around that might account for it?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "85045f45-9585-4a5f-8103-b84cf5f21562",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "2c50fee4-7a5d-4d62-80aa-73329934d7dc",
+          "text": "In the past month, have you wished you were dead or wished you could go to sleep and not wake up?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "27a5d9b9-97b1-43ed-8c6c-f22279a99e2f",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "a669eaea-2f12-49ff-ac91-d54009d6ab77",
+          "text": "In the past month, have you had any actual thoughts of killing yourself?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive"
+          }
+        }
+      ],
+      "linkId": "467c273d-1e1e-4a2d-9aa9-cf0e00bb06f3",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "97f2ed48-11d2-4417-a4b2-57a333c5157f",
+          "text": "In the past 3 months, have you ever done anything, started to do anything, or prepared to do anything to end your life?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "yes",
+                "display": "Yes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "dont-know",
+                "display": "I don't know/prefer not to answer<br><span style=\"color:#006BBA\"><i><b>Supervisor discussion required</b></i></span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive and %qs-incomplete-q4-to-q13"
+          }
+        }
+      ],
+      "linkId": "8dbb5973-70c0-484f-b37e-becb3c18fedf",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "3d850536-84e3-419f-9c80-d6d66ba62d03",
+          "text": "<b>Discussion with Supervisor (for incomplete answers)</b>",
+          "type": "group",
+          "item": [
+            {
+              "linkId": "2f7e6c1c-f898-43d4-aa0f-5b86e37df5c3",
+              "text": "Based on the determination of the supervisor, either:<br><ul><li>&nbsp;Go back and fill out the Mental Wellness Tool questions which have incomplete answers or;</li><li>&nbsp;Write down what the supervisor recommended for this client or the reasons for terminating the session, and end the screening process.</li>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Large_Blue_Italic"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "8a051272-efb0-4f1f-acc7-f5038989207f",
+              "text": "Since responses are incomplete, please contact your supervisor.",
+              "type": "text",
+              "required": true,
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "445872f2-2c12-4529-a97d-9818aa07dd63",
+                  "text": "Please describe what the supervisor recommended",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive and %qs-incomplete-q4-to-q13 = false"
+          }
+        }
+      ],
+      "linkId": "cfabadb0-ae75-417b-bdc5-f6cf73c607fe",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "13a215ae-1481-41ea-8f22-2e74b5af6fe0",
+          "text": "<b>The client's Mental Wellness Tool results:</b>",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%suicide-risk"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "883f5c59-273f-49e0-bd48-3c2a9b8ebf29",
+              "text": "<b>&bull; Probable suicide risk</b>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%severe-mental-health"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "8f1213e4-7b37-437b-963e-8c3d1995e739",
+              "text": "<b>&bull; Probable severe mental health problem</b>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%common-mental-health"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "81ec0542-8e6c-47e8-a2cf-504e9e12babd",
+              "text": "<b>&bull; Probable common mental health problem</b>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%alcohol-problem"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "7172880c-99bb-411d-ac29-6fd100195dd8",
+              "text": "<b>&bull; Probable alcohol use problem</b>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%drug-problem"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "a45af2d1-866d-47a9-8b96-34827d922b8f",
+              "text": "<b>&bull; Probable drug use problem</b>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                  "valueExpression": {
+                    "language": "text/fhirpath",
+                    "expression": "%no-mental-problem"
+                  }
+                },
+                {
+                  "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+                  "extension": [
+                    {
+                      "url": "question_text_view",
+                      "valueString": "Body_Extra_Large"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "fc1f5e3d-6e30-4ac1-bed7-272bc9106b42",
+              "text": "<b>&bull; Negative for any mental health problem</b>",
+              "type": "display"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive and %suicide-risk and %qs-incomplete-q4-to-q13 = false"
+          }
+        }
+      ],
+      "linkId": "2bd739cc-7742-4308-a27a-f7789ab7a847",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "a3deb1da-1799-4888-9b76-3d568ddb39f6",
+          "text": "<b>Complete the Suicide Prevention module</b>",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "675f8dce-cd48-43ef-ba14-7cc6db38dc49",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "9cb58d5b-0f2c-48f0-95d2-d861ab30c2a7",
+              "text": "Go to the Interventions tab, and select the \"Suicide Prevention\" module.",
+              "type": "display"
+            },
+            {
+              "linkId": "b69f7d02-a80b-420f-a82b-12cb092d4ba4",
+              "text": "<span style=\"color:#006BBA\"><i>The client has screened positive for probable suicide risk in the Mental Wellness Tool. Please complete the Suicide Prevention module immediately.</i></span>",
+              "type": "display"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%other-qs-positive and %severe-mental-health and %suicide-risk.not() and %qs-incomplete-q4-to-q13 = false"
+          }
+        }
+      ],
+      "linkId": "d7c266b9-d115-4256-b6f8-3945b5bb6f5f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "c93b83f3-2ade-4b3d-bc65-c101ba64e00a",
+          "text": "<b>Discussion with Supervisor (for severe mental health)</b>",
+          "type": "group",
+          "item": [
+            {
+              "linkId": "2c38a7a0-3e3f-4a11-a037-d5f9a3c4dc06",
+              "text": "<span style=\"color:#006BBA\"><i>Please call your supervisor and notify them that your client has screened positive for probable severe mental health.</i></span>",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+                  "extension": [
+                    {
+                      "url": "key",
+                      "valueId": "discuss-severe-mhs-result-with-supervisor"
+                    },
+                    {
+                      "url": "requirements",
+                      "valueString": "Answer must be true"
+                    },
+                    {
+                      "url": "severity",
+                      "valueCode": "error"
+                    },
+                    {
+                      "url": "expression",
+                      "valueString": "%context.answer.value = true"
+                    },
+                    {
+                      "url": "human",
+                      "valueString": "Please discuss with a supervisor before proceeding"
+                    },
+                    {
+                      "url": "location",
+                      "valueString": "59ae2c65-3a25-4acb-9db5-7aa035c54a63"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "4602f806-3bf4-4f16-bee1-c2e690dca588",
+              "text": "Did you discuss this client's severe mental health screening results with a supervisor?",
+              "type": "boolean"
+            },
+            {
+              "linkId": "fe874736-efd1-4fba-b517-5560489729b0",
+              "text": "Supervisor's name",
+              "type": "text",
+              "enableWhen": [
+                {
+                  "question": "4602f806-3bf4-4f16-bee1-c2e690dca588",
+                  "operator": "=",
+                  "answerBoolean": true
+                }
+              ]
+            },
+            {
+              "linkId": "dbd07788-4597-4b54-8ed0-b3353c33fd81",
+              "text": "<span style=\"color:#006BBA\"><i>Please discuss with a supervisor before proceeding</i></span>",
+              "type": "display",
+              "enableWhen": [
+                {
+                  "question": "4602f806-3bf4-4f16-bee1-c2e690dca588",
+                  "operator": "=",
+                  "answerBoolean": false
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                        "code": "check-box"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "4e9014d1-e07c-492e-897a-3bf7e8f6f018",
+              "text": "What is the recommended plan to address the probable severe mental health problem for this client?",
+              "type": "choice",
+              "enableWhen": [
+                {
+                  "question": "4602f806-3bf4-4f16-bee1-c2e690dca588",
+                  "operator": "=",
+                  "answerBoolean": true
+                }
+              ],
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "continue-engage",
+                    "display": "Continue with ENGAGE"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "referral-mental-health",
+                    "display": "Referral to mental health specialist"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "referral-crisis",
+                    "display": "Referral to crisis or emergency services or other higher levels of care"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                }
+              ],
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-display-category",
+                            "code": "instructions"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "linkId": "221158e5-66ac-40ab-b283-81ea3a9e7222",
+                  "text": "<span style=\"color:#006BBA\"><i>Select all that apply</i></span>",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "2a01484e-8f9c-425f-92e6-7bf9b826c768",
+              "text": "Please specify",
+              "type": "text",
+              "enableWhen": [
+                {
+                  "question": "4602f806-3bf4-4f16-bee1-c2e690dca588",
+                  "operator": "=",
+                  "answerBoolean": true
+                },
+                {
+                  "question": "4e9014d1-e07c-492e-897a-3bf7e8f6f018",
+                  "operator": "=",
+                  "answerCoding": {
+                    "code": "other"
+                  }
+                }
+              ],
+              "enableBehavior": "all",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "flyover",
+                            "display": "Fly-over"
+                          }
+                        ],
+                        "text": "Flyover"
+                      }
+                    }
+                  ],
+                  "linkId": "2a01484e-8f9c-425f-92e6-7bf9b826c768-other-display",
+                  "text": "Other",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "91e7579d-ac74-4d72-955b-1a3675a2e656",
+              "text": "Referral details if the client is referred out",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

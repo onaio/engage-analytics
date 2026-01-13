@@ -1,0 +1,1110 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "104453",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2024-02-26T12:27:51.429+00:00"
+  },
+  "language": "en",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient",
+            "display": "Patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "encounter-search",
+        "language": "application/x-fhir-query",
+        "expression": "Encounter?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&reason-code=spi-sub2"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "encounter-resource",
+        "language": "text/fhirpath",
+        "expression": "%encounter-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "task-spi-sub3-search",
+        "language": "application/x-fhir-query",
+        "expression": "Task?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&code=028"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "task-spi-sub3-resource",
+        "language": "text/fhirpath",
+        "expression": "%task-spi-sub3-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "task-spi-sub4-search",
+        "language": "application/x-fhir-query",
+        "expression": "Task?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&code=029"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "task-spi-sub4-resource",
+        "language": "text/fhirpath",
+        "expression": "%task-spi-sub4-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-given",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.given.first().exists(), %patient.name.given.first(), '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.family.exists(), %patient.name.family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-month",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), ((today().toString().substring(5, 2).toInteger() + 12) - %patient.birthDate.toString().substring(5, 2).toInteger() + 1), (today().toString().substring(5, 2).toInteger() - %patient.birthDate.toString().substring(5, 2).toInteger()) + 1)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-year",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), (today().toString().substring(0, 4).toInteger() - 1) - %patient.birthDate.toString().substring(0, 4).toInteger(), today().toString().substring(0, 4).toInteger() - %patient.birthDate.toString().substring(0, 4).toInteger())"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age",
+        "language": "text/fhirpath",
+        "expression": "(((%patient-calculated-year.toString().toInteger() * 365.25) + (%patient-calculated-month.toString().toInteger() * 365.25 / 12)) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger().toString()"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-name-family.exists(), ' ' + %patient-name-family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-age.exists(), ', ' + %patient-age, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-and-age",
+        "language": "text/fhirpath",
+        "expression": "%patient-name-given + %patient-name-family-space + %patient-age-space"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "qr-search-subform1",
+        "language": "application/x-fhir-query",
+        "expression": "QuestionnaireResponse?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&questionnaire=Questionnaire/104455&_sort=-_lastUpdated&_count=1"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "qr-subform1",
+        "language": "text/fhirpath",
+        "expression": "%qr-search-subform1.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "is-medium-risk",
+        "language": "text/fhirpath",
+        "expression": "%qr-subform1.item.descendants().where(linkId='06e33f1f-7202-4d5e-94d1-efbeabaa3e7d').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "is-high-risk",
+        "language": "text/fhirpath",
+        "expression": "%qr-subform1.item.descendants().where(linkId='3f85f2ef-d781-4001-8df5-99a9ac5a656b').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "rec-plan",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='ed537539-d317-43fc-a4b3-38de5e15ea4f').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "talk-to-supervisor",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value"
+      }
+    }
+  ],
+  "version": "0.0.1",
+  "title": "SPI Subform 2",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "http://www.smartregister.org/"
+    }
+  ],
+  "description": "Safety Planning Intervention Subform 2 - Discussion with Supervisor",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "9d1b6add-e8fc-4a67-8796-5367ad09b9f0",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%encounter-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "encounter-id",
+          "text": "Encounter ID of SPI Sub 2",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%task-spi-sub3-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "task-id-spi-subform-3",
+          "text": "taskId SPI Subform 3",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%task-spi-sub3-resource.status.toString()"
+              }
+            }
+          ],
+          "linkId": "task-status-spi-subform-3",
+          "text": "taskStatus SPI Subform 3",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%task-spi-sub4-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "task-id-spi-subform-4",
+          "text": "taskId SPI Subform 4",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%task-spi-sub4-resource.status.toString()"
+              }
+            }
+          ],
+          "linkId": "task-status-spi-subform-4",
+          "text": "taskStatus SPI Subform 4",
+          "type": "string"
+        },
+        {
+          "linkId": "385c3477-01aa-407a-909e-8ce6267c7282",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueId": "constraint-1"
+                },
+                {
+                  "url": "requirements",
+                  "valueString": "Answer must be true"
+                },
+                {
+                  "url": "severity",
+                  "valueCode": "error"
+                },
+                {
+                  "url": "expression",
+                  "valueString": "%context.answer.value = true"
+                },
+                {
+                  "url": "human",
+                  "valueString": "Please discuss with a supervisor before proceeding"
+                },
+                {
+                  "url": "location",
+                  "valueString": "f4b782e5-18e1-4edf-a3ff-409feb207253"
+                }
+              ]
+            }
+          ],
+          "linkId": "f4b782e5-18e1-4edf-a3ff-409feb207253",
+          "text": "Did you discuss this client's suicide risk screening results with a supervisor?",
+          "type": "boolean",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "9f5b8528-2031-45ab-bc13-477d983e3080",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "2a5dc787-4a72-4c3e-bcab-76ee6ff183f0",
+              "text": "It is required that all C-SSRS results are discussed with a licensed mental health supervisor.",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "783e2646-c8ea-466d-bba8-85c891a14435",
+          "type": "string",
+          "enableWhen": [
+            {
+              "question": "f4b782e5-18e1-4edf-a3ff-409feb207253",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "5683b43a-4e17-452d-8bc5-2a074047d07a",
+              "text": "Supervisor's name",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "124327b0-04f6-446a-abb2-0da3414a83c3",
+          "text": "<span style=\"color:#006BBA\"><i>Please discuss with a supervisor before proceeding</i></span>",
+          "type": "display",
+          "enableWhen": [
+            {
+              "question": "f4b782e5-18e1-4edf-a3ff-409feb207253",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "56f90a89-5aca-4bdc-b14e-47dddc1e23c0",
+      "type": "group",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true"
+          }
+        }
+      ],
+      "item": [
+        {
+          "linkId": "afa77753-ea48-4b19-a6c6-ec7564da4db8",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "ed537539-d317-43fc-a4b3-38de5e15ea4f",
+          "text": "What is the recommended plan to address the probable suicide risk for this client?<br><br><span style=\"color:#006BBA\"><i>Select all that apply</i></span>",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "psychoeducation-only",
+                "display": "Information only"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "psychoeducation-and-spi",
+                "display": "Safety Planning Intervention"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "continue-with-engage",
+                "display": "Continue with ENGAGE"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "referral-to-mental-health-specialist",
+                "display": "Referral to mental health specialist"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "referral-to-emergency-services",
+                "display": "Referral to crisis or emergency services or other higher levels of care"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "other",
+                "display": "Other"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "92bd5d86-dc3d-4fc3-af61-ec6c7eb6c44d",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "d6da0677-6c0c-4fe9-8b0d-359c3f2be7dd",
+              "text": "If the recommendation is to Continue with ENGAGE: after completing the Safety Plan Intervention with your client, continue with any incomplete assessments (such as the Financial Wellness Tool) or indicated interventions which have not yet been completed.",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "3ef1d21b-eb20-46e2-b7ff-eb78218c208e",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "ed537539-d317-43fc-a4b3-38de5e15ea4f",
+              "operator": "=",
+              "answerCoding": {
+                "code": "other"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "f84e9f71-193f-417b-bda5-2b189a0d92db",
+              "text": "Please specify",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "53b30f12-74eb-474c-941c-5f0e81b7eb9f",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "f4b782e5-18e1-4edf-a3ff-409feb207253",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "1f17cc16-e57c-4ffe-8756-53a885b3e1b4",
+              "text": "Notes",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "https://github.com/google/android-fhir/tree/master/datacapture/android-style",
+              "extension": [
+                {
+                  "url": "question_text_view",
+                  "valueString": "Body_Large_Blue_Italic"
+                }
+              ]
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%rec-plan.code = 'psychoeducation-only' and (%is-medium-risk or %is-high-risk)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueId": "constraint-1"
+                },
+                {
+                  "url": "requirements",
+                  "valueString": "Answer must be yes-i-have-spoken"
+                },
+                {
+                  "url": "severity",
+                  "valueCode": "error"
+                },
+                {
+                  "url": "expression",
+                  "valueString": "%context.answer.value.code = 'yes-i-have-spoken'"
+                },
+                {
+                  "url": "human",
+                  "valueString": "Please speak with a supervisor before proceeding"
+                },
+                {
+                  "url": "location",
+                  "valueString": "2dd6c90f-ea68-45ba-9d30-58e02ab0812b"
+                }
+              ]
+            }
+          ],
+          "linkId": "2dd6c90f-ea68-45ba-9d30-58e02ab0812b",
+          "text": "This client scored in the moderate to high range on the C-SSRS. Please confirm that you have spoken to a supervisor and would like to proceed with this plan:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "yes-i-have-spoken",
+                "display": "Yes, I have spoken to a supervisor and would like to proceed"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "no-i-have-not-spoken",
+                "display": "No, I have not spoken to a supervisor"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "cd2ddb53-755e-473d-984a-2f3216115fc6",
+      "type": "group",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true and (%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.empty() or %resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value.code != 'no-i-have-not-spoken')"
+          }
+        }
+      ],
+      "item": [
+        {
+          "linkId": "7b31c8ee-aeb3-420a-a186-8dfaa466a742",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "linkId": "18c6510f-b294-4741-ae43-9cbbc4ba7e36",
+          "text": "Did this client also screen positive for probable severe mental health problem?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "cd813fe5-58d2-4102-9726-df80aca0eaac",
+      "type": "group",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true and (%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.empty() or %resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value.code != 'no-i-have-not-spoken') and %resource.descendants().where(linkId='18c6510f-b294-4741-ae43-9cbbc4ba7e36').answer.value = true"
+          }
+        }
+      ],
+      "item": [
+        {
+          "linkId": "48142b2a-14e8-4d2e-842d-707b08a02aa2",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueId": "constraint-1"
+                },
+                {
+                  "url": "requirements",
+                  "valueString": "Answer must be true"
+                },
+                {
+                  "url": "severity",
+                  "valueCode": "error"
+                },
+                {
+                  "url": "expression",
+                  "valueString": "%context.answer.value = true"
+                },
+                {
+                  "url": "human",
+                  "valueString": "Please discuss with a supervisor before proceeding"
+                },
+                {
+                  "url": "location",
+                  "valueString": "27b1e829-9ad9-41c2-8cb5-01ce1f469896"
+                }
+              ]
+            }
+          ],
+          "linkId": "27b1e829-9ad9-41c2-8cb5-01ce1f469896",
+          "text": "Did you discuss this client's severe mental health screening results with a supervisor?",
+          "type": "boolean"
+        },
+        {
+          "linkId": "d02eb882-411e-4bc0-af9d-08a77fcc3f50",
+          "type": "string",
+          "enableWhen": [
+            {
+              "question": "27b1e829-9ad9-41c2-8cb5-01ce1f469896",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "3896bdb4-0427-4e04-85fd-2365a19dc2c0",
+              "text": "Supervisor's name",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "dbd07788-4597-4b54-8ed0-b3353c33fd81",
+          "text": "<span style=\"color:#006BBA\"><i>Please discuss with a supervisor before proceeding</i></span>",
+          "type": "display",
+          "enableWhen": [
+            {
+              "question": "27b1e829-9ad9-41c2-8cb5-01ce1f469896",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "cce86a96-9a1c-4117-93ce-aaaa053f9151",
+      "type": "group",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+          "valueExpression": {
+            "language": "text/fhirpath",
+            "expression": "%resource.descendants().where(linkId='f4b782e5-18e1-4edf-a3ff-409feb207253').answer.value = true and (%resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.empty() or %resource.descendants().where(linkId='2dd6c90f-ea68-45ba-9d30-58e02ab0812b').answer.value.code != 'no-i-have-not-spoken') and %resource.descendants().where(linkId='18c6510f-b294-4741-ae43-9cbbc4ba7e36').answer.value = true and %resource.descendants().where(linkId='27b1e829-9ad9-41c2-8cb5-01ce1f469896').answer.value = true"
+          }
+        }
+      ],
+      "item": [
+        {
+          "linkId": "a529e6f0-fca5-4f4d-aef6-aab675fc0f97",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "check-box",
+                    "display": "Checkbox"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "4c804862-f4b9-49df-aae4-c7802e723c76",
+          "text": "What is the recommended plan to address the probable severe mental health problem for this client?<br><br><span style=\"color:#006BBA\"><i>Select all that apply</i></span>",
+          "type": "choice",
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "continue-with-engage",
+                "display": "Continue with ENGAGE"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "referral-to-mental-health-specialist",
+                "display": "Referral to mental health specialist"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "referral-to-emergency-services",
+                "display": "Referral to crisis or emergency services or other higher levels of care"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "other",
+                "display": "Other"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "c27fbc88-b368-441f-a2d3-d9df77f4086e",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "5d85069a-c3ac-4c71-ae2b-7328680977a9",
+              "text": " If the recommendation is to Continue with ENGAGE: after completing the Safety Plan Intervention with your client, continue with any incomplete assessments (such as the Financial Wellness Tool) or indicated interventions which have not yet been completed.",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "1d0e5f9e-6018-49bb-ac2e-662f50cde07d",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "4c804862-f4b9-49df-aae4-c7802e723c76",
+              "operator": "=",
+              "answerCoding": {
+                "code": "other"
+              }
+            }
+          ],
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "6afe5bc5-833a-4ea5-ba5f-3f10b3b37b2e",
+              "text": "Please specify",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "53b30f12-74eb-474c-941c-5f0e81b7eb9f",
+          "type": "text",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ],
+                    "text": "Flyover"
+                  }
+                }
+              ],
+              "linkId": "7d78ffcb-5dcd-4ef1-88aa-4e0ef9244cf2",
+              "text": "Referral details if the client is referred out",
+              "type": "display"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

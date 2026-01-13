@@ -1,0 +1,96 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "1-month-follow-up",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2025-06-19T10:24:41.770+00:00"
+  },
+  "language": "en",
+  "version": "0.0.1",
+  "title": "One-month follow-up scheduling",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "http://www.smartregister.org/"
+    }
+  ],
+  "description": "One-month follow-up scheduling",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+          "extension": [
+            {
+              "url": "key",
+              "valueId": "constraint-1"
+            },
+            {
+              "url": "requirements",
+              "valueString": "Answer must be true"
+            },
+            {
+              "url": "severity",
+              "valueCode": "error"
+            },
+            {
+              "url": "expression",
+              "valueString": "%context.answer.value = true"
+            },
+            {
+              "url": "human",
+              "valueString": "Please complete all recommended interventions with the client before scheduling their one month follow-up"
+            },
+            {
+              "url": "location",
+              "valueString": "completed-all-recommended-interventions"
+            }
+          ]
+        }
+      ],
+      "linkId": "completed-all-recommended-interventions",
+      "text": "Have you completed all recommended interventions with the client?",
+      "type": "boolean"
+    },
+    {
+      "linkId": "one-month-follow-up-title",
+      "text": "Describe one month follow-up",
+      "type": "group",
+      "enableWhen": [
+        {
+          "question": "completed-all-recommended-interventions",
+          "operator": "=",
+          "answerBoolean": true
+        }
+      ],
+      "item": [
+        {
+          "linkId": "one-month-follow-up-description",
+          "text": "One month from now, I would like to meet for a follow-up. The purpose of this meeting is for us to check in on how you are doing. At that point, if you’re feeling the same or better than today, we will not have any more sessions. If in a month you feel that you need additional support, we can also arrange that. Do you have any questions?",
+          "type": "display"
+        },
+        {
+          "linkId": "schedule-this-meeting",
+          "text": "Let's schedule this meeting now",
+          "type": "date"
+        }
+      ]
+    },
+    {
+      "enableWhen": [
+        {
+          "question": "completed-all-recommended-interventions",
+          "operator": "=",
+          "answerBoolean": false
+        }
+      ],
+      "linkId": "must-complete-all-recommended-interventions",
+      "text": "<span style=\"color:#006BBA\"><i>Please complete all recommended interventions with the client before scheduling their one month follow-up</i></span>",
+      "type": "display"
+    }
+  ]
+}

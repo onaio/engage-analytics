@@ -1,0 +1,406 @@
+{
+    "resourceType": "Questionnaire",
+    "id": "69",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2023-10-27T02:43:26.491+00:00",
+        "source": "#3f00eb360ba8062d",
+        "profile": [
+            "http://ehelse.no/fhir/StructureDefinition/sdf-Questionnaire"
+        ],
+        "tag": [
+            {
+                "system": "urn:ietf:bcp:47",
+                "code": "en-GB",
+                "display": "English"
+            },
+            {
+                "system": "urn:ietf:bcp:47",
+                "code": "nb-NO",
+                "display": "Norsk Bokmål"
+            }
+        ]
+    },
+    "language": "en-GB",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+            "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/107673"
+        }
+    ],
+    "version": "0.0.2",
+    "title": "eCBIS Remove Family Form",
+    "status": "active",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2022-03-21T00:00:00Z",
+    "publisher": "ona",
+    "contact": [
+        {
+            "name": "http://www.ona.io"
+        }
+    ],
+    "description": "eCBIS Remove Family Form",
+    "useContext": [
+        {
+            "code": {
+                "system": "http://hl7.org/fhir/ValueSet/usage-context-type",
+                "code": "focus",
+                "display": "Clinical Focus"
+            },
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+                        "display": "eCBIS Remove Family Member Form"
+                    }
+                ]
+            }
+        }
+    ],
+    "item": [
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                    "valueCodeableConcept": {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                                "code": "radio-button"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "linkId": "f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff",
+            "text": "Reason for removal",
+            "type": "choice",
+            "required": true,
+            "answerOption": [
+                {
+                    "valueCoding": {
+                        "id": "b7e33fa3-1a76-415c-805a-f78c4706b1a9",
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "moved-away",
+                        "display": "Moved away"
+                    }
+                },
+                {
+                    "valueCoding": {
+                        "id": "0e7d66a2-7bd8-43c4-b46a-d11081fd9773",
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "died",
+                        "display": "Died"
+                    }
+                },
+                {
+                    "valueCoding": {
+                        "id": "411f8687-a933-482b-d665-c46937b61aa5",
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "wrong/double-entry",
+                        "display": "Wrong/double entry"
+                    }
+                },
+                {
+                    "valueCoding": {
+                        "id": "8e08e053-8855-4ca7-db01-8ffae96f1f54",
+                        "code": "lost-to-follow-up",
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "display": "Lost to follow up"
+                    }
+                },
+                {
+                    "valueCoding": {
+                        "id": "de562248-71f2-4689-9a9c-29f16c131635",
+                        "code": "client-refusal",
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "display": "Client refusal"
+                    }
+                },
+                {
+                    "valueCoding": {
+                        "id": "1b7b2559-c80b-496c-8c35-e512a693d8c7",
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "other",
+                        "display": "Other"
+                    }
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://ehelse.no/fhir/StructureDefinition/validationtext",
+                    "valueString": "Enter a valid date. Cannot be a date in the future."
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                    "_valueDate": {
+                        "extension": [
+                            {
+                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-calculatedValue",
+                                "valueExpression": {
+                                    "language": "text/fhirpath",
+                                    "expression": "today() - 9000 days"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                    "_valueDate": {
+                        "extension": [
+                            {
+                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-calculatedValue",
+                                "valueExpression": {
+                                    "language": "text/fhirpath",
+                                    "expression": "today()"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "linkId": "b6c21488-87b8-4213-8cd0-d482367669c1",
+            "text": "Date moved away",
+            "type": "date",
+            "enableWhen": [
+                {
+                    "question": "f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff",
+                    "operator": "=",
+                    "answerCoding": {
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "moved-away"
+                    }
+                }
+            ],
+            "required": true
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                    "_valueDate": {
+                        "extension": [
+                            {
+                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-calculatedValue",
+                                "valueExpression": {
+                                    "language": "text/fhirpath",
+                                    "expression": "today() - 900 days"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                    "_valueDate": {
+                        "extension": [
+                            {
+                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-calculatedValue",
+                                "valueExpression": {
+                                    "language": "text/fhirpath",
+                                    "expression": "today()"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "linkId": "17b7fda5-514c-4408-88e7-52313ab0ef2f",
+            "text": "Date of death",
+            "type": "date",
+            "enableWhen": [
+                {
+                    "question": "f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff",
+                    "operator": "=",
+                    "answerCoding": {
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "died"
+                    }
+                }
+            ],
+            "required": true
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces",
+                    "valueInteger": 0
+                },
+                {
+                    "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+                    "valueExpression": {
+                        "language": "text/fhirpath",
+                        "expression": "((((%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 400))-((%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 400))) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger()"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                    "valueInteger": 0
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                    "valueInteger": 120
+                },
+                {
+                    "url": "http://ehelse.no/fhir/StructureDefinition/validationtext",
+                    "valueString": "Enter a valid age"
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+                    "valueCoding": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "a",
+                        "display": "year"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                    "valueExpression": {
+                        "language": "text/fhirpath",
+                        "expression": "%resource.descendants().where(linkId='f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff').answer.value.code='died' and %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.exists() and (((((%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 400))-((%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 400))) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger() > 0)"
+                    }
+                }
+            ],
+            "linkId": "98ac4694-590e-4cc2-83f3-cc6455e688c5",
+            "text": "Age at death (year)",
+            "type": "integer",
+            "required": true,
+            "readOnly": true
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces",
+                    "valueInteger": 0
+                },
+                {
+                    "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+                    "valueExpression": {
+                        "language": "text/fhirpath",
+                        "expression": "((((%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 400))-((%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 400))) / 30.4).toString().replaceMatches('[.]+[0-9]+', '').toInteger()"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                    "valueInteger": 0
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                    "valueInteger": 120
+                },
+                {
+                    "url": "http://ehelse.no/fhir/StructureDefinition/validationtext",
+                    "valueString": "Enter a valid age"
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+                    "valueCoding": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "mo",
+                        "display": "month"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                    "valueExpression": {
+                        "language": "text/fhirpath",
+                        "expression": "%resource.descendants().where(linkId='f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff').answer.value.code='died' and %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.exists() and %resource.descendants().where(linkId='98ac4694-590e-4cc2-83f3-cc6455e688c5').answer.value = 0 and (((((%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 400))-((%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 400))) / 30.4).toString().replaceMatches('[.]+[0-9]+', '').toInteger() > 0)"
+                    }
+                }
+            ],
+            "linkId": "6bde30ba-667a-11ed-9022-0242ac120002",
+            "text": "Age at death (month)",
+            "type": "integer",
+            "required": true,
+            "readOnly": true
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces",
+                    "valueInteger": 0
+                },
+                {
+                    "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+                    "valueExpression": {
+                        "language": "text/fhirpath",
+                        "expression": "((((%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.value.toString().substring(0, 4).toInteger() / 400))-((%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() * 365) + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(8, 2).toInteger() + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() * 30.4) + iif(%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(5, 2).toInteger() <= 2, (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 4 - (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 100 + (%resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() - 1) / 400, %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 4 - %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 100 + %resource.descendants().where(linkId='patient-birthdate').answer.value.toString().substring(0, 4).toInteger() / 400))) / 7).toString().replaceMatches('[.]+[0-9]+', '').toInteger()"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                    "valueInteger": 0
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                    "valueInteger": 120
+                },
+                {
+                    "url": "http://ehelse.no/fhir/StructureDefinition/validationtext",
+                    "valueString": "Enter a valid age"
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+                    "valueCoding": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "wk",
+                        "display": "week"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+                    "valueExpression": {
+                        "language": "text/fhirpath",
+                        "expression": "%resource.descendants().where(linkId='f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff').answer.value.code='died' and %resource.descendants().where(linkId='17b7fda5-514c-4408-88e7-52313ab0ef2f').answer.exists() and %resource.descendants().where(linkId='6bde30ba-667a-11ed-9022-0242ac120002').answer.value = 0"
+                    }
+                }
+            ],
+            "linkId": "51351028-667d-11ed-9022-0242ac120002",
+            "text": "Age at death (week)",
+            "type": "integer",
+            "required": true,
+            "readOnly": true
+        },
+        {
+            "linkId": "8489d249-1ef3-4edb-aa99-b5713fd2cb0a",
+            "text": "Give other reasons for removal",
+            "type": "string",
+            "enableWhen": [
+                {
+                    "question": "f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff",
+                    "operator": "=",
+                    "answerCoding": {
+                        "system": "urn:uuid:e6b1ab13-ea28-4a53-9f92-77a10157a606",
+                        "code": "other"
+                    }
+                }
+            ],
+            "required": true
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+                    "valueBoolean": true
+                }
+            ],
+            "linkId": "patient-birthdate",
+            "type": "string"
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+                    "valueBoolean": true
+                }
+            ],
+            "linkId": "a11ebb0d-acb3-4038-956b-293a41acb85b",
+            "type": "string"
+        }
+    ]
+}

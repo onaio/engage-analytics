@@ -1,0 +1,1472 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "56",
+  "language": "en",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient",
+            "display": "Patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-given",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.given.first().exists(), %patient.name.given.first(), '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.family.exists(), %patient.name.family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-month",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), ((today().toString().substring(5, 2).toInteger() + 12) - %patient.birthDate.toString().substring(5, 2).toInteger() + 1), (today().toString().substring(5, 2).toInteger() - %patient.birthDate.toString().substring(5, 2).toInteger()) + 1)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-year",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), (today().toString().substring(0, 4).toInteger() - 1) - %patient.birthDate.toString().substring(0, 4).toInteger(), today().toString().substring(0, 4).toInteger() - %patient.birthDate.toString().substring(0, 4).toInteger())"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age",
+        "language": "text/fhirpath",
+        "expression": "(((%patient-calculated-year.toString().toInteger() * 365.25) + (%patient-calculated-month.toString().toInteger() * 365.25 / 12)) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger().toString()"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-name-family.exists(), ' ' + %patient-name-family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-age.exists(), ', ' + %patient-age, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-and-age",
+        "language": "text/fhirpath",
+        "expression": "%patient-name-given + %patient-name-family-space + %patient-age-space"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "encounter-search",
+        "language": "application/x-fhir-query",
+        "expression": "Encounter?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&reason-code=ptsd-s1"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "encounter-resource",
+        "language": "text/fhirpath",
+        "expression": "%encounter-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "observation-ptsd-score-search",
+        "language": "application/x-fhir-query",
+        "expression": "Observation?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&category=survey&code=ptsd-s1-total-score&focus={{'Questionnaire/' + %questionnaire.id}}"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "observation-ptsd-score-resource",
+        "language": "text/fhirpath",
+        "expression": "%observation-ptsd-score-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q1",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='532fcdbc-38b7-4a35-870c-1d5222e239fb').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q1-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q1.code = 'not-at-all', 0, 0) + iif(%q1.code = 'a-little-bit', 1, 0) + iif(%q1.code = 'moderately', 2, 0) + iif(%q1.code = 'quite-a-bit', 3, 0) + iif(%q1.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q2",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='e13d2bb9-20a6-4605-a33f-5d9047f6b6a8').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q2-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q2.code = 'not-at-all', 0, 0) + iif(%q2.code = 'a-little-bit', 1, 0) + iif(%q2.code = 'moderately', 2, 0) + iif(%q2.code = 'quite-a-bit', 3, 0) + iif(%q2.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q3",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='68bec639-6c70-41e0-88f8-fef0ad941b55').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q3-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q3.code = 'not-at-all', 0, 0) + iif(%q3.code = 'a-little-bit', 1, 0) + iif(%q3.code = 'moderately', 2, 0) + iif(%q3.code = 'quite-a-bit', 3, 0) + iif(%q3.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q4",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='b4f73ad2-ed7a-4268-9057-a4a72b50dd10').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q4-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q4.code = 'not-at-all', 0, 0) + iif(%q4.code = 'a-little-bit', 1, 0) + iif(%q4.code = 'moderately', 2, 0) + iif(%q4.code = 'quite-a-bit', 3, 0) + iif(%q4.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q5",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='347352fc-b189-444a-aa22-df4d9e779f67').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q5-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q5.code = 'not-at-all', 0, 0) + iif(%q5.code = 'a-little-bit', 1, 0) + iif(%q5.code = 'moderately', 2, 0) + iif(%q5.code = 'quite-a-bit', 3, 0) + iif(%q5.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q6",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='6a52200c-3856-4fcc-afe4-b75921da0122').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q6-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q6.code = 'not-at-all', 0, 0) + iif(%q6.code = 'a-little-bit', 1, 0) + iif(%q6.code = 'moderately', 2, 0) + iif(%q6.code = 'quite-a-bit', 3, 0) + iif(%q6.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q7",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='5bc16477-41ff-485f-a73f-f0caa9c2c0ab').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q7-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q7.code = 'not-at-all', 0, 0) + iif(%q7.code = 'a-little-bit', 1, 0) + iif(%q7.code = 'moderately', 2, 0) + iif(%q7.code = 'quite-a-bit', 3, 0) + iif(%q7.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q8",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='eb42041c-cb74-4d5e-8a29-941776cc0b6e').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "q8-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%q8.code = 'not-at-all', 0, 0) + iif(%q8.code = 'a-little-bit', 1, 0) + iif(%q8.code = 'moderately', 2, 0) + iif(%q8.code = 'quite-a-bit', 3, 0) + iif(%q8.code = 'extremely', 4, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score",
+        "language": "text/fhirpath",
+        "expression": "%q1-score + %q2-score + %q3-score + %q4-score + %q5-score + %q6-score + %q7-score + %q8-score"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "no-ptsd",
+        "language": "text/fhirpath",
+        "expression": "%total-score < 8"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "mild-ptsd",
+        "language": "text/fhirpath",
+        "expression": "%total-score >= 8 and %total-score <= 11"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "moderate-ptsd",
+        "language": "text/fhirpath",
+        "expression": "%total-score >= 12 and %total-score <= 14"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "severe-ptsd",
+        "language": "text/fhirpath",
+        "expression": "%total-score >= 15"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning",
+        "language": "text/fhirpath",
+        "expression": "%total-score-meaning-no-ptsd"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-no-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%no-ptsd, 'This score suggests that you may not be experiencing <b>challenges coping after a traumatic event</b>', %total-score-meaning-mild-ptsd)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-mild-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%mild-ptsd, 'This score suggests that you may be experiencing <b>mild challenges coping after a traumatic event</b>', %total-score-meaning-moderate-ptsd)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-moderate-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%moderate-ptsd, 'This score suggests that you may be experiencing <b>moderate challenges coping after a traumatic event</b>', %total-score-meaning-severe-ptsd)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-severe-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%severe-ptsd, 'This score suggests that you may be experiencing <b>severe challenges coping after a traumatic event</b>', '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-code",
+        "language": "text/fhirpath",
+        "expression": "%total-score-meaning-code-no-ptsd"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-code-no-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%no-ptsd, 'no-ptsd', %total-score-meaning-code-mild-ptsd)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-code-mild-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%mild-ptsd, 'mild-ptsd', %total-score-meaning-code-moderate-ptsd)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-code-moderate-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%moderate-ptsd, 'moderate-ptsd', %total-score-meaning-code-severe-ptsd)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "total-score-meaning-code-severe-ptsd",
+        "language": "text/fhirpath",
+        "expression": "iif(%severe-ptsd, 'severe-ptsd', '')"
+      }
+    }
+  ],
+  "version": "0.0.1",
+  "title": "Short-Form PCL-5-8 (IPC Session 2)",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "http://www.smartregister.org/"
+    }
+  ],
+  "description": "Short-Form PCL-5-8 that is intended for IPC Session 2",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "045647c2-596f-4c45-ae63-d5f50eaa19c6",
+      "text": "A place to declare values that cannot be created using FHIRPath such as Coding. Retrieve the following items has answer value using variable expression, to use the declared value.",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%encounter-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "encounter-id",
+          "text": "Encounter ID of PTSD Session 2",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%total-score.toString()"
+              }
+            }
+          ],
+          "linkId": "9de6571c-3f74-4694-a567-ac5c897f96cb",
+          "text": "Total score",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%observation-ptsd-score-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "observation-ptsd-score-id",
+          "text": "Observation ID of PC-PTSD Session 2 Score",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%total-score-meaning"
+              }
+            }
+          ],
+          "linkId": "d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646",
+          "text": "Total score meaning",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%total-score-meaning-code"
+              }
+            }
+          ],
+          "linkId": "ea00e468-9c26-4a1c-a0af-1b72923b1e2e",
+          "text": "Total score meaning code",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%mild-ptsd or %moderate-ptsd or %severe-ptsd"
+              }
+            }
+          ],
+          "linkId": "is-ptsd",
+          "text": "Is PTSD?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "da97d90f-8e34-4d84-8232-33dc9e69aca6",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "c66822ba-4999-4717-95c2-aa20c3a8e2df",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "linkId": "4d133e6b-4f0c-4051-b4be-b032b14776ea",
+          "text": "<b>Short-Form PCL-5-8:</b>",
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "0c811e4e-1577-49c6-8684-125c04ad367a",
+              "text": "Tip and Example dialogue",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "f83a2d74-4db6-47ca-b90d-2bcd76c0b592",
+              "text": "<span style=\"color:#006BBA\"><b>Tip</b></span><br>The next set of questions are from a short version of the PTSD Checklist for DSM-5 (Short-Form PCL-5-8) These questions measure PTSD.<br><br><span style=\"color:#006BBA\"><b>Example dialogue</b></span><br><i>\"Now, I would like to ask you some questions to see if you have significant trauma in your life.\"</i>",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "c4ab79f2-799a-4e5d-a72b-6082e9156533",
+          "text": "I am going to ask you about some problems that people sometimes have in response to a very stressful experience. Keeping your worst event in mind, please think of each problem carefully and then pick one of the answer options to indicate how much you have been bothered by that problem in the past month.",
+          "type": "display"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "e5baf30c-150e-4db0-9828-7cc02fe12e55",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "29ab7e22-3fde-4460-8223-00dcdfa45694",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "532fcdbc-38b7-4a35-870c-1d5222e239fb",
+          "text": "In the past month, how much were you bothered by: <br>Repeated, disturbing, and unwanted memories of the stressful experience?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "8310e17e-b658-4ffa-a24e-3f5be7de9065",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "565dae3e-fdc5-459a-a3df-0d753bbd67b0",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "e13d2bb9-20a6-4605-a33f-5d9047f6b6a8",
+          "text": "In the past month, how much were you bothered by: <br>Avoiding external reminders of the stressful experience (for example, people, places, conversations, activities, objects, or situations)?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f142ba8b-c1cf-48e9-bf43-44fe90dcf7d1",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "48113c5a-7356-4e79-891b-81867565030b",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "68bec639-6c70-41e0-88f8-fef0ad941b55",
+          "text": "In the past month, how much were you bothered by: <br>Having strong negative beliefs about yourself, other people, or the world (for example, having thoughts such as: I am bad, there is something seriously wrong with me, no one can be trusted, the world is completely dangerous)?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "92149677-f33d-4001-9922-cca1ec367e9f",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "ffe79799-0d6c-436c-ba80-10f5865167be",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "b4f73ad2-ed7a-4268-9057-a4a72b50dd10",
+          "text": "In the past month, how much were you bothered by: <br>Feeling jumpy or easily startled?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "839c9f68-8f38-4ac0-b19a-fa4d83860fa3",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "a6ec2138-ca32-4aa5-b6c2-baf64497f610",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "347352fc-b189-444a-aa22-df4d9e779f67",
+          "text": "In the past month, how much were you bothered by:<br>Feeling very upset when something reminded you of the stressful experience?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "9f505de1-a15e-4730-b319-c102edbee074",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "d9e5d8d8-c3fb-4b8a-b30c-c53b94a7737e",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "6a52200c-3856-4fcc-afe4-b75921da0122",
+          "text": "In the past month, how much were you bothered by: <br>Avoiding memories, thoughts, or feelings related to the stressful experience?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "600e12c2-b8d2-49c4-91f9-a06ff3f404f8",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "5e8f2249-be4f-4e65-83e0-27c2a43df830",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "5bc16477-41ff-485f-a73f-f0caa9c2c0ab",
+          "text": "In the past month, how much were you bothered by:<br>Loss of interest in activities that you used to enjoy.",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "58d936f0-0e85-433b-8ed1-9dbc3c78d4c0",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1c0731cb-1c87-41be-aec5-90de4c41bb90",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "eb42041c-cb74-4d5e-8a29-941776cc0b6e",
+          "text": "In the past month, how much were you bothered by:<br>Having difficulty concentrating?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "a-little-bit",
+                "display": "A little bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "moderately",
+                "display": "Moderately"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "quite-a-bit",
+                "display": "Quite a bit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "extremely",
+                "display": "Extremely"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "c25c0cd1-9eae-409b-8689-5d8520dd92c6",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "079ff020-3e47-4f88-b3df-3fd035ec326e",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "linkId": "a5939ee9-ce7f-4271-b00c-109cf994f414",
+          "text": "Your Short-Form PCL-5-8 score is [total-score]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "'Your Short-Form PCL-5-8 score is ' + %total-score.toString()"
+                }
+              }
+            ]
+          },
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "aeda852a-917e-4acc-99c2-dbabea98c1ea",
+              "text": "Tip and Example dialogue",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "5cacac30-89d0-4aba-ae62-a6fa5fae0964",
+              "text": "<span style=\"color:#006BBA\"><b>Tip #1</b></span><br>List symptoms, describe severity (what the summed up scores mean), and impact on daily activities.<br><br><span style=\"color:#006BBA\"><b>Tip #2</b></span><br>Please see severity levels for the Short-Form PCL-5-8:<br>&bull; If the client scores a 8 or more, they may be experiencing challenges coping after a traumatic event.<br><br><span style=\"color:#006BBA\"><b>Example dialogue</b></span><br><i>\"Your score is an indication that the trauma you have is significantly impacting your life. This is something we may work on.\"</i>",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%no-ptsd"
+              }
+            }
+          ],
+          "linkId": "no-ptsd",
+          "text": "This score suggests that you may not be experiencing <b>challenges coping after a traumatic event</b>",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%mild-ptsd"
+              }
+            }
+          ],
+          "linkId": "mild-ptsd",
+          "text": "This score suggests that you may be experiencing <b>mild challenges coping after a traumatic event</b>",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%moderate-ptsd"
+              }
+            }
+          ],
+          "linkId": "moderate-ptsd",
+          "text": "This score suggests that you may be experiencing <b>moderate challenges coping after a traumatic event</b>",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-enableWhenExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%severe-ptsd"
+              }
+            }
+          ],
+          "linkId": "severe-ptsd",
+          "text": "This score suggests that you may be experiencing <b>severe challenges coping after a traumatic event</b>",
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAABkAAAAGkCAYAAABpfum9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAIaPSURBVHgB7d0L0F3lfd/7B4c7kjA2YCMh7Ck3icZOQEfIQ82xDcKNkzQFNXU8jYHjTJxpB+Q56SRnJE2b5GROJGba6TmxxLQTd5wK4qlzk6hjxw0WclxcalABF18kjEkTdMHcjHklhAE3nPe38SNvrff5r/U8z1p773X5fmbeKH7Ze79rr8tz+f+fywlbPvmN1xwAoJf+yQfe7i546+luEn7t977qnp172QEAsGL5ErfhF1a6SVv3L/7cPfncUQcA6K7bf/U97opLznGT8uu/+e/cn/7Zf3EAAMgbHAAAAAAAAAAAQM+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9M6JDohwyklvcKec/GPH/W7uxVcdAKC/Tj/lxPmfH3Onzf/oX3lu7hX37NzLDgCANlp8+klu0anzP6e9/iPf+e5Rd+T7r7rDR+m/AAAADA0JEAQtf8vp7qLlZ7hz33SKO/esU+eTH+HJQi+/8rfu6ee/7769/0X32BOH55MiP3D4kYuWL3KnntzOiVZPf/fl+WtHEBPAj1x6/uL5n0Wjf5efc/qxpEfI0Zf/l9v/zFH38OPfc48eODL6/zFdSlBdddmbRtdp18NPj65JF7x+f502Sqbp/gHQbZdfdLb7yYvPdt8++IK795En3bSd96bT3bvfeZ67fP4YLlp2pjvvzaeXvv6xAy+MjvXhx551X/32s+7J56i/pk33zEXnn+mOvPSq+/z9T7i20r30kxeeHf36e7/25Og7AYAsWXy6u+Fnrh79u/3Td7u5wy+6STj/vLPdlatWulk4+OQz7v4H9zmg7UiA4BjN8lh12Vlu1YqzzITHgvfMv07JEv287387Z5QMeWjv99zXH59zcG7VyjeOzk0b3fc/niMBAmAURF97+TnzP28pTXgsfN+P/TBhsnj0v5+dD2Z/5iuH3H3ffM5hsnTO115+7uhff8103tucAPH32fg9o2MmAQJ0k2ZZ/Px7LnRXzyceLp4PZIsC2dNMgFz9jvPcP37fhaPERwodr34+sOaC0f/WMf/xFx93D88nQzA5/p7R9fLXTEmoNidAPvKBFcfukxgf/M27SYAAcGtWrXA3f+jvuyuvWDlKfsiOz907sQTIDT97tVv/0RvcLDzw0L75BMhmB7QdCRCMXLHyLPf33vnm6MSHRbNFfuqqt7qr5j/r03fvZ0YIALSYgug/966lSYkPy9lLTna/9P63jz6PREjzlDS4/MI3uqsue3Mj12sa/AwVHbdPegDoLgWwf+rKC0ZJj9SkQ5M0e+AjP72isWPQ99GPgvFbPvUQM0Ia1JZ7JsfFy85MSn4AGDYlPa59zyq37oczPqZp2n8P6CISIAOnWR/Xv29p47MUliw6yf3Kur/j7nvkudFMAwBAe5y95BT3kfe/bSJBaZ8IWTH/2Z/+0v7OLMvURlqG7PILz0yenTNLSnpoeaufe9d5lcuoAWg/BbC1BFDOTItJWL/uHe6D88cyCfp+f/Rb73cf/9OvuT/+y8cd8uieuWjpmaMklWba+H1Yumbzr6xxAFBGSQ/N8tBsj1kmIZad160EMzALJEAGbMkZJ7kPvf/8UbJiUjQTREiCAEA7KPnxaz9/yShRMUmaqaBA+L/6k2+RBEnQ1VkTXZyhAsCmWRZX/8R5oxHwbQhgK6j+O7+8ZipJmI/9o3eMvvPvf541zVO07Z6pQ0tfvfVNjKgGsJASHUp4rFm1cj75scK1wZLFZzgA5UiADNj17z1voskPjyQIALTDtJIfnmYA/Pr83/u/P7XXwdblpMel5y/q1AwVALa2BrCV/Pj4x9492uB8Wn7pp1eM9nJgJkg53TM/OZ+U0qycric9PG18rusPAJ7fzPy6965qTdJj3IqLWa4PqEICZKDet/ocd+6bTnXToiTI/u8cdfufesmhHeZeZIM+YGi0LNG0kh+ekiAfes/y0XJY+JGuLhUV2swcQHed96bT3U/NJzyU9FDgt402/uIVU01+eAqCf/lrT7InSEFoM/M+0f0GAEp6rLzkArf+o+tGCYY277PBHiBANRIgA/TjFy5xq1ac5abt+vcuc5/Y+Vfu+6/8rcPsPfEUnTlgSLQ0kX5mQZutP/z499yjBw67oWMzcwCz1qWNqbUUkY5zFjSjQcHwj338y27ouryZeQolAvv8/QBUm+Vm5jkuu4TZH0AMEiAD5JekSuFnb2jWwCkn/5hbcsaJ7uLli5KW0Drl5De4K+YTL9oYHbP19cfn3NyRHzgAw/Fz71rqUmnvjq/OJy6eeObo6P/X7JHXN+Z+o0ulmQ7/6k+GmwDR9+/aUlGvz945n83MgZ7QhtTaRLwrAd7cpYg0Y8PP3NAyVtrLQd9dP6n7OvhZDg8/9qwbIn/PdHkz81gsfQUM2/qP3jDzzcxzLGb2BxCFBMjAaPZHStLi6e9+3931pUPBYPkX//szo89TQiX2M1etPMs9tO/5wcwCuesvD7lTTppO0OiCt57mfuqqt0a99r5HhtmJA4ZKo/ZTl77a9fDT7jNfORTcwFyfpYRKyowSHYOC6EPdED0nATVrl194JjM+gB559zu6NXpfsz9SfOe7R93mP3ioNFmhAHfq5+q8DTUB0rV7pg42PgeGTQmQLlp23jlRr9v7rSfcri896Jp28MlnHNAFJEAG5u/OJyxiKfnxh1844F4uSVZoJsETT73kbvqZt7lTT36DqzK0WSA6dy9PKdlz4fK4ik+zeZj9AQyLAtkpPvOVJ0fJD8uzc6+4T97916Nkhpa3iqWEiRIrAACU0Wh8LUcUS8mP9b/75dG/ZT755/tGM0M2fTh+n4efftcFbuuOrzn019XziZ6U+w0A2mLZeXFJ6vsf2uu2fmKn6wptOL/pV38x6rXv+4f/3AFVqiPW6I0lZ5zklr8lflSLZn7EBO/njrzq/lvCjIIfT0jCII6urZYki/GNv5pzAIZFSxjFUnKjLPkxzpohYmE2AQAgRsosDS1zFZP88D5//xPuj//ycRdLSz9dPINN2DE9H/v5dzgA6KLYJbsOHurWTMbFi04fJXdifoAYJEAGJCXxkLpHxIN7vzdKhMTQclnL33KaQ3Ou+om4ZWh0jXRtAQxLSuIhNvkhSn7sevip6NenJGIAAMOVsuySkhmxyQ9PM0FSXHQ+CZC+YukrAF228pK3Rb2OpaowdCRABmT5W+OTDg/NJzRSpQTWzz3rVIdmaPZHbHKLDeiB4UndvFqbnqe475vx5UrqPiRDpKSSzuntf/a4e3buZdcVjx44XLl0GoDu0J4Xv//5fcmJgiakblb+5195wqXSrJGUfT0IkFd77MALM7tncrHxOYBUc4ePup2fvdfd+M82t2JWxZJFcfXT4SNpAwWAvmEPkIHQ3huxy19plsDTz3/fpfr6X81Fz0S46IIz3IP7nneoL/acyxNPUekBQ5OSAFHwPXWTci2ZhXp80uPh+eTT/meOHrsGv/Ce812bKemhY/7q4y8cS9awzBnQXUoI3PvIk+7LX3tytE+GzGJfhIsSlpvSMafO/vAUsI+daaJlsLBQ6J65/KLuLEfy8Y+92wFAFSU9dnzuXnfPlx509z/YriTv0sgloA482a0lsICmkQAZiJQZF08/nzfiVImT77/yt1GboTMDpBma/XFB5HJiqcuaARie1OSHp+D32UtOcYinc6bEgRIISiR0hU96KGGTe78AaAfNglASQAFs7Yuh/90GKbMtUmZxFKUkThafTgLE80mPNt0zOf7xey+svNd0j7z22uszRQAMy8H5hMEX5hMebUx6jOvrHiBA00iADMQ5Z8UHpvZ/5yWXa+7IK+7UN1UnNzQjZckZJ7q5FwnI13HBW08b7akS475HqPAATMbpp9CciKHkwaMHjvzw324kPZTk0KyU/zqf8NDyaCQ9gG5TwFrBax/EbmMAOyUBkjv7Q1K+++Gj3Q301+UTZUp4tPWeSaWExgffd2Hl69b/7peZJQIMyAMP7ZtPduyd/3dvq5Me3mWXxM3SPMjsD4AEyFCcuSj+Us+9mN+offr5V9y5b4qb3fGW+dfNvXjEId9V74xb/mr/d44y+wMYqJQlqlL3C/HviX3fkJfL2vDJr3dqTw/Z9fDTox+SHkA/aLNw/bQ9gH3k+68eW06p8rU1vkvKslZ9CPrn6Mo9kypm43MlfOok2AB0yzXX/3N3oGOzJBbHzv4gAQKQABmK2FkComWscmkZrFinRCyVBZs2Po+9rg/tS9/UHkB/aAT/8nOqG8hKZCw/57T518fPBIz53PHjGKquJT+ExAfQL10JYm/906+NfiZNm63H+vbBF9wQ9THxo31tqva2UeKjS5u5A6iva8kPWXbeOVGvm5t70QFDRwJkIE5NSDa8cCR/hG5K8kT7VyBf7OwPJaUe289MG2DItGdDbKLi8gvfmJQA+XuXxZVF/jgAAGiD2A3QRUtAofu0l8sv/fSKytcp+cHsDwBttyx2A/TvLEzuaO8QvX/lJW879ruDTz4z2vBdM0b0L9AnJEAG4pSTpjPb4pVXGS06DRctX5Sw98dzDsCwad+JWGsvf4u775vfjZqxoI3Pr0pIgHyrQ5t9AwD66+p3nhe914hmfxAM74f/46eql77y+50AQNvFJkD8BuhrVq1w175nlbtu/qfqvXsfe8LtffRv3M7P3duJ/VCAKiRABuLUk9t3qVOW5cLxVq18Y9TrNPvj28z+AAbPb7p96fmLK1+rZbBu+Qd/x/2rP/lW6RJISn782s9f4mLd983nBr0HCACgPf7xe6s3wPb+6IuPO3Rf7Mbnmz5xvwOALjh/adwSWCsvucD9wb/b5K68onoG3LH3XHzB6Gfdz149mhGy9RM73Y7P3uuArmITBqBjtHTY8rfEjVh74qmXau3pAqA/fv/uv47e00HLZf3GL15mzu5QIkXJj7OXnOxiKPHxma8ccgAAzJr2f0hZ/urhx9g8tg8+/rF3V77m9z/P0lcAumPJori4kJIYKcmPIs0Wue03Pjr6OX9pfP0JtAkzQICOueon4pebue8ROmwAXueTEB96z/Ko1yu58Uvvf7v7uXctdc/NvTz/84o77ZQfGyU/NEskxR9+aT+zPwAArRCzB4SnpZAIiHffRz5QvfSVrjOzfQB0ydLzppuMUCJlzaqV7sZ/trmTm8Zj2EiAoPU04+HHL1zi2kpLTD39fPVa+U1IORdff3zOzR35gQMAb9fDT88nL06cT2qcF/0eJUJiZ3qEfOYrT2Zvfq4N2Zefc5prI82m0fkEAHRHTCB8nDbDTrXotJOSltiatq9++9lBzWrR0lexG58feelVBwBdoE3M9TNtmg1y57/dRBIEnUMCBK135qKTkmY9TNvci69OLQGSch6+MZ8AAYAivxRVShIkhxIESn7sevgpl+vyC890V13WzmnWmtFCAgQAukMbn6fM/shdDkkJkJS/M20K9A8pAaKkV5V7H3mSjc8BdMr5582uj+STIP/ww//SzR1+sfS12nj9tt/4FZdq8aL45M4X/9O/cam0r8mH/+lmh+EgAQJ0RMrsD21+vv8ppusDCFMSRJuif+T9b681u8Oy/5mX3Cfv/p+jfwEAmDXNAvjYP3pH9OuV+MiZ/YF20X4v+qny8T/9mgOALlk8g9kf45QE2fSr/8Rt+O1PRL120scCVGETdKAjLr7gjOjX3vfIcw4AyigB8tuf2jufpGg2WarPvf3PHif5AQBohcWnnzTaADtl6auNv3e/Q7fFLn3FxucAumjZeee4HJr58MBD+9zOz947+nfft/Jnv72+J0h7ZzwC45gBAnTEqhVnRb1Osz++zvJXACqsvfzc0QbnqRuaV9Em6b/285eMZpnc902SsQCA2dr4i1ckJT8UEP/2wRccui1243Nm+gDoptfc3OGjUfuAHJhPemz/j//Z7fzcl0fvKdJnrH3PFe7WX17nzl+aNptC77n/QZaSQvuRAAE6QEtfLVl0UtRrn3iKUdcAbGcvOcV95P1vGyUqJvc3Tna/9P63uxXzf+PTX9o/2g8EAIBpW7/uHaO9P2JpbwwC4t13+UVnRy19xbUG0FU7Pvvl0c/KSy5wV16xwq1ZtdKtuPhtCxIY/+HTf+G2fWJnMPHh6b/5z1v/0RtGP7E0A0Q/9z9IeYp2IwECdMBV74zf/Py+R4azqSGANEp+aHbGJPb9CLnqsje7S+aTIP/6T77lnp172QEAMC2aAfDB910Y/XrNBtj8Bw85dN+mG6+ofI02PWfjcwBdt/dbT4x+tn/67tH/VkLk9aTIyh/+/i9SPs5tnU+WSEoSRH+LBAjajj1AgJZLmf2hpa/mjvzAAUBRneSHZnDkJjD09275B3+n8aW2AACwKPkRs/+Dp+TH+t/9MntB9EDM0lfC7A8AfaSkh2ZyaHPy1OSHpyRISkLj2vesckDbMQMEaLm/O58AifUN9v4AYNCyVynJD21m/vDj3xvt4zG+hNXyc06f/zlttH9I7OfpPR96z3L3ybv/2gEAMEmpyY8jL7062vSc5Ef3sfE5ADRj27/f4das2hT12ssuucAtWXyGmzv8ogPaigQIWm//U0fd7+34n66tXn51cmvbL3/L6aOfGM989+XRuQKAIi1FlbLnx2e+8uRoE/OQ/c8cHf0oMaKkhjZTjz2G/zr/HiVWYn36Swfmj+M7DgCAGNr3ISX5IVr2qslNzxVY/+Bv3e3a6vDRV11f/c4vr6l8DRufA0A1zQCJ3WRdVl6ynGWw0GokQNAJcy/2t6FeJmX2x4P7nncAEKLZGrHKkh9F2uBcYpMgH3n/292GT37NxdLMEzZQBwDEUPJj04er934Yt+VTD7l7H3nSNe3J5xiUNG26/heff2bl6z7+p/HtEAAYsgce2uvWRi5vtey8c+b/78IEyOH5JMoDD6UnRhYvOn20l0mMnM8/eOgZh2EhAYKZeeUVglpllpxxkvvxyATI3JFXR/t/AECRZl7ELlWlJa9ikx+eXq+/EbPHh45DM1FSZoEAAFBFge+P/aN3JL1n646vuT//Cptg90Hs0lda7uzqd543+om1+PS4vRhl/fw9qL9RpM3WH37sWQcAXaL9ROITIGcHf//N+c/48D/d7FKt+9mr3W2/8dGo1+Z8PoaHBMhAfP+VH7glU7jcJ58Uv8nt91/5WwfbVT/x5ujXkvwAYPl7l8WXJbseftql0gyNXQ8/FT3LRMdDAgQA0BQlPz7+sXe7RafFB6q1B8QfffFxh36I3fhc94hmikyKlVgh+QGgiw4+GV92WQkQoC3e4DAIL7z4g+jXnnpyfqLk1JPjb6mXSYCYUmZ/yNf/qrl1iwH0S+zeH0pk5CYmtB9IrEsS9iIBAKCMRv5v/uia5OQHe0D0hxIfk0xqAACA7iMBMhApyYZTTs6/LVLeO9R9PWKsWvnG6Ndq9sfckfgEF4DhSNn4XBub53p27pXovTq0DFbMclkAAJRR8kMzP2JG/nt//JePk/zomdCSUwAAAONIgAyE9oiIdeai/BkgSxbFj75iCSzbxcsXRb/2ob3fcwAQkpJoeG4+iVHH0ZfjE7EkQAAAdeQkP7TZORtg9w8JEACYjMWLTnNAX7AHyECkzLY496xTXK4zz4i/pZ55/vsOC2npq9hE0v7vHHVPcx4BGE5raaLhzUtOGc0aAQAglTalTk1+fPvgC27zHzzk0E9PPnd0lBQDgCG47r1XzCcnzoh67Y7P3utynb/0nOjXpuwXAswCCZCBeOKpl6Jfe86b8hMg577p1KjXPfPdl5kBYrjqnfEbFn/jr9j8HEAz2posAQDAy0l+fOe7R93G37ufmQI9xrUFMCSb/s8Pu2VL4zYdv/+hve7gobzkxMpL3hb92rnD+cspA9PAElgDoSWwYhMO5551atJm5t7yt8R3RF5g/4+glNkfuqba/wMALC9F7sshy8/JHzmpJa3OXhKfPE9ZLgsAAO93fnmNu2jZmdGvV/Jj/e9+efQv+osECIAhOXwkvk5befEFLteKhPfue+xvHNBmJEAG5Nv7j0S9ThuZn5OxDNbfnQ/eN30sQ5My++O+R55zAFAmZZkpbU6emwT5yQvfmPT651j+CgCQaOMvXuEuvzhuxKsoKE7yYxi0BBYADMU3vxWfbLhy1UqX47r3rnJLFsf3Dfd+a78D2owlsAbkwFNHRzMMYlz1E292f3j3ARdryRknuYsSNu5+4ikaqUWaQZOyiTznEECV5+ZeTnr9dZef6z5591+7VHpfLCVljibMTAEAYP26d7ifflfaKFbt+UHyYxi2fOqh0c8k/NFvvT96f5EP/ubd7knuOQATtneUALk66rXrfuZqd8en/8IdSFwG6+YP/f3o1z7w0D43d/hFB7QZM0AG5LH9R6KXwVIw/qLlcZsqiRImsctmaePuuSMsf1J01U+8Kfq1WvqKcwigihINjx44HP36qy57s7v0/MUuxdr55EfKzJH9zxAYAADE+8gHVrgPvu/CpPds3fE1d+8jTzoAAPpm5+e+HP1azeLY8i9/xaVY97NXuyuvWBH9+h2f/S8OaDsSIAPy8nzy4xuPvxD9+g9cdZ47N2IpLCU/fjxh+Ss27l5IM2hS9lC575G8TawADE9KAkRu+QcXRidBlDD50HuWuxQPP/49BwBADCU/fumn44Mw8vuf3+f+6IuPOwAA+kgbjt//4L7o169ZtcLd9hsfnU+GnBH12k2/+osuxf0PxR8LMCssgTUwD+77nlu18qyo12ovkJt+9m2jvSa+/u0X3NyLx884UMB+1co3Ji19xcbdYUoixWIGDYAUux5+2v3cu5ZGv14bmv/6z1/i7vvmc+4L8+8NzdhQgkQzPy5P3PtDy199lQQIACBCTvJDS1699trr752EL3/tSffYgfgBZQAATMK2f79jPlmxKfr1mtWxZtVKt/UTO92uLz04SqKMO3/p2aNlr1KWvpIdn73XHTzEAF20HwmQgfEJiJQZG9qYWz9PP//90SwSOXPRSaNZC6nYuHshnUdm0ACYFC2DpWSGZmuk0Ov1o/f7JIiSI29ecsro3xw6Dvb/AABUufqd5yUnP+Stbzo9632xlGAhAQIAmDXNANGPZmzEWnbe2aOZIM591O197Al3+IdJEP1eP6kOPPms2/rvdzqgC0iADNAX//vTo1kbsXt2eOeedaqrQzMXmP2xUMrsD2bQAMjx6S/tdz954RuzEhd6T+q+ICGa/fGZrxxyAABUefc7znMAAMC24bd/z935bzeNZm+kWnnxBa6u7f/xL5j9gc4gATJAmsXxn/7yoPuF96et216HAvef/2/fcTieZn9c8JbTol/PDBoAOTTr4vY/e3y0tNWs/Os/edQBAAAAAOo7+OSz7pb/6/9z/+kP/h83bVr6avun/8JNyt5v/c1ouS6gKSRABmr/Uy+5+/7Hc0mzD3Ip4XLXlw6xb0XABW89zS1ZFLeUmM7jE08ddQCQQ5uhayZI6qblTfjk3X8zmgECAAAAAGjG3m89MZoJcttv/IqbFv3Nzf/vp9wk6W/oB2hK2hpI6BXNJlASZJIUtP/DL+x3T3/3ZYeFtLdKrMf2HyGJBKAWbYiuJMi0+Jkn932TqdEAAAAA0LQdn/2y+4cf/hfuwBSWo3rgoX3uxn+2ecEm6kDbkQAZOCVB/vN93xktUdU0feb2z/01yQ+DNj6Pnf0h9z1CABFAfUqCbPjk1yY+I0MzTn77U990Dz/+PQcAAAAAmAzNllBiQktTTcp/+PRfuA//U5If6CaWwMJoU+0nnnppNBtBQfm6NOvjwb3Puwf3PT/6/xGWMvvj28z+ANAgJT+UBLnqsje7n3vXUnf2kpNdU/xm5/d9kz2LAAAAAGAatCfIht/+hHvgob3u1l9el7U5eohmffzOv/kDlqRCp5EAwYhma2gmiGaEKDCvjblTZif4z1AyhcRHtYuWL0o6vw/uZQQ1gOYpSaGfyy984+jnJ+d/Tj/lx1wqLXX11ce/5/7r/Gdp5gcAAAAAYPq0JJZ+1qxa4W74mavdlVesTE6GaJbHjs/d6+750oPu/gf3OaDrTtjyyW+85oCA5W853Z37plPckjNOdOeedcrod2f+MGj/wnyyQ0mOF1581T3z/Mvuie+85OZebH4Zrb465eQ3uFNOig8ycm6R65984O3ugree7ibh137vq+7ZOZa465tLz1/slp9zmjt7ySnuzUtOHiVE9HPaDxMjz829Mkp46N8nnjnq9j/z0vwP06AnQdcgVpuexdjjPvryD0b3EvphxfIlbsMvrHSTtu5f/Ll78jnKnGlZdNpJbvHpcYN2Dh991R15qZk2a8rfnaYmv2Ofnffm+LZn25/nPn2XNrn9V9/jrrjkHDcpv/6b/8796Z/9FwdMUkpSYRr7c5RZeckF84mQFW7Z0nPcZZe8bfS7Zee9fvyaOTJ3+EV3eD7p8c1v/Y3b99gTJD3QO8wAgWn/U0dHP2iekkfMkgHQRprBwSyOduhqgpHEKNAfCvbPIuA/q7+LZvQpEUBSA4Bl1kmNFFq+iiWsMGRsgg4AAAAAAAAAAHqHBAgAAAAAAAAAAOgdEiAAAAAAAAAAAKB3SIAAAAAAAAAAAIDeIQECAAAAAAAAAAB6hwQIAAAAAAAAAADoHRIgAAAAAAAAAACgd0iAAAAAAAAAAACA3iEBAgAAAAAAAAAAeocECAAAAAAAAAAA6B0SIAAAAAAAAAAAoHdIgAAAAAAAAAAAgN4hAQIAAAAAAAAAAHqHBAgAAAAAAAAAAOgdEiAAAAAAAAAAAKB3SIAAAAAAAAAAAIDeIQECAAAAAAAAAAB6hwQIAAAAAAAAAADoHRIgAAAAAAAAAACgd0iAAAAAAAAAAACA3iEBAgAAAAAAAAAAeocECAAAAAAAAAAA6B0SIAAAAAAAAAAAoHdIgAAAAAAAAAAAgN4hAQIAAAAAAAAAAHqHBAgAAAAAAAAAAOgdEiAAAAAAAAAAAKB3SIAAAAAAAAAAAIDeIQECAAAAAAAAAAB6hwQIAAAAAAAAAADoHRIgAAAAAAAAAACgd0iAAAAAAAAAAACA3iEBAgAAAAAAAAAAeocECAAAAAAAAAAA6B0SIAAAAAAAAAAAoHdIgAAAAAAAAAAAgN4hAQIAAAAAAAAAAHqHBAgAAAAAAAAAAOgdEiAAAAAAAAAAAKB3SIAAAAAAAAAAAIDeIQECAAAAAAAAAAB6hwQIAAAAAAAAAADoHRIgAAAAAAAAAACgd0iAAAAAAAAAAACA3iEBAgAAAAAAAAAAeocECAAAAAAAAAAA6B0SIAAAAAAAAAAAoHdIgAAAAAAAAAAAgN4hAQIAAAAAAAAAAHqHBAgAAAAAAAAAAOgdEiAAAAAAAAAAAKB3SIAAAAAAAAAAAIDeIQECAAAAAAAAAAB6hwQIAAAAAAAAAADoHRIgAAAAAAAAAACgd0iAAAAAAAAAAACA3jnxHRe90QEA+unUkyeX575ivv44+sr/cgAAnL3kVDcN//s7l7kjL73qAADdtej0k9wkrVl1mXMnOAAARk54bZ4DAAAAAAAAAADoEZbAAgAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0zokOAAAAU3PzzTe7Bx54YMHv9+7d62Zl7dq17uDBg8f9btmyZW7Xrl0OAGDbtm2bu/322xf8fvv27e7KK690AAAAmC0SIAAAABl8wkCJAgAAAADNKg7QWbx4sVuyZIkDgBQkQDpEBf/OnTsX/F6F/0033eQmQSNUQ6NUNVJ0xYoVDgCAIqvu8G644YapJw2qjimlXtu3b5+79dZbj0uAbNy40V177bUOAFKobV8M7oxTG3/agZ42HhMAoP/m5ubcXXfdNWprq91u1UWqg9Ru14/a38y2A1CFBEiHqPAPTa/2JpEEUaUT+psK9pAAAQCEWHXHOCUQpknHU5YASanXxpMfov9fCRAtF0VQEEAKBXrKyqZJDnSyqLwsS4AoiU1ZBwBoiurBO+64w+3Zs2eUBKmi1/jBTXqf2vG33HLLqH4CgBA2Qe8JrT1b1lEBAKAt1FGJ6dw0RfVjWYAxhTUa7fDhw6NAJgA06Z577nHTVDX7AwCApqg/sGXLltH+eKrvcvsHqrc2bdo0mtHdVJsfQL+QAOkJBV5U4AMA0Haqs6bZOamajdKUaSZ1AAxD1fJ9TSORi75TXa1gafEHwHTpuVu3bt1oYFSTn6lkyrTa/gC6gyWwesRP/5v2NHkAAFLdeeedo1Fa09Bk8HDlypWjpV9CyQ7WHwYwCRoVO43ypcnZckBbqb8cCo5u376dehyYEp+oqEo+qs2t5a208bmngVR79+4tfZ9WSBEtiwUAQgKkZ1TQaxOoaW8uCwBACgXZtMHhpPeTano5F3XA1JnSdP1x+h2BEwCToHJMZcyk991gxCwAYBrKkh+q62688cbRfh5WXEsDkbRfiPbfs2YuKjamdjsDhAEIS2D1jLLhxaAMAABtpE7LpE1iORd1pHTs6lht3rx59P9Pe1N3AMMxrT2GmP0BAJg0Jdut5Ifa2F/4whdG7eqyQb1Kkmjgr2Jfaodbr2WvXAAeCZAe0jT5aW+YCABAqklvhj7J5VzU0VLHq2x0GgA0ZdJtezY/BwBMmuoZvzxVkWY6bty4MXm2o9rhWsIu1B5nr1wAHgmQnlLFwWasAIA2m/SoZpZzAdAXk94Mnc3PAQCTZtVjSl7UmU3tkyCh5Mmk608A3UACpKcUVLrtttscAABtoDV4Q52SSY5qDnV2Jr3nCADUZc0qm1R5ac2WY3YbAKBJVrK9ic3KVWdp75AQVkgBQAKkB6wpgprKTqYbANAGqquuv/76Bb+f1KgsazkXLVsFAG2mRO2VV1654Pcq1yYxw9uaLcfGsQCAJu3bty/4+1Cdl8P6HBIgAE506Dw/mjUUQNJ6hzt27EheR3Ha1Jnbs2fPKFilH81g0Whh/axcuXL0HWc1Ck3HpopaP/7Yli5dOjqnOi79TOP86u/v3bt3dAyHDh067vzo3DCqGUDbKfmgfT+K1ClpquPj3XnnnQt+p7JSe3b0fWksP5o7VF/Msj4FEEdtTSWMi217v2xg04kJa7bctNqWxTauzKKtLaE+yfixNF1XpRyX6so2nSNdM1/H+H2xcuqX8euv8+3PufSl3hq/fuPfcRbXD5glK4nf1DOuMlrPUvHv6NnT7+o+Z8U2trShjpimNp2DYt2o41C9sXr16uxrzTXuLxIgPbF582a3bt26YEGvQI/2BGkbHas6cSqwYkb/qlLU1EgVOHUqSP2tm2++ecHvtWbkeGGm1+ncqVFeNdpOATUdW9ONc/1dBfFiNgrW39bxT+I4AKAJKqP0UyzzNapZZVdTnX8fTClSY7gJa9euXTC7ROXurl273CypzlKdGvru49R4VwBVdReAdlI5o+Vsi+0/PeNNJkCs2XL6G5PcFF2frX5ATBtXVHcoKTSpcsu3+6v6JNNub+v66DzF9JV0bnSOcoMz6h8V/8543VbVL9HvYtfw19/RvazvFnP9fb2V0g9U/zdlb5tQ/1B0rXP3Jki5fkog+e8IIJ/KiFC5osRjTl/Dl30xs9b1+XqWU+oIlalbtmxZ8HuVYXXqe9WzaksUqYxR7CuFPwcx/Yycc1AU6mvpM7dt2zb6/32cU2VsSDG2V8V/P6tNNI64W3exBFZPlK13qAK1bUthqeBUwkYFfeyxqSDSjBY1Tic5eleFn47LdwJiGuUqKFVIN3lc+qzrrrtuVMjHHIPOj45jCKObAXSPb0yGlqBqejP00CwTUQBDf6tvlPBRHaT6oqpT4l+v+jTUuQDQDhpVH2rbN71sYKjs9bPlJsG3s32ZFbukl77zJMqtYru/im9vN93uL9Kx6G/oO8debx2Xvofe03TZrs9T3y3lmlmfo2PUT2zyS3y9pfdZAa82ybl+6h9P6voBbWElIJq851V3Kjhd/Mmh59LHZGKeZZVpvo7QsxxTxln1bd1lu6zjDS1JXEZltT8HMf2M8XOg+rWppTt9H07fS/VRU3XB+PeLuQ+n1Q5A80iA9IgCO5ruFRJb+E6ajkHHomPNreT0PhVOqiia7gD5xr0VPKui46pbCOoY9N1yOxiqGPReneM2XHMAGKfybZKboasMDH2WHzXat3JRwcvc+tDXN6yLDLSLL6dCIzelqWfW2vy8qdlyRQpi12lnix/R2kTQwQfj67T7Q6N269J303Hl9nN8IqSpfpI/T3U/T/WVrn+dBJ4fENfmoFNT18/aKwHoMmtpxSYTm2rbKhZS/Ekdra/yvU5MRd9JZV5VWaABD6HZCrGDcS3W4LLYmRE+dlcniaH6NeYcxFK5qPKxif6cn7VY5/tNIi6JySEB0jNaCivETxGbJRUqTY7a8YVfU4XNo48+2sjnxY4OCPEdjCYavOocq8ICgDaZ9KhmLdURasSmjnbqApXzdZe4VMJIn9HHmTFAV/nncdKboVt9A7/cT5PlQtPt9rqDjny/pG6bW8GdOgmdIrXd/RIfdTSVtGjqc/ySzE0NQmhi0Nkk6Jiaun6TXoYOmAUrwa5ytC33u68fmijbY8tQq5+SO0Ne9XeoXxW7V1OTsTt/DuqW//qc3OUIi/z3a2JAidoRDD7uBvYA6Rl1lDS9L9QgVAGuAm9W64qqQW91MjQaWIX+eEdPhbYKOQWz/GaERb4wbWKj91BjVceiSlozaxS0E7+2fFllpPOfep6rKkd9nr9+/lj0WhXafuOnIv1e173pzTIBoA5r9G4Tm6GXbX7eJ34UrMWvv6s6zHd0VK+q/lKdOt4pIvkBtJfa9ZPaDD0UHBnfY6GpzrwPWlifp/JKiXG/4bV/z3g7N8S33XOWNtH+KmUBqZQ+QFNlaNl65mXnyNpjoql+Utl50r2i7192r+j6WUkBHdc111wzaheMb3auc+37gVafS5+pa2S1G1Tvh/6bdU9Z67lbKywUlSU/fF9XxxN7/XRem+rnAm1hLWfu73ft3TDrfRVUP1iDsnxZPF5X6jlWmWUlcXybvWzfjab3/bL2JQwtRRyyfv16M3an7+3Ls9RzUCdBHLM3R2wSrWwARM73039r697L+BESID2kh1kNqdCDqUJnFo0ovzFriAoWzVwJVXRqIKqQ1nexRlg1UZgW6Vh0TKFGs/+dOnKqGELrIPqRzCmBPJ2j0DXTtdq6dWvws/wGTCporZFQmtIXm+kHgElSGaeyyCe7m94MfdKbn7dJ2XRtlfmqw0Ln0Xd8/Hr6jC4F2k1lpZ7lpjdDtzb6nMRsubIBPtYmr77d6peWsD5D7V/fX4il724lGmL7APq7Te5dpeOx+jI6P6G6cfwc6f2h4JnvQzU1alZ/U8cT6ltYdZK1TJium76z1Qf011XHbl3/skFn1u99Yi30+txBGF25fsCsKaGsZ8KK6ygRoPtdSYZZJP7KEtF6jkPPoo/J+O8VKvPU7vb7tYbovCgZXKxX/DJYqedi9+7dwb8RMyBM58BKAJXV2f4cWHEplbupMbIy+pxiokKqBm/o2ELJD51jXePc7zfrAeeoxhJYPaSCrWwprCanacfwe3aEqICJyfLrv6uwtUZ4lY0OS6XGtpJEVQWXjqns2FOOx+qI6bNjjkVUGVsdYZbCAtA2ofKq7mboZZufe30I+Ku+sOoY1ZOqc6s6SqpX9DmxI1sBzM4klg2c1ubnZQN8VAbFJHF0XGXlVerSStbSSb5tH9MHUIArd1PdorKlivU39P2qynRdN2t0ccpm42V0LBpVrGsW6v+EjtFKtKm/FTvSW6+x+pJ6BmZdr+vcNnX9Qq9r6voBbVG1H4eed+0boXJ2ms93WdxK8bWYRKTKRysWV7VnlFX/pvaN1J8KzQCJGShQdg5i62ydJ2smRBP7Zqmc1DlWmalzVryX9N+tMtf6fnq9Pi/2+1n1P5uitxsJkJ7y2ckQK+M5KVYh4Ef0pCgL8jdRmPqOT2yGvSzZlNIptc6RNSrKooom1Dmsu4EWADTNj2ouyk1mV21+3idWR0ijoFLqVdVhbVhqAMDxigEfjX4PyS0vp7X5eVkgZcOGDeZmuCFl5ZXK/9gBXlZAXlLLw7IgSApr5r76PCllul8KuSjl/FjUx8iZhVC2fFXKiGZ9N2t2UlOD4HJp6U1rNlXq9QslO5u4fkCbxLQ//cBdzQjxe1FMOhlSlshMGRyg11oDvaylqaSpvpEVh4qd/RGiOiClzvYzBYsUh6y756NPfOSwBgbrGqd8P5Xt1sb1TexpickgAdJjZZn1aa1Np0rKmtmQewzW9/LrxNaRkvzwrIoqtoIuW4IgpRD21KEMaXKaPgDU1fRm6EPZ/NwKXEpOcKoskQ+gHfScNrkZetXm517dYJMVtFG5nBO8KCuvYkfJW+1ha/+HKlYQJJYCYlZfKWeJMwUKQ/0S7f2US9crd7m1qn1mUlj3TGjpy2myrl9OnWxdP/px6Juq1TTG+WVblQxROaCBr00P6C2LW+U8y9Z7QnsVjrP6Ril1faju9Us4lSk7Bzl1gHUO6mysnpqoGGf1McsGj1cdS8isk/KwkQDpsbJOgiqMJvfMsFiFmxrSuSNOy75XVYVSps4xWaPR6nTEctd6bXpUNQA0ZZKjmmM3P+/6ht+TqFf7OEsG6BtrZH9OYLTJoHSZmGUJU1n7NFizAMdZCeTc4I5XZ+aMkvehRFNuQkb9pFDiv85s8DrXS3224k/uubaWQJtlvW4NZNM90eT18xumA32iZ0RlYMpMOr8Rtdr3SohYyyymsuqr3Fl+1sAFJWzLymIrSZFS14fqwph6qmwGTA6/52NRblxK57ROfVQ2ACKH1R4h7tZeJEB6riybqUJ+0g2p0OZLUnd9YSvIX6dxX6fTd+mllwZ/X9UgtzpidTuh2kCraNajowCgqKlRzdbm56EgQteXA7RG8VrJJAD90NQAl2ltfm7tzRDaPDtV7qhLa8SwAkOz2GxXrIBMnVkl1ntzgzJ1rpf6fMWflA3rx6nNEDLLBIjV160TpLPOD8uqoK/0vCgRkloP+WUWlQjRDJE6sa1Q+Ri7abgl9CyrvDp06JD5nrpBdb0u1NeJKZOsAQKTOAc516puPW19vzr1bWg2Cgnr9iIBMgDWklEqeCa5ObY+PxSQamqEmVVBdqlxaHXEcjsGXmiEVG5FAwCT1MSoZmvUVtOb+baB1XjPnQ4OoJ1CbbYmlg2c1ubnk2rjitq51kCoMtZ/b+KYck1iIJQVzJnmHpBDEbp+qo/rXD9rpgvXD32mZ0ZLW+UkQkTJ/dxEiBWwrhMYL3t/VV0Vmq0RO9A3lCiJKZNUvliz2eqw+ifTjtlZgzLqfj/rGjP4uJ1IgAxA1Ubdk9pUzXrom9pg0Sps6qxxO21WwV83kGVVcMVror+vRnbOjxoYAFBX3VHN1rIndZaEaisr+EHyAxiGussGWjOPrWBT2SjVKlZ7vG5ASdS3CZV7VYN9rDK0iWPKMal+gM5PqF7t+gzIttH9FDqnTVw/a79LoO98IuT+++8fxbBSy2clQpTQT4lxTapusPohVc+yVdfHDA4L1Ssxyw5asbtZnYOmTWpQhlXe12k/YXJOdBgEFVx6uEMdJE0bbGI6etGkAzXW53SpcWidIzWm62TFrXPQ9bXvAXSbVTZpVHNx3Vk/qrmq4W1tft7H2R9W8IoECDAMftnAYhtRAR/NpqtaHsJa33sS5WWovLcCuzlU7oXaygripARcrGTBNJS1yycxOraNARmflFOfqGuz1a1j1f1U9/qF7g0SIBgSPUd+2TxfTiiWpeR6VTJXz4+SKPo3Zn+HstH6kyiLq47fquv1/cuSGdYsh5gkhhWX0jmcxDmYdnlWFh+bRNyN8rqdSIAMiCoBjdovFrh+Kazt27e7JpU1CpvQlmxyHVbHZ/369W4SKIgBtJFGOoUCc2roVzXarc3Prfd1uRy0jp0NzIHhUDCn2Fn3ywZWjfIMdfInMQhKQuWVtbRPDivxW5ZUCB3TLMtPK+imkcuTmKHflvrPBzJ1z3Z5Vop1Pid1/RjIhqHyyzT6ZL3KDyX+q2Y/aqCvypiNGzeWvs56thQ/m4SYZLTq5mKd7ZfBsuJpoRkisUsqWmXxpM7BtFnnfFJbAjDjsp1YAmtApr0UlvXQN9nRsPY26QoKRgDI3wzd2vw8ZrQXALSZFVzNXTbQ2vw8ZmmMHJNu41oBoNQg/6xmfwyRro32ptSgB/U7u94Poh8HzIaSA0puaBa46rCy+FJMQrKNz7KSPaH6qWwZrJQlLov6vmQT5TWEBMjAqLKwRsWqEmGGwLCoUtX9kPsDAE3J2Qzd6tD0tXyijgYgOZuhp86WazslztEdStCtW7cuer8aAKiiOkyzO7SSSVmg388E6RLVcddcc82C31tlqLX8Vd09LoA+YQmsAdIsEDVAp7UUFtpLywdwvQG0gR/VXKybrPVuh7T5ucdIZQCSumwgs+UwS7ovNfPDorpNfRL/o/9tJbiszYEBDJffOF3/hupG9Rk0aKqsHGojzQIpDgSzlsEKDRhTn4i+A/AjJEAGSBWDOjyh9fz8UliTmg7ftNByV10fEabjr1qnMleTay8DQNNSNkMf0ubnHiOeAUjqZuh9nC1nLXnbh2CPruEkEvmzODcakWytsa7vqD5n34J0fbp+QJcoweGTHUVKEKQmQBSTmUTbO/ZZtgaHhfb8svb4qstaQr+utgxW6/v3w/FIgAyUCkyNxgkVlJoi2ERDtGyT8qYKhFDwq+uNQx1/nwN4AGBJGdXct+Vc6mBjVGB4YjdDn9VsOX12cTmOJpfxsz6rLFgVCiS1cWlBzYJYu3at6wPV6aH+mu4/BRf7GNTv0/UDukZJjlACRGV92QbiIUogzDqQrbKy+H2Ks+NDy1/puFPKIeu8xG6i3lW6xiSXh4M9QAZM2c7Qw+6XwqqrLAHSBE3nD+nSCNnQ+feVMwAMTexm6ENdzsWaxcfeIMDwqKwMlQnFZMesZstZbdymWJ9VFqgJ/bdZtrmtY+1LUlvXSPV3kV+3v+tBJ+v69X0zYSCH2u4aaFv8Kdu7Kof6EqnPplUWhfoa0xaaxeGXwfJCgxxWr17tUixatCj4+77UR0uXLg3+nkFkw0ICZMD8UlghKkTrblJnBWqsxEUqq0Lq0ujfSy+9NPj7ps4RAHRNzGboQ9v83LM6dNQZwDCFNkgtboY+q9lyk27jWp+j0feW0DGpfplVErnvZboV2Awt09ZFVl+3DUFToG30XGhGWPGnbswpxHo2Dxw4EPy9VW+0IZlpDXYY7xeFzmHqIAfrnDWdoJqVvn8/xCEBMnCaOmd1gDQyp05G1G9iV9RUJbd7925n/d2uoCAGgONVjWpWoGpom5971qg2dSqZOQgMj5YNLGtrz3K2nNW/0IyUulQPhNrKVt/Ds9rdkwjAxWjb8TTNSuT0ZU9Cq83Rl+sHNMkqmyeRgE5tE7e9LA4Ndhiv50PLX6UOcrBiaH0pz6zvR9xtWEiAoHQprNC05RShgsbqtKTQZ4Q6UF1b/93amMoa3QwAQ1A2qrk47dtTIHAIQlPaVV8zCwQYHiVFQ+WlXzZwlrPlrLXH9+zZ4+qy+hFV36ttAR5r2ccm+kptkDNLp0us66c6maAacDyrfLba9XVYg3itJIyVPA/trTELoT6OP2+heJ0GhaVSEih0DvoyyMr6fqr/GUQ2HCRAULoUVt018cY3ZxoX2uQ2xfiUv3Gpax3OmpWwaSL5BABdVTaqOVR/qOPSl4BKFWtKe516VQ1/1sAFuilUJuh5VvJjlrPlrOBwcYmuHFZ5V7Xkh45nEkGuOsukWH2Xun2lNss9123c78oazNbn6wfkKEsYNjn4U+WEtQxdWV/BShq04Vm2zp1iYqFBBTl7fFkDKpq+PrOi7xe6/n35fohDAgQjSlRMYjpyWUcjt/OjSs0qpG699VbXNVbDecuWLbWy0XqvKj8KdABdo0ZqKCik8iwUALGS7X1kjWCqU69qjwBGPwHdpLZ2KDBiPdeT3vx8nDXAatOmTdlljoJRoXogNhF+4403OuuYclgbfceyEv4qz+sOhtK5qtufqMPadDZnxo2+Qxtneup5sq5f3T6Yrl+dZwVoGyvha7Xvc1gDZauWSLRiMiqH6ybtVQ7XTaSEjk/HVkz2qD2QO8ihbJBV3ZnmitPNOplktUmauP/a8P1QjQQIjtFSWE1TEKuso5Fa0KgBqMIl1BDs6vrvVsNZ2Wg19HMavb6ToIqqiQoXAKYtNqmhesbqtPRR0/WqOorbtm1zALorVAaG2o/TXirWSs6onMppm6pda5VXsXWGFUTPCVjre9QNypeV6WrD5waddH51rvSd1q1bN5PZE9bgutTEju/XNPUdrP5izueXXT+d/7rXT+dqVtcPaJqe49Dz5+Mede9zJVdz6wirvpKc9rWnZ1nlsI6rzncMxYxC5UvO8lde2TlQDC732FWX+WtT53Pqsr5f3ftP94f/fiSt240ECI5RVnwSmyKqkAtVdL7TEFvQjAf1i1QZdHH2h6jhvGHDhuB/03dNLYz9eR0/TyqMpzniDwDqKmuEj1Pgr2xEVx9ZI4ZT61V1yDZu3OgAdJs1mKZoGpufx/5NlT8KisRSgsJKNijgE9vOVbvbCoTpeGKTIKnlbRmrTFdQRseaMmNC/SV9j/EgYJPHmsKakaM+SuyMG113JQDKEglNBZty96cpC+rq+qUmfELXT/c3e32h61T+WoNufTmVO/NNZbcVD4pN/lt74+aUoSqXVM6NP8u+Hssps6zZ8UV1BzlY/YLcc6D3jNerqs9yz0ETrDZJzvcL3bM+aU0SpJ1IgOA4VgOuLhX8VmWiTRKt6eziN3cqa/yqIOvi7A9PjVqr4+aTIDoHZQWyzpPOo3WehjRCGkA/xJRbXU1+16FOUFkDXvVJWb3qO2ApwUcA7aUyoWrU56xmyykYYyUcFBRRP6As4OUD+lbARO3/1HrAGpwl+lsKWllLnoy3t5tKKJQFBRVE1/FWjUAe7y9ZSZxp95XKBjLoWP21L15X/W9fT8UEpFL3sCo7ptC5qwpkVV0/XTv9VCVx9J11TkLHoH60taQY0CV6/srasHpW/HNQlfTzS6NXtWljY0Vle+P6uFVMWaw64rrrrgvWbVVLcZWpmsWiOr5uOa/jK0uCpJ6DUF2qRM6sBq9V3X9VsUkZbweEvt8QB+d1xYkOGOMbcE2vsaqCVLMcrNE+SpDox69ZqAaeNhRUwaOKr6zhqQKsD+u/q6LRdw1t2uUbA6JzpPOpayU6T3pPWQNB52eIQUIA3eYD+VYdUGed265Tua5yP9S5UsDF16vjHS2dR9UZofOp1zBaCegudbjLZi/MskPu27ihQIFv46qsV3nly3SVY1XtW30flXOp9UBVf0flqn70+eOzGHSsk5pFoeujPo21NJg/Jn+O/HHF9Jf0+u3bt7tZ0LW3BnmN92/Gr2HqOU59vf6WfkLv80sH6/z6OlMbA1cNGPBBtarr569dzvUjoIa+8HEJ63nRMzH+zBWTBmXt2SI9lykrYah97QPcIXXL4jrLzvv9da3Pb2qQQ1kfQ/w5GI/diT8HZXumlCVYpkX3n47V+n6h2KTExN3a8P1gIwGCBfxIraY3z1bFo85MWQMydYMpVWh9CeyrM6bGrTpjoSSIl7rRrUYEUggD6CI/qtmqj+qsc9sHZYlzL2bJDN+Jy9mYFkA7+NH2Vhtx1u1lBRNUZlnlTGpyQUEgtZtjNj4P0bnS8ZT1S/yo/CoKaOVuoj6uKigoKtP1E1te++D5rAYL+GBQVQIh5tqrzn/00UfNwWIp31GfZZ3n2OteFHP9/H3elesHTIqfiVc12l5yl3/LjRVNoixWWWitipLC6hepz9Tkkueq1/SZZTHB1HJS56AtydxJfj+0F0tgIahsangdfh3Uup+tQlON6b7NalAhvGPHjsbWaI7pcABAm1mjmVSPDH1vI584r7vhIcEVoB+s8rINs+VUXin400QbV99H7eXc5IenfonayrnBGJ+EaXJjefVtcma1hLSlfPfnuQ7fp7n00kuD/z01ga/zbG3SXoc+t6lzTv2MvlM7vm47NsQnDuvEivReBcmbeP5UBjb1LFv1/CSWuFS5W6eOHOfPQZtmsum7NRV383FOZuq1GwkQBJWtZVqXOiu7du3K3rdDFaQ6PX1Y9sqiClfnKLcxoAaz3t/ncwRgGKw1xGM2AhwC1dcKCqV20vxAAt8Z8csqAuguazP0Ns2Wq9PGHS+3mgoKq62sfkVq8MgnYfySJE3Sseg75vaVfOC8TcFznWdd99RkkV6voJLv01hJi5wZjFu3bp3I+fH9sNzr55fJIfmBIdA9rnasrxfqlKd69vTs5JQ1IXUTNL4sbiqJ4D8zVC5MalCYryPbdA6a1ETczX8/tN8Jr81z6ARNDQytUzfJUbDWxtvaHKjuqKvxv6FGq19Tr8ivv6vOQN1KUazzWLZRXxUdf+jYVWE0cbz6fP1Ya0r6c6SAYBN/EwDqsJbqy607Qp+nei8nMGCV1ynHpunSxbJY5W5s0tmqW5uY1ajPvuuuu4L1RVl9qterA1B8PYl0YLKs8qDJMi63bLGOram2ZkwbV+dA7XOVWU3OtAhRPaPvvGfPnuD3VvBdbW2VocVj0ayNotxrWFTVV6o6tpS/M6m6aZw/z9ZyVjpn+h6h76LllENLjNSpr3y9GWq3+E2R6/S19fn6bOv7+r9jfWdgaFTe6Znxy0yV7amhdq2P4zQVnwrxe1tUxa10THXL4ipN1vMpxs+B6smquFSd+FrdvlaOaX4/zAYJELTOeMNbI1IJ5h9PBbEa/x7nCAAQMl5fUFcAaLtiG3eWo9/bdCxFxSRF12cJtKnvN34skzqvfbt+wKQVy2Npw3PDs9zv2B1xt/4hAQIAAAAAAAAAAHqHPUAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPQOCRAAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1DAgQAAAAAAAAAAPTOiQ4AWuKOO+4Y/RRt2LDBrV271gFddc8997gtW7Ys+D339utC52D16tXBcxZy8803u4MHDx73u2XLlrnt27c7AOgrlXsq/4quvfZat3HjRjd069evd3v37l3w+127dsW8fVQHqf4u2rZtm1uxYoUDgD554IEH3KZNmxb8/qabbhr9DF3d/oZVJ+n9+hwAk0UCBEBrzM3NLWhUyOHDhx3QZdzb5ULnJqUjoPeHPgMA+i5U9qnOgV331n0/5xdAX1Hm2er2N+rWSQDqYQksLLBv375RdnvlypVuzZo1o1EAXS6oNZKh+H2oxAEAAAAAAACg35gBguP4qfQ+QaB/d+7cOfp9F5cSKS4N0PXvAwAAAAAAAACIwwwQHEfr3IZmR2gWRRdngSjZEaLvwywQAAAAAAAAAOgvEiA4TllSoIsJkLJjZu19AAAAAAAAAOgvEiA4jvbJsKxYscJ1jfV9tLluyga7AAAAAAAAAIBuIQGC41x77bXuyiuvXPD7W265xS1ZssR1zQ033BBMgtx0000OAAAAAAAAANBfbIKOBbQ5uPYC2bt37+h/KyESSop0weLFi92OHTuObXyuJI5msnT1+wAAAAAAAAAA4pAAQZBmguinLzQTBAAAAAAAAAAwHCyBBQAAAAAAAAAAeocECAAAAAAAAAAA6B0SIAAAAAAAAAAAoHfYA2TCtPH2vn373Nzc3LHfLVu27NhPKn3OoUOHjm1QLtrYW5t9d3Vjb+scabNyfbcumcT10bkZ/zypcw/lCF0jfxxdvE5AUejZlVne47MuG8vOif6+jmNorPJ4VveIVef4Y+r73y87rj179hz37Ez7uELPr28PUG8ORxvL0dDzMe3jKXs+utqfqcOq72dZ1866vtM5eeCBB2b290PK+nm0zTANZdd/mrGBcU3Hu3Lo7+s4Ztnua5M2xteKdcq06/xZ//2QNvSj2hgDmSQSIIluvvnmBb+7/vrrj9tkWwXOHXfc4e66664FAeNxuqn0Pr2/rHLQZ+iz7rnnngUNwSI9wMXjSXH48GF36623Lvj96tWrg78v0vHdfvvtC36/ffv24/537Dma9ffZuXPn6BjHqaDctm3bsf8de31UeGhjeX2fqoJWn6PPi7mH9Jk33XRT4w0Mfwz60fUqo8JR32kSxwFMip6tO++80+3atWvUKCqje1z3t+7zSd7jetb03Kt8LHv2/fHklo2WlPompUzrMp0Hf05irkmde2TTpk0LyttQfeXr2pg655ZbbplI/aC/H0qMV/39UDuhWK/m8M+zPr+pujhVbN0tul/0/OpYqDf7ZbwcLXtGRNde9+EknlPrmMqej0kej/6u6rZi8iXEt//1fPQ1Wejre/U1ytrZTVyTmP6MxJZhdftnljr9Q6vPt3nz5tr3ss6JjqvqeZ7UeYmt38TfL2qPkAzph5S2+TTrFN2TMeWX7sWm2zop9axM6tlsk5T4Ud17ROWh/tY4lTcbN25ccEwxfahJXZ86dZrua/XLiopxzVTTjO2WHUPM8yvTKlOm5YTX5jlEW7ly5YLf6WZQg0s3kjr1KhBS6EbSZ4RubD0YW7ZsqbwxQ5+phzP1JtXfWbt27YLf68HTcVTRQxQqKO6///5RB6bOOZrF91HHIJTQ8RnS3Ouja71hw4YFnTpf0FYVhkXqxOgeVAOjrpjAWhkdg+7nnA6rdb7VeelzgwXT5Sv9qiSDRc+a7vEUVtno7+1pl41Fdc9J3eMI1a1qbMU2MlXOF8thHYuSW7nUoVL5nloW+s5eTnkc+h7j9VVu+axjKXZKcuTWUbrHfcNZ91ix/q1zrercu+qQ67zUfX5yz4uXU6agnVTW33bbbVnl6PhzEiumnatnQ+VG6jHp2WiiXalzor+f2laWsj5SDA1cCz2XxZGOFp2DYuJAVDflJlBz63vJuUekqj+jY9J9q2uVosk2SN02kPUsqG7JPT7dO6GBCTHHVee+9eq2zXLvF7RHbvktOddf93xowK+Pd+Uek45B5anaXXXVOSd1n826/Q2rTqpTTul4VN8XExIxcuM2obpx/Dw00V+oo4k6xXoWYtsPIbn37qzrWq8PdQp7gDRAD7h+1q1bl3Uz+QKi2DBVQaaKJqfDoPfogc157yRoVE7dc6QHrmqU9jTpeuVeH3UwdC7GCz8VsvpdTgBF51f3S6hzk0LvtyrmWLq++h5tufeAcSpDdH8qGJDTcBa9N9QAzjXrsrGJc+IDD3XLoLbQtdB5zSkLfUfED4xo8phyy2e9N5SAS+Hvk5y/rzrPt0maPCe+rZN776qzqOuc02kc/4zc8+I1XaZg+nT/6ZnXc5Z7j+s5qXs/Fqks0k/OMdVtV+pv6vnMCSB7vo8UM2ipC3w5mht8GC9Lmz6m1OSHNNHf9J+R2wZS2an3Nl1+6p7L/W5W3z71M+rUbzKJMgXT4a9/bvktvrxoKn7iy/ScY9L3UR2ZW/b5z6h7Tpp4NtvEt0Fzn/FJxG3qxLT8PVunr9BEv1rnU/G1ptR5dvxx1e1n1zkvXtNlyiyQAGmA1kxrojGqBo4vKFQw17k5xVcSTQYb6h5LnXPkpza34fuo8Kq7XIfOxfr160f/vwrZJq6Vjin3vtE9V/c7eW269wBPlXVTgYOmksxN1B91ykY/uqWphm+dMqgt1LhsItjWVLmue6SJY1KjNbeM989O3Q5Jk43mpj7PPz85wT9d46baJW0buIJ4vmPbRJCxzv1Y1ERfYrxvksJ3tOskBsc1kcSdNY2WbeIZ9wGaJsqKJtpFPrCZ+94mynHVj6GZOjn0POv8NtGW0fOTU3c3WV82WaZgOvz1b6L81GdplH8TbaUmjknPQ86xNHlOxJoV1yV+MG7dNmiT7c8m+j7jMbKc9zbVr27qXmuyPZR73zZ5jZsqU2aFPUAaELqZtZyH1u3W9CAtT+RniWjd27IbT417TQ0MNVI01Vpr641/pm48v+lTiF9LNbdh2hQVYsWC0K/DvXTp0mNTl6vOUVu+T7FRXPwuKjj9JpNlhZ1fziTUyA59pr/mZZ+pglFLH6RMZdQxWA1jfxz+fvZ0PJrmuHv37mAl5yuvuuskAk3wHfSy/Qr03PjNvlTG+s3SrDLJNyZ27NiRvUZ5KCA9rbLRP6PWOVGdo+de9ZnOh+fXc7WORd+pq/saqCy0kgS6Ljoffo+PmHtE/12fWWf5KWvN7/E2geg66u+VBWF1LGq0ptyvVc9O8VjK2if+Xq6rqiHvj8cfk+orf52s+lOd8pT9W/woQkvoGPQevx6x9ZkEqrqnLFDpNyVWmahnw98L/j6w7mHdWyp7c9fwD7XN/LH49lxsu1LHkrpEXdnzOV7fjj9v/jis50PPhd9rqWv03crqAZUX4/eIvy7WPeKDkXXaHxIKVPk2iM51bH9T/01tkNRrU7WMcEp7qKlyU+2isud5vK0oVeW6zotfGjNW2QoDofaqP4aydmJqHYfZ8An1suvvn8/xNlfZ9Vd5oftPz0idPR9Cx6L6pNjO0XGULROkezElPlDV5vPPhO7v8f6KL0Ot+k3tfd+u7xpdj7JBTb5OKbbLrTqlifan1S72e9amxDB93yf12lQF+f29EhOjbSIJHvM8j7eHYvoKOfdt7DEUYyBWnM8nieq2QWaBBEjD/AYxZTdk2XqiPoiV+pll6+v6Buksb87xBydm7cWyNZTb8H08HcONN95Yejy6JiqorJFJxcor9jOttR5VIKUEQlXAWRWoKivtUWAdh/572bHkVl5A06yKv+x58/etL5dDDSH9t7oB7vFj0d5AVWVjU2W9NUJHZbSee+u51e/9NPbQOqYqg1THdS35WTZDwloj158jfWd939CoHJ0nlZVNlYP6HN1vVmC0qs5JTZSVrd3vNzzMbZ/ksp7nsnvXrztt7d2Vet9aa/hWPT+6l3wnMdQpzw0kYjZ0H1jB0rI2lN9/puz5qNO5LN6bVet8lwWYfGc8tgwre951DFY95TduLjuWnEE+s+YDSyFV5YW/R0J9oibaH8X+WdmxSGgPJ0/HmVJu6fVWgEfX198rltz9OcqU7bFVdu/6+9bqD6UMDNF5scqU8X0Yinzb0Roh3NW22dDoWbfu6bJy3F9/6xlt8vrHxCrKns/U+IBVp1SVE75OKduzNSfBP2u+7A+pihuqvrDKCB8TqjPQeLxOiekjlM1o0O9T+k5lbY+Y+m0S/RXrea66d6vaQrpvY9uHOc/PeAzE6lPqv+n76bx2CUtgNUg3T8ymeH5j15hGkBr5MZ+pSk+vCz0EqvDasvanCkI9rFUbT/nvE6Lv04YpV7p++i6qJMoKH71OlW7MBqcpn+kb0yHKYseyOjI6Xv2NqoK16lj6ssYmuksNGqviVzkT87ypAWcFGZpYezqlbLSC9CllvXVO/CZrMQ1O1Xlbt24N/jd1bLq0BF5ZZ0Jloa592T2i0TJlG1k3VQ7qOHR9ykaF+zrHalSnLBOi62iNBlP7RP8ttn3S1KhTqyEfe++qrrKOx5ptU6S/HzovscfgX2c9700tR4nJ8h3DkNg2VNnzERoUlcrXc1VlmP6+7mnNOgmJHRVadk7USa6qb/2xWOdE9VxTSx1Ni1Vm+Xq/Th+vqb0vVJ7HHIvqFSvYUTWTqMiqF31fqCqZomNV4LLuRuNe3XvX94dCx6P7NrYdoE3PQ/QMxwQm9RrrGsXWcZgNPUNWWatrWlWOi5/pEXpdE9ffl89Vz0NVvCv2OKz2lq/bYpKuvt0XOl6f4O8SawBbbNywrIxQndJE/83fhzHHYvWvU/qSZeW36trYeGpZOyiVPqvOvVvWLktpH1plSuwxlMUx9dldW/KeBEhD/IjMWD4LWfWalHVD9Xpl40PaULD7CjN21JYKKxXkIW1I6KQGdFTAVxW8uidSPlP3h9XAiSmMrEpfx5Ca/beOpWwKLDANVqdTz1vK8iJqJFgNhTpBqrJgT4iO2WqIxCaHrQBSahmkMs0q17q06aYVoNL1TikLrXK+iU5n1WjY0LFYnb3YgJn17OgeTG2fpNT/FquDk/oMlbXBYoJU1r2ta5Ty/FjBDL9EEtrNuldSyw0fOA2pmwCJTWiLErmahRgSO7DGum/Vnk8JVPvZ4il/o42sJHJOn8g6H3XvEQUHrTZ8iK6jdU/FtkGqBqaklKNVo3pjWUsaqpxOuXf1+tDxxwSKdE5C/SY/kj2WjrfNfWiElQ1KTLkHVV5YA5TqDMjx5VZs36msHI+tU6zyTZ+b0ocri5N16Zmwys7Udrnup1CZ4lcSqUOfmxIX1eutMjy2vi9LqKt9FVunqB2ke7yJJIh1THo2Y+9dHY9ebw2AqKpTdP5C94tf8ipWWRyza4NSSIA0JGfqT1ngSHJGACojHDLrGRO+QZsa/LAq+yanpuXwawfmvK/sv6U24FUoWoWXNs6tYt0XOUtvWMfSlhk7GCaroajnzZq1VKasY5srp2y0yorYsjH0TOr5zQki1E3GzFrZaP6YmXtFZaNkcul+TU1Kq0y+5pprgv8tJjFdNioup30SM/CjStksndQ62WqDxQwgsJ6z1A6TrpHVIafebLeyciOnDWXtbVEnGVa2VJ7F2iNA3zdmYI1131r9kzLqA4Tqxi49G1aZFTOSu0j3R9PtDz/DNZV1j8cOerJmOeSU5RIz26pM2V5bqc+zynWrHVAVKLLqFq33nsp65mbdh0aYNYMqZ1Ci1GnjWHKez7Vr19YaIGmV92UxFYv1THQpqW7VKTntcmugVJ2EUG6dYvXJY+v7sqULU+9Zn3Sooyz+kNrXtpJ3MTG2pvorYtVrXRvsTAKkAVZnIYbVMfEbZ6bym+cVdTVhoHPbxs5P7nTrsgIv9zOtCiOmMPIBvuJP7kgq61gOHDjggFmwOpt11jcNNbr9pmWprIBGlbploxpSxec+d88BqxHVlU52WaM5J6BidTrrdChy71fr2uh+rWIdb259LrFroFus4EBu/ZkbpLKCB+Obb8ay6tuuTSkfmiY7255VBue0eXMTMWIFW2MG1vj1x4s/uZu5h97XlbrFSiL7zWlzWO2P3ABe7v1qlVsx94g1y6HOPauyNycg6lllfs4gCLGCvlXtgJi6OZbfVLeI5Ho7lc10yGW9N6c9mjqLz7NiU7rXY9o5+rvF+iQngVx1LF1QNpo/pxy3ys2yzcmr5A50qjOwzzovdfoHeu8k6pTc/pyVvMsdAJHTX7H6lDH1fpuwCfqMWR2COlN59cCGNvecpdyOj+gB7UsgwKqc9B1zr7lVgMVc89xE2ySOBWiaFRSok7QWdWxDI3D0t1IbWk2XjbFlZZ0EUOg4Qrry3FsjUevUwwpuFe89P1In9ZrrXs29X633xXQorA5yU+utp9LxhI47N5AoasyrE118bqoGEFgdb70vZyYKS0V2j9W5rdt+D7Xhc+6PnBHj48cRElO/6Hms80wWLV26NPh7naM69fg0lCWRc6n8tdofOfde7jm06v2Ye8RK1tS5Z53LC+h41myuOn0zzcAslhNVz3KdOjuka5s7D1noudB9VKfN5QdLFZ/L3KR6rksvvTR476tdHLNPVpNCdWxXkupWu6POOVJ9HUq+5fRppek6JUbZsrSzUDb4oc750fuLn5uy7++4nHtex9CH/goJkJZqMijdR11OiIQq3jrTtut0VIE+m1Qn21oqqu7+BqnamOzuGp0va73tOp09qw7X35pm/V6nQxHqINdJ1tc1iYSMX7oxtUNhXUMFJq3ZWeiXUP1ijbhOoWBE8dnjfuomq8yqkyDS/dVUQLOu3DbI7t27g7+fVXLdaivWTeQpwV4MWFYNhLDKD91LOQMo0A3W3mxNtLf0GcXyou3JY4RZs6Dr3CfWqP5p1ynWPVlnSfdZ9VfK9kKrI9Rf8cuTWu1E6/oq6aU6d4hlAQkQdBJBPgBVrFEKTTSItG8Hus+6R+omydrSochlrfc/q86EWAmZugGh0AjzqpFRmgV22223BYOQ69ata2xTXrTTJDvbOWtno52sEaB1E1oKWLQhAZLLGqDVtmBV3QSIFVgqGwhhjfJVv1fLg2n2bu4yYWgvq83RxDNRdy8DtIO11HLdNrBfFqyrs2IkVP/VmT1flzWIqu7G6mX7/lrtCr1Hf7fY39X9pGW1NEtmVoMPZoUECIBS6qj4tSD1U5aJZ2M9tIl1PzLyKY6eezWYdB7VUOpj4tkKGqkhOYnyrCsz86zvPsvRp9aa8XWvk9VpKFtix29eHlqKRu9Tp8KvZ68ABqN2+4W6pR6dP9+uVJlY1q7MXd5h1soSEnXLLN1nxfKwS7O+Q+dmlmXko48+Gvx93XZA7vKgSoKGAlJ635YtW0Yjd1Wv5Gymi3ayygtrCUAczy855PcV6WOswhqw1VQ7uPgZXUmqW3vJzLI9Zl0P1Ql1rtUJJ5wQ/L322i2rQzds2BDcQ0THsmnTpmOz14dSp5AAAbCAKj1Nt9aauCQ10FVWA5ggVZgakFquwS+1MIRl9KzyTUEG/TStK0kk6zhntRSPdZ10n2o2xiRUXSuNxFUZY21AqGP295DOm2YV+WQIQatus8pGglU2BadUt6iOGULdYn1HnYdJlFldGqAQOjezXObNulaTGhVbdf+rjlASxGqDqG5RvePrHl+vaMaK/mXJvO6x7gmupU1lqe+zDLm/ooRoaA+PoWhje8y6VrPqr6iO0EyP0KAtGa9TVOaoHvF9lj72V0iAADjGZ4Kt6eAA+keNR20Ergb00PYOmvb37UqQyjovdfYU6ZqYe0NLXemcVHU+9VnqpPs9AfyazYzg7Sarc0uwaiG1J9XpHlq7kqV6w6xnp43Bqlnyy1zp2amqi/Rs6cfXQ75uUUKEMqkbmFUYT0FaPRdDG6A57e/b9RnrbZwBMksatCVWEsTTdfd1il7rB3CpPunLUllvcADgXh9BoMw0yQ/0GZ2J46mRpj0Ltm3bNrjkB9LNKgHS5o6uRuoqEZJStvjRVpqSrnrXmkUCdJXqEw2o0T0+xHYl9SnqUhJkx44dyRvn6nnTs7dmzZrRv8zkRx/45UW5p6eDJH7/KAmya9eupIFXfgCXnjv1V/rw/DEDBMAow6sAaBk/YtWP0goFe/x0VADt55MfZYEaP/JDz7vfKC9EDSL0Hx2iMI2K0o86CepcpNSD42vwKplSd+NdYNZUpyhQVbaGuOoW1SdaakHtSv3vUIJVycGu7gMC1KVnREthKXClfpqehZTgk1/WRO/XEihAF/nkR9m975fu0TNTVqcMcfYI4On52L59+6h9pn9T6hQ/eEvxPiXo/UzFriEBAgycCjIr+eE3cdXoo9hp1CRA0GY0el/nOxPWWtza4Dll7c++JUAmtXQEM5DyWNfCJ+an+TfL6L7RjxIZ6lQoGaINdq3NK8fpmVSQikAVuu62224zkx9+LerYvQrU0e5TAkTfn3qg/RQ4ndR67StXrnSpfCJE/PIkei5i92tTP0/1kGYrsiwWukbtIqv/pjaXYhWxbUHFKfrUFxz6Undd+e6T7K/ktCnUBhuvU/z+nzEzdv0eh/pX/Z2uIQECDJgKLmstQDUmulioAR6dPJs1AsqPDBl6gEZlH0Gq9rCW3tLsJAV02kZlj0+GiAJUvmOxe/fu0oSIAlUavdiXtXb7yCobSLC/3pEOLemmZ0LP6tBnOPlg3VBZz86hQ4dc27SxbpHi4BTVLapTxveZCtF/U3Kyrd9ryKznglm3rw/UDCXUdc50Lw9lHzWrT9unvRlyWP2DtrXHdJxdqVPUjtMzpzqjLCHi953qWryQPUCAAVOhFqogSH6gDxYtWhT8/dCDVH4Ka9EQkx9WhyJmxH6fWSNUy5a0mSTrOnUlOKDjV+dCoxi1prtmhpSt666RVewh0F5dvx8nyRpUs2HDhkElP6wylCRZ+PmZ5XkJtXn0LHelDNZIXgVAlTxX3VI2gMMvX4J2seqUAwcOuKGz6hT1V4aS/BAr0D/0dkcb22Oh8rdLdb+eK8UC9YypTikbtKEkSNfqFBIgwIBZy1UNeXQa+sMKQAw9uG01VLQsydBmPXRpNOo0tW1ElY4n1MnpaiDHL2eigFXoe6njxnKS7aWAY8jQ6xbdt6FnUp3poY1QtcrQWSWR28QKDs0q4eD3Nizq4rXySxeXDWaxAsqYHdqiYXoGQ+1ODSAZWn+FPm2YtT/lLMvv0LVS+6iLAyB0bpVUVyLEeubKZh62EQkQYMCsjipLv6APrCDV0AMQ1vfPWZe666x7pGuNuaapDmhbwiF0rayAa1doRLz22wlhlG57Wc/H0OsWKxAzxGWvrHtE52jos7u0dGHIrJ4fq+3T5TLYz+gN0fdihmG7WDMZht4OKNv3Y2j6EnyehFAZrntnVgkHK6ne9TrFWsKra/cge4AAA2VVClahDXSN1amtu6Gqgq6h0ayaQdGFUa7WiDIrGdBn6nQqSFUMBvgg1ZD3kdG50YifcT7hMItlBxQ0C3Uepn081v45uWv73nzzzcERuYwUbzeVl8X70W9IXKfcWL9+/YJEgu59v1llm1ntSms2RN9dc801C2Zy+dldQ55pXTbwYBZ1i4KpoedLx6NlC6fF2sND90pO+8xvuhuqN3Ufsk9ee/hR7MUy1Cer6lwrtTGKn6t7vgtLXVtJ9SHeu7pHQs/zLNvlbXHppZcu6K+IytNZ1LV6vvz+GONU908zTqAlD0Mxj9wVH3SPKbZSfC79DM6uPJfMAAFwnDprJhKwQZv4xmKR39wrlyp+P7Jk/KcrM6eskX+5I2W6vqa5glRFKgdDjdchsUbp1l2aKbeOsToNuk7THM2qskOdiuJP7nNgTd9Hu1kjUOuWG35vtvGfrgd76rQrH330UddVVpk19BG7a9euDf5e5Widsjx3uSCVv6EBMyrrpzliV989VLfUOQYrccJeNO0T2hes7ixXXedQndL1NkedcqLL977V7hj6snZW8qduXXvkyBGXQ/WJNYt+mnWK3/Oz+FNn2TQlm0K6tBcNCRBgoKwOdW7BrEJ26AFDtI+10XCde9UKAHdlBoU1yyu3QbRp0ybXZWWB9bodJXVKulou6ryE6ok6wX6dj9yOqx/NWqRGd93On76P7uOY72U9P3U6WqGOw1BHzXeF9XzUSchZAWArGdkVuXWLzmWX1zcvC4LUrRdUVnVhVlCINTilzsADH+jJFRoIIaoX6ibYVT/FDLqxZi1PImFG0r19rCBunfZN1/srVqwidxCbNYO3K6x2RxOBdZUzXU2k+JkJRTonueWn3heaVRJDdZwVf2jiHGtmYsx9bJXzdVbCsAYadKlOIQECDJS1qaw6IKmdCBXCmmILtI1GGlpB3JzGohpEoedDDZ2ujNK1Otl33nmnS6WGXNfXKFbD2QrGqFzLDX7o3GiTawWputipUB1hBYXU+E49L+qw6nzUoWnbIQqa5Qa/fP2l94eWiigqG/mfc6/4ZZOKCFC1m9XBzU3I6b4LvU/3gTVivm3KAripQScF7roa4Pd0j1h7/KgszA3i+TJLZY7ujS4G9MrK8tTvo/Kzbh9E7w+14XQst912m8vl2wEKXFaVCwpKNx3cDAX/mHXYTlZbVOVEbp0SSihag0nayLpPc9pb/lnssrI6JTYoHqJ7TMlenZ+YdnAbWf0VtSNSv08TAwyspbdUltf5bF0nleuqU6r6PWWzLXOusd4Tard0bQltEiDAgDVRWaggX7duHdOp0UpqLFodbTUWUwIQutet2Q7TXCe6Lquhou8X28nyAZiyzkSXNtm07hF9z5zyrdjR8gGQrm08at3XvrMU+310bzWRJLcCBKLjSR09rO8x3tnTv+owlHUqrGPwgbKUa6zXWud4iJt8do06uNYskJSAle4dK3hhjSJsIyuAq6RQStJU564L69PHUPkSCuLpnOj+SQ1sF9vcvi7u2kCEqoEHsXWuT37U7YOUtRVVH6TOBNFrfUDR8wMiyljBzdgZiuOs0e7ULe1l3YO6d1LaN75cCN2z1t9oI79PX5HKidjEpM6BnruuJz88K1mbWnZ6Gmwwfq/49nrX4jplSeyU75P6eovq/bJEf2pSc3ywluh6q14o+5yygTo531HPUahMIQECoDOspV/8Js9l6/H6CjJmhHSX1gVE/yjIYHW0/ai8snvYN57LOhNdGk1XFkRWB6Gso+1HKSsAUxVw6dJzr/NhjdYpNjrL+HIx1NHq4qajuq+t86IRSLoPyqaI63nR/VJnJk2RNhu3zqOe05hA0fhx5XRyygJlOiex94qVXNN5n+ZGichT1sGtKks9f8+EkvH6/C4l18UK4Or7lT0beib9jIa+BKpEAQiVWSE+CBFbZlntkK6u6V828EDlX9kob79fhvXs5LDaipJTtodeW1UPlgXxqs7J+GtVbljPETP226usLRrTvvFtG6ttoc/vUtuibCayni/VF1ZfxNcpOhcxyaOuDFAqS9b6QTwxS335AUAabNC1wVkhZXVtTD+u6tnJYQ2AEJXPZfdv6LhCr33ttddK36+6oCwxlNK3tZYT61o79UQHYLDUENJIoFCB5jPLMj6qTwWx1v9LqSyZHYJZU6PICnb6kVVaZ133um+s6LVaJ9Naokb0+q5V/KLGs9Xo8puk6TyMN9z85omxutagVifA2vTU7xGhRqiuucpOv0eDykr997JlXnQet2/f7rpI97eeg9Ba/Pq+69evH30//+zovKiO0OubCkyN09/YunWrGcTx96+ukY5pfGRSzDOtZ6MqQOCDFKFOdfFeGS9TdK/4e6zsWerSCM2h032gaxrqRBbvRf98+PtAZYZ1H3a1zNBzqRGlofvbPxsauTv+XOocpJYVKl+6EvTX9Vf9Yo3+H79P1A4Z/146L1Wbceuzu5gAKStH9Yz45SN9OerrFt0vKscn0cYoayuOl+3+mR5vB1Q903p91cwmfZ5Vv/lzop/iveLbIVX3is5310brDk1Zm8sqK2LrFCtA3GY6H7t37w5+Lx/EVYyi2NZLjT10aZCSnmMfGA9Rv1Y/ivGMt0Elpk7Re7tYp+j7WktDjbc//LPj6xRfdjZdp+jz1Y4rq1N8kkTH7o9JYp5pvacqBuEH6oTaH8VzUuyvxNQpXRsEKiRAgIFTgajKoqyhENsxtZIpkwiCASl8MMlqhKhxoXs3ZbM0NRS6GtRW50mNlrKps7EdCJ2HE044YUFnzTeeutQwUqNfAQrrPvDnJOU+8fdeV9fcHg/IlM0Mit2QT/dF3U6G7l915MuWnMpZN13PRGxCU/dJ2Z5ZOfeKPwZmf3SLT55aG3an3osKwnQ1AKHywi/5Z9EzG3M+dB7UKQ89Q9ZGnG1VFbCSnDJL9541YrwLqspRf6/EnBe1Rer2N6raipKz4bqOTc9FTIA1pn2Wc6/oGEiut19Mmyv1+ne5Hapj3rBhg7kEscTWKfqspUuXBjeB1vu71PbybdWyciK1X6vySee6y0nSqvaY7+9X0bm49NJLa20YLrF1SuoSvr4fFKOq/ZETAxEtr9XFQaAsgQUMnM9O12kUqZJQIWyNbrMqIWCamuwAqDGhz+rakkbj1Gip2xlW40fnQY3EkK6tS+6Dd00FCXySrOsbjjbx7PjP8KOb6lJHdceOHY2cWz3H6jSlNuRV7zV1r+QeA2ZP97TuxSYC0Soz9FldDkCkBHsteq51Hqz9CrpWt4hflqipMkuf1eXkh6dytM738H2Qpva28HVVU/vv+HZSynVv8l4ZP4Yut1mHRNddSbYm7kEFSrveDlV7r+6+UL49bm0M3cXBmiondF6aeK59udf1ATg+rmUtZxhD57PJZ8af2zrHNC4nBtHkveKPoe5G8bNCAgTAsYZWTgdEhbk6qaowVelYmz12sbOK/tH9qT0Lcqds+kZMk42IWVKDSIGD1HMxnvTU/79y5crg61JHk7SFzovuk9zGqg9m+6XE+qBOPaH3NJWsKB5TnedZfB2WG4Cre680cQxoBz3zOeWpqMzQfdyXMkPB6LIEhsWfB19eWM+V2pRdXLdc56NucF3v/cIXvtCrzaxznx0f3G06aKfjUPsm93n2n6Fj8+2kVE3cKzoGv/k6yY9uUZ+6zj3o26F9GIQjah+prZXTXxmvW63BBV3tr/j2dW45MV7n9mV5PJ8EyRmg5NvjTZ8LXx/UqVN8fZebDKx7rzRxDG3AEliJQg3xOg+ICp3QZ9apqOo+sKHjsYJbRZP4Pvrbdd5f5/tYna86jcjQ96k7+6KJc67Kwk+lV2NZU/6sqXr6m2qYqwAt/m29P9SIiF0epen7BwhR0FIdZgVRtF55WYKu7H6P1cay3tN58GumVp0Lv2+QzsV4Oaj3h5772LKybt3adLnq369GnkaF6d9HH320dDabX4M4dH5itbV+8FLqCb+mrV476TK8+DxXreXrj00/TYzI8veK/r6eo6p7RXSttbmnRiOyJnt/+PJU5aGCNWXPiFhlaoo67dyQptq+PvjqnwtrHXf/Wp0DlRfjf8f/PrTklX5XdUx1n61J9AN8cF3lVkwbRPya/8Xzk/I3296f0XOjY9S5uPPOO80y1Ne1Cm41NaK27Jh83aJ7uOp5bqK9OG78XvFLlFTdK/5aN3UMmK3xNrquf9n+N020QyfRX7HKn9QZwX7QS8y58G2sYpmp47CeC31W1TmrW+5ZdVKd2dHj5YSWUrL2kBlXt+3R1DUtHlNRnTrc9w10Tsr2abTK7SNHjrimpTzPMon+Suq90vQxzNoJr1VtHQ9gsPzGlH7Ndr8pMgkJ9JEPmnK//+hcqLGohqFfN3foIwjHN+v158bPfBtquTj+3IjfxM86H2vWrFnQ2PcjiiZ1XP551vWa1n08fq8UyxSdH0bjDkeo3BhqmRp6LhXg4HmYfZnVNql9ECXnlUwqyhk1HnNcMv48l9V7TeNeGTa/xxj9lXAblOfgdfRrj5dap2jfjlDCueml3dvQRhxSnUICBAAAABOnhnVo9NAkEiAAgOGYVrAKANB/69atW1B/+FlI6C72AAEAAMDEWYEoloACANQR2sSYugUAkEozMUJ9FlZB6T4SIAAAACjVxIbDoeVJRGvbAwCGp4m6Reuphz6HBAgADEsTdYq11xL9le4jAQIAAADT7bffPpoKXrb5axW9V0GqIq2bro3AAQDDonrhuuuuC9YNKVRHhWjTVgDAMChxoT5FaEZgLNVLVp1Cf6X7SIAAAAAgSLM2tm3bNuoQaI31nCSIRmPpvSEEqABgeHydovph06ZN7o477nA5FKgK1UtaqoRgFQAMg+qB9evXj/YbvOmmm7KTIFu2bAnWKZpRyKzC7iMBAgAAgAXUedi4ceOx/+0DVimjdfWestkjt956qwMADIdPio/XCwo6WYEn6zP0eiXoQ2655RYHAOi/8YS6KAlyww03mDM5QvRe9Unuueee4H9XUgXdd8Jr8xwAAAAwRiNyFWAK0ehaBZiuvPLK4KaAmoauToRmkFjr8er9JEAAYFh8YjxUN6g+Ub1y/fXXj/4NvVf1iuonq27RKN26y2oBALpBfQ5rprnqFM02V0IkNIMjpk5RfWT1h9AtJEAAAAAQpNG1VSOolixZcqxToY6ERl5VbUKokVTjs0sAAMOhBIWWvqqiukV1jOqUQ4cOVdYtCnZt3749mJgHAPRT2aAtT3XJ0qVLR//G9ldUl+zYsWP0HnQfCRAAAACYYpIgKRhJBQDQqF0lQXL2lgoh+QEAw6UkiPorVUmNWErAqw9EndIfJEAAAABQSvuBaLmqOoEqjZ7SslesowsAENUpCjBpCZI6VK+ofmGULgAMF3UKypAAAQAAQBQtW6JOhUbuxlLn4cYbbxx1JuhIAACKfNBq9+7dSaN3tU+I348KAABRP8X3WWKpj3LNNdeMBnwx66OfSIAAAAAgiYJVmhWiDob+Lc4M0bRxv/GgX8MdAIAqqlf0s2fPngVrtPs9p1avXj2qX6hbAAAW1R+qS3x/pVin+P6K/qVO6T8SIAAAAAAAAAAAoHfe4AAAAAAAAAAAAHqGBAgAAAAAAAAAAOgdEiAAAAAAAAAAAKB3SIAAAAAAAAAAAIDeIQECAAAAAAAAAAB6hwQIAAAAAAAAAADoHRIgAAAAAAAAAACgd0iAAAAAAAAAAACA3iEBAgAAAAAAAAAAeocECAAAAAAAAAAA6B0SIAAAAAAAAAAAoHdOdAjat2+fu+OOOxb8/tprrx39DN2WLVvc4cOHj/vd4sWL3caNG6Pef/vtt7uDBw8u+P3mzZsdAAAAAAAAAAB1kQAxzM3NuZ07dy74/dKlS0mAzLvnnnsWJDCWLVsWnQB54IEHRj9FJEAAAAAAAAAAAE1gCSwAAAAAAAAAANA7JEAAAAAAAAAAAEDvkAABAAAAAAAAAAC9QwIEAAAAAAAAAAD0DgkQAAAAAAAAAADQOyRAAAAAAAAAAABA75AAAQAAAAAAAAAAvUMCBAAAAAAAAAAA9A4JEAAAAAAAAAAA0DskQAAAAAAAAAAAQO+QAAEAAAAAAAAAAL1zouuwubk5d/jwYXfw4MFjv1uxYoVbsmSJmxUdyyyPJ3ROli1bNvoZqllfk6LiNdKxLF26dGrHNOu/X3Zchw4dGv0rs7hvdU50bvwxtOXcAAAAAAAAAEjXuQTIAw884O66667Rv+NB7XEKVq5evdpde+217oYbbnCTds8997g77rjD7du371jgtHg8Ohb/0zSdCx2DfqxzIgr8X3nlle6mm27qdUJE10D3iM5H2TVp4h65/fbbF5xznWed4+Ix3XnnnW7Xrl2jYwqZ5PXxf1/3in5S/r6OV/d30ebNm11dMffupM+L//t79uwJ3isy7TIFAAAAAAAAQH0nvDbPdYACpZs2bSoN8IcoYHrLLbckBy31926++eYFv9dn3XrrrdnHpOPZvn17I4Fc/X0F4K2AdhmdD32X3ONYu3btgu+tz1KAP4bObei49+7d63L5IL+C9VYgOyT3HpHQ91CwXtfYH5OuUSiBUEb3mI6pCf7vp5wTJRv09xX4t56FOtcq996te9+OyzkvUud+AQAAAAAAADA9rd8DRMFJJRkUgE1NfojeU+f9li1btmR9pl6v91mzAGLonChAbiURYuzcuXMUwNW/faDzuW7dOrdt27bkgLa/R3RNU98b4j/DH1Nq8kP0PXRMdeh76RrnnBMds469uHxYE/yzk3Pv6n6t+/zUOS/+/bo2+oymzw0AAAAAAACA5rQ6AeKTBU0E6f0o9iYClgp+5gS1PR2DEhi5wVcFprVkT13a60DfpetJEC131cS11TUNzXRIpfOqAH3dY9J1UbIgRxOJtiY+Y5zudyUN6jw7/rj0OTkJlCa/UxPXGAAAAAAAAMDktHoJLAU5ywKVK1euHK3Lv3jx4tH/9oHnssColq/ZsWNH5abG1rI/el8ocaHP1dJHnoKiVQHa8eW0Yujv+lH5IX6fAu2Z4JcI0jnRUkXa38B6n86fgu0pywq1ZQksJYLKzqHff0UbWUvMPaLlnzZu3OhihL6Hzqf+bvH86Hfj18Zv+l31nXVOU5d8qnp2co9lXOq1Kjsmfzz68c+zXqufSd+348eg50efN16m6Nkp+6465r7MpAIAAAAAAAD6pLWboGvkuxUsVaJBAWoFHkMU4NTyNpoZEPpvWvs/NsBdVEx+XH/99aMgeOhY/Gbc+nuhpIlGwivYXpWM8W677TYzeKtkStVn6ZzoWIr8TBC/b0VX+KWIQhTE1ibd40mp4nute0TXRUkT671VdD71M34suja6V0LXR8ei+92a1aPjSblfdY3LEg033nijea/oWBTMD90ndZQ9z+P7jYT44yne+6n3begzvKrnR8euRFvo/fpvupdSkpkAAAAAAAAAJq+VS2ApyGgtk6NApQKeVvJDFHBWwNXaRFqfnbt3hqdAqY5Df8c6Fr1GQVUrQKsAbigAH+ID0yH6fAVfqxIpeo2SAiE6H11bymf9+vXBxJISF5rlU5bAqLpH6u6/4SnpoWMpC67rWBRAtzbVTpldUPbs+NlPZfeKXqP/njPrxKLjDx2Tf4aU3Cm7d3Ve9LrQ8ei+jX2WrfOoZ6Lq+dEzrnNiXaOczdQBAAAAAAAATFYrEyBW8Dl1ySi9VoHnkDp7aChQWhVgH6fgqRVoj11GqCwhlDJTQQFcBeVDmthXZFoUzA6dOwXJt27dGj2rRvdI6PzFLGFWRedZSZbYY7ESAX7ZrhjWbCOdFyuJEOJfH3vsVccUsmHDhuh718/oSfn8cVaCT9fISmqE6BqFzmHKNQIAAAAAAAAwHa1LgFj7M/iR6amsgKUC6LkjthW4TR0db22urf0FYpQtH5TKCvjWDfhPkxX0zgna1wmsW3R/pC6zpn0nrORUbKLMuoZKlKXes2VJh1h6zppIPIiSJaHzEzMLxHp+tNRZCl2jSSRVAQAAAAAAADSvdQmQspkOuUIBy9wR2zmBW1HgNBSAjl12SrNI9HfHf1L2DxmnQLK1/0MXlI3mz1m2qbiBvaekQ26SrGpZJ0vZniVVrPOi75dzz4oSBCtXrnS5rCXecvfLyE3eWdcx5xpZSROWwAIAAAAAAADapXWboIcCmUoe5AZwRe/VUkRFSoCkbnRdZ18EvTcUoFbgtCoQm7tpu0XntBiwHd+4u82soHqde0RB7eK955NkOZuhp84s8Kz9ZGISINYMhDrJQ9G9ksNaRkznJvc58sm74r1bNZPKer5ykn5+75KipvZMAQAAAAAAANCMViVAFGwOBSRzAtDjFMDVKPZi0HTaI7aXLl0a/L0C7U3stTAU1hJpde4TBeWbSpLNijWjaVbHb83KyE0Oeddcc82CJFjVEmFWYkkzznQ8Kc+fypOu3BMAAAAAAADAkLUqAWKNxm4i2KhNy9F9VpLMCnDHUgIlNLMgdu+NNgglHHReZjUzYffu3cHf132erU3IdV9Y31UJ0ND11f2k/Xm2bdvGDA4AAAAAAACgZ1qVALGCzXWD20OiILCCulWzW7qy3FXRJJNkoWXBDh065LrAOi+zDOqHjsnaCyeF9f6ye1p/98YbbwxubK/nZe3atcc2WU+dEQIAAAAAAACgnToxA4RgpE2j/rX/gf6NSXx0nXWPaPmq0BJWk/p7bdOVBIiSFHU2VS9z4MCB0mSpNl73z0qIfu//m5Ih+iz9u3r1asogAAAAAAAAoINatwl6SO4mzH2mQK1Gs1vB3L7qe4KnabN8dqZ9rWJmNWmpq82bNy/YQ6TIJ0O0R4goGXLDDTfU2sAdAAAAAAAAwHS9wXUAAccfUVBZMx20b8HQkh9IN6uZC22dOaOEkJ4fJUFSyhXNrtL7tFSWnr2dO3c6AAAAAAAAAO3WiRkgeJ2SHwq+KhhbRkFvBXfLlgO65557mE0xAMyeCtNsDv0okXHnnXcmbXbvZ4doBtb27dtJ0AIAAAAAAAAt1YkEiAL1rMHv3KZNm8zkh/Yq0PI8sUv0aCR7nxIg2ldiEsH+rge32zYTQ89xWWKujpxr5RMhOk9KCuondi8dvUfP0caNG91NN93kAAAAAAAAALRLJxIgWtt/6AkQjVRXcLZI52XDhg2jIO6Q6RwoCYR2sJIRSn5o1kTb6HiVxPCJDCVBNCtEMz20cXpZIklLYyn5NvRnEAAAAAAAAGibViVArKBpzObGfafldkK2bt06qMC/lQhr654T02I9O7M8L7pWxZkUXblOStT4jc/FL3ll7bujJIhmXzFTDQAAAAAAAGiPVm2CbgVxU9bn7yONRg8Fjq+//vrBzXqw7pGqfVH6ro3nJbQkme7jLi69pudMM1e03FWIkrR33HGHAwAAAAAAANAerUqAaB+HkKEHt61R50NccsfaP2Lo94iEnp9ZJhxWr14d/H2Xr5WWyLKSIFoqCwAAAAAAAEB7tGoJLAW3Q8vmaO8LK+gY69Zbb12wlJaWrOnC5sXWskFDXG5HMx1C94iSRPrdkJcgUsKhOFtK97wSDrOYKaSEzF133bXg93qep3k8+nuhWWR69nPuF71Py2EV78Ghz1QDAAAAAAAA2qZVM0AkFBhVAsCaBRFD71cQVJ8x/tMVkxjB3+V9VbT0V8jQlyBSQi/E2j9m0qwZSjt37pzqrJRdu3aNzkHx59ChQy5XaCYSexUBAAAAAAAA7dK6BMiNN94Y/H2dIK6V7OjK/hnWKPXcJE5o9HqXWIF+JUDqbrKt2RJKlnWRZlyE7pU6Cb8679UeIKFnTImCJpIyut4x97G1tJ4SIwAAAAAAAAD6q5UzQEIbOucGYhUQDwVb9Tes/STaxtrgOidQryWJtm3b5rpM94gVWNdSZ7nJHd0rer9+ZjVrog4lHKzZMVu2bHGpdD42bdrk6rjllluCv1fyQjNBcun66DutW7euMullPed6FnLuFf290D4mXSlPAAAAAAAAgKFoXQJErKCpAtMpGygrUHnzzTcHA6TW32gja8aDEkIpgXoFnevupdIW1vXT/WFd8zI6l+PBdCWJdL/VnVEybda+FjovKckMJQaa+P5Wskp0PKnLlum49D6fxNPxaamtsmSgdQx672233eZSWTNPujKjDAAAAAAAABiKViZAFNC0RvgrwBsTNFVA2wqEa0aFtT9BG+l4reCqAsEaCV8WqPbnomoWQJeC/Tof1gb2PgkSM8NAgWydF72+GNTes2eP6xrdK9Yycjofa9eurbzOPhmUkmwss3nzZnMZN517JTRi7j1/XMXrqnKhanaYlTCLPSfi7xWr/LHuRwAAAAAAAACzcaJrKQVNQwkMBTt9EFIzIxQI19I//r8paFu2XJYCxNu3b3ddowCu9Z10LvSjc6FleHQ+dC507hTET1nmR6+1gtVto9ks/noX+eWbNENGy0L5BJKuv/6bPzeaOWCdH92D1vJjbabnZvfu3W7v3r0L/pu+twL+Oh+rV68+9v38/aLz0XQiTH9D51IzSkKUhNCPkpL+mPw96JebKnumdc9XzWzyCbNQ8qJ4TrRnyHiZ4o+h7F7R89nFewUAAAAAAADos9YmQBRM1OyG0Mh8UVDSB/5TPlPJjy4GKhWcVZC1bMmr2H1SfIA5FCA/dOhQZxIg4u+R0HcRvwdM6p4eCthbS4+1nYL3W7duLV0KLGVPHZ80qkPnUue0bBkunwhJoeRHbEJTSRIlvax7JXefIR2DldwBAAAAAAAAMDutXALLU2Bxx44djSQsupz88BRkrbt3iT8PGukekhMAniUF+3WPNLX8kJI/Sqp0aYm0kCbud52LJmfB6Jw2+QwqqaLPS0nYNXmvjB8DAAAAAAAAgPZpdQJEFCzVqPDcoKWCo0oaNJVImTUlQTSSPee76Bz686DkUkjZZtJtpnNSN1ivWTY6P12d+VHkkyBaAiyVn1nRdCJI5zj3mDyfmFGiKme2UhP3iv6uPif3GAAAAAAAAABMXmuXwBqnUf4KNiqAr4CjlrGpWpJHwU0FWfWenACl3hMKkNYJdlqfmUrfSUF6Lf9VtWeD/qbOgwLZ40kP7XkQWhYqdqmj0PdI+W5Lly5tPCGl76gfJcx0XmKSOf78+P1kUk3iezR53+mztGeOzouud9UMH50Df79Mij8mJfNi7uHxY9N10vHVTTqM3yt33XVX9MynJo8BAAAAAAAAwGSd8No810F+Y2L96/cIUUBSyRIFKYe0IbE/D+PnQt/fz/QYcqBWgW1tZD2+78NQ7xPR/aH7RT/jz43Og5ZFC90r2kukmCDQ+WtyuTR//44fl0zzPvb3SqhM0cboSnaR9AAAAAAAAAC6o7MJEADTsWbNmuOSEqKEROqG5QAAAAAAAAAwTa3fAwTA7IzPhhg3tJkzAAAAAAAAALqHBAgAk7XMVc5+KQAAAAAAAAAwTSRAgB7SXhra5Dt2U/sQvVcbp4eQAAEAAAAAAADQdiRAgJ5R4uLWW28dJUG0gXluEuSOO+4Ivlf7f+gHAAAAAAAAANqMBAjQI0pYjCc9/P9O2bBce35s2bJllAAJuemmmxwAAAAAAAAAtN0Jr81zAHpBiY5NmzYF/5uWrVLy4tprrw3+dyU+7rrrLnPmh1x//fWj5AgAAAAAAAAAtB0JEKBnlACpmvGhZMjixYvdkiVLRv9779697tChQ6MkiGXZsmVu+/bto38BAAAAAAAAoO1IgAA9tG3bNnMD8xwkPwAAAAAAAAB0DQkQoKc0C0RJkNxN0D0tmbV58+Zjs0UAAAAAAAAAoAtIgAA9l5sI0TJZt9xyy+hfAAAAAAAAAOgaEiDAQDzwwAOjnz179rh9+/Yt2O9DMzxWrFjhVq9ePUp6kPgAAAAAAAAA0GUkQIAB87NC2NsDAAAAAAAAQN8oAfJbDgAAAAAAAAAAoEf+f2BH3TeLH7MsAAAAAElFTkSuQmCC",
+                "title": "PTSD Chart"
+              }
+            }
+          ],
+          "linkId": "974adb31-35e4-4e69-a383-04b71449d9ad",
+          "text": "",
+          "type": "display"
+        }
+      ]
+    }
+  ]
+}

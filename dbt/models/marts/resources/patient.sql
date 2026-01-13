@@ -14,6 +14,7 @@ select
     stp.id,
     stp.gender,
     stp.birthDate::date as birth_date,
+    DATE_PART('year', AGE(stp.birthDate::date))::integer as age_years,
     stp.deceasedBoolean as deceased,
     stp.active,
     stp.period_start::date as registration_date,
@@ -25,7 +26,7 @@ select
     ut.practitioner_organization_id,
     ut.practitioner_careteam_id,
     stp._airbyte_emitted_at
-from {{ref('stg_patient')}} stp
+from {{ref('stg_patient') }} stp
 left join tags ut on ut.resource_id=stp.id
 
 {% if is_incremental() %}

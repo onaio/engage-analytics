@@ -1,0 +1,2386 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "59",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2023-11-16T13:59:28.766+00:00",
+    "source": "#c3ff0742fbd1c984"
+  },
+  "language": "en",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.demo.smartregister.org/fhir/StructureMap/223"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient",
+            "display": "Patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "encounter-search",
+        "language": "application/x-fhir-query",
+        "expression": "Encounter?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&reason-code=gad7-s3"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "encounter-resource",
+        "language": "text/fhirpath",
+        "expression": "%encounter-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "observation-gad-score-search",
+        "language": "application/x-fhir-query",
+        "expression": "Observation?subject={{'Patient/' + %patient.id.replaceMatches('/_history/.*', '')}}&category=survey&code=gad7-s3-total-score&focus={{'Questionnaire/' + %questionnaire.id}}"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "observation-gad-score-resource",
+        "language": "text/fhirpath",
+        "expression": "%observation-gad-score-search.entry.first().resource"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-given",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.given.first().exists(), %patient.name.given.first(), '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.name.family.exists(), %patient.name.family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-month",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), ((today().toString().substring(5, 2).toInteger() + 12) - %patient.birthDate.toString().substring(5, 2).toInteger() + 1), (today().toString().substring(5, 2).toInteger() - %patient.birthDate.toString().substring(5, 2).toInteger()) + 1)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-calculated-year",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient.birthDate.toString().substring(5, 2).toInteger() > today().toString().substring(5, 2).toInteger(), (today().toString().substring(0, 4).toInteger() - 1) - %patient.birthDate.toString().substring(0, 4).toInteger(), today().toString().substring(0, 4).toInteger() - %patient.birthDate.toString().substring(0, 4).toInteger())"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age",
+        "language": "text/fhirpath",
+        "expression": "(((%patient-calculated-year.toString().toInteger() * 365.25) + (%patient-calculated-month.toString().toInteger() * 365.25 / 12)) / 365.25).toString().replaceMatches('[.]+[0-9]+', '').toInteger().toString()"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-family-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-name-family.exists(), ' ' + %patient-name-family, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-age-space",
+        "language": "text/fhirpath",
+        "expression": "iif(%patient-age.exists(), ', ' + %patient-age, '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patient-name-and-age",
+        "language": "text/fhirpath",
+        "expression": "%patient-name-given + %patient-name-family-space + %patient-age-space"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p1",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.15.1' or linkId='f2.15.1' or linkId='f3.15.1' or linkId='f4.15.1' or linkId='f5.15.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p1-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p1.code = 'not-at-all', 0, 0) + iif(%gad7-p1.code = 'several-days', 1, 0) + iif(%gad7-p1.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p1.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p2",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.16.1' or linkId='f2.16.1' or linkId='f3.16.1' or linkId='f4.16.1' or linkId='f5.16.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p2-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p2.code = 'not-at-all', 0, 0) + iif(%gad7-p2.code = 'several-days', 1, 0) + iif(%gad7-p2.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p2.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p3",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.17.1' or linkId='f2.17.1' or linkId='f3.17.1' or linkId='f4.17.1' or linkId='f5.17.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p3-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p3.code = 'not-at-all', 0, 0) + iif(%gad7-p3.code = 'several-days', 1, 0) + iif(%gad7-p3.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p3.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p4",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.18.1' or linkId='f2.18.1' or linkId='f3.18.1' or linkId='f4.18.1' or linkId='f5.18.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p4-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p4.code = 'not-at-all', 0, 0) + iif(%gad7-p4.code = 'several-days', 1, 0) + iif(%gad7-p4.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p4.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p5",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.19.1' or linkId='f2.19.1' or linkId='f3.19.1' or linkId='f4.19.1' or linkId='f5.19.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p5-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p5.code = 'not-at-all', 0, 0) + iif(%gad7-p5.code = 'several-days', 1, 0) + iif(%gad7-p5.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p5.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p6",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.20.1' or linkId='f2.20.1' or linkId='f3.20.1' or linkId='f4.20.1' or linkId='f5.20.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p6-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p6.code = 'not-at-all', 0, 0) + iif(%gad7-p6.code = 'several-days', 1, 0) + iif(%gad7-p6.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p6.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p7",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='f1.21.1' or linkId='f2.21.1' or linkId='f3.21.1' or linkId='f4.21.1' or linkId='f5.21.1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-p7-score",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-p7.code = 'not-at-all', 0, 0) + iif(%gad7-p7.code = 'several-days', 1, 0) + iif(%gad7-p7.code = 'more-than-half-the-days', 2, 0) + iif(%gad7-p7.code = 'nearly-every-day', 3, 0)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total",
+        "language": "text/fhirpath",
+        "expression": "%gad7-p1-score + %gad7-p2-score + %gad7-p3-score + %gad7-p4-score + %gad7-p5-score + %gad7-p6-score + %gad7-p7-score"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-0-4",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 0 and %gad7-total <= 4, 'Minimal anxiety', %gad7-total-meaning-5-9)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-5-9",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 5 and %gad7-total <= 9, 'Mild anxiety', %gad7-total-meaning-10-14)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-10-14",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 10 and %gad7-total <= 14, 'Moderate anxiety', %gad7-total-meaning-15-plus)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-15-plus",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 15, 'Severe anxiety', '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning",
+        "language": "text/fhirpath",
+        "expression": "%gad7-total-meaning-0-4"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-code-0-4",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 0 and %gad7-total <= 4, 'minimal-anxiety', %gad7-total-meaning-code-5-9)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-code-5-9",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 5 and %gad7-total <= 9, 'mild-anxiety', %gad7-total-meaning-code-10-14)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-code-10-14",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 10 and %gad7-total <= 14, 'moderate-anxiety', %gad7-total-meaning-code-15-plus)"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-code-15-plus",
+        "language": "text/fhirpath",
+        "expression": "iif(%gad7-total >= 15, 'severe-anxiety', '')"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "gad7-total-meaning-code",
+        "language": "text/fhirpath",
+        "expression": "%gad7-total-meaning-code-0-4"
+      }
+    }
+  ],
+  "version": "0.0.1",
+  "title": "GAD-7 (IPC Session 3)",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "publisher": "ona",
+  "contact": [
+    {
+      "name": "http://www.smartregister.org/"
+    }
+  ],
+  "description": "GAD-7 form that is intended for IPC Session 3",
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "0b94dd9f-9047-44ad-9c5a-41a8a26fd21d",
+      "text": "A place to declare values that cannot be created using FHIRPath such as Coding. Retrieve the following items has answer value using variable expression, to use the declared value.",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%encounter-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "encounter-id",
+          "text": "Encounter ID of GAD-7 Session 3",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%observation-gad-score-resource.id.toString()"
+              }
+            }
+          ],
+          "linkId": "observation-gad-score-id",
+          "text": "Observation ID of GAD-7 Session 3 Score",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%gad7-total.toString()"
+              }
+            }
+          ],
+          "linkId": "534c4998-b964-4101-b919-ff3c26af9714",
+          "text": "Total score",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%gad7-total-meaning"
+              }
+            }
+          ],
+          "linkId": "d34c5839-fad9-4824-b2dc-9e0161647402",
+          "text": "Total score meaning",
+          "type": "string"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+              "valueBoolean": true
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%gad7-total-meaning-code"
+              }
+            }
+          ],
+          "linkId": "3212b2b2-f42f-46e9-b6bd-42fc29671da9",
+          "text": "Total score meaning code",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.14",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2eb9596d-8433-46da-8464-ac7c318bd053",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "linkId": "f1.14.1",
+          "text": "<b>Generalized Anxiety Disorder-7 (GAD-7):</b>",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "<b>Trastorno de Ansiedad Generalizada:</b>"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "<b>Generalized Anxiety Disorder-7 (GAD-7):</b>"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "f1.14.1.1",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "f1.14.1.2",
+              "text": "The next seven questions are from the Generalized Anxiety Disorder-7. These questions measure anxiety.",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "f1.14.2",
+          "text": "Over the past week, how often have you been bothered by the following problems?",
+          "type": "display"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.15",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "3c1e631c-dab6-442b-a832-f204d18b4ecc",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.15.1",
+          "text": "Feeling nervous, anxious, or on edge",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Sentirse nervioso o ansioso"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Feeling nervous, anxious, or on edge"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.16",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "67fba8ac-3b24-4bf8-bf39-9e99a1769963",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.16.1",
+          "text": "Not being able to stop or control worrying",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "No ser capaz de dejar de preocuparse o de controlar las preocupaciones"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Not being able to stop or control worrying"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.17",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "88296af9-7e49-4786-8e22-0eb7a8760cca",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.17.1",
+          "text": "Worrying too much about different things",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Preocuparse demasiado por cosas diferentes"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Worrying too much about different things"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.18",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "02ac8ed5-8f34-45a3-9d77-05b2fbeea510",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.18.1",
+          "text": "Trouble relaxing",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Dificultad para relajar"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Trouble relaxing"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.19",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "9467a9e0-0cc7-4a37-b87c-10dd9f7e2953",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.19.1",
+          "text": "Being so restless that it's hard to sit still",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Estar tan inquieto que es difícil sentarse quieto"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Being so restless that it's hard to sit still"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.20",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "9518c7ac-6381-40c8-8038-267be4a9cd20",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.20.1",
+          "text": "Becoming easily annoyed or irritable",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Poniéndose fácilmente molestado o irritable"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Becoming easily annoyed or irritable"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.21",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "07d7a4c0-2870-4b5d-a91e-d7176835b9d1",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "f1.21.1",
+          "text": "Feeling afraid as if something awful might happen",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Sentir miedo, como si algo terrible podría suceder"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Feeling afraid as if something awful might happen"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "not-at-all",
+                "display": "Not at all",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nenhuma vez"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Not at all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "several-days",
+                "display": "Several days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Varios dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Several days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "more-than-half-the-days",
+                "display": "More than half the days",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Mais de metade dos dias"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "More than half the days"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "nearly-every-day",
+                "display": "Nearly every day",
+                "_display": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "es"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Quase todos os dia"
+                        }
+                      ]
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                      "extension": [
+                        {
+                          "url": "lang",
+                          "valueCode": "en"
+                        },
+                        {
+                          "url": "content",
+                          "valueString": "Nearly every day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ],
+            "text": "Page"
+          }
+        }
+      ],
+      "linkId": "f1.23",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2b48bb01-fc1e-488f-b59e-bf0767c98a27",
+          "text": "[patient-given] [patient-family], [patient-age]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%patient-name-and-age"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "linkId": "f1.23.1",
+          "_prefix": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Su puntaje GAD-7 es"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Your GAD-7 score is"
+                  }
+                ]
+              }
+            ]
+          },
+          "text": "Your GAD-7 score is [gad7-total]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "%gad7-total.toString()"
+                }
+              }
+            ]
+          },
+          "type": "group",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-display-category",
+                        "code": "instructions"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "f1.23.1.1",
+              "text": "Tip",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "f1.23.1.2",
+              "text": "<span style=\"color:#006BBA\"><b>Tip #1</b></span><br>List symptoms, describe severity (what the summed up scores mean), and impact on daily activities.<br><br><span style=\"color:#006BBA\"><b>Tip #2</b></span><br>Please see severity levels for the GAD-7<br>&bull; 0-4 = Minimal anxiety<br>&bull; 5-9 = Mild anxiety<br>&bull; 10-14 = Moderate anxiety<br>&bull; 15+ = Severe anxiety",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "f1.23.2",
+          "text": "This score suggests symptoms of:",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "es"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "Esta puntuación sugiere síntomas de:"
+                  }
+                ]
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/translation",
+                "extension": [
+                  {
+                    "url": "lang",
+                    "valueCode": "en"
+                  },
+                  {
+                    "url": "content",
+                    "valueString": "This score suggests symptoms of:"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "linkId": "f1.23.3",
+          "text": "[gad7-total-meaning]",
+          "_text": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/fhirpath",
+                  "expression": "'<b>' + %gad7-total-meaning + '</b>'"
+                }
+              }
+            ]
+          },
+          "type": "display"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
+              "valueAttachment": {
+                "contentType": "image/png",
+                "data": "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",
+                "title": "GAD-7 Score Chart"
+              }
+            }
+          ],
+          "linkId": "a8e6d825-c67e-4d89-979b-8a140b7c49eb",
+          "text": "Suggested anxiety severity based on GAD-7 score",
+          "type": "display"
+        }
+      ]
+    }
+  ]
+}
