@@ -119,6 +119,9 @@ dbt/
 ├── profiles.yml             # Database connection
 ├── packages.yml             # Dependencies (dbt-utils)
 │
+├── metadata_manager.py      # Metadata operations (extract, enrich, fix)
+├── model_generator.py       # Generate dbt model files
+│
 ├── models/
 │   ├── sources/
 │   │   └── engage_dataset.yml    # Raw source definitions
@@ -482,53 +485,48 @@ qr_registration_info_anon (anonymized view)
 
 ## Adding a New Questionnaire
 
-To add a new questionnaire form:
+When a new questionnaire is added to the system, use the consolidated Python scripts to update metadata and regenerate models.
 
-### Step 1: Add Metadata
-
-Add rows to `seeds/questionnaire_metadata.csv`:
-
-```csv
-table,column,linkid,short_name,label,questionnaire_title,anon
-qr_new_form,patient_name,1.1,name,Patient Name,New Form,TRUE
-qr_new_form,score,1.2,score,Assessment Score,New Form,FALSE
-```
-
-### Step 2: Create Named Model
-
-Create `models/marts/qr_named/qr_new_form.sql`:
-
-```sql
-{{
-    config(
-        materialized='view'
-    )
-}}
-
-{{ build_qr_wide_readable(['Questionnaire/XXX'], 'qr_new_form') }}
-```
-
-### Step 3: Create Anonymized Model
-
-Create `models/marts/qr_anon/qr_new_form_anon.sql`:
-
-```sql
-{{
-    config(
-        materialized='view'
-    )
-}}
-
-{{ create_anonymized_qr_view('qr_new_form', []) }}
-```
-
-### Step 4: Load Seed and Run
+### Quick Start
 
 ```bash
-cd dbt
+cd /Users/mberg/github/engage-analytics/dbt
+
+# 1. Refresh all metadata (extracts question text, enriches with labels/PII flags)
+python metadata_manager.py full-refresh
+
+# 2. Regenerate all model files
+python model_generator.py all
+
+# 3. Run dbt to create the views
 uv run dbt seed --profiles-dir .
-uv run dbt run --profiles-dir . --select qr_new_form qr_new_form_anon
+uv run dbt run --profiles-dir .
 ```
+
+### What the Scripts Do
+
+**`metadata_manager.py full-refresh`** runs these steps in sequence:
+1. `extract-text` - Extract question text from questionnaire JSON files
+2. `enrich` - Create metadata CSV with labels, short names, and PII flags
+3. `add-common` - Add common fields (DOB, Age, Encounter Reference)
+4. `fix-hex` - Handle hex-formatted linkIds
+5. `fix-duplicates` - Ensure unique column names
+6. `find-unmapped` - Report any unmapped UUID fields
+
+**`model_generator.py all`** generates:
+- Named models in `models/marts/qr_named/` (readable column names, contains PII)
+- Anonymized models in `models/marts/qr_anon/` (PII masked/hashed)
+
+### Manual Steps (if needed)
+
+If you need to manually add a questionnaire:
+
+1. Add rows to `seeds/questionnaire_metadata.csv` with appropriate `table`, `column`, `linkid`, `short_name`, `label`, and `anon` values
+2. Add entry to `discovered_questionnaires.csv`
+3. Run `python model_generator.py all` to regenerate models
+4. Run `uv run dbt seed --profiles-dir . && uv run dbt run --profiles-dir .`
+
+For detailed command reference, see `docs/metadata-workflow.md`.
 
 ---
 
