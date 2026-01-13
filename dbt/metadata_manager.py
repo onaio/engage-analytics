@@ -244,6 +244,451 @@ def cmd_fix_duplicates():
 
 
 # =============================================================================
+# Enrich Metadata (from update_metadata_with_questions.py)
+# =============================================================================
+
+def create_short_name(column_name, label, table_name=''):
+    """Create a shortened column name for use in marts based on the label."""
+    system_fields = ['qr_id', 'questionnaire_id', 'subject_patient_id',
+                     'encounter_id', 'author_practitioner_id',
+                     'practitioner_location_id', 'practitioner_organization_id',
+                     'practitioner_id', 'practitioner_careteam_id',
+                     'application_version']
+    if column_name in system_fields:
+        return column_name
+
+    if column_name.startswith('patient-'):
+        return column_name.replace('-', '_')
+
+    if column_name.startswith('demographic_'):
+        short = column_name.replace('demographic_', 'demo_')
+        short = short.replace('what_is_your_', '').replace('what_is_the_', '')
+        short = short.replace('please_specify', 'specify')
+        return short[:30] if len(short) > 30 else short
+
+    uuid_pattern = r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    if re.match(uuid_pattern, column_name, re.IGNORECASE) or label:
+        if label and len(label) > 3:
+            clean_label = label
+            prefixes_to_remove = [
+                r'Financial Wellness Tool - ', r'Sociodemographic Survey - ',
+                r'SBIRT - ', r'PHQ-9 \(IPC Session \d+\) - ',
+                r'GAD-7 \(IPC Session \d+\) - ', r'Short-Form PCL-5 \(IPC Session \d+\) - ',
+                r'IPC Session \d+ - ', r'Mood Rating \(IPC Session \d+\) - ',
+                r'SPI Subform \d+ - ',
+            ]
+            for prefix in prefixes_to_remove:
+                clean_label = re.sub(f'^{prefix}', '', clean_label)
+
+            # Extract meaningful words
+            words = re.findall(r'\b[A-Za-z]+\b', clean_label)
+            stopwords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at',
+                        'to', 'for', 'of', 'with', 'by', 'from', 'up', 'about',
+                        'into', 'through', 'during', 'how', 'when', 'where',
+                        'what', 'which', 'who', 'whom', 'this', 'that', 'these',
+                        'those', 'then', 'than', 'are', 'was', 'were', 'been',
+                        'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
+                        'could', 'should', 'may', 'might', 'must', 'can', 'much',
+                        'often', 'past', 'month', 'months', 'year', 'years', 'time']
+            meaningful_words = [w.lower() for w in words if w.lower() not in stopwords and len(w) > 2]
+
+            if meaningful_words:
+                short = '_'.join(meaningful_words[:3])
+                if 'sbirt' in table_name and len(short) < 20:
+                    short = 'sbirt_' + short
+                elif 'financial' in table_name and len(short) < 20:
+                    short = 'fin_' + short
+                elif 'phq' in table_name and len(short) < 25:
+                    short = 'phq_' + short
+                elif 'gad' in table_name and len(short) < 25:
+                    short = 'gad_' + short
+                return short[:30] if len(short) > 30 else short
+
+        return f"q_{column_name[:8].replace('-', '')}"
+
+    if '.' in column_name:
+        return column_name.replace('.', '_')
+    if '-' in column_name:
+        if len(column_name) <= 30:
+            return column_name.replace('-', '_')
+        parts = column_name.split('-')
+        return '_'.join(parts[:3])[:30]
+
+    return column_name[:30] if len(column_name) > 30 else column_name
+
+
+def column_to_label(column_name, table_name, linkid_map):
+    """Convert column names to human-readable labels using actual question text."""
+    special_cases = {
+        'qr_id': 'Questionnaire Response ID',
+        'questionnaire_id': 'Questionnaire ID',
+        'subject_patient_id': 'Subject Patient ID',
+        'encounter_id': 'Encounter ID',
+        'author_practitioner_id': 'Author Practitioner ID',
+        'practitioner_location_id': 'Practitioner Location ID',
+        'practitioner_organization_id': 'Practitioner Organization ID',
+        'practitioner_id': 'Practitioner ID',
+        'practitioner_careteam_id': 'Practitioner Care Team ID',
+        'application_version': 'Application Version',
+        'patient-age': 'Patient Age',
+        'patient-biological-sex': 'Patient Biological Sex',
+        'patient-dob': 'Patient Date of Birth',
+        'patient-gender-identity': 'Patient Gender Identity',
+        'patient-name': 'Patient Name',
+        'patient-pronouns': 'Patient Pronouns',
+    }
+
+    if column_name in special_cases:
+        return special_cases[column_name]
+
+    uuid_pattern = r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    if re.match(uuid_pattern, column_name, re.IGNORECASE):
+        question_text = linkid_map.get(column_name, '')
+        if question_text and len(question_text) > 3:
+            text = question_text.strip()
+            text = re.sub(r'^[,.\s]+', '', text)
+            return text[:77] + "..." if len(text) > 80 else text
+        return 'Survey Response'
+
+    if '.' in column_name:
+        question_text = linkid_map.get(column_name, '')
+        if question_text and len(question_text) > 3:
+            text = question_text.strip()
+            return text[:77] + "..." if len(text) > 80 else text
+        return f'Form Question {column_name}'
+
+    if column_name.startswith('demographic_'):
+        label = column_name.replace('demographic_', '').replace('_', ' ')
+        return ' '.join(word.capitalize() for word in label.split())
+
+    if '-' in column_name:
+        question_text = linkid_map.get(column_name, '')
+        if question_text and len(question_text) > 3:
+            text = question_text.strip()
+            return text[:77] + "..." if len(text) > 80 else text
+        return column_name.replace('-', ' ').title()
+
+    return column_name.replace('_', ' ').title()
+
+
+def get_questionnaire_title(table_name):
+    """Get questionnaire title from table name."""
+    title_mapping = {
+        'qr_registration_info': 'Add Family Member Registration',
+        'qr_sociodemographic_survey': 'Sociodemographic Survey',
+        'qr_spi_subform_1': 'SPI Subform 1',
+        'qr_spi_subform_2': 'SPI Subform 2',
+        'qr_spi_subform_3': 'SPI Subform 3',
+        'qr_spi_subform_4': 'SPI Subform 4',
+        'qr_sbirt': 'SBIRT',
+        'qr_1_month_follow_up': '1 month follow up',
+        'qr_common_mental_health_symptoms': 'Common Mental Health Symptoms',
+        'qr_confidential_s1': 'Discuss Confidentiality',
+        'qr_financial_wellness_tool': 'Financial Wellness Tool',
+        'qr_planning_next_steps': 'Planning Next Steps',
+        'qr_mw_tool': 'Mental Wellness Tool',
+        'qr_mw_tool_ipc_session_4': 'Mental Wellness Tool Session 4',
+        'qr_remove_patient': 'eCBIS Remove Family Form',
+    }
+
+    if table_name in title_mapping:
+        return title_mapping[table_name]
+
+    # Handle session-based questionnaires
+    session_patterns = [
+        ('gad', 'GAD-7'),
+        ('phq', 'PHQ-9'),
+        ('mood_rating', 'Mood Rating'),
+        ('pcl', 'Short-Form PCL-5-8'),
+        ('start_ipc', 'IPC Session'),
+    ]
+
+    for pattern, prefix in session_patterns:
+        if pattern in table_name:
+            for i in range(1, 5):
+                if f's{i}' in table_name:
+                    return f'{prefix} (IPC Session {i})'
+
+    return ''
+
+
+def cmd_enrich():
+    """Enrich metadata with labels, short names, and PII flags."""
+    base_dir = get_base_dir()
+
+    # Load linkId to question mapping
+    mapping_file = base_dir / 'linkid_question_mapping.json'
+    if not mapping_file.exists():
+        print("Error: linkid_question_mapping.json not found. Run extract-text first.")
+        return
+
+    with open(mapping_file, 'r') as f:
+        linkid_map = json.load(f)
+
+    print(f"Loaded {len(linkid_map)} linkId mappings")
+
+    # Connect to database
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Get all qr_* tables
+    cur.execute("""
+        SELECT table_name
+        FROM information_schema.tables
+        WHERE table_schema = 'engage_analytics_engage_analytics_mart'
+        AND table_name LIKE 'qr_%'
+        AND table_name NOT LIKE '%_anon'
+        ORDER BY table_name
+    """)
+    tables = [row[0] for row in cur.fetchall()]
+    cur.close()
+    conn.close()
+
+    print(f"Found {len(tables)} questionnaire tables")
+
+    # PII patterns
+    pii_patterns = [
+        'patient-name', 'patient-dob', 'patient-age',
+        'patient-biological-sex', 'patient-gender-identity',
+        'first_name', 'last_name', 'middle_name',
+        'date_of_birth', 'medicaid_number', 'email_address',
+        'physical_address', 'phone_number', 'zip_code',
+        'unique_id', 'name_family', 'name_given', 'birthdate'
+    ]
+
+    all_columns = []
+
+    for table_name in tables:
+        try:
+            conn = get_db_connection()
+            cur = conn.cursor()
+
+            # Get columns
+            cur.execute(f"SELECT * FROM engage_analytics_engage_analytics_mart.{table_name} LIMIT 1")
+            actual_columns = [desc[0] for desc in cur.description]
+
+            # Get data types
+            cur.execute(f"""
+                SELECT column_name, data_type
+                FROM information_schema.columns
+                WHERE table_schema = 'engage_analytics_engage_analytics_mart'
+                AND table_name = '{table_name}'
+            """)
+            column_types = {row[0]: row[1] for row in cur.fetchall()}
+
+            cur.close()
+            conn.close()
+
+            for col_name in actual_columns:
+                if col_name == 'LINK_ID_THAT_CONTAINS_ENCOUNTER_ID_AS_ANSWER':
+                    continue
+
+                data_type = column_types.get(col_name, 'text')
+
+                # Check PII
+                is_pii = any(p.lower() in col_name.lower().replace('_', '-') for p in pii_patterns)
+
+                # Determine source
+                system_fields = ['qr_id', 'questionnaire_id', 'subject_patient_id',
+                               'encounter_id', 'author_practitioner_id',
+                               'practitioner_location_id', 'practitioner_organization_id',
+                               'practitioner_id', 'practitioner_careteam_id',
+                               'application_version']
+                if col_name in system_fields:
+                    source = 'system'
+                elif col_name.startswith('patient-'):
+                    source = 'generated'
+                else:
+                    source = 'questionnaire'
+
+                label = column_to_label(col_name, table_name, linkid_map)
+                short_name = create_short_name(col_name, label, table_name)
+
+                all_columns.append({
+                    'table': table_name,
+                    'column': col_name,
+                    'linkid': col_name if re.match(r'^[0-9a-f]{8}-', col_name) else '',
+                    'short_name': short_name,
+                    'label': label,
+                    'data_type': data_type,
+                    'questionnaire_title': get_questionnaire_title(table_name),
+                    'source': source,
+                    'anon': 'TRUE' if is_pii else 'FALSE'
+                })
+
+        except Exception as e:
+            print(f"Warning: Could not process table {table_name}: {e}")
+
+    # Write to CSV
+    output_file = base_dir / 'seeds' / 'questionnaire_metadata.csv'
+    with open(output_file, 'w', newline='') as f:
+        fieldnames = ['table', 'column', 'linkid', 'short_name', 'label',
+                     'data_type', 'questionnaire_title', 'source', 'anon']
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(all_columns)
+
+    print(f"\nEnriched metadata with {len(all_columns)} fields")
+    print(f"Tables processed: {len(tables)}")
+    print(f"PII fields marked: {sum(1 for c in all_columns if c['anon'] == 'TRUE')}")
+    print(f"Saved to {output_file}")
+
+
+# =============================================================================
+# Add Common Fields (from add_common_fields_to_metadata.py)
+# =============================================================================
+
+COMMON_FIELDS = {
+    'cd8e3d6d-e9ff-458d-d122-57070bebffaf': {'text': 'Date of Birth', 'alias': 'date_of_birth'},
+    'b5bc7f80-4a0c-486c-e5eb-32c750036f94': {'text': 'Age', 'alias': 'age'},
+    'calculated-month': {'text': 'Birth Month', 'alias': 'birth_month'},
+    'calculated-year': {'text': 'Age in Years', 'alias': 'age_years'},
+    'LINK_ID_THAT_CONTAINS_ENCOUNTER_ID_AS_ANSWER': {'text': 'Encounter Reference', 'alias': 'encounter_reference'},
+}
+
+
+def cmd_add_common():
+    """Add common fields (DOB, Age, etc.) to metadata."""
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Find which questionnaires use which common fields
+    questionnaire_fields = defaultdict(set)
+    for linkid in COMMON_FIELDS.keys():
+        cur.execute("""
+            SELECT DISTINCT questionnaire_id
+            FROM engage_analytics_engage_analytics_int.int_qr_answers_long
+            WHERE linkid = %s
+        """, (linkid,))
+        for row in cur.fetchall():
+            questionnaire_fields[row[0]].add(linkid)
+
+    cur.close()
+    conn.close()
+
+    # Read existing metadata
+    metadata_file = get_base_dir() / 'seeds' / 'questionnaire_metadata.csv'
+    existing_data = []
+    existing_keys = set()
+
+    with open(metadata_file, 'r') as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        for row in reader:
+            existing_data.append(row)
+            existing_keys.add((row.get('table', ''), row.get('linkid', '')))
+
+    # Add new entries
+    new_count = 0
+    for qid, linkids in questionnaire_fields.items():
+        for linkid in linkids:
+            # Convert questionnaire_id to table name
+            table_name = 'qr_' + qid.replace('Questionnaire/', '').replace('-', '_')
+
+            if (table_name, linkid) not in existing_keys:
+                field_info = COMMON_FIELDS[linkid]
+                new_entry = {
+                    'table': table_name,
+                    'column': linkid,
+                    'linkid': linkid,
+                    'short_name': field_info['alias'],
+                    'label': field_info['text'],
+                    'data_type': 'text',
+                    'questionnaire_title': '',
+                    'source': 'questionnaire',
+                    'anon': 'FALSE'
+                }
+                existing_data.append(new_entry)
+                new_count += 1
+
+    # Write back
+    with open(metadata_file, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(existing_data)
+
+    print(f"Added {new_count} common field entries")
+    print(f"Total metadata entries: {len(existing_data)}")
+
+
+# =============================================================================
+# Fix Hex LinkIds (from fix_hex_linkids.py + update_hex_aliases.py)
+# =============================================================================
+
+def cmd_fix_hex():
+    """Handle hex-formatted linkIds in Questionnaire/55."""
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Find hex-formatted linkIds in Questionnaire/55
+    cur.execute("""
+        SELECT DISTINCT linkid, MAX(answer_value_text) as sample_value
+        FROM engage_analytics_engage_analytics_int.int_qr_answers_long
+        WHERE questionnaire_id = 'Questionnaire/55'
+        AND linkid ~ '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        GROUP BY linkid
+    """)
+    hex_fields = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    print(f"Found {len(hex_fields)} hex-formatted linkIds in Questionnaire/55")
+
+    if not hex_fields:
+        print("No hex fields to process")
+        return
+
+    # Read existing metadata
+    metadata_file = get_base_dir() / 'seeds' / 'questionnaire_metadata.csv'
+    existing_data = []
+    existing_keys = set()
+
+    with open(metadata_file, 'r') as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        for row in reader:
+            existing_data.append(row)
+            existing_keys.add((row.get('table', ''), row.get('linkid', '')))
+
+    # Add/update entries
+    new_count = 0
+    for linkid, sample in hex_fields:
+        table_name = 'qr_start_ipc_s1'  # Questionnaire/55 is IPC Session 1
+
+        if (table_name, linkid) not in existing_keys:
+            # Create alias from sample value
+            if sample:
+                alias = re.sub(r'[^\w\s]', '', sample[:60])
+                alias = re.sub(r'\s+', '_', alias).lower()[:40]
+                alias = f"ipc_s1_{alias}" if alias else f"ipc_s1_field_{linkid[:8]}"
+            else:
+                alias = f"ipc_s1_field_{linkid[:8]}"
+
+            new_entry = {
+                'table': table_name,
+                'column': linkid,
+                'linkid': linkid,
+                'short_name': alias[:63],
+                'label': sample[:100] if sample else 'Field',
+                'data_type': 'text',
+                'questionnaire_title': 'IPC Session 1',
+                'source': 'questionnaire',
+                'anon': 'FALSE'
+            }
+            existing_data.append(new_entry)
+            new_count += 1
+
+    # Write back
+    with open(metadata_file, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(existing_data)
+
+    print(f"Added {new_count} hex field entries")
+    print(f"Total metadata entries: {len(existing_data)}")
+
+
+# =============================================================================
 # Show Status
 # =============================================================================
 
@@ -311,16 +756,34 @@ def cmd_full_refresh():
 
     print()
     print("=" * 60)
-    print("STEP 2: Finding unmapped UUID fields")
+    print("STEP 2: Enriching metadata with labels and PII flags")
     print("=" * 60)
     try:
-        cmd_find_unmapped()
+        cmd_enrich()
     except Exception as e:
-        print(f"Warning: Could not find unmapped fields (database may not be available): {e}")
+        print(f"Warning: Could not enrich metadata: {e}")
 
     print()
     print("=" * 60)
-    print("STEP 3: Fixing duplicate short names")
+    print("STEP 3: Adding common fields (DOB, Age, etc.)")
+    print("=" * 60)
+    try:
+        cmd_add_common()
+    except Exception as e:
+        print(f"Warning: Could not add common fields: {e}")
+
+    print()
+    print("=" * 60)
+    print("STEP 4: Fixing hex linkIds in Questionnaire/55")
+    print("=" * 60)
+    try:
+        cmd_fix_hex()
+    except Exception as e:
+        print(f"Warning: Could not fix hex linkIds: {e}")
+
+    print()
+    print("=" * 60)
+    print("STEP 5: Fixing duplicate short names")
     print("=" * 60)
     try:
         cmd_fix_duplicates()
@@ -329,10 +792,17 @@ def cmd_full_refresh():
 
     print()
     print("=" * 60)
+    print("STEP 6: Finding unmapped UUID fields")
+    print("=" * 60)
+    try:
+        cmd_find_unmapped()
+    except Exception as e:
+        print(f"Warning: Could not find unmapped fields: {e}")
+
+    print()
+    print("=" * 60)
     print("COMPLETE")
     print("=" * 60)
-    print("\nNote: For full metadata enrichment, run the original")
-    print("update_metadata_with_questions.py script from bak/")
 
 
 # =============================================================================
@@ -348,11 +818,20 @@ def main():
     subparsers.add_parser('extract-text',
         help='Extract question text from questionnaire JSON files')
 
-    subparsers.add_parser('find-unmapped',
-        help='Find unmapped UUID fields in database')
+    subparsers.add_parser('enrich',
+        help='Enrich metadata with labels, short names, and PII flags')
+
+    subparsers.add_parser('add-common',
+        help='Add common fields (DOB, Age, etc.) to metadata')
+
+    subparsers.add_parser('fix-hex',
+        help='Handle hex-formatted linkIds in Questionnaire/55')
 
     subparsers.add_parser('fix-duplicates',
         help='Fix duplicate short_name values in metadata')
+
+    subparsers.add_parser('find-unmapped',
+        help='Find unmapped UUID fields in database')
 
     subparsers.add_parser('status',
         help='Show status of metadata files')
@@ -364,10 +843,16 @@ def main():
 
     if args.command == 'extract-text':
         cmd_extract_text()
-    elif args.command == 'find-unmapped':
-        cmd_find_unmapped()
+    elif args.command == 'enrich':
+        cmd_enrich()
+    elif args.command == 'add-common':
+        cmd_add_common()
+    elif args.command == 'fix-hex':
+        cmd_fix_hex()
     elif args.command == 'fix-duplicates':
         cmd_fix_duplicates()
+    elif args.command == 'find-unmapped':
+        cmd_find_unmapped()
     elif args.command == 'status':
         cmd_status()
     elif args.command == 'full-refresh':
