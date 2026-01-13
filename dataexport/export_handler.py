@@ -89,6 +89,22 @@ class DataExporter:
         except Exception as e:
             raise Exception(f"Failed to get table list: {str(e)}")
 
+    def get_metrics_tables(self):
+        """Get list of metrics tables to export"""
+        try:
+            metrics_schema = 'engage_analytics'
+            query = f"""
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = '{metrics_schema}'
+            AND table_name LIKE 'fct_metrics%'
+            ORDER BY table_name
+            """
+            self.cur.execute(query)
+            return [row[0] for row in self.cur.fetchall()]
+        except Exception as e:
+            raise Exception(f"Failed to get metrics table list: {str(e)}")
+
     def get_pii_tables(self):
         """Get list of PII tables/views to export (non-anonymized)"""
         try:
@@ -144,30 +160,31 @@ class DataExporter:
         except Exception as e:
             raise Exception(f"Failed to get PII table list: {str(e)}")
     
-    def export_table_to_csv(self, table_name, output_file):
+    def export_table_to_csv(self, table_name, output_file, schema=None):
         """Export a single table/view to CSV file"""
         try:
+            export_schema = schema or self.schema
             # Use COPY command for efficient export
             copy_query = f"""
             COPY (
-                SELECT * FROM {self.schema}."{table_name}"
+                SELECT * FROM {export_schema}."{table_name}"
             ) TO STDOUT WITH CSV HEADER
             """
-            
+
             with open(output_file, 'w') as f:
                 self.cur.copy_expert(copy_query, f)
-            
+
             # Get row count for logging
-            self.cur.execute(f'SELECT COUNT(*) FROM {self.schema}."{table_name}"')
+            self.cur.execute(f'SELECT COUNT(*) FROM {export_schema}."{table_name}"')
             row_count = self.cur.fetchone()[0]
-            
+
             return {
                 'table': table_name,
                 'rows': row_count,
                 'file': str(output_file),
                 'size': output_file.stat().st_size if output_file.exists() else 0
             }
-            
+
         except Exception as e:
             raise Exception(f"Failed to export {table_name}: {str(e)}")
     
@@ -204,14 +221,19 @@ class DataExporter:
         output_path.mkdir(exist_ok=True, parents=True)
 
         results = []
+        schema = None
+
         if export_type == 'anon':
             tables = self.get_anonymized_tables()
+        elif export_type == 'metrics':
+            tables = self.get_metrics_tables()
+            schema = 'engage_analytics'
         else:
             tables = self.get_pii_tables()
 
         for table in tables:
             csv_file = output_path / f"{table}.csv"
-            result = self.export_table_to_csv(table, csv_file)
+            result = self.export_table_to_csv(table, csv_file, schema=schema)
             results.append(result)
             print(f"Exported {table}: {result['rows']} rows")
 

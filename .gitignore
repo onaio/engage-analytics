@@ -6,3 +6,5 @@ dbt/data/
 dbt/dbt_packages/
 dbt/logs/
 dbt/target/
+dataexport/__pycache__/
+dataexport/exports/

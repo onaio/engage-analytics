@@ -1,0 +1,18 @@
+# ABOUTME: Docker Compose configuration for local PostgreSQL database
+# ABOUTME: Used for local dbt development with Airbyte-style data
+
+services:
+  nycdb:
+    image: postgres:16-alpine
+    container_name: nycdb
+    environment:
+      POSTGRES_DB: airbyte
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: engage
+    ports:
+      - "5434:5432"
+    volumes:
+      - nycdb_data:/var/lib/postgresql/data
+
+volumes:
+  nycdb_data:

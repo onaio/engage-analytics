@@ -52,9 +52,9 @@ qr_common_mental_health_symptoms,common_mental_health_symptoms_feeling_tired_or_
 qr_common_mental_health_symptoms,common_mental_health_symptoms_poor_appetite_or_overeating,f1.7.1,appetite_problems,Common Mental Health Symptoms - Poor appetite or overeating,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,common_mental_health_symptoms_feeling_bad_about_yourself_or_tha,f1.8.1,feeling_bad_self,Common Mental Health Symptoms - Feeling bad about yourself or that you are a ...,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,common_mental_health_symptoms_trouble_concentrating_on_things_s,f1.9.1,concentration_trouble,"Common Mental Health Symptoms - Trouble concentrating on things, such as read...",text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,patient_age,patient-age,patient_age,Patient Age,text,Common Mental Health Symptoms,generated,FALSE
-qr_common_mental_health_symptoms,patient_date_of_birth,patient-dob,patient_dob,Patient Date of Birth,text,Common Mental Health Symptoms,generated,TRUE
-qr_common_mental_health_symptoms,patient_name,patient-name,patient_name,Patient Name,text,Common Mental Health Symptoms,generated,TRUE
+qr_common_mental_health_symptoms,patient_age,,patient_age,Patient Age,text,Common Mental Health Symptoms,generated,FALSE
+qr_common_mental_health_symptoms,patient_date_of_birth,,patient_dob,Patient Date of Birth,text,Common Mental Health Symptoms,generated,TRUE
+qr_common_mental_health_symptoms,patient_name,,patient_name,Patient Name,text,Common Mental Health Symptoms,generated,TRUE
 qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_7,show-pcl-5-to-8-questions,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_8,task-id-common-mental-pdf,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_confidential_s1,questionnaire_id_3,,questionnaire_id,Questionnaire ID,text,Discuss Confidentiality,system,FALSE
@@ -284,13 +284,13 @@ qr_mw_tool,mental_wellness_tool_in_the_past_year_have_there_been_times_w_2,f35bb
 qr_mw_tool,discussion_with_supervisor_for_severe_mental_health_supervisor_,fe874736-efd1-4fba-b517-5560489729b0,discussion_supervisor_severe,Discussion with Supervisor (for severe mental health) - Supervisor's name,text,Mental Wellness Tool,questionnaire,FALSE
 qr_mw_tool,mental_wellness_tool_how_many_drinks,how-many-drinks,mental_wellness_tool,Mental Wellness Tool - how-many-drinks,text,Mental Wellness Tool,questionnaire,FALSE
 qr_mw_tool,mental_wellness_tool_no_mental_problem,no-mental-problem,mental_wellness_tool,Mental Wellness Tool - no-mental-problem,text,Mental Wellness Tool,questionnaire,FALSE
-qr_mw_tool,patient_age_2,patient-age,patient_age,Patient Age,text,Mental Wellness Tool,generated,FALSE
-qr_mw_tool,patient_biological_sex,patient-biological-sex,patient_biological_sex,Patient Biological Sex,text,Mental Wellness Tool,generated,TRUE
-qr_mw_tool,patient_date_of_birth_2,patient-dob,patient_dob,Patient Date of Birth,text,Mental Wellness Tool,generated,TRUE
-qr_mw_tool,patient_gender_identity,patient-gender-identity,patient_gender_identity,Patient Gender Identity,text,Mental Wellness Tool,generated,TRUE
-qr_mw_tool,patient_how_you_think_of_yourself,patient-how-you-think-of-yourself,patient_how_you_think_of_yourself,Patient How You Think of Yourself,text,Mental Wellness Tool,generated,TRUE
-qr_mw_tool,patient_name_2,patient-name,patient_name,Patient Name,text,Mental Wellness Tool,generated,TRUE
-qr_mw_tool,patient_pronouns,patient-pronouns,patient_pronouns,Patient Pronouns,text,Mental Wellness Tool,generated,TRUE
+qr_mw_tool,patient_age_2,,patient_age,Patient Age,text,Mental Wellness Tool,generated,FALSE
+qr_mw_tool,patient_biological_sex,,patient_biological_sex,Patient Biological Sex,text,Mental Wellness Tool,generated,TRUE
+qr_mw_tool,patient_date_of_birth_2,,patient_dob,Patient Date of Birth,text,Mental Wellness Tool,generated,TRUE
+qr_mw_tool,patient_gender_identity,,patient_gender_identity,Patient Gender Identity,text,Mental Wellness Tool,generated,TRUE
+qr_mw_tool,patient_how_you_think_of_yourself,,patient_how_you_think_of_yourself,Patient How You Think of Yourself,text,Mental Wellness Tool,generated,TRUE
+qr_mw_tool,patient_name_2,,patient_name,Patient Name,text,Mental Wellness Tool,generated,TRUE
+qr_mw_tool,patient_pronouns,,patient_pronouns,Patient Pronouns,text,Mental Wellness Tool,generated,TRUE
 qr_mw_tool,the_client_s_mental_wellness_tool_results_q1_to_q3_negative,q1-to-q3-negative,client_mental_wellness,The client's Mental Wellness Tool results: - q1-to-q3-negative,text,Mental Wellness Tool,questionnaire,FALSE
 qr_mw_tool,mental_wellness_tool_severe_mental_health,severe-mental-health,mental_wellness_tool,Mental Wellness Tool - severe-mental-health,text,Mental Wellness Tool,questionnaire,FALSE
 qr_mw_tool,mental_wellness_tool_suicide_risk,suicide-risk,mental_wellness_tool,Mental Wellness Tool - suicide-risk,text,Mental Wellness Tool,questionnaire,FALSE
@@ -325,13 +325,13 @@ qr_mw_tool_ipc_session_4,mental_wellness_tool_drug_problem_2,drug-problem,mental
 qr_mw_tool_ipc_session_4,mental_wellness_tool_in_the_past_year_have_there_been_times_w_4,f35bbaa2-5e2e-4c74-b9b4-f0aa1eabe47d,mental_wellness_tool,"Mental Wellness Tool - In the past year, have there been times when you felt ...",text,,questionnaire,FALSE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_how_many_drinks_2,how-many-drinks,mental_wellness_tool,Mental Wellness Tool - how-many-drinks,text,,questionnaire,FALSE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_no_mental_problem_2,no-mental-problem,mental_wellness_tool,Mental Wellness Tool - no-mental-problem,text,,questionnaire,FALSE
-qr_mw_tool_ipc_session_4,patient_age_3,patient-age,patient_age,Patient Age,text,,generated,FALSE
-qr_mw_tool_ipc_session_4,patient_biological_sex_2,patient-biological-sex,patient_biological_sex,Patient Biological Sex,text,,generated,TRUE
-qr_mw_tool_ipc_session_4,patient_date_of_birth_3,patient-dob,patient_dob,Patient Date of Birth,text,,generated,TRUE
-qr_mw_tool_ipc_session_4,patient_gender_identity_2,patient-gender-identity,patient_gender_identity,Patient Gender Identity,text,,generated,TRUE
-qr_mw_tool_ipc_session_4,patient_how_you_think_of_yourself_2,patient-how-you-think-of-yourself,patient_how_you_think_of_yourself,Patient How You Think of Yourself,text,,generated,TRUE
-qr_mw_tool_ipc_session_4,patient_name_3,patient-name,patient_name,Patient Name,text,,generated,TRUE
-qr_mw_tool_ipc_session_4,patient_pronouns_2,patient-pronouns,patient_pronouns,Patient Pronouns,text,,generated,TRUE
+qr_mw_tool_ipc_session_4,patient_age_3,,patient_age,Patient Age,text,,generated,FALSE
+qr_mw_tool_ipc_session_4,patient_biological_sex_2,,patient_biological_sex,Patient Biological Sex,text,,generated,TRUE
+qr_mw_tool_ipc_session_4,patient_date_of_birth_3,,patient_dob,Patient Date of Birth,text,,generated,TRUE
+qr_mw_tool_ipc_session_4,patient_gender_identity_2,,patient_gender_identity,Patient Gender Identity,text,,generated,TRUE
+qr_mw_tool_ipc_session_4,patient_how_you_think_of_yourself_2,,patient_how_you_think_of_yourself,Patient How You Think of Yourself,text,,generated,TRUE
+qr_mw_tool_ipc_session_4,patient_name_3,,patient_name,Patient Name,text,,generated,TRUE
+qr_mw_tool_ipc_session_4,patient_pronouns_2,,patient_pronouns,Patient Pronouns,text,,generated,TRUE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_severe_mental_health_2,severe-mental-health,mental_wellness_tool,Mental Wellness Tool - severe-mental-health,text,,questionnaire,FALSE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_suicide_risk_2,suicide-risk,mental_wellness_tool,Mental Wellness Tool - suicide-risk,text,,questionnaire,FALSE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_taskid_of_pdf_2,task-id-mw-tool-ipc-s4-pdf,mental_wellness_tool,Mental Wellness Tool - taskId of pdf,text,,questionnaire,FALSE
@@ -498,9 +498,9 @@ qr_planning_next_steps,is_sbirt,is-sbirt,sbirt,Is Sbirt,text,Planning Next Steps
 qr_planning_next_steps,is_sbirt_main,is-sbirt-main,sbirt_main,Is Sbirt Main,text,Planning Next Steps,questionnaire,FALSE
 qr_planning_next_steps,is_sbirt_optional,is-sbirt-optional,sbirt_optional,Is Sbirt Optional,text,Planning Next Steps,questionnaire,FALSE
 qr_planning_next_steps,is_spi,is-spi,spi,Is Spi,text,Planning Next Steps,questionnaire,FALSE
-qr_planning_next_steps,patient_age_4,patient-age,patient_age,Patient Age,text,Planning Next Steps,generated,FALSE
-qr_planning_next_steps,patient_date_of_birth_4,patient-dob,patient_dob,Patient Date of Birth,text,Planning Next Steps,generated,TRUE
-qr_planning_next_steps,patient_name_4,patient-name,patient_name,Patient Name,text,Planning Next Steps,generated,TRUE
+qr_planning_next_steps,patient_age_4,,patient_age,Patient Age,text,Planning Next Steps,generated,FALSE
+qr_planning_next_steps,patient_date_of_birth_4,,patient_dob,Patient Date of Birth,text,Planning Next Steps,generated,TRUE
+qr_planning_next_steps,patient_name_4,,patient_name,Patient Name,text,Planning Next Steps,generated,TRUE
 qr_planning_next_steps,planning_next_steps_scheduled_ipc_session_1_with_current_time,scheduled-ipc-session-1-with-current-time,planning_next_steps,Planning Next Steps - Scheduled IPC Session 1 with Current Time,text,Planning Next Steps,questionnaire,FALSE
 qr_planning_next_steps,scheduled_ipc_session_1_with_current_time_2,scheduled-ipc-session-1-with-current-time-2,scheduled_ipc_session,Scheduled Ipc Session 1 With Current Time 2,text,Planning Next Steps,questionnaire,FALSE
 qr_planning_next_steps,planning_next_steps_taskid_000,task-id-000,planning_next_steps,Planning Next Steps - taskId 000,text,Planning Next Steps,questionnaire,FALSE
@@ -717,10 +717,10 @@ qr_sbirt,sbirt_is_medium_risk_alcohol,is-medium-risk-alcohol,sbirt_medium_risk_a
 qr_sbirt,sbirt_is_medium_risk_drug,is-medium-risk-drug,sbirt_medium_risk_drug,SBIRT - Is Medium risk drug,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_is_opioid_dependence,is-opioid-dependence,sbirt_opioid_dependence,SBIRT - Is opioid dependence,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_other_drug_list,other-drug-list,sbirt_other_drug_list,SBIRT - other-drug-list,text,SBIRT,questionnaire,FALSE
-qr_sbirt,patient_age_5,patient-age,patient_age,Patient Age,text,SBIRT,generated,FALSE
-qr_sbirt,patient_date_of_birth_5,patient-dob,patient_dob,Patient Date of Birth,text,SBIRT,generated,TRUE
-qr_sbirt,sbirt_patient_gender,patient-gender,patient_gender,SBIRT - Patient Gender,text,SBIRT,generated,FALSE
-qr_sbirt,patient_name_5,patient-name,patient_name,Patient Name,text,SBIRT,generated,TRUE
+qr_sbirt,patient_age_5,,patient_age,Patient Age,text,SBIRT,generated,FALSE
+qr_sbirt,patient_date_of_birth_5,,patient_dob,Patient Date of Birth,text,SBIRT,generated,TRUE
+qr_sbirt,sbirt_patient_gender,,patient_gender,SBIRT - Patient Gender,text,SBIRT,generated,FALSE
+qr_sbirt,patient_name_5,,patient_name,Patient Name,text,SBIRT,generated,TRUE
 qr_sbirt,sbirt_score_audit,score-audit,sbirt_score_audit,SBIRT - Score AUDIT,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_score_dast,score-dast,sbirt_score_dast,SBIRT - Score DAST,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_should_converse_about_substance_use,should-converse-about-substance-use,converse_substance_use,SBIRT - should-converse-about-substance-use,text,SBIRT,questionnaire,FALSE
@@ -892,13 +892,13 @@ qr_sociodemographic_survey,sociodemographic_survey_what_is_your_marital_status,9
 qr_sociodemographic_survey,demographic_question_6,b4afce83-4279-4d19-8a8b-1e0b7e1ba73c,demographic_question,Demographic Question,text,Sociodemographic Survey,questionnaire,FALSE
 qr_sociodemographic_survey,sociodemographic_survey_what_was_the_highest_grade_or_level_of_,d7e0e5c9-35bd-40bc-9224-9cf9e4b9dbba,highest_grade_level,Sociodemographic Survey - What was the highest grade or level of school that ...,text,Sociodemographic Survey,questionnaire,FALSE
 qr_sociodemographic_survey,sociodemographic_survey_please_specify_3,f11fe547-9be9-4693-8a85-f252e4a6262f,please_specify,Sociodemographic Survey - Please specify:,text,Sociodemographic Survey,questionnaire,FALSE
-qr_sociodemographic_survey,patient_age_6,patient-age,patient_age,Patient Age,text,Sociodemographic Survey,generated,FALSE
-qr_sociodemographic_survey,patient_biological_sex_3,patient-biological-sex,patient_biological_sex,Patient Biological Sex,text,Sociodemographic Survey,generated,TRUE
-qr_sociodemographic_survey,patient_date_of_birth_6,patient-dob,patient_dob,Patient Date of Birth,text,Sociodemographic Survey,generated,TRUE
-qr_sociodemographic_survey,patient_gender_identity_3,patient-gender-identity,patient_gender_identity,Patient Gender Identity,text,Sociodemographic Survey,generated,TRUE
-qr_sociodemographic_survey,patient_how_you_think_of_yourself_3,patient-how-you-think-of-yourself,patient_how_you_think_of_yourself,Patient How You Think of Yourself,text,Sociodemographic Survey,generated,TRUE
-qr_sociodemographic_survey,patient_name_6,patient-name,patient_name,Patient Name,text,Sociodemographic Survey,generated,TRUE
-qr_sociodemographic_survey,patient_pronouns_3,patient-pronouns,patient_pronouns,Patient Pronouns,text,Sociodemographic Survey,generated,TRUE
+qr_sociodemographic_survey,patient_age_6,,patient_age,Patient Age,text,Sociodemographic Survey,generated,FALSE
+qr_sociodemographic_survey,patient_biological_sex_3,,patient_biological_sex,Patient Biological Sex,text,Sociodemographic Survey,generated,TRUE
+qr_sociodemographic_survey,patient_date_of_birth_6,,patient_dob,Patient Date of Birth,text,Sociodemographic Survey,generated,TRUE
+qr_sociodemographic_survey,patient_gender_identity_3,,patient_gender_identity,Patient Gender Identity,text,Sociodemographic Survey,generated,TRUE
+qr_sociodemographic_survey,patient_how_you_think_of_yourself_3,,patient_how_you_think_of_yourself,Patient How You Think of Yourself,text,Sociodemographic Survey,generated,TRUE
+qr_sociodemographic_survey,patient_name_6,,patient_name,Patient Name,text,Sociodemographic Survey,generated,TRUE
+qr_sociodemographic_survey,patient_pronouns_3,,patient_pronouns,Patient Pronouns,text,Sociodemographic Survey,generated,TRUE
 qr_sociodemographic_survey,task_id_socio_pdf_2,task-id-socio-pdf,task_socio_pdf,Task ID Socio PDF,text,Sociodemographic Survey,questionnaire,FALSE
 qr_spi_subform_1,questionnaire_id_28,,questionnaire_id,Questionnaire ID,text,SPI Subform 1,system,FALSE
 qr_spi_subform_1,subject_patient_id_28,,subject_patient_id,Subject Patient ID,text,SPI Subform 1,system,FALSE
@@ -1199,7 +1199,7 @@ qr_spi_subform_4,review_the_safety_planstep_4_family_members_or_friends_who_m_17
 qr_spi_subform_4,spi_subform_4_55,fe2f0911-8ddc-412b-a3e6-f216620d147e,spi_subform,SPI Subform 4,text,SPI Subform 4,questionnaire,FALSE
 qr_spi_subform_4,step_4family_members_or_friends_who_may_offer_help_5,fefdc90f-fe1d-4bfb-af93-94df8c482897,step_members_friends,Step 4Family members or friends who may offer help,text,SPI Subform 4,questionnaire,TRUE
 qr_spi_subform_4,step_4family_members_or_friends_who_may_offer_help_6,ff115c26-95b9-4e0d-87ed-80817d438fc7,step_members_friends,Step 4Family members or friends who may offer help,text,SPI Subform 4,questionnaire,TRUE
-qr_spi_subform_4,spi_subform_4_56,no-response-step-1,spi_subform,SPI Subform 4,text,SPI Subform 4,questionnaire,FALSE
+qr_spi_subform_4,spi_subform_4_56,no-response-step-1,spi_subform,SPI Subform 4,text,SPI Subform 4,questionnaire,FASLE
 qr_spi_subform_4,no_response_step_1_review,no-response-step-1-review,response_step_review,No Response Step 1 Review,text,SPI Subform 4,questionnaire,FALSE
 qr_spi_subform_4,spi_subform_4_57,no-response-step-2,spi_subform,SPI Subform 4,text,SPI Subform 4,questionnaire,FALSE
 qr_spi_subform_4,no_response_step_2_review,no-response-step-2-review,response_step_review,No Response Step 2 Review,text,SPI Subform 4,questionnaire,FALSE

@@ -25,8 +25,13 @@ def create_zip(source_dir, zip_path):
 
 
 def run_export(export_type, delete_local=False):
-    """Run export for a single type (anon or pii) and upload to S3"""
-    bucket_env = 'S3_BUCKET_ANON' if export_type == 'anon' else 'S3_BUCKET_PII'
+    """Run export for a single type (anon, pii, or metrics) and upload to S3"""
+    bucket_map = {
+        'anon': 'S3_BUCKET_ANON',
+        'pii': 'S3_BUCKET_PII',
+        'metrics': 'S3_BUCKET_METRICS'
+    }
+    bucket_env = bucket_map.get(export_type, 'S3_BUCKET_ANON')
     bucket = os.getenv(bucket_env)
 
     if not bucket:
@@ -91,9 +96,9 @@ def main():
     )
     parser.add_argument(
         '--type',
-        choices=['anon', 'pii', 'both'],
+        choices=['anon', 'pii', 'metrics', 'both', 'all'],
         default='both',
-        help='Export type: anon, pii, or both (default: both)'
+        help='Export type: anon, pii, metrics, both (anon+pii), or all (default: both)'
     )
     parser.add_argument(
         '--delete-local',
@@ -108,12 +113,16 @@ def main():
 
     results = []
 
-    if args.type in ('anon', 'both'):
+    if args.type in ('anon', 'both', 'all'):
         result = run_export('anon', args.delete_local)
         results.append(result)
 
-    if args.type in ('pii', 'both'):
+    if args.type in ('pii', 'both', 'all'):
         result = run_export('pii', args.delete_local)
+        results.append(result)
+
+    if args.type in ('metrics', 'all'):
+        result = run_export('metrics', args.delete_local)
         results.append(result)
 
     print(f"\n{'='*60}")
