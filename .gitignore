@@ -3,5 +3,6 @@
 .env.*
 !.env.example
 dbt/data/
+dbt/dbt_packages/
 dbt/logs/
 dbt/target/
