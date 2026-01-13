@@ -24,7 +24,7 @@ def create_zip(source_dir, zip_path):
     return zip_path
 
 
-def run_export(export_type, keep_local=False):
+def run_export(export_type, delete_local=False):
     """Run export for a single type (anon or pii) and upload to S3"""
     bucket_env = 'S3_BUCKET_ANON' if export_type == 'anon' else 'S3_BUCKET_PII'
     bucket = os.getenv(bucket_env)
@@ -66,7 +66,7 @@ def run_export(export_type, keep_local=False):
 
         print(f"Upload complete!")
 
-        if not keep_local:
+        if delete_local:
             print("Cleaning up local files...")
             shutil.rmtree(export_dir)
             zip_path.unlink()
@@ -96,9 +96,9 @@ def main():
         help='Export type: anon, pii, or both (default: both)'
     )
     parser.add_argument(
-        '--keep-local',
+        '--delete-local',
         action='store_true',
-        help='Keep local files after upload (default: delete)'
+        help='Delete local files after upload (default: keep)'
     )
 
     args = parser.parse_args()
@@ -109,11 +109,11 @@ def main():
     results = []
 
     if args.type in ('anon', 'both'):
-        result = run_export('anon', args.keep_local)
+        result = run_export('anon', args.delete_local)
         results.append(result)
 
     if args.type in ('pii', 'both'):
-        result = run_export('pii', args.keep_local)
+        result = run_export('pii', args.delete_local)
         results.append(result)
 
     print(f"\n{'='*60}")
