@@ -156,18 +156,17 @@ def cmd_find_unmapped():
     print(f"Found {len(uuid_fields)} UUID field instances across questionnaires")
 
     metadata_file = get_base_dir() / 'seeds' / 'questionnaire_metadata.csv'
-    existing_metadata = {}
+    existing_linkids = set()
     if metadata_file.exists():
         with open(metadata_file, 'r') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                if 'questionnaire_id' in row and 'linkid' in row:
-                    key = (row['questionnaire_id'], row['linkid'])
-                    existing_metadata[key] = row
+                if row.get('linkid'):
+                    existing_linkids.add(row['linkid'])
 
     unmapped = []
     for qid, linkid, sample, count in uuid_fields:
-        if (qid, linkid) not in existing_metadata:
+        if linkid not in existing_linkids:
             unmapped.append({
                 'questionnaire_id': qid,
                 'linkid': linkid,
