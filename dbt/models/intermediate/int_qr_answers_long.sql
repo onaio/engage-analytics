@@ -64,6 +64,7 @@ normalized as (
     (ans ->> 'valueInteger')::int                 as value_integer,
     (ans ->> 'valueDecimal')::numeric             as value_decimal,
     ans ->> 'valueDate'                           as value_date,
+    (ans ->> 'valueBoolean')::boolean             as value_boolean,
     ans -> 'valueCoding' ->> 'code'               as value_coding_code,
     ans -> 'valueCoding' ->> 'display'            as value_coding_display,
     (ans -> 'valueQuantity' ->> 'value')::numeric as value_quantity_value,
@@ -72,6 +73,7 @@ normalized as (
       ans -> 'valueCoding' ->> 'display',
       ans ->> 'valueString',
       ans ->> 'valueDate',
+      ans ->> 'valueBoolean',
       ans ->> 'valueInteger',
       ans ->> 'valueDecimal',
       ans -> 'valueQuantity' ->> 'value'

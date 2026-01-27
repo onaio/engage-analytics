@@ -128,6 +128,183 @@
   expression: "count(distinct case when format_you_deliver = 'Phone telehealth' then subject_patient_id end)"
   description: "Daily phone telehealth encounters"
   version: v1
+
+- id: ipc_clients_started
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: client_ipc_progress
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients who started IPC (completed session 1)"
+  version: v1
+
+- id: ipc_clients_completed
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: client_ipc_progress
+  expression: "count(distinct case when completed_all_sessions then subject_patient_id end)"
+  description: "Clients who completed all 4 IPC sessions"
+  version: v1
+
+- id: ipc_completion_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: client_ipc_progress
+  numerator: "count(distinct case when completed_all_sessions then subject_patient_id end)"
+  denominator: "nullif(count(distinct subject_patient_id), 0)"
+  description: "Percentage of IPC clients who completed all 4 sessions"
+  version: v1
+
+- id: ipc_retention_s1_to_s2
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: client_ipc_progress
+  numerator: "count(distinct case when completed_s2 then subject_patient_id end)"
+  denominator: "nullif(count(distinct subject_patient_id), 0)"
+  description: "Percentage of IPC clients who returned for session 2"
+  version: v1
+
+- id: phq9_clients_severe
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  expression: "count(distinct case when assessment_type = 'PHQ-9' and severity = 'Severe' then subject_patient_id end)"
+  description: "Clients with severe PHQ-9 scores (20-27)"
+  version: v1
+
+- id: phq9_clients_moderate_high
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  expression: "count(distinct case when assessment_type = 'PHQ-9' and severity in ('Moderate', 'Moderately Severe') then subject_patient_id end)"
+  description: "Clients with moderate/moderately severe PHQ-9 scores (10-19)"
+  version: v1
+
+- id: phq9_clients_low
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  expression: "count(distinct case when assessment_type = 'PHQ-9' and severity in ('Mild', 'Minimal') then subject_patient_id end)"
+  description: "Clients with mild/minimal PHQ-9 scores (0-9)"
+  version: v1
+
+- id: phq9_percent_severe
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  numerator: "count(distinct case when assessment_type = 'PHQ-9' and severity = 'Severe' then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when assessment_type = 'PHQ-9' then subject_patient_id end), 0)"
+  description: "Percentage of PHQ-9 clients scoring severe"
+  version: v1
+
+- id: phq9_percent_moderate_high
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  numerator: "count(distinct case when assessment_type = 'PHQ-9' and severity in ('Moderate', 'Moderately Severe') then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when assessment_type = 'PHQ-9' then subject_patient_id end), 0)"
+  description: "Percentage of PHQ-9 clients scoring moderate/moderately severe"
+  version: v1
+
+- id: gad7_clients_severe
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  expression: "count(distinct case when assessment_type = 'GAD-7' and severity = 'Severe' then subject_patient_id end)"
+  description: "Clients with severe GAD-7 scores (15-21)"
+  version: v1
+
+- id: gad7_clients_moderate_high
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  expression: "count(distinct case when assessment_type = 'GAD-7' and severity = 'Moderate' then subject_patient_id end)"
+  description: "Clients with moderate GAD-7 scores (10-14)"
+  version: v1
+
+- id: gad7_clients_low
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  expression: "count(distinct case when assessment_type = 'GAD-7' and severity in ('Mild', 'Minimal') then subject_patient_id end)"
+  description: "Clients with mild/minimal GAD-7 scores (0-9)"
+  version: v1
+
+- id: gad7_percent_severe
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  numerator: "count(distinct case when assessment_type = 'GAD-7' and severity = 'Severe' then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when assessment_type = 'GAD-7' then subject_patient_id end), 0)"
+  description: "Percentage of GAD-7 clients scoring severe"
+  version: v1
+
+- id: gad7_percent_moderate_high
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: int_assessment_scores
+  numerator: "count(distinct case when assessment_type = 'GAD-7' and severity = 'Moderate' then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when assessment_type = 'GAD-7' then subject_patient_id end), 0)"
+  description: "Percentage of GAD-7 clients scoring moderate"
+  version: v1
+
+- id: sessions_total
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: intervention_sessions
+  expression: "count(distinct qr_id)"
+  description: "Total counseling sessions across all intervention types"
+  version: v1
+
+- id: sessions_ipc
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: intervention_sessions
+  expression: "count(distinct case when intervention_type = 'IPC' then qr_id end)"
+  description: "IPC (Interpersonal Counseling) sessions"
+  version: v1
+
+- id: sessions_spi
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: intervention_sessions
+  expression: "count(distinct case when intervention_type = 'SPI' then qr_id end)"
+  description: "SPI (Suicide Prevention Intervention) sessions"
+  version: v1
+
+- id: sessions_sbirt
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: intervention_sessions
+  expression: "count(distinct case when intervention_type = 'SBIRT' then qr_id end)"
+  description: "SBIRT (Screening, Brief Intervention, Referral to Treatment) sessions"
+  version: v1
+
+- id: clients_receiving_counseling
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: intervention_sessions
+  expression: "count(distinct subject_patient_id)"
+  description: "Unique clients receiving any counseling session"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}

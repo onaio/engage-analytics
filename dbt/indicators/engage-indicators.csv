@@ -1,0 +1,101 @@
+Status,Domain,Implementation Outcome Variable ,Module,Indicator / Metric,Description ,Comment,Ona Implementation Comment,Questionnaire ID/Task ID,Questionnaire Link id (where applicable),Data type,Numerator,Denominator ,Indicator formula/ calculation,,Frequency Reported,Disaggregation,Vizualization,Comment,Is this data available?,Ona Questions/Comments,Columbia's response to Ona's Questions/Comments
+Done,System Use,,All,Active users,Providers(user) who submitted at least one report in the period,"Encounter represents an activity of the Provider (user), Check Encounter.period for the date and time. Check which Encounter belongs to which Provider in Encounter.participant with Encounter.participant.type equals to `ADM` code","We dont extract Encounters so we have to use QuestionnarieResponse. the provider is linked within the author field. 
+Get all Practitioners who have at least one QR linked to them
+QuestionnaireResponse.author
+
+By reporting period",,,Count,# of active users,NA,Count the number of users that have submitted at least 1 record during the reporting period.   This can also be set to a certain threshold.  Eg. 30 visits or some predefined target.,,Monthly,,Bar chart or line chart time series,,,,
+Done,System Use,,,Percent of active users,Percentage of users who used the system in the past month,"Encounter represent an activity of the Provider (user), Check Encounter.period for the date and time. Check which Encounter belongs to which Provider in Encounter.participant with Encounter.participant.type equals to `ADM` code","QuestionnaireResponse.author
+
+By Month",,,Percent,# active users,# users,# active users / # total users,,Monthly,,,,,,
+Done,System Use,,,Total Users,Total number of users registered in the system.,Providers,Get the total count of Practitioners,,,Count,# of users registered,NA,# of registered users in the system,,,,,To clarify what is the rule for a user to no longer be part of the denominator past a specific date,,,
+Done,System Use,,,Clients registered,Number of Clients registered,Client,Get the total count of Patients,,,Count,# clients registered in the period,,# clients registered in the period,,Monthly,"By user, by clinic, location (eg. outside of clinic or in clinic)",,,,,
+Done,System Use,,,Encounters ,Number of client encounters,Total number of client encounters during the previous month.  This is when you see the patient for the day or the meeting count.   So whenever data is collected on a patient for that data.,"Get the total count of QuestionnaireResponses
+
+DISTINCT date, patient
+Check QR status and ignore drafts
+By Month",,,Count,# of client encounters,NA,# of client encounters,,Monthly,"By user, by clinic, by encounter type",,,,,
+,Programmatic,,,Number of IPC sessions ,Total number of IPC sessions completed by clients during the reporting period.,Encounter tied to each session/form submission. Check which client related to this encounter in Encounter.subject,"Get the total count of QuestionnaireResponses that belongs to IPC Session
+Each form = 1 session
+IPC Session X:
+PHQ
+GAD
+PCL
+IPC Session X form","Discuss Confidentiality (IPC Session 1) - 23451
+PHQ-9 (IPC Session 1) - 54
+GAD-7 (IPC Session 1) - 202
+PC-PTSD (IPC Session 1) - 204
+IPC Session 1 - 55
+PHQ-9 (IPC Session 2) - 57
+GAD-7 (IPC Session 2) - 205
+PC-PTSD (IPC Session 2) - 56
+IPC Session 2 - 58
+PHQ-9 (IPC Session 3) - 61
+GAD-7 (IPC Session 3) - 59
+PC-PTSD (IPC Session 3) - 60
+IPC Session 3 - 208
+PHQ-9 (IPC Session 4) - 211
+GAD-7 (IPC Session 4) - 62
+PC-PTSD (IPC Session 4) - 210
+Mental Wellness Tool (IPC Session 4) - mw-tool-ipc-session-4
+IPC Session 4 - 63
+
+",,Count,# of counseling sessions/modules,NA,,,Monthly,"By user, by clinic, by client, by module type",,This has to be intervention specific becuase IPC is 4 sessions and the others are 1 session,,,
+done,,,mwTool,Number of client eligible for IPC,Total number of clients who have probable common mental problems among those who completed the mwTool during that month,These come from the screening form.  ,"mwTool form result
+By Month",1613532,no-mental-problem,Count & Percent,Number of clients with probable common mental health problems,Number of clients who completed the mwTool,# of clients with probable common mental health problems / # of people who completed the mwTool,,Monthly,,,,,"In the MW Tool what would be categorized as mental disorders?
+The current options are: probable common mental health problem and probable severe mental health problem",Mental disorder is an old language that was changed. so I just changed it to probable common mental health problem to reflect the new work flow. 
+done,,,mwTool,Number of client eligible for SBIRT-MI,Total number of clients who have probable alcohol use problem or probable drug use problems among those who completed the mwTool during that month,,"mwTool form result
+By Month",1613532,"alcohol-problem,
+drug-problem",Count & Percent,Number of clients who have probable alcohol use problem or probable drug use problem,Number of clients who completed the mwTool,,,,,,,,What would be classified as a substance use disorder as per the MW Tool?,substance use disorder is an old language but can be classified under probable drug use problem or probable alcohol use problem.  So I have change the language of the indicator to reflect it correctly.  
+not done but clear,,,mwTool,Number of client potentially eligible for SPI,Total number of client who have suicide risk among those who completed the mwTool during that month,,"mwTool form result
+By Month",1613532,suicide-risk,Count & Percent,Number of client who have suicide risk,Number of client who completed the mwTool,,,,,,,,,
+not done but clear,,,mwTool,Number of client eligible for referral for mental health specialist,Total number of client who have severe mental health problem among those who completed the mwTool during that month,,"mwTool form result
+By Month",1613532,"8f1213e4-7b37-437b-963e-8c3d1995e739 (confirm this)
+The client's Mental Wellness Tool results: ", Count & Percent,Number of client who have severe mental Problem,Number of client who completed the mwTool,,,,,,,,,
+can we just count submissions by person on the FWT?,,,fwTool,Number of client eligible for Financial Wellness Support (FWS),Total number of client who have any overall financial hardship or any type of financial hardship among those who completed the fwTool during that month,,"financial wellness Tool form result
+By Month",q-financial-wellness-tool,"overall-financial-hardship, 8c9d0e1f-2a3b-4c5d-8e6f-7a8b9c0d1e2f, 9d0e1f2a-3b4c-4d5e-8f7a-0b1c2d3e4f5a, no-financial-hardship (confirm what to use)",Count & Percent,Number of client who have any overall financial hardship or any type of financial hardship,Number of client who completed the fwTool during that month,,,,,,,,,
+,,,Planning next steps,Number of client offered IPC,Total number of client who were offered IPC during that month,,,,,Count & Percent,Number of client who were offered IPC,Number of client with a common mental health disorder,"# of client who have an alcohol use disorder or substance use disorder / # of people  who completed the mwTool 
+",,Monthly,,,,,,
+,,,Planning next steps,Number of client who accepted IPC,Total number of client who accepted IPC among those who were offered during that month,,Planning Next steps form,q-planning-next-steps,"c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f
+Did the client accept IPC?
+boolean",Count & Percent,Number of client who accepted IPC,Number or client who were offered IPC,,,,,,,,,
+,,,Planning next steps,Number of client offered SBIRT-MI,Total number of client who were offered SBIRT-MI,,,,,Count & Percent,Number of client who were offered SBIRT-MI,Number of client who have an alcohol use disorder or substance use disorder,,,,,,,,,
+,,,Planning next steps,Number of client who accepted SBIRT-MI,Total number of client who accepted SBIRT-MI among those who were offered during that month,,Planning Next steps form,q-planning-next-steps,"c9d8b7a6-f5e4-4d3c-b2a1-09f8e7d6c5b4
+Did the client accept SBIRT?
+boolean",Count & Percent,Number of client who accepted SBIRT-MI,Number of client who were offered SBIRT-MI,,,,,,,,,
+,,,Planning next steps,Number of client offered FWS,Total number of client who were offered FWS during that month,,,,,Count & Percent,Number of client who were offered FWS,Number of client who have any overall financial hardship or any type of financial hardship,,,,,,,,,
+,,,Planning next steps,Number of client who accepted FWS,Total number of client who accepted FWS among those who were offered during that month,,Planning Next steps form,q-planning-next-steps,"69712544-6237-4962-a455-ee6e9ee80000
+Did the client accept Financial Wellness Supports?
+boolean",Count & Percent,Number of client who accepted FWS,Number of client who were offered FWS,,,,,,,,,
+,,,Planning next steps,Number of client offered a referral to a mental health specialist,Total number of client who were offered referral to a mental health specialist during that month,,,,,Count & Percent,Number of people who were offered referral to a mental health specialist,Number of client who have a Severe mental problem,,,,,,,,,
+,,,Planning next steps,Number of client accepted a referral to a mental health specialist,Total number of client who were accepted referral to a mental health specialist during that month,,Planning Next steps form,q-planning-next-steps,"""linkId"": ""9a8b7c6d-5e4f-4a3b-2c1d-0e9f8a7b6c5d"",
+""text"": ""Did the client accept the referral to a mental health specialist?"",
+""type"": ""boolean""",Count & Percent,Number of people who were accepted referral to a mental health specialist,Number of client who were offered referral to mental health specialist,,,,,,,,,
+,,Treatment offered ,Planning next steps,Refusal rate ,declined/offered services,TBD,"Responded to no for 16, 18 and 20 ",q-planning-next-steps,"false for 14, 16, 18 and 20 
+and also false for SPI - 34a56c28-f466-4648-2817-41b2c3d4e5f6",Percent ,# of clients that declined/offered services,"Services offered (SPI, IPC, SBIRT)",Declined/services offered ,,,,,,,,
+,,Treatment initiated,mwTool,% access to care (Reach),"-The number of clients who have started ENGAGE intervention (IPC, SBIRT-MI, SPI) following a positive screening result on the baseline mwTool",TBD,"Links 10, 11, and 12 to service provision, IPC, SPI & SBIRT
+
+Number of clients who started intervention / Number of clients screened positive on the baseline mwTool",,,Count & Percent ,Number of clients who attended their first formal intervention session,Number of clients who screened positive on the baseline mwTool,Number of clients who started intervention / Number of clients screened positive on the baseline mwTool,"""linkId"": ""4602f806-3bf4-4f16-bee1-c2e690dca588"",
+""text"": ""Did you discuss this client's severe mental health screening results with a supervisor?"",
+ ""type"": ""boolean
+
+",Monthly,,,"What is the definition of starting treatment? When is a user counted as having 'started treatment' ? There is a lag between screening and treatment start, so the timing of the metric is relevant",,,
+,,Treatment initiated,mwTool,Comorbidities ,Number of clients that scored positive on the mwTool in multiple categories ,TBD,mwTool form result,,,Count & Percent ,Number of clients that scored positive on the mwTool in multiple categories ,Client that scored positive on the mwTool,,,,,,,,,
+,,Treatment initiated,Each module's session ,Service delivery modality ,"Service delivery modality: phone telehealth, video telehealth, in-person, or hybrid ","Encounter tied to the Service delivery modality (phone telehealth, video telehealth, in-person). Check the modality in Encounter.type. Check which patient related to this encounter in Encounter.subject. Check which form that results to this encounter in Encounter.reasonCode","sevice delivery format
+
+This is only applies to IPC 1",,,Count & Percent ,Number of sessions of each modality in a month,Number of total sessions in a month ,,,,,,,,,
+,,Treatment initiated,All modules ,Assessment outcome of severe risk ,Assessment outcome from all questionnnaires => severe risk ,"Observation tied to the risk level (severe, high, moderate, low). Check the risk level meaning in Observation.interpretation. Check the risk level numeric in Observation.valueQuantity. Check which form that results to the risk level in Observation.code. Check which patient that has this risk level in Observation.subject","# of clients scoring severe in any one of the following assessments: mwTool, PHQ-9, GAD-7, DAST, C-SSRS, and AUDIT",,,Percent ,"# of clients scoring severe in any one of the following assessments: mwTool, PHQ-9, GAD-7, DAST, C-SSRS, and AUDIT",# of clients ,,,,,,,,,
+,,Treatment initiated,All modules ,Assessment outcome of moderate-high risk,Assessment outcome from all questionnnaires => moderate-high risk ,same,"# of clients scoring moderate (but not severe) in any one of the following assessments: mwTool, PHQ-9, GAD-7, DAST, C-SSRS, and AUDIT",,,Percent ,"# of clients scoring moderate (but not severe) in any one of the following assessments: mwTool, PHQ-9, GAD-7, DAST, C-SSRS, and AUDIT",# of clients ,,,,,,,,,
+,,Treatment initiated,All modules ,Assessment outcome of low risk ,Assessment outcome from all questionnnaires => low risk ,same,"# of clients scoring low (but not moderate or severe) in any one of the following assessments: mwTool, PHQ-9, GAD-7, DAST, C-SSRS, and AUDIT",,,Percent ,"# of clients scoring low (but not moderate or severe) in any one of the following assessments: mwTool, PHQ-9, GAD-7, DAST, C-SSRS, and AUDIT",# of clients ,,,,,,,,,
+,,Retention ,All modules ,"PHQ-9, GAD-7, PC-PTSD, Mood Rating Scale, DAST-10, AUDIT, and C-SSRS scores (for all subsequent sessions after the first session) among those who initiate treatment/individuals who accept treatment",,"Change this to average change in scores over time by clinic?
+
+Observation tied to the total score of each form. Check the total score in Observation.value. Check which form that the total score is related to from Observation.derivedFrom. Check which client that this total score is related to in Observation.subject.
+
+","Not clear - probably just a summation of scores for these forms within each month
+
+We need clarification on this",,,Percent ,Assessment scores for each session,Clients who started treatment (yes or no) ,,,,,,,,,
+,,Retention ,All modules ,% of People Who Finish All Sessions for IPC                                                                               ,The percentage of clients who complete all required sessions of IPC,Encounter tied to each session. Check which client related to this encounter in Encounter.subject. Check which session/form that results to this encounter in Encounter.reasonCode,Clients with all 4 sessions / all clients eligible for IPC,,,Count,Number of clients who completed all sessions for the intervention,Number of clients who start the intervention,Number of clients who complete all sessions / Number of clients who start the intervention,,Monthly,,,What is the correct definition? Inconsistency between indicator name and comment,,,
+,,Follow-up,All modules ,% follow-up," The percentage of clients who received the one month follow-up visite after completing an SPI, SBIRT or IPC.",TODO, 1-month follow-up tasks completed / total 1-month follow-up tasks - in that month,,,Percent ,Number of clients who received the one month follow-up session.,Number of clients who attended at least one intervention sessions.,Number of clients with follow-up sessions / Number of clients with initial sessions,,,,,Need to confirm what is the definition of 'follow up' . What is the time frame? ,,,"1 month follow up code: 040
+Task.code.coding.code"
+,,Adoption ,All modules ,Providers using the technology,The number of providers actively using the technology platform to manage and deliver interventions.,"Encounter represent an activity of the Practitioner (user), Check Encounter.period for the date and time. Check which Encounter belongs to which Practitioner in Encounter.participant with Encounter.participant.type equals to `ADM` code",Practitioners with at least one QR within past month / total no of practitioners,,,Count & Percent ,Number of providers who were active in the last month's use of the platform ,Total number of registered providers,Number of active providers / Total number of registered providers,,,,,,,,
+,,Sustainability,All modules ,Providers using technology across time ,% of providers using the technology across time (or 6 months) ,"Encounter represent an activity of the Practitioner (user), Check Encounter.period for the date and time. Check which Encounter belongs to which Practitioner in Encounter.participant with Encounter.participant.type equals to `ADM` code",Practitioners with at least one QR / total no of practitioners - month by month progression,,,Percent,providers registered and have at least one client,providers registered ,,,,,,,,"What is the definition of staff? We currently have Provider, User, CWW and Staff as part of the description column. Do these terms refer to the same person?","Yes, this is the same thing. I have made changes by using the provider through out."
+,,,Socio-demographic ,Screening location setting,number of screenings per site for that month,,Use practitioner location assignment ,,,Count ,number of screenings performed at a particular site for that month,Total number of screening sites for that month,number of screenings performed at a particular site for that month / Total number of screening sites for that month,,,,,,,,
