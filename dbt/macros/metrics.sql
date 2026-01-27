@@ -454,6 +454,144 @@
   expression: "count(distinct case when observation_code like 'ptsd%' then observation_id end)"
   description: "PTSD (PCL-5) score observations"
   version: v1
+
+- id: clients_accepted_sbirt
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_accepted_sbirt
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients who accepted SBIRT-MI"
+  version: v1
+
+- id: clients_accepted_fws
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_accepted_fws
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients who accepted Financial Wellness Services"
+  version: v1
+
+- id: clients_accepted_referral
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: clients_accepted_referral
+  expression: "count(distinct subject_patient_id)"
+  description: "Clients who accepted referral to mental health specialist"
+  version: v1
+
+- id: mwtool_clients_with_comorbidity
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_comorbidities
+  expression: "count(distinct case when has_comorbidity then subject_patient_id end)"
+  description: "Clients with multiple positive mwTool categories"
+  version: v1
+
+- id: mwtool_comorbidity_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_comorbidities
+  numerator: "count(distinct case when has_comorbidity then subject_patient_id end)"
+  denominator: "nullif(count(distinct subject_patient_id), 0)"
+  description: "Percentage of mwTool clients with comorbidities"
+  version: v1
+
+- id: follow_up_tasks_total
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: follow_up_1month
+  expression: "count(distinct task_id)"
+  description: "Total 1-month follow-up tasks"
+  version: v1
+
+- id: follow_up_tasks_completed
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: follow_up_1month
+  expression: "count(distinct case when follow_up_completed then task_id end)"
+  description: "Completed 1-month follow-up tasks"
+  version: v1
+
+- id: follow_up_completion_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: follow_up_1month
+  numerator: "count(distinct case when follow_up_completed then task_id end)"
+  denominator: "nullif(count(distinct task_id), 0)"
+  description: "Percentage of 1-month follow-up tasks completed"
+  version: v1
+
+- id: screenings_total
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: screenings_by_location
+  expression: "count(distinct screening_id)"
+  description: "Total mwTool screenings"
+  version: v1
+
+- id: screening_locations_count
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: screenings_by_location
+  expression: "count(distinct location_id)"
+  description: "Number of unique screening locations"
+  version: v1
+
+- id: service_refusal_ipc
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: service_refusal
+  expression: "count(distinct case when declined_ipc then subject_patient_id end)"
+  description: "Clients who declined IPC"
+  version: v1
+
+- id: service_refusal_sbirt
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: service_refusal
+  expression: "count(distinct case when declined_sbirt then subject_patient_id end)"
+  description: "Clients who declined SBIRT"
+  version: v1
+
+- id: service_refusal_fws
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: service_refusal
+  expression: "count(distinct case when declined_fws then subject_patient_id end)"
+  description: "Clients who declined FWS"
+  version: v1
+
+- id: service_refusal_referral
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: service_refusal
+  expression: "count(distinct case when declined_referral then subject_patient_id end)"
+  description: "Clients who declined referral"
+  version: v1
+
+- id: service_refusal_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: service_refusal
+  numerator: "count(distinct case when declined_ipc or declined_sbirt or declined_fws or declined_referral or declined_spi then subject_patient_id end)"
+  denominator: "nullif(count(distinct subject_patient_id), 0)"
+  description: "Overall service refusal rate"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}
