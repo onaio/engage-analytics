@@ -1,0 +1,20 @@
+{
+  "name": "engage-analytics",
+  "owner": {
+    "name": "Ona",
+    "email": "support@ona.io"
+  },
+  "metadata": {
+    "description": "Manage indicators and metrics in the Engage Analytics dbt project for healthcare analytics.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "engage-indicators",
+      "description": "Manage indicators and metrics in the Engage Analytics dbt project. Use when working with healthcare analytics indicators, adding new metrics, creating questionnaire response models, or understanding the metrics architecture. Triggers on requests involving indicator creation, metric definitions, questionnaire data models, PHQ-9/GAD-7 scores, mwTool eligibility, or dbt model development for Engage.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./claude-skills/engage-indicators"]
+    }
+  ]
+}
