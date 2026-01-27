@@ -48,14 +48,14 @@
 |---|-----------|--------|-----------|-------|
 | 9 | mwTool Outcomes | **PARTIAL** | eligibility metrics | Boolean extraction fixed, outcomes now populated |
 | 10 | Clients Referred | **PARTIAL** | `clients_eligible_referral` | Tracks eligibility not actual referrals |
-| 11 | ENGAGE EBT Offered | **NOT IMPLEMENTED** | - | No "offered" tracking |
+| 11 | ENGAGE EBT Offered | **OUT OF SCOPE** | - | Crossed out in spec - no "offered" tracking |
 
 ### Treatment Offered Indicators (12-13)
 
 | # | Indicator | Status | Metric ID | Notes |
 |---|-----------|--------|-----------|-------|
-| 12 | mwTool Outcome + Intervention | **NOT IMPLEMENTED** | - | Need to link mwTool to interventions |
-| 13 | Refusal Rate | **NOT IMPLEMENTED** | - | No "declined" tracking |
+| 12 | mwTool Outcome + Intervention Offered | **OUT OF SCOPE** | - | Crossed out - offered IPC/SBIRT-MI/FWS/referral not tracked |
+| 13 | Refusal Rate | **OUT OF SCOPE** | - | Crossed out - no "declined" tracking |
 
 ### Treatment Initiated Indicators (14-21)
 

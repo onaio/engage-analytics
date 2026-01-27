@@ -305,6 +305,110 @@
   expression: "count(distinct subject_patient_id)"
   description: "Unique clients receiving any counseling session"
   version: v1
+
+- id: mwtool_ipc_eligible_initiated
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_to_intervention
+  expression: "count(distinct case when intervention_type = 'IPC' and initiated_treatment then subject_patient_id end)"
+  description: "Clients eligible for IPC who initiated treatment"
+  version: v1
+
+- id: mwtool_ipc_conversion_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_to_intervention
+  numerator: "count(distinct case when intervention_type = 'IPC' and initiated_treatment then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when intervention_type = 'IPC' then subject_patient_id end), 0)"
+  description: "Percentage of IPC-eligible clients who initiated treatment"
+  version: v1
+
+- id: mwtool_sbirt_eligible_initiated
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_to_intervention
+  expression: "count(distinct case when intervention_type = 'SBIRT' and initiated_treatment then subject_patient_id end)"
+  description: "Clients eligible for SBIRT who initiated treatment"
+  version: v1
+
+- id: mwtool_sbirt_conversion_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_to_intervention
+  numerator: "count(distinct case when intervention_type = 'SBIRT' and initiated_treatment then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when intervention_type = 'SBIRT' then subject_patient_id end), 0)"
+  description: "Percentage of SBIRT-eligible clients who initiated treatment"
+  version: v1
+
+- id: mwtool_spi_eligible_initiated
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_to_intervention
+  expression: "count(distinct case when intervention_type = 'SPI' and initiated_treatment then subject_patient_id end)"
+  description: "Clients eligible for SPI who initiated treatment"
+  version: v1
+
+- id: mwtool_spi_conversion_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: mwtool_to_intervention
+  numerator: "count(distinct case when intervention_type = 'SPI' and initiated_treatment then subject_patient_id end)"
+  denominator: "nullif(count(distinct case when intervention_type = 'SPI' then subject_patient_id end), 0)"
+  description: "Percentage of SPI-eligible clients who initiated treatment"
+  version: v1
+
+- id: phq9_clients_with_followup
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: assessment_scores_all_sessions
+  expression: "count(distinct subject_patient_id)"
+  description: "PHQ-9 clients with multiple session scores (can measure change)"
+  version: v1
+
+- id: phq9_clients_improved
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: assessment_scores_all_sessions
+  expression: "count(distinct case when improved then subject_patient_id end)"
+  description: "PHQ-9 clients whose score improved over treatment"
+  version: v1
+
+- id: phq9_improvement_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: assessment_scores_all_sessions
+  numerator: "count(distinct case when improved then subject_patient_id end)"
+  denominator: "nullif(count(distinct subject_patient_id), 0)"
+  description: "Percentage of PHQ-9 clients who showed score improvement"
+  version: v1
+
+- id: phq9_remission_rate
+  unit: percent
+  grain: day
+  entity_keys: [organization_id]
+  source_model: assessment_scores_all_sessions
+  numerator: "count(distinct case when achieved_remission then subject_patient_id end)"
+  denominator: "nullif(count(distinct subject_patient_id), 0)"
+  description: "Percentage of PHQ-9 clients who achieved remission (score < 10)"
+  version: v1
+
+- id: phq9_avg_score_improvement
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: assessment_scores_all_sessions
+  expression: "round(avg(score_improvement)::numeric, 1)"
+  description: "Average PHQ-9 score improvement (first minus last session)"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}
