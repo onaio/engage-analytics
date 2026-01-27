@@ -409,6 +409,51 @@
   expression: "round(avg(score_improvement)::numeric, 1)"
   description: "Average PHQ-9 score improvement (first minus last session)"
   version: v1
+
+- id: observation_count
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: stg_observation
+  expression: "count(distinct observation_id)"
+  description: "Total observations (computed assessment scores)"
+  version: v1
+
+- id: observation_phq9_count
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: stg_observation
+  expression: "count(distinct case when observation_code like 'phq9%' then observation_id end)"
+  description: "PHQ-9 score observations"
+  version: v1
+
+- id: observation_gad7_count
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: stg_observation
+  expression: "count(distinct case when observation_code like 'gad7%' then observation_id end)"
+  description: "GAD-7 score observations"
+  version: v1
+
+- id: observation_mood_count
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: stg_observation
+  expression: "count(distinct case when observation_code like 'mood%' then observation_id end)"
+  description: "Mood rating observations"
+  version: v1
+
+- id: observation_ptsd_count
+  unit: count
+  grain: day
+  entity_keys: [organization_id]
+  source_model: stg_observation
+  expression: "count(distinct case when observation_code like 'ptsd%' then observation_id end)"
+  description: "PTSD (PCL-5) score observations"
+  version: v1
   {% endset %}
   
   {% set parsed = fromyaml(metrics_yaml) %}
