@@ -32,6 +32,10 @@ This repo includes a Claude Code skill for managing Engage indicators and metric
 
 Add this marketplace to Claude Code:
 
+onaio/engage-analytics
+
+Install the engage-analytics skill
+
 ```bash
 claude mcp add-marketplace onaio/engage-analytics
 ```
