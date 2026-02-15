@@ -30,7 +30,7 @@ COPY dataexport/ /app/dataexport/
 
 # Install dataexport dependencies
 WORKDIR /app/dataexport
-RUN uv pip install --system -e .
+RUN uv pip install --system .
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app \
