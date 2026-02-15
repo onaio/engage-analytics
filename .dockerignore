@@ -49,8 +49,8 @@ README.md
 *.md
 
 # Test files
-test_*.py
-*_test.py
+**/test_*.py
+**/*_test.py
 
 # Large data files
 dataexport/exports/
