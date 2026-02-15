@@ -9,5 +9,8 @@ dependencies = [
     "boto3>=1.34.0",
 ]
 
+[tool.setuptools]
+py-modules = ["export_to_s3", "export_handler"]
+
 [project.scripts]
 export-to-s3 = "export_to_s3:main"
