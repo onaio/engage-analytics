@@ -1,0 +1,60 @@
+# Git files
+.git/
+.gitignore
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Environment files
+.env
+.envrc
+
+# DBT specific
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/bak/
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Documentation
+README.md
+*.md
+
+# Test files
+test_*.py
+*_test.py
+
+# Large data files
+dataexport/exports/
+metric-data/
+questionnaire/
+claude-skills/
+seed_archive/
