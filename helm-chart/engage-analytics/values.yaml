@@ -13,7 +13,7 @@ serviceAccount:
   create: true
   annotations:
     # IAM Role for Service Account (IRSA) - update with your role ARN
-    eks.amazonaws.com/role-arn: "arn:aws:iam::527014918183:role/EngageAnalyticsS3Role"
+    # eks.amazonaws.com/role-arn: "arn:aws:iam::ACCOUNT_ID:role/YOUR_ROLE_NAME"
   name: ""
 
 podAnnotations: {}
@@ -56,25 +56,24 @@ tolerations: []
 
 affinity: {}
 
-# Database configuration (non-sensitive values)
+# Database configuration - override at deployment time
 env:
-  DBT_HOST: "omh-engage-production-postgres.cwb4kemo2n2s.us-east-1.rds.amazonaws.com"
+  DBT_HOST: "localhost"
   DBT_PORT: "5432"
-  DBT_DATABASE: "data_warehouse_production"
-  DBT_USER: "engage-analytics"
+  DBT_DATABASE: "data_warehouse"
+  DBT_USER: "postgres"
   DBT_SCHEMA: "public"
   DBT_AIRBYTE_SCHEMA: "public"
   AWS_REGION: "us-east-1"
 
-# Secrets configuration - sensitive values stored in K8s secrets
+# Secrets configuration - override at deployment time
 secrets:
   enabled: true
   env:
-    DBT_PASSWORD: "CHANGE_ME_AT_DEPLOY_TIME"
-    # Separate S3 buckets for access control
-    S3_BUCKET_ANON: "nyspi-engage-analytics-exports-anon"
-    S3_BUCKET_PII: "nyspi-engage-analytics-exports-pii"
-    S3_BUCKET_METRICS: "nyspi-engage-analytics-exports-metrics"
+    DBT_PASSWORD: "CHANGE_ME"
+    S3_BUCKET_ANON: "CHANGE_ME"
+    S3_BUCKET_PII: "CHANGE_ME"
+    S3_BUCKET_METRICS: "CHANGE_ME"
 
 # Persistence disabled - exports go to S3
 persistence:
