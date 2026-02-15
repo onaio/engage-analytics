@@ -1,0 +1,102 @@
+{{- if .Values.cronJob.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "engage-analytics.fullname" . }}-cronjob
+  labels:
+    {{- include "engage-analytics.labels" . | nindent 4 }}
+    component: analytics-cronjob
+spec:
+  schedule: {{ .Values.cronJob.schedule | quote }}
+  timeZone: {{ .Values.cronJob.timeZone | default "UTC" }}
+  concurrencyPolicy: {{ .Values.cronJob.concurrencyPolicy | default "Forbid" }}
+  successfulJobsHistoryLimit: {{ .Values.cronJob.successfulJobsHistoryLimit | default 3 }}
+  failedJobsHistoryLimit: {{ .Values.cronJob.failedJobsHistoryLimit | default 3 }}
+  jobTemplate:
+    spec:
+      backoffLimit: {{ .Values.cronJob.backoffLimit | default 2 }}
+      activeDeadlineSeconds: {{ .Values.cronJob.activeDeadlineSeconds | default 7200 }}
+      template:
+        metadata:
+          labels:
+            {{- include "engage-analytics.selectorLabels" . | nindent 12 }}
+            component: analytics-cronjob
+        spec:
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ include "engage-analytics.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          restartPolicy: OnFailure
+          containers:
+            - name: analytics-runner
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              env:
+                {{- range $key, $value := .Values.env }}
+                - name: {{ $key }}
+                  value: {{ $value | quote }}
+                {{- end }}
+                {{- if .Values.secrets.enabled }}
+                - name: DBT_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "engage-analytics.fullname" . }}-secrets
+                      key: DBT_PASSWORD
+                - name: S3_BUCKET_ANON
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "engage-analytics.fullname" . }}-secrets
+                      key: S3_BUCKET_ANON
+                - name: S3_BUCKET_PII
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "engage-analytics.fullname" . }}-secrets
+                      key: S3_BUCKET_PII
+                - name: S3_BUCKET_METRICS
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "engage-analytics.fullname" . }}-secrets
+                      key: S3_BUCKET_METRICS
+                {{- end }}
+              command: ["sh", "-c"]
+              args:
+                - |
+                  echo "============================================================"
+                  echo "Starting dbt + export job at $(date)"
+                  echo "============================================================"
+
+                  echo "Step 1: Running dbt models..."
+                  cd /app/dbt
+                  uv run dbt deps --profiles-dir .
+                  uv run dbt seed --profiles-dir . --full-refresh
+                  uv run dbt run --profiles-dir .
+
+                  echo ""
+                  echo "Step 2: Exporting to S3..."
+                  cd /app/dataexport
+                  uv run python export_to_s3.py --type {{ .Values.cronJob.exportType | default "both" }} --delete-local
+
+                  echo ""
+                  echo "============================================================"
+                  echo "Job completed successfully at $(date)"
+                  echo "============================================================"
+              resources:
+                {{- toYaml .Values.cronJob.resources | nindent 16 }}
+          {{- with .Values.cronJob.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.cronJob.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.cronJob.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+{{- end }}

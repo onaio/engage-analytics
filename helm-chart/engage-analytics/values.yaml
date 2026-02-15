@@ -1,0 +1,105 @@
+---
+# Combined dbt + dataexport image
+image:
+  repository: onaio/engage-analytics
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    # IAM Role for Service Account (IRSA) - update with your role ARN
+    eks.amazonaws.com/role-arn: "arn:aws:iam::527014918183:role/EngageAnalyticsS3Role"
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  runAsUser: 1000
+
+# Web service disabled - batch-only deployment
+deployment:
+  enabled: false
+
+service:
+  enabled: false
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Database configuration (non-sensitive values)
+env:
+  DBT_HOST: "omh-engage-production-postgres.cwb4kemo2n2s.us-east-1.rds.amazonaws.com"
+  DBT_PORT: "5432"
+  DBT_DATABASE: "data_warehouse_production"
+  DBT_USER: "engage-analytics"
+  DBT_SCHEMA: "public"
+  DBT_AIRBYTE_SCHEMA: "public"
+  AWS_REGION: "us-east-1"
+
+# Secrets configuration - sensitive values stored in K8s secrets
+secrets:
+  enabled: true
+  env:
+    DBT_PASSWORD: "CHANGE_ME_AT_DEPLOY_TIME"
+    # Separate S3 buckets for access control
+    S3_BUCKET_ANON: "nyspi-engage-analytics-exports-anon"
+    S3_BUCKET_PII: "nyspi-engage-analytics-exports-pii"
+    S3_BUCKET_METRICS: "nyspi-engage-analytics-exports-metrics"
+
+# Persistence disabled - exports go to S3
+persistence:
+  enabled: false
+
+# CronJob for scheduled dbt + S3 export
+cronJob:
+  enabled: true
+  # Run every 1 hour at minute 0
+  schedule: "0 * * * *"
+  timeZone: "UTC"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  backoffLimit: 2
+  activeDeadlineSeconds: 3600
+  # Export type: anon, pii, metrics, both, or all
+  exportType: "both"
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  nodeSelector: {}
+  affinity: {}
+  tolerations: []
