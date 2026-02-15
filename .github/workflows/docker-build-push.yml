@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DOCKERHUB_REPOSITORY: onaio/engage-analytics
+  DOCKERHUB_REPOSITORY: opensrp/engage-analytics
 
 permissions:
   contents: read

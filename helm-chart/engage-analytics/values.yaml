@@ -1,7 +1,7 @@
 ---
 # Combined dbt + dataexport image
 image:
-  repository: onaio/engage-analytics
+  repository: opensrp/engage-analytics
   pullPolicy: Always
   tag: "latest"
 
