@@ -7,22 +7,23 @@
 
 -- View to identify clients who accepted FWS (Financial Wellness Supports)
 -- Based on Planning Next Steps questionnaire responses
--- When "planning_next_stepsfinancial_wellness_supports_did_the_client_a" is true, it indicates the client accepted FWS
+-- Queries the long-format answer data directly by linkId to avoid
+-- dependency on dynamically generated column names in wide views
 -- Tracks cumulative patients who accepted FWS as of each date
 
 with fws_responses as (
   select
-    qr.subject_patient_id,
-    qr.author_practitioner_id,
-    qr.meta_lastupdated::date as acceptance_date,
-    pns.planning_next_stepsfinancial_wellness_supports_did_the_client_a,
-    pns.practitioner_organization_id as organization_id
-  from {{ ref('stg_questionnaire_response') }} qr
-  join {{ ref('qr_planning_next_steps') }} pns
-    on pns.qr_id = qr.id
-  where qr.questionnaire_id = 'Questionnaire/q-planning-next-steps'
-    and qr.subject_patient_id is not null
-    and pns.planning_next_stepsfinancial_wellness_supports_did_the_client_a = 'true'
+    a.subject_patient_id,
+    a.author_practitioner_id,
+    a._airbyte_emitted_at::date as acceptance_date,
+    t.practitioner_organization_id as organization_id
+  from {{ ref('int_qr_answers_long') }} a
+  left join {{ ref('int_qr_tags') }} t
+    on t.resource_id = a.qr_id
+  where a.questionnaire_id = 'Questionnaire/q-planning-next-steps'
+    and a.linkid = 'cd34f5b1-8dff-4fd1-b1a0-ad3b4c5d6e7f'
+    and a.answer_value_text = 'true'
+    and a.subject_patient_id is not null
 ),
 
 -- Generate a date spine from the earliest acceptance to today
