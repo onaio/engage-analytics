@@ -52,6 +52,8 @@ def run_export(export_type, delete_local=False):
         print("Connecting to database...")
         exporter.connect()
 
+        schema = 'engage_analytics' if export_type == 'metrics' else exporter.schema
+        print(f"Using schema: {schema}")
         print(f"Exporting tables to {export_dir}...")
         results = exporter.export_all_to_directory(export_dir, export_type)
 
