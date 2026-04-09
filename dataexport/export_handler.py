@@ -26,7 +26,8 @@ class DataExporter:
         }
         self.conn = None
         self.cur = None
-        self.schema = 'engage_analytics_engage_analytics_mart'
+        dbt_schema = os.getenv('DBT_SCHEMA', 'engage_analytics')
+        self.schema = f'{dbt_schema}_engage_analytics_mart'
     
     def connect(self):
         """Establish database connection"""
