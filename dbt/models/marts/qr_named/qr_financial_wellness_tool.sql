@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Financial Wellness Tool with readable column names
--- Questionnaire ID: q-financial-wellness-tool
+-- Questionnaire ID: financial-wellness-tool-questionnaire
 -- Source file: questionnaire/assessments/financial-wellness-tool.json
-{% set identifiers = ["Questionnaire/q-financial-wellness-tool"] %}
+{% set identifiers = ["Questionnaire/financial-wellness-tool-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

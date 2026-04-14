@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Common Mental Health Symptoms with readable column names
--- Questionnaire ID: q-common-mental-health-symptoms
+-- Questionnaire ID: common-mental-health-symptoms-questionnaire
 -- Source file: questionnaire/assessments/common-mental-health-symptoms.json
-{% set identifiers = ["Questionnaire/q-common-mental-health-symptoms"] %}
+{% set identifiers = ["Questionnaire/common-mental-health-symptoms-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- SPI Subform 4 with readable column names
--- Questionnaire ID: 34008157
+-- Questionnaire ID: spi-subform-4-questionnaire
 -- Source file: questionnaire/spi/spi-subform-4.json
-{% set identifiers = ["Questionnaire/34008157"] %}
+{% set identifiers = ["Questionnaire/spi-subform-4-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,
