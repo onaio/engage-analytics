@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Planning Next Steps with readable column names
--- Questionnaire ID: q-planning-next-steps
+-- Questionnaire ID: planning-next-steps-questionnaire
 -- Source file: questionnaire/assessments/planning-next-steps.json
-{% set identifiers = ["Questionnaire/q-planning-next-steps"] %}
+{% set identifiers = ["Questionnaire/planning-next-steps-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

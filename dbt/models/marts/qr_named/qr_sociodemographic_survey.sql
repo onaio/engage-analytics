@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Sociodemographic Survey with readable column names
--- Questionnaire ID: 34755452
+-- Questionnaire ID: sociodemographic-survey-questionnaire
 -- Source file: questionnaire/assessments/sociodemographic_survey.json
-{% set identifiers = ["Questionnaire/34755452"] %}
+{% set identifiers = ["Questionnaire/sociodemographic-survey-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

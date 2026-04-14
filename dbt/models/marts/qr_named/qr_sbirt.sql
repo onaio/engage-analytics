@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- SBIRT with readable column names
--- Questionnaire ID: 34008158
+-- Questionnaire ID: sbirt-questionnaire
 -- Source file: questionnaire/sbirt.json
-{% set identifiers = ["Questionnaire/34008158"] %}
+{% set identifiers = ["Questionnaire/sbirt-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Mental Wellness Tool (IPC Session 4) with readable column names
--- Questionnaire ID: mw-tool-ipc-session-4
+-- Questionnaire ID: mw-tool-ipc-session-4-questionnaire
 -- Source file: questionnaire/ipc-session-4/mw-tool-ipc-session-4.json
-{% set identifiers = ["Questionnaire/mw-tool-ipc-session-4"] %}
+{% set identifiers = ["Questionnaire/mw-tool-ipc-session-4-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

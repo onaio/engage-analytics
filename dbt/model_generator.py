@@ -30,15 +30,15 @@ where false
 {{% endif %}}"""
 
 SPECIAL_MAPPINGS = [
-    {"qid": "q-financial-wellness-tool", "file_name": "qr_financial_wellness_tool",
+    {"qid": "financial-wellness-tool-questionnaire", "file_name": "qr_financial_wellness_tool",
      "description": "Financial Wellness Tool", "source_file": "questionnaire/assessments/financial-wellness-tool.json"},
-    {"qid": "q-planning-next-steps", "file_name": "qr_planning_next_steps",
+    {"qid": "planning-next-steps-questionnaire", "file_name": "qr_planning_next_steps",
      "description": "Planning Next Steps", "source_file": "questionnaire/assessments/planning-next-steps.json"},
-    {"qid": "q-common-mental-health-symptoms", "file_name": "qr_common_mental_health_symptoms",
+    {"qid": "common-mental-health-symptoms-questionnaire", "file_name": "qr_common_mental_health_symptoms",
      "description": "Common Mental Health Symptoms", "source_file": "questionnaire/assessments/common-mental-health-symptoms.json"},
-    {"qid": "1-month-follow-up", "file_name": "qr_1_month_follow_up",
+    {"qid": "1-month-follow-up-questionnaire", "file_name": "qr_1_month_follow_up",
      "description": "1 Month Follow Up", "source_file": "questionnaire/1-month-follow-up.json"},
-    {"qid": "mw-tool-ipc-session-4", "file_name": "qr_mw_tool_ipc_session_4",
+    {"qid": "mw-tool-ipc-session-4-questionnaire", "file_name": "qr_mw_tool_ipc_session_4",
      "description": "Mental Wellness Tool Session 4", "source_file": "questionnaire/assessments/mw-tool-ipc-session-4.json"}
 ]
 
