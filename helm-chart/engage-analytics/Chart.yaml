@@ -2,8 +2,8 @@ apiVersion: v2
 name: engage-analytics
 description: A Helm chart for Engage Analytics batch data pipeline
 type: application
-version: 0.1.0
-appVersion: "1.0.0"
+version: 0.1.1
+appVersion: "1.0.1"
 keywords:
   - analytics
   - data-export
