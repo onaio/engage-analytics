@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- GAD-7 (IPC Session 2) with readable column names
--- Questionnaire ID: 205
+-- Questionnaire ID: 34008034
 -- Source file: questionnaire/ipc-session-2/gad-7-ipc-session-2.json
-{% set identifiers = ["Questionnaire/205"] %}
+{% set identifiers = ["Questionnaire/34008034"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

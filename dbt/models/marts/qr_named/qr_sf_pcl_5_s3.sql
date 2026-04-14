@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Short-Form PCL-5-8 (IPC Session 3) with readable column names
--- Questionnaire ID: 60
+-- Questionnaire ID: 34008039
 -- Source file: questionnaire/ipc-session-3/sf-pcl-5-ipc-session-3.json
-{% set identifiers = ["Questionnaire/60"] %}
+{% set identifiers = ["Questionnaire/34008039"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

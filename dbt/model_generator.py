@@ -60,7 +60,7 @@ def generate_named_models():
                 file_name = os.path.basename(row['path']).replace('.json', '')
                 clean_name = file_name.replace('ipc-session-', 's').replace('-', '_')
 
-                qid = row['id'].replace('ipc-', '') if row['id'].startswith('ipc-') else row['id']
+                qid = row['id']
 
                 questionnaires.append({
                     'qid': qid,
