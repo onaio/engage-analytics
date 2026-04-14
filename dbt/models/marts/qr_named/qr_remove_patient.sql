@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- eCBIS Remove Family Form with readable column names
--- Questionnaire ID: 69
+-- Questionnaire ID: 34008160
 -- Source file: questionnaire/generic/remove_patient.json
-{% set identifiers = ["Questionnaire/69"] %}
+{% set identifiers = ["Questionnaire/34008160"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,
