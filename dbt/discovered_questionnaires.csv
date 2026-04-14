@@ -9,18 +9,18 @@ sociodemographic-survey-questionnaire,,0.0.1,Sociodemographic Survey,questionnai
 phq-9-ipc-session-2-questionnaire,,0.0.1,PHQ-9 (IPC Session 2),questionnaire/ipc-session-2/phq-9-ipc-session-2.json
 gad-7-ipc-session-2-questionnaire,,0.0.1,GAD-7 (IPC Session 2),questionnaire/ipc-session-2/gad-7-ipc-session-2.json
 start-ipc-ipc-session-2-questionnaire,,0.0.1,IPC Session 2,questionnaire/ipc-session-2/start-ipc-ipc-session-2.json
-sf-pcl-5-ipc-session-2-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 2),questionnaire/ipc-session-2/sf-pcl-5-ipc-session-2.json
+pc-ptsd-ipc-session-2-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 2),questionnaire/ipc-session-2/sf-pcl-5-ipc-session-2.json
 mood-rating-ipc-session-2-questionnaire,,0.0.1,Mood Rating (IPC Session 2),questionnaire/ipc-session-2/mood-rating-ipc-session-2.json
 phq-9-ipc-session-3-questionnaire,,0.0.1,PHQ-9 (IPC Session 3),questionnaire/ipc-session-3/phq-9-ipc-session-3.json
 start-ipc-ipc-session-3-questionnaire,,0.0.1,IPC Session 3,questionnaire/ipc-session-3/start-ipc-ipc-session-3.json
 gad-7-ipc-session-3-questionnaire,,0.0.1,GAD-7 (IPC Session 3),questionnaire/ipc-session-3/gad-7-ipc-session-3.json
-sf-pcl-5-ipc-session-3-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 3),questionnaire/ipc-session-3/sf-pcl-5-ipc-session-3.json
+pc-ptsd-ipc-session-3-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 3),questionnaire/ipc-session-3/sf-pcl-5-ipc-session-3.json
 mood-rating-ipc-session-3-questionnaire,,0.0.1,Mood Rating (IPC Session 3),questionnaire/ipc-session-3/mood-rating-ipc-session-3.json
 start-ipc-ipc-session-4-questionnaire,,0.0.1,IPC Session 4,questionnaire/ipc-session-4/start-ipc-ipc-session-4.json
 gad-7-ipc-session-4-questionnaire,,0.0.1,GAD-7 (IPC Session 4),questionnaire/ipc-session-4/gad-7-ipc-session-4.json
 phq-9-ipc-session-4-questionnaire,,0.0.1,PHQ-9 (IPC Session 4),questionnaire/ipc-session-4/phq-9-ipc-session-4.json
 mood-rating-ipc-session-4-questionnaire,,0.0.1,Mood Rating (IPC Session 4),questionnaire/ipc-session-4/mood-rating-ipc-session-4.json
-sf-pcl-5-ipc-session-4-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 4),questionnaire/ipc-session-4/sf-pcl-5-ipc-session-4.json
+pc-ptsd-ipc-session-4-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 4),questionnaire/ipc-session-4/sf-pcl-5-ipc-session-4.json
 mw-tool-ipc-session-4-questionnaire,,0.0.1,Mental Wellness Tool (IPC Session 4),questionnaire/ipc-session-4/mw-tool-ipc-session-4.json
 spi-subform-4-questionnaire,,0.0.1,SPI Subform 4,questionnaire/spi/spi-subform-4.json
 spi-subform-2-questionnaire,,0.0.1,SPI Subform 2,questionnaire/spi/spi-subform-2.json
@@ -30,7 +30,7 @@ registration-info-questionnaire,,0.0.3,Add Family Member Registration,questionna
 remove-patient-questionnaire,,0.0.2,eCBIS Remove Family Form,questionnaire/generic/remove_patient.json
 mood-rating-ipc-session-1-questionnaire,,0.0.1,Mood Rating (IPC Session 1),questionnaire/ipc-session-1/mood-rating-ipc-session-1.json
 confidential-ipc-session-1-questionnaire,,0.0.1,Discuss Confidentiality,questionnaire/ipc-session-1/confidential-ipc-session-1.json
-sf-pcl-5-ipc-session-1-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 1),questionnaire/ipc-session-1/sf-pcl-5-ipc-session-1.json
+pc-ptsd-ipc-session-1-questionnaire,,0.0.1,Short-Form PCL-5-8 (IPC Session 1),questionnaire/ipc-session-1/sf-pcl-5-ipc-session-1.json
 start-ipc-ipc-session-1-questionnaire,,0.0.1,IPC Session 1,questionnaire/ipc-session-1/start-ipc-ipc-session-1.json
 gad-7-ipc-session-1-questionnaire,,0.0.1,GAD-7 (IPC Session 1),questionnaire/ipc-session-1/gad-7-ipc-session-1.json
 phq-9-ipc-session-1-questionnaire,,0.0.1,PHQ-9 (IPC Session 1),questionnaire/ipc-session-1/phq-9-ipc-session-1.json

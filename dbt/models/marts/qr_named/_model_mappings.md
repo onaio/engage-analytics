@@ -24,10 +24,10 @@
 | qr_registration_info | registration-info-questionnaire | Add Family Member Registration | questionnaire/generic/registration_info.json |
 | qr_remove_patient | remove-patient-questionnaire | eCBIS Remove Family Form | questionnaire/generic/remove_patient.json |
 | qr_sbirt | sbirt-questionnaire | SBIRT | questionnaire/sbirt.json |
-| qr_sf_pcl_5_s1 | sf-pcl-5-ipc-session-1-questionnaire | Short-Form PCL-5-8 (IPC Session 1) | questionnaire/ipc-session-1/sf-pcl-5-ipc-session-1.json |
-| qr_sf_pcl_5_s2 | sf-pcl-5-ipc-session-2-questionnaire | Short-Form PCL-5-8 (IPC Session 2) | questionnaire/ipc-session-2/sf-pcl-5-ipc-session-2.json |
-| qr_sf_pcl_5_s3 | sf-pcl-5-ipc-session-3-questionnaire | Short-Form PCL-5-8 (IPC Session 3) | questionnaire/ipc-session-3/sf-pcl-5-ipc-session-3.json |
-| qr_sf_pcl_5_s4 | sf-pcl-5-ipc-session-4-questionnaire | Short-Form PCL-5-8 (IPC Session 4) | questionnaire/ipc-session-4/sf-pcl-5-ipc-session-4.json |
+| qr_sf_pcl_5_s1 | pc-ptsd-ipc-session-1-questionnaire | Short-Form PCL-5-8 (IPC Session 1) | questionnaire/ipc-session-1/sf-pcl-5-ipc-session-1.json |
+| qr_sf_pcl_5_s2 | pc-ptsd-ipc-session-2-questionnaire | Short-Form PCL-5-8 (IPC Session 2) | questionnaire/ipc-session-2/sf-pcl-5-ipc-session-2.json |
+| qr_sf_pcl_5_s3 | pc-ptsd-ipc-session-3-questionnaire | Short-Form PCL-5-8 (IPC Session 3) | questionnaire/ipc-session-3/sf-pcl-5-ipc-session-3.json |
+| qr_sf_pcl_5_s4 | pc-ptsd-ipc-session-4-questionnaire | Short-Form PCL-5-8 (IPC Session 4) | questionnaire/ipc-session-4/sf-pcl-5-ipc-session-4.json |
 | qr_sociodemographic_survey | sociodemographic-survey-questionnaire | Sociodemographic Survey | questionnaire/assessments/sociodemographic_survey.json |
 | qr_spi_subform_1 | spi-subform-1-questionnaire | SPI Subform 1 | questionnaire/spi/spi-subform-1.json |
 | qr_spi_subform_2 | spi-subform-2-questionnaire | SPI Subform 2 | questionnaire/spi/spi-subform-2.json |
