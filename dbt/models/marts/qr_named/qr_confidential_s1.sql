@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- Discuss Confidentiality with readable column names
--- Questionnaire ID: 23451
+-- Questionnaire ID: confidential-ipc-session-1-questionnaire
 -- Source file: questionnaire/ipc-session-1/confidential-ipc-session-1.json
-{% set identifiers = ["Questionnaire/23451"] %}
+{% set identifiers = ["Questionnaire/confidential-ipc-session-1-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,

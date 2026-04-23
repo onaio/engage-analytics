@@ -3,9 +3,9 @@
 -- depends_on: {{ ref('questionnaire_metadata') }}
 {{ config(materialized='view') }}
 -- 1 month follow up with readable column names
--- Questionnaire ID: 1-month-follow-up
+-- Questionnaire ID: 1-month-follow-up-questionnaire
 -- Source file: questionnaire/1-month-follow-up.json
-{% set identifiers = ["Questionnaire/1-month-follow-up"] %}
+{% set identifiers = ["Questionnaire/1-month-follow-up-questionnaire"] %}
 {% if identifiers|length == 0 %}
 -- No identifiers discovered for this Questionnaire; creating empty selectable view
 select null::text as qr_id, null::text as questionnaire_id, null::text as subject_patient_id,
