@@ -2,8 +2,28 @@ apiVersion: v1
 entries:
   engage-analytics:
   - apiVersion: v2
+    appVersion: 1.0.4
+    created: "2026-04-23T11:35:12.598706206Z"
+    description: A Helm chart for Engage Analytics batch data pipeline
+    digest: 4cf8393a94c7978e38a48e159c40e385fa6d1dfb7e2d700f9886def35e70b163
+    home: https://github.com/your-org/engage-analytics
+    keywords:
+    - analytics
+    - data-export
+    - dbt
+    maintainers:
+    - email: team@example.com
+      name: Team
+    name: engage-analytics
+    sources:
+    - https://github.com/your-org/engage-analytics
+    type: application
+    urls:
+    - https://onaio.github.io/engage-analytics/engage-analytics-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: 1.0.3
-    created: "2026-04-14T15:25:56.009675338Z"
+    created: "2026-04-23T11:35:12.59827952Z"
     description: A Helm chart for Engage Analytics batch data pipeline
     digest: 9de5c7729f33e13711e92fe3b8b5941b8721b3b64755610cf59005c593d4a37c
     home: https://github.com/your-org/engage-analytics
@@ -23,7 +43,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.0.2
-    created: "2026-04-14T15:25:56.008980397Z"
+    created: "2026-04-23T11:35:12.597814993Z"
     description: A Helm chart for Engage Analytics batch data pipeline
     digest: d7475e692c8e813051300dc36048359d8b954ab6478fd1e9c1858d3092a00570
     home: https://github.com/your-org/engage-analytics
@@ -43,7 +63,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2026-04-14T15:25:56.008527665Z"
+    created: "2026-04-23T11:35:12.597339756Z"
     description: A Helm chart for Engage Analytics batch data pipeline
     digest: c57851fef9115a6def6f4289a21ae956e46bc3a1ccc2b546f1113e9052f52a96
     home: https://github.com/your-org/engage-analytics
@@ -63,7 +83,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-04-14T15:25:56.007539834Z"
+    created: "2026-04-23T11:35:12.596856183Z"
     description: A Helm chart for Engage Analytics batch data pipeline
     digest: 16229637af8c133c90ae9d9cae8e178af1f45349fa5e3cc635593197347d7edd
     home: https://github.com/your-org/engage-analytics
@@ -81,4 +101,4 @@ entries:
     urls:
     - https://onaio.github.io/engage-analytics/engage-analytics-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-14T15:25:56.006646749Z"
+generated: "2026-04-23T11:35:12.596144395Z"
