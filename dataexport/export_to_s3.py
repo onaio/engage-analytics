@@ -71,6 +71,10 @@ def run_export(export_type, delete_local=False):
         print(f"Uploading to s3://{bucket}/{s3_key}")
         exporter.upload_to_s3(zip_path, bucket, s3_key)
 
+        latest_s3_key = f"latest/engage_analytics_export_{export_type}.zip"
+        print(f"Uploading to s3://{bucket}/{latest_s3_key}")
+        exporter.upload_to_s3(zip_path, bucket, latest_s3_key)
+
         print(f"Upload complete!")
 
         if delete_local:
@@ -85,7 +89,8 @@ def run_export(export_type, delete_local=False):
             'type': export_type,
             'tables': len(results),
             'rows': total_rows,
-            's3_uri': f"s3://{bucket}/{s3_key}"
+            's3_uri': f"s3://{bucket}/{s3_key}",
+            's3_latest_uri': f"s3://{bucket}/{latest_s3_key}"
         }
 
     finally:
@@ -133,6 +138,7 @@ def main():
     for r in results:
         print(f"  {r['type'].upper()}: {r['tables']} tables, {r['rows']:,} rows")
         print(f"    -> {r['s3_uri']}")
+        print(f"    -> {r['s3_latest_uri']} (latest)")
     print(f"{'='*60}")
 
 
