@@ -56,11 +56,7 @@ select
                     {% elif 'address' in col.name.lower() %}
                         'REDACTED'
                     {% elif 'zip' in col.name.lower() %}
-                        CASE
-                            WHEN "{{ col.name }}" IS NOT NULL
-                            THEN LEFT("{{ col.name }}"::text, 3) || 'XX'
-                            ELSE NULL
-                        END
+                        'REDACTED'
                     {% elif 'medicaid' in col.name.lower() and 'number' in col.name.lower() %}
                         'REDACTED'
                     {% elif 'ssn' in col.name.lower() or 'social_security' in col.name.lower() %}
