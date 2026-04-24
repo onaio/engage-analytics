@@ -35,14 +35,14 @@
     select distinct
       a.linkid,
       coalesce(m.column, a.linkid) as readable_name,
-      null::integer as question_order
+      coalesce(m.question_order, 999) as question_order
     from {{ ref('int_qr_answers_long') }} a
     join ids on a.questionnaire_id = ids.ident
     cross join table_name t
     left join {{ ref('questionnaire_metadata') }} m
       on m."table" = t.table_name
       and m.linkid = a.linkid
-    order by a.linkid
+    order by question_order, a.linkid
   {% endset %}
 
   {% set res = run_query(q) %}
