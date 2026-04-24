@@ -21,19 +21,19 @@ qr_common_mental_health_symptoms,practitioner_id_2,,practitioner_id,Practitioner
 qr_common_mental_health_symptoms,practitioner_care_team_id_2,,practitioner_careteam_id,Practitioner Care Team ID,text,Common Mental Health Symptoms,system,FALSE
 qr_common_mental_health_symptoms,application_version_2,,application_version,Application Version,text,Common Mental Health Symptoms,system,FALSE
 qr_common_mental_health_symptoms,questionnaire_response_id_2,,qr_id,Questionnaire Response ID,character varying,Common Mental Health Symptoms,system,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpath,16d05294-fee9-4d42-8447-0d578a5de192,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,pcl_total_score,16d05294-fee9-4d42-8447-0d578a5de192,place_declare_values,Total score PCL,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_wer,347352fc-b189-444a-aa22-df4d9e779f67,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_2,4a05b4fe-b514-4751-91be-adb1b278430c,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,phq_total_score_meaning,4a05b4fe-b514-4751-91be-adb1b278430c,place_declare_values,Total score meaning PHQ,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_2,532fcdbc-38b7-4a35-870c-1d5222e239fb,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_3,583c5b02-b26c-4821-8da8-7ed9066d9d5d,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,gad_total_score,583c5b02-b26c-4821-8da8-7ed9066d9d5d,place_declare_values,Total score GAD,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_3,5bc16477-41ff-485f-a73f-f0caa9c2c0ab,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_4,68bec639-6c70-41e0-88f8-fef0ad941b55,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_5,6a52200c-3856-4fcc-afe4-b75921da0122,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_4,829e6d32-3fa7-4d16-909b-b198aea54603,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,gad_total_score_meaning,829e6d32-3fa7-4d16-909b-b198aea54603,place_declare_values,Total score meaning GAD,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,phq_9_ipc_session_2_how_difficult_have_these_problems_made_it_f,9c366bcc-38c8-449f-8823-8a1632f44da3,problem_difficulty,PHQ-9 (IPC Session 2) - How difficult have these problems made it for you to ...,text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_5,b3d8e9fc-0435-47c5-a3f7-a0ce6cf41879,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,phq_total_score,b3d8e9fc-0435-47c5-a3f7-a0ce6cf41879,place_declare_values,Total score PHQ,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_6,b4f73ad2-ed7a-4268-9057-a4a72b50dd10,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_6,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,pcl_total_score_meaning,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,Total score meaning PCL,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_7,e13d2bb9-20a6-4605-a33f-5d9047f6b6a8,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_8,eb42041c-cb74-4d5e-8a29-941776cc0b6e,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,common_mental_health_symptoms_moving_or_speaking_so_slowly_that,f1.10.1,psychomotor,Common Mental Health Symptoms - Moving or speaking so slowly that other peopl...,text,Common Mental Health Symptoms,questionnaire,FALSE
@@ -52,11 +52,11 @@ qr_common_mental_health_symptoms,common_mental_health_symptoms_feeling_tired_or_
 qr_common_mental_health_symptoms,common_mental_health_symptoms_poor_appetite_or_overeating,f1.7.1,appetite_problems,Common Mental Health Symptoms - Poor appetite or overeating,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,common_mental_health_symptoms_feeling_bad_about_yourself_or_tha,f1.8.1,feeling_bad_self,Common Mental Health Symptoms - Feeling bad about yourself or that you are a ...,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_common_mental_health_symptoms,common_mental_health_symptoms_trouble_concentrating_on_things_s,f1.9.1,concentration_trouble,"Common Mental Health Symptoms - Trouble concentrating on things, such as read...",text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,patient_age,patient-age,patient_age,Patient Age,text,Common Mental Health Symptoms,generated,FALSE
+qr_common_mental_health_symptoms,patient_age,patient-age,patient_age,Patient Age,text,Common Mental Health Symptoms,generated,TRUE
 qr_common_mental_health_symptoms,patient_date_of_birth,patient-dob,patient_dob,Patient Date of Birth,text,Common Mental Health Symptoms,generated,TRUE
 qr_common_mental_health_symptoms,patient_name,patient-name,patient_name,Patient Name,text,Common Mental Health Symptoms,generated,TRUE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_7,show-pcl-5-to-8-questions,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
-qr_common_mental_health_symptoms,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_8,task-id-common-mental-pdf,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,show_pcl_5_to_8_questions,show-pcl-5-to-8-questions,place_declare_values,show-pcl-5-to-8-questions,text,Common Mental Health Symptoms,questionnaire,FALSE
+qr_common_mental_health_symptoms,taskid_pdf,task-id-common-mental-pdf,place_declare_values,taskId PDF,text,Common Mental Health Symptoms,questionnaire,FALSE
 qr_confidential_s1,questionnaire_id_3,,questionnaire_id,Questionnaire ID,text,Discuss Confidentiality,system,FALSE
 qr_confidential_s1,subject_patient_id_3,,subject_patient_id,Subject Patient ID,text,Discuss Confidentiality,system,FALSE
 qr_confidential_s1,encounter_id_3,,encounter_id,Encounter ID,text,Discuss Confidentiality,system,FALSE
@@ -114,15 +114,15 @@ qr_gad_7_s1,practitioner_id_5,,practitioner_id,Practitioner ID,text,GAD-7 (IPC S
 qr_gad_7_s1,practitioner_care_team_id_5,,practitioner_careteam_id,Practitioner Care Team ID,text,GAD-7 (IPC Session 1),system,FALSE
 qr_gad_7_s1,application_version_5,,application_version,Application Version,text,GAD-7 (IPC Session 1),system,FALSE
 qr_gad_7_s1,questionnaire_response_id_5,,qr_id,Questionnaire Response ID,character varying,GAD-7 (IPC Session 1),system,FALSE
-qr_gad_7_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirpa_9,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
-qr_gad_7_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_10,583c5b02-b26c-4821-8da8-7ed9066d9d5d,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
-qr_gad_7_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_11,69f16284-b8a8-4a24-ab79-03bde5bcfbe9,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
-qr_gad_7_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_12,829e6d32-3fa7-4d16-909b-b198aea54603,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,total_score_meaning_code,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,Total score meaning code,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,total_score,583c5b02-b26c-4821-8da8-7ed9066d9d5d,gad_place_declare_values,Total score,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,taskid_gad_pdf,69f16284-b8a8-4a24-ab79-03bde5bcfbe9,gad_place_declare_values,taskId GAD PDF,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,total_score_meaning,829e6d32-3fa7-4d16-909b-b198aea54603,gad_place_declare_values,Total score meaning,text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,add_family_member_registration_calculated_age_2,b5bc7f80-4a0c-486c-e5eb-32c750036f94,gad_add_family_member,Add Family Member Registration - Calculated Age,text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,add_family_member_registration_calculated_month_2,calculated-month,gad_add_family_member,Add Family Member Registration - calculated month,text,GAD-7 (IPC Session 1),questionnaire,TRUE
 qr_gad_7_s1,add_family_member_registration_calculated_year_2,calculated-year,gad_add_family_member,Add Family Member Registration - calculated year,text,GAD-7 (IPC Session 1),questionnaire,TRUE
 qr_gad_7_s1,add_family_member_registration_date_of_birth_2,cd8e3d6d-e9ff-458d-d122-57070bebffaf,gad_add_family_member,Add Family Member Registration - Date of birth,text,GAD-7 (IPC Session 1),questionnaire,TRUE
-qr_gad_7_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_13,encounter-id,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,encounter_id_of_gad_7_session_1,encounter-id,gad_place_declare_values,Encounter ID of GAD-7 Session 1,text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,common_mental_health_symptoms_feeling_nervous_anxious_or_on_e_2,f1.15.1,feeling_nervous,"Common Mental Health Symptoms - Feeling nervous, anxious, or on edge",text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,common_mental_health_symptoms_not_being_able_to_stop_or_contr_2,f1.16.1,gad_common_mental_health,Common Mental Health Symptoms - Not being able to stop or control worrying,text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,common_mental_health_symptoms_worrying_too_much_about_differe_2,f1.17.1,excessive_worry,Common Mental Health Symptoms - Worrying too much about different things,text,GAD-7 (IPC Session 1),questionnaire,FALSE
@@ -130,7 +130,10 @@ qr_gad_7_s1,common_mental_health_symptoms_trouble_relaxing_2,f1.18.1,trouble_rel
 qr_gad_7_s1,common_mental_health_symptoms_being_so_restless_that_it_s_har_2,f1.19.1,restlessness,Common Mental Health Symptoms - Being so restless that it's hard to sit still,text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,common_mental_health_symptoms_becoming_easily_annoyed_or_irri_2,f1.20.1,irritability,Common Mental Health Symptoms - Becoming easily annoyed or irritable,text,GAD-7 (IPC Session 1),questionnaire,FALSE
 qr_gad_7_s1,common_mental_health_symptoms_feeling_afraid_as_if_something__2,f1.21.1,feeling_afraid,Common Mental Health Symptoms - Feeling afraid as if something awful might ha...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
-qr_gad_7_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_14,observation-gad-score-id,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,observation_id_of_gad_7_session_1_score,observation-gad-score-id,gad_place_declare_values,Observation ID of GAD-7 Session 1 Score,text,GAD-7 (IPC Session 1),questionnaire,FALSE
+qr_gad_7_s1,patient_name,patient-name,patient_name,Patient Name,text,GAD-7 (IPC Session 1),generated,TRUE
+qr_gad_7_s1,patient_age,patient-age,patient_age,Patient Age,text,GAD-7 (IPC Session 1),generated,TRUE
+qr_gad_7_s1,patient_dob,patient-dob,patient_dob,Patient Date of Birth,date,GAD-7 (IPC Session 1),generated,TRUE
 qr_gad_7_s2,questionnaire_id_6,,questionnaire_id,Questionnaire ID,text,GAD-7 (IPC Session 2),system,FALSE
 qr_gad_7_s2,subject_patient_id_6,,subject_patient_id,Subject Patient ID,text,GAD-7 (IPC Session 2),system,FALSE
 qr_gad_7_s2,encounter_id_6,,encounter_id,Encounter ID,text,GAD-7 (IPC Session 2),system,FALSE
@@ -141,10 +144,10 @@ qr_gad_7_s2,practitioner_id_6,,practitioner_id,Practitioner ID,text,GAD-7 (IPC S
 qr_gad_7_s2,practitioner_care_team_id_6,,practitioner_careteam_id,Practitioner Care Team ID,text,GAD-7 (IPC Session 2),system,FALSE
 qr_gad_7_s2,application_version_6,,application_version,Application Version,text,GAD-7 (IPC Session 2),system,FALSE
 qr_gad_7_s2,questionnaire_response_id_6,,qr_id,Questionnaire Response ID,character varying,GAD-7 (IPC Session 2),system,FALSE
-qr_gad_7_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_15,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 2),questionnaire,FALSE
-qr_gad_7_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_16,37e0bcfd-f6d1-4b35-9556-4d458a717a23,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 2),questionnaire,FALSE
-qr_gad_7_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_17,510776d6-8b4e-446b-abe7-80aee8ecb110,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 2),questionnaire,FALSE
-qr_gad_7_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_18,encounter-id,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 2),questionnaire,FALSE
+qr_gad_7_s2,total_score_meaning_code,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,Total score meaning code,text,GAD-7 (IPC Session 2),questionnaire,FALSE
+qr_gad_7_s2,total_score,37e0bcfd-f6d1-4b35-9556-4d458a717a23,gad_place_declare_values,Total score,text,GAD-7 (IPC Session 2),questionnaire,FALSE
+qr_gad_7_s2,total_score_meaning,510776d6-8b4e-446b-abe7-80aee8ecb110,gad_place_declare_values,Total score meaning,text,GAD-7 (IPC Session 2),questionnaire,FALSE
+qr_gad_7_s2,encounter_id_of_gad_7_session_2,encounter-id,gad_place_declare_values,Encounter ID of GAD-7 Session 2,text,GAD-7 (IPC Session 2),questionnaire,FALSE
 qr_gad_7_s2,common_mental_health_symptoms_feeling_nervous_anxious_or_on_e_3,f1.15.1,feeling_nervous,"Common Mental Health Symptoms - Feeling nervous, anxious, or on edge",text,GAD-7 (IPC Session 2),questionnaire,FALSE
 qr_gad_7_s2,common_mental_health_symptoms_not_being_able_to_stop_or_contr_3,f1.16.1,gad_common_mental_health,Common Mental Health Symptoms - Not being able to stop or control worrying,text,GAD-7 (IPC Session 2),questionnaire,FALSE
 qr_gad_7_s2,common_mental_health_symptoms_worrying_too_much_about_differe_3,f1.17.1,excessive_worry,Common Mental Health Symptoms - Worrying too much about different things,text,GAD-7 (IPC Session 2),questionnaire,FALSE
@@ -152,7 +155,7 @@ qr_gad_7_s2,common_mental_health_symptoms_trouble_relaxing_3,f1.18.1,trouble_rel
 qr_gad_7_s2,common_mental_health_symptoms_being_so_restless_that_it_s_har_3,f1.19.1,restlessness,Common Mental Health Symptoms - Being so restless that it's hard to sit still,text,GAD-7 (IPC Session 2),questionnaire,FALSE
 qr_gad_7_s2,common_mental_health_symptoms_becoming_easily_annoyed_or_irri_3,f1.20.1,irritability,Common Mental Health Symptoms - Becoming easily annoyed or irritable,text,GAD-7 (IPC Session 2),questionnaire,FALSE
 qr_gad_7_s2,common_mental_health_symptoms_feeling_afraid_as_if_something__3,f1.21.1,feeling_afraid,Common Mental Health Symptoms - Feeling afraid as if something awful might ha...,text,GAD-7 (IPC Session 2),questionnaire,FALSE
-qr_gad_7_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_19,observation-gad-score-id,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 2),questionnaire,FALSE
+qr_gad_7_s2,observation_id_of_gad_7_session_2_score,observation-gad-score-id,gad_place_declare_values,Observation ID of GAD-7 Session 2 Score,text,GAD-7 (IPC Session 2),questionnaire,FALSE
 qr_gad_7_s3,questionnaire_id_7,,questionnaire_id,Questionnaire ID,text,GAD-7 (IPC Session 3),system,FALSE
 qr_gad_7_s3,subject_patient_id_7,,subject_patient_id,Subject Patient ID,text,GAD-7 (IPC Session 3),system,FALSE
 qr_gad_7_s3,encounter_id_7,,encounter_id,Encounter ID,text,GAD-7 (IPC Session 3),system,FALSE
@@ -163,9 +166,9 @@ qr_gad_7_s3,practitioner_id_7,,practitioner_id,Practitioner ID,text,GAD-7 (IPC S
 qr_gad_7_s3,practitioner_care_team_id_7,,practitioner_careteam_id,Practitioner Care Team ID,text,GAD-7 (IPC Session 3),system,FALSE
 qr_gad_7_s3,application_version_7,,application_version,Application Version,text,GAD-7 (IPC Session 3),system,FALSE
 qr_gad_7_s3,questionnaire_response_id_7,,qr_id,Questionnaire Response ID,character varying,GAD-7 (IPC Session 3),system,FALSE
-qr_gad_7_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_20,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 3),questionnaire,FALSE
-qr_gad_7_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_21,534c4998-b964-4101-b919-ff3c26af9714,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 3),questionnaire,FALSE
-qr_gad_7_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_22,d34c5839-fad9-4824-b2dc-9e0161647402,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 3),questionnaire,FALSE
+qr_gad_7_s3,total_score_meaning_code,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,Total score meaning code,text,GAD-7 (IPC Session 3),questionnaire,FALSE
+qr_gad_7_s3,total_score,534c4998-b964-4101-b919-ff3c26af9714,gad_place_declare_values,Total score,text,GAD-7 (IPC Session 3),questionnaire,FALSE
+qr_gad_7_s3,total_score_meaning,d34c5839-fad9-4824-b2dc-9e0161647402,gad_place_declare_values,Total score meaning,text,GAD-7 (IPC Session 3),questionnaire,FALSE
 qr_gad_7_s3,common_mental_health_symptoms_feeling_nervous_anxious_or_on_e_4,f1.15.1,feeling_nervous,"Common Mental Health Symptoms - Feeling nervous, anxious, or on edge",text,GAD-7 (IPC Session 3),questionnaire,FALSE
 qr_gad_7_s3,common_mental_health_symptoms_not_being_able_to_stop_or_contr_4,f1.16.1,gad_common_mental_health,Common Mental Health Symptoms - Not being able to stop or control worrying,text,GAD-7 (IPC Session 3),questionnaire,FALSE
 qr_gad_7_s3,common_mental_health_symptoms_worrying_too_much_about_differe_4,f1.17.1,excessive_worry,Common Mental Health Symptoms - Worrying too much about different things,text,GAD-7 (IPC Session 3),questionnaire,FALSE
@@ -183,9 +186,9 @@ qr_gad_7_s4,practitioner_id_8,,practitioner_id,Practitioner ID,text,GAD-7 (IPC S
 qr_gad_7_s4,practitioner_care_team_id_8,,practitioner_careteam_id,Practitioner Care Team ID,text,GAD-7 (IPC Session 4),system,FALSE
 qr_gad_7_s4,application_version_8,,application_version,Application Version,text,GAD-7 (IPC Session 4),system,FALSE
 qr_gad_7_s4,questionnaire_response_id_8,,qr_id,Questionnaire Response ID,character varying,GAD-7 (IPC Session 4),system,FALSE
-qr_gad_7_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_23,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 4),questionnaire,FALSE
-qr_gad_7_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_24,3e626219-c0e4-465e-92e6-9e976c52614c,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 4),questionnaire,FALSE
-qr_gad_7_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_25,e4155e07-1d18-448f-8111-182bf4149672,gad_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,GAD-7 (IPC Session 4),questionnaire,FALSE
+qr_gad_7_s4,total_score_meaning_code,3212b2b2-f42f-46e9-b6bd-42fc29671da9,gad_place_declare_values,Total score meaning code,text,GAD-7 (IPC Session 4),questionnaire,FALSE
+qr_gad_7_s4,total_score,3e626219-c0e4-465e-92e6-9e976c52614c,gad_place_declare_values,Total score,text,GAD-7 (IPC Session 4),questionnaire,FALSE
+qr_gad_7_s4,total_score_meaning,e4155e07-1d18-448f-8111-182bf4149672,gad_place_declare_values,Total score meaning,text,GAD-7 (IPC Session 4),questionnaire,FALSE
 qr_gad_7_s4,common_mental_health_symptoms_feeling_nervous_anxious_or_on_e_5,f1.15.1,feeling_nervous,"Common Mental Health Symptoms - Feeling nervous, anxious, or on edge",text,GAD-7 (IPC Session 4),questionnaire,FALSE
 qr_gad_7_s4,common_mental_health_symptoms_not_being_able_to_stop_or_contr_5,f1.16.1,gad_common_mental_health,Common Mental Health Symptoms - Not being able to stop or control worrying,text,GAD-7 (IPC Session 4),questionnaire,FALSE
 qr_gad_7_s4,common_mental_health_symptoms_worrying_too_much_about_differe_5,f1.17.1,excessive_worry,Common Mental Health Symptoms - Worrying too much about different things,text,GAD-7 (IPC Session 4),questionnaire,FALSE
@@ -284,7 +287,7 @@ qr_mw_tool,mental_wellness_tool_in_the_past_year_have_there_been_times_w_2,f35bb
 qr_mw_tool,discussion_with_supervisor_for_severe_mental_health_supervisor_,fe874736-efd1-4fba-b517-5560489729b0,discussion_supervisor_severe,Discussion with Supervisor (for severe mental health) - Supervisor's name,text,Mental Wellness Tool,questionnaire,FALSE
 qr_mw_tool,mental_wellness_tool_how_many_drinks,how-many-drinks,mental_wellness_tool,Mental Wellness Tool - how-many-drinks,text,Mental Wellness Tool,questionnaire,FALSE
 qr_mw_tool,mental_wellness_tool_no_mental_problem,no-mental-problem,mental_wellness_tool,Mental Wellness Tool - no-mental-problem,text,Mental Wellness Tool,questionnaire,FALSE
-qr_mw_tool,patient_age_2,patient-age,patient_age,Patient Age,text,Mental Wellness Tool,generated,FALSE
+qr_mw_tool,patient_age_2,patient-age,patient_age,Patient Age,text,Mental Wellness Tool,generated,TRUE
 qr_mw_tool,patient_biological_sex,patient-biological-sex,patient_biological_sex,Patient Biological Sex,text,Mental Wellness Tool,generated,TRUE
 qr_mw_tool,patient_date_of_birth_2,patient-dob,patient_dob,Patient Date of Birth,text,Mental Wellness Tool,generated,TRUE
 qr_mw_tool,patient_gender_identity,patient-gender-identity,patient_gender_identity,Patient Gender Identity,text,Mental Wellness Tool,generated,TRUE
@@ -325,7 +328,7 @@ qr_mw_tool_ipc_session_4,mental_wellness_tool_drug_problem_2,drug-problem,mental
 qr_mw_tool_ipc_session_4,mental_wellness_tool_in_the_past_year_have_there_been_times_w_4,f35bbaa2-5e2e-4c74-b9b4-f0aa1eabe47d,mental_wellness_tool,"Mental Wellness Tool - In the past year, have there been times when you felt ...",text,,questionnaire,FALSE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_how_many_drinks_2,how-many-drinks,mental_wellness_tool,Mental Wellness Tool - how-many-drinks,text,,questionnaire,FALSE
 qr_mw_tool_ipc_session_4,mental_wellness_tool_no_mental_problem_2,no-mental-problem,mental_wellness_tool,Mental Wellness Tool - no-mental-problem,text,,questionnaire,FALSE
-qr_mw_tool_ipc_session_4,patient_age_3,patient-age,patient_age,Patient Age,text,,generated,FALSE
+qr_mw_tool_ipc_session_4,patient_age_3,patient-age,patient_age,Patient Age,text,,generated,TRUE
 qr_mw_tool_ipc_session_4,patient_biological_sex_2,patient-biological-sex,patient_biological_sex,Patient Biological Sex,text,,generated,TRUE
 qr_mw_tool_ipc_session_4,patient_date_of_birth_3,patient-dob,patient_dob,Patient Date of Birth,text,,generated,TRUE
 qr_mw_tool_ipc_session_4,patient_gender_identity_2,patient-gender-identity,patient_gender_identity,Patient Gender Identity,text,,generated,TRUE
@@ -345,15 +348,15 @@ qr_phq_9_s1,practitioner_id_15,,practitioner_id,Practitioner ID,text,PHQ-9 (IPC 
 qr_phq_9_s1,practitioner_care_team_id_15,,practitioner_careteam_id,Practitioner Care Team ID,text,PHQ-9 (IPC Session 1),system,FALSE
 qr_phq_9_s1,application_version_15,,application_version,Application Version,text,PHQ-9 (IPC Session 1),system,FALSE
 qr_phq_9_s1,questionnaire_response_id_15,,qr_id,Questionnaire Response ID,character varying,PHQ-9 (IPC Session 1),system,FALSE
-qr_phq_9_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_26,0cfe26b9-8cd8-4d03-938f-991ebab4b3c0,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
-qr_phq_9_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_27,4a05b4fe-b514-4751-91be-adb1b278430c,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,total_score_meaning_code,0cfe26b9-8cd8-4d03-938f-991ebab4b3c0,phq_place_declare_values,Total score meaning code,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,total_score_meaning,4a05b4fe-b514-4751-91be-adb1b278430c,phq_place_declare_values,Total score meaning,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,phq_9_ipc_session_2_how_difficult_have_these_problems_made_it_2,9c366bcc-38c8-449f-8823-8a1632f44da3,problem_difficulty,PHQ-9 (IPC Session 2) - How difficult have these problems made it for you to ...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
-qr_phq_9_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_28,b3d8e9fc-0435-47c5-a3f7-a0ce6cf41879,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,total_score,b3d8e9fc-0435-47c5-a3f7-a0ce6cf41879,phq_place_declare_values,Total score,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,add_family_member_registration_calculated_age_5,b5bc7f80-4a0c-486c-e5eb-32c750036f94,phq_add_family_member,Add Family Member Registration - Calculated Age,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,add_family_member_registration_calculated_month_5,calculated-month,phq_add_family_member,Add Family Member Registration - calculated month,text,PHQ-9 (IPC Session 1),questionnaire,TRUE
 qr_phq_9_s1,add_family_member_registration_calculated_year_5,calculated-year,phq_add_family_member,Add Family Member Registration - calculated year,text,PHQ-9 (IPC Session 1),questionnaire,TRUE
 qr_phq_9_s1,add_family_member_registration_date_of_birth_5,cd8e3d6d-e9ff-458d-d122-57070bebffaf,phq_add_family_member,Add Family Member Registration - Date of birth,text,PHQ-9 (IPC Session 1),questionnaire,TRUE
-qr_phq_9_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_29,encounter-id,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,encounter_id_of_phq_9_session_1,encounter-id,phq_place_declare_values,Encounter ID of PHQ-9 Session 1,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,common_mental_health_symptoms_moving_or_speaking_so_slowly_th_2,f1.10.1,psychomotor,Common Mental Health Symptoms - Moving or speaking so slowly that other peopl...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,common_mental_health_symptoms_thoughts_that_you_would_be_bett_2,f1.11.1,suicidal_thoughts,"Common Mental Health Symptoms - Thoughts that you would be better off dead, o...",text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,common_mental_health_symptoms_little_interest_or_pleasure_in__2,f1.3.1,little_interest,Common Mental Health Symptoms - Little interest or pleasure in doing things,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
@@ -363,8 +366,11 @@ qr_phq_9_s1,common_mental_health_symptoms_feeling_tired_or_having_little__2,f1.6
 qr_phq_9_s1,common_mental_health_symptoms_poor_appetite_or_overeating_2,f1.7.1,appetite_problems,Common Mental Health Symptoms - Poor appetite or overeating,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,common_mental_health_symptoms_feeling_bad_about_yourself_or_t_2,f1.8.1,feeling_bad_self,Common Mental Health Symptoms - Feeling bad about yourself or that you are a ...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
 qr_phq_9_s1,common_mental_health_symptoms_trouble_concentrating_on_things_2,f1.9.1,concentration_trouble,"Common Mental Health Symptoms - Trouble concentrating on things, such as read...",text,PHQ-9 (IPC Session 1),questionnaire,FALSE
-qr_phq_9_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_30,f5675128-0cd4-423f-840c-8dcff1e2a429,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
-qr_phq_9_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_31,observation-phq-score-id,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,taskid_phq_pdf,f5675128-0cd4-423f-840c-8dcff1e2a429,phq_place_declare_values,taskId PHQ PDF,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,observation_id_of_phq_9_session_1_score,observation-phq-score-id,phq_place_declare_values,Observation ID of PHQ-9 Session 1 Score,text,PHQ-9 (IPC Session 1),questionnaire,FALSE
+qr_phq_9_s1,patient_name,patient-name,patient_name,Patient Name,text,PHQ-9 (IPC Session 1),generated,TRUE
+qr_phq_9_s1,patient_age,patient-age,patient_age,Patient Age,text,PHQ-9 (IPC Session 1),generated,TRUE
+qr_phq_9_s1,patient_dob,patient-dob,patient_dob,Patient Date of Birth,date,PHQ-9 (IPC Session 1),generated,TRUE
 qr_phq_9_s2,questionnaire_id_16,,questionnaire_id,Questionnaire ID,text,PHQ-9 (IPC Session 2),system,FALSE
 qr_phq_9_s2,subject_patient_id_16,,subject_patient_id,Subject Patient ID,text,PHQ-9 (IPC Session 2),system,FALSE
 qr_phq_9_s2,encounter_id_16,,encounter_id,Encounter ID,text,PHQ-9 (IPC Session 2),system,FALSE
@@ -375,10 +381,10 @@ qr_phq_9_s2,practitioner_id_16,,practitioner_id,Practitioner ID,text,PHQ-9 (IPC 
 qr_phq_9_s2,practitioner_care_team_id_16,,practitioner_careteam_id,Practitioner Care Team ID,text,PHQ-9 (IPC Session 2),system,FALSE
 qr_phq_9_s2,application_version_16,,application_version,Application Version,text,PHQ-9 (IPC Session 2),system,FALSE
 qr_phq_9_s2,questionnaire_response_id_16,,qr_id,Questionnaire Response ID,character varying,PHQ-9 (IPC Session 2),system,FALSE
-qr_phq_9_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_32,7239b680-ef7a-4f9f-87ff-a77bf21d96d4,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
-qr_phq_9_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_33,7afb89dc-d53b-4dc3-a185-43dbb4854172,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
-qr_phq_9_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_34,a07491bd-039d-417b-9caf-0af536316594,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
-qr_phq_9_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_35,encounter-id,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
+qr_phq_9_s2,total_score_meaning,7239b680-ef7a-4f9f-87ff-a77bf21d96d4,phq_place_declare_values,Total score meaning,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
+qr_phq_9_s2,total_score,7afb89dc-d53b-4dc3-a185-43dbb4854172,phq_place_declare_values,Total score,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
+qr_phq_9_s2,total_score_meaning_code,a07491bd-039d-417b-9caf-0af536316594,phq_place_declare_values,Total score meaning code,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
+qr_phq_9_s2,encounter_id_of_phq_9_session_2,encounter-id,phq_place_declare_values,Encounter ID of PHQ-9 Session 2,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
 qr_phq_9_s2,common_mental_health_symptoms_moving_or_speaking_so_slowly_th_3,f1.10.1,psychomotor,Common Mental Health Symptoms - Moving or speaking so slowly that other peopl...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
 qr_phq_9_s2,common_mental_health_symptoms_thoughts_that_you_would_be_bett_3,f1.11.1,suicidal_thoughts,"Common Mental Health Symptoms - Thoughts that you would be better off dead, o...",text,PHQ-9 (IPC Session 2),questionnaire,FALSE
 qr_phq_9_s2,common_mental_health_symptoms_little_interest_or_pleasure_in__3,f1.3.1,little_interest,Common Mental Health Symptoms - Little interest or pleasure in doing things,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
@@ -388,7 +394,7 @@ qr_phq_9_s2,common_mental_health_symptoms_feeling_tired_or_having_little__3,f1.6
 qr_phq_9_s2,common_mental_health_symptoms_poor_appetite_or_overeating_3,f1.7.1,appetite_problems,Common Mental Health Symptoms - Poor appetite or overeating,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
 qr_phq_9_s2,common_mental_health_symptoms_feeling_bad_about_yourself_or_t_3,f1.8.1,feeling_bad_self,Common Mental Health Symptoms - Feeling bad about yourself or that you are a ...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
 qr_phq_9_s2,common_mental_health_symptoms_trouble_concentrating_on_things_3,f1.9.1,concentration_trouble,"Common Mental Health Symptoms - Trouble concentrating on things, such as read...",text,PHQ-9 (IPC Session 2),questionnaire,FALSE
-qr_phq_9_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_36,observation-phq-score-id,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
+qr_phq_9_s2,observation_id_of_phq_9_session_2_score,observation-phq-score-id,phq_place_declare_values,Observation ID of PHQ-9 Session 2 Score,text,PHQ-9 (IPC Session 2),questionnaire,FALSE
 qr_phq_9_s3,questionnaire_id_17,,questionnaire_id,Questionnaire ID,text,PHQ-9 (IPC Session 3),system,FALSE
 qr_phq_9_s3,subject_patient_id_17,,subject_patient_id,Subject Patient ID,text,PHQ-9 (IPC Session 3),system,FALSE
 qr_phq_9_s3,encounter_id_17,,encounter_id,Encounter ID,text,PHQ-9 (IPC Session 3),system,FALSE
@@ -399,9 +405,9 @@ qr_phq_9_s3,practitioner_id_17,,practitioner_id,Practitioner ID,text,PHQ-9 (IPC 
 qr_phq_9_s3,practitioner_care_team_id_17,,practitioner_careteam_id,Practitioner Care Team ID,text,PHQ-9 (IPC Session 3),system,FALSE
 qr_phq_9_s3,application_version_17,,application_version,Application Version,text,PHQ-9 (IPC Session 3),system,FALSE
 qr_phq_9_s3,questionnaire_response_id_17,,qr_id,Questionnaire Response ID,character varying,PHQ-9 (IPC Session 3),system,FALSE
-qr_phq_9_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_37,45f52042-6802-4d9c-9f86-6578923d0fd1,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
-qr_phq_9_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_38,4650a511-2184-4b0b-9e43-54f45f4340a9,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
-qr_phq_9_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_39,55d78cf4-0963-4c44-af44-6004a8abbb3e,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
+qr_phq_9_s3,total_score,45f52042-6802-4d9c-9f86-6578923d0fd1,phq_place_declare_values,Total score,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
+qr_phq_9_s3,total_score_meaning_code,4650a511-2184-4b0b-9e43-54f45f4340a9,phq_place_declare_values,Total score meaning code,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
+qr_phq_9_s3,total_score_meaning,55d78cf4-0963-4c44-af44-6004a8abbb3e,phq_place_declare_values,Total score meaning,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
 qr_phq_9_s3,common_mental_health_symptoms_moving_or_speaking_so_slowly_th_4,f1.10.1,psychomotor,Common Mental Health Symptoms - Moving or speaking so slowly that other peopl...,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
 qr_phq_9_s3,common_mental_health_symptoms_thoughts_that_you_would_be_bett_4,f1.11.1,suicidal_thoughts,"Common Mental Health Symptoms - Thoughts that you would be better off dead, o...",text,PHQ-9 (IPC Session 3),questionnaire,FALSE
 qr_phq_9_s3,common_mental_health_symptoms_little_interest_or_pleasure_in__4,f1.3.1,little_interest,Common Mental Health Symptoms - Little interest or pleasure in doing things,text,PHQ-9 (IPC Session 3),questionnaire,FALSE
@@ -421,9 +427,9 @@ qr_phq_9_s4,practitioner_id_18,,practitioner_id,Practitioner ID,text,PHQ-9 (IPC 
 qr_phq_9_s4,practitioner_care_team_id_18,,practitioner_careteam_id,Practitioner Care Team ID,text,PHQ-9 (IPC Session 4),system,FALSE
 qr_phq_9_s4,application_version_18,,application_version,Application Version,text,PHQ-9 (IPC Session 4),system,FALSE
 qr_phq_9_s4,questionnaire_response_id_18,,qr_id,Questionnaire Response ID,character varying,PHQ-9 (IPC Session 4),system,FALSE
-qr_phq_9_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_40,01a4984f-7b50-47bb-9ae1-1b81ee4d6df2,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
-qr_phq_9_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_41,11d368a4-7f34-46d5-a8d0-6deed381945b,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
-qr_phq_9_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_42,4b86c897-4d68-405b-aa08-760ed6ff6792,phq_place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
+qr_phq_9_s4,total_score,01a4984f-7b50-47bb-9ae1-1b81ee4d6df2,phq_place_declare_values,Total score,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
+qr_phq_9_s4,total_score_meaning,11d368a4-7f34-46d5-a8d0-6deed381945b,phq_place_declare_values,Total score meaning,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
+qr_phq_9_s4,total_score_meaning_code,4b86c897-4d68-405b-aa08-760ed6ff6792,phq_place_declare_values,Total score meaning code,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
 qr_phq_9_s4,phq_9_ipc_session_2_how_difficult_have_these_problems_made_it_3,9c366bcc-38c8-449f-8823-8a1632f44da3,problem_difficulty,PHQ-9 (IPC Session 2) - How difficult have these problems made it for you to ...,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
 qr_phq_9_s4,common_mental_health_symptoms_moving_or_speaking_so_slowly_th_5,f1.10.1,psychomotor,Common Mental Health Symptoms - Moving or speaking so slowly that other peopl...,text,PHQ-9 (IPC Session 4),questionnaire,FALSE
 qr_phq_9_s4,common_mental_health_symptoms_thoughts_that_you_would_be_bett_5,f1.11.1,suicidal_thoughts,"Common Mental Health Symptoms - Thoughts that you would be better off dead, o...",text,PHQ-9 (IPC Session 4),questionnaire,FALSE
@@ -498,7 +504,7 @@ qr_planning_next_steps,is_sbirt,is-sbirt,sbirt,Is Sbirt,text,Planning Next Steps
 qr_planning_next_steps,is_sbirt_main,is-sbirt-main,sbirt_main,Is Sbirt Main,text,Planning Next Steps,questionnaire,FALSE
 qr_planning_next_steps,is_sbirt_optional,is-sbirt-optional,sbirt_optional,Is Sbirt Optional,text,Planning Next Steps,questionnaire,FALSE
 qr_planning_next_steps,is_spi,is-spi,spi,Is Spi,text,Planning Next Steps,questionnaire,FALSE
-qr_planning_next_steps,patient_age_4,patient-age,patient_age,Patient Age,text,Planning Next Steps,generated,FALSE
+qr_planning_next_steps,patient_age_4,patient-age,patient_age,Patient Age,text,Planning Next Steps,generated,TRUE
 qr_planning_next_steps,patient_date_of_birth_4,patient-dob,patient_dob,Patient Date of Birth,text,Planning Next Steps,generated,TRUE
 qr_planning_next_steps,patient_name_4,patient-name,patient_name,Patient Name,text,Planning Next Steps,generated,TRUE
 qr_planning_next_steps,planning_next_steps_scheduled_ipc_session_1_with_current_time,scheduled-ipc-session-1-with-current-time,planning_next_steps,Planning Next Steps - Scheduled IPC Session 1 with Current Time,text,Planning Next Steps,questionnaire,FALSE
@@ -717,9 +723,9 @@ qr_sbirt,sbirt_is_medium_risk_alcohol,is-medium-risk-alcohol,sbirt_medium_risk_a
 qr_sbirt,sbirt_is_medium_risk_drug,is-medium-risk-drug,sbirt_medium_risk_drug,SBIRT - Is Medium risk drug,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_is_opioid_dependence,is-opioid-dependence,sbirt_opioid_dependence,SBIRT - Is opioid dependence,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_other_drug_list,other-drug-list,sbirt_other_drug_list,SBIRT - other-drug-list,text,SBIRT,questionnaire,FALSE
-qr_sbirt,patient_age_5,patient-age,patient_age,Patient Age,text,SBIRT,generated,FALSE
+qr_sbirt,patient_age_5,patient-age,patient_age,Patient Age,text,SBIRT,generated,TRUE
 qr_sbirt,patient_date_of_birth_5,patient-dob,patient_dob,Patient Date of Birth,text,SBIRT,generated,TRUE
-qr_sbirt,sbirt_patient_gender,patient-gender,patient_gender,SBIRT - Patient Gender,text,SBIRT,generated,FALSE
+qr_sbirt,sbirt_patient_gender,patient-gender,patient_gender,SBIRT - Patient Gender,text,SBIRT,generated,TRUE
 qr_sbirt,patient_name_5,patient-name,patient_name,Patient Name,text,SBIRT,generated,TRUE
 qr_sbirt,sbirt_score_audit,score-audit,sbirt_score_audit,SBIRT - Score AUDIT,text,SBIRT,questionnaire,FALSE
 qr_sbirt,sbirt_score_dast,score-dast,sbirt_score_dast,SBIRT - Score DAST,text,SBIRT,questionnaire,FALSE
@@ -745,8 +751,8 @@ qr_sf_pcl_5_s1,practitioner_id_23,,practitioner_id,Practitioner ID,text,Short-Fo
 qr_sf_pcl_5_s1,practitioner_care_team_id_23,,practitioner_careteam_id,Practitioner Care Team ID,text,Short-Form PCL-5-8 (IPC Session 1),system,FALSE
 qr_sf_pcl_5_s1,application_version_23,,application_version,Application Version,text,Short-Form PCL-5-8 (IPC Session 1),system,FALSE
 qr_sf_pcl_5_s1,questionnaire_response_id_23,,qr_id,Questionnaire Response ID,character varying,Short-Form PCL-5-8 (IPC Session 1),system,FALSE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_43,16d05294-fee9-4d42-8447-0d578a5de192,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_44,2171a88a-4e4d-44c4-b6b3-389723e9b505,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,total_score,16d05294-fee9-4d42-8447-0d578a5de192,place_declare_values,Total score,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,taskid_ptsd_pdf,2171a88a-4e4d-44c4-b6b3-389723e9b505,place_declare_values,taskId PTSD PDF,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much_w_9,347352fc-b189-444a-aa22-df4d9e779f67,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__10,532fcdbc-38b7-4a35-870c-1d5222e239fb,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__11,5bc16477-41ff-485f-a73f-f0caa9c2c0ab,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
@@ -759,19 +765,22 @@ qr_sf_pcl_5_s1,pcl_5_item_2,b7934aa5-17f0-4320-8f65-e7a7f72c5161,pcl_item,PCL-5 
 qr_sf_pcl_5_s1,add_family_member_registration_calculated_month_8,calculated-month,add_family_member,Add Family Member Registration - calculated month,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,TRUE
 qr_sf_pcl_5_s1,add_family_member_registration_calculated_year_8,calculated-year,add_family_member,Add Family Member Registration - calculated year,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,TRUE
 qr_sf_pcl_5_s1,add_family_member_registration_date_of_birth_8,cd8e3d6d-e9ff-458d-d122-57070bebffaf,add_family_member,Add Family Member Registration - Date of birth,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,TRUE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_45,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,total_score_meaning,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,Total score meaning,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,pcl_5_item_3,d74aecd2-f0c4-4207-b396-b2c6d780be4a,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__15,e13d2bb9-20a6-4605-a33f-5d9047f6b6a8,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_46,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,total_score_meaning_code,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,Total score meaning code,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__16,eb42041c-cb74-4d5e-8a29-941776cc0b6e,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_47,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,encounter_id_of_ptsd_session_1,encounter-id,place_declare_values,Encounter ID of PTSD Session 1,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,form_f1_question_26,f1.26.1,form_question,Form F1 Question 26,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,form_f1_question_27,f1.27.1,form_question,Form F1 Question 27,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,form_f1_question_28,f1.28.1,form_question,Form F1 Question 28,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,form_f1_question_29,f1.29.1,form_question,Form F1 Question 29,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
 qr_sf_pcl_5_s1,form_f1_question_30,f1.30.1,form_question,Form F1 Question 30,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_48,is-ptsd,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
-qr_sf_pcl_5_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_49,observation-ptsd-score-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,is_ptsd,is-ptsd,place_declare_values,Is PTSD?,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,observation_id_of_pc_ptsd_session_1_score,observation-ptsd-score-id,place_declare_values,Observation ID of PC-PTSD Session 1 Score,text,Short-Form PCL-5-8 (IPC Session 1),questionnaire,FALSE
+qr_sf_pcl_5_s1,patient_name,patient-name,patient_name,Patient Name,text,Short-Form PCL-5-8 (IPC Session 1),generated,TRUE
+qr_sf_pcl_5_s1,patient_age,patient-age,patient_age,Patient Age,text,Short-Form PCL-5-8 (IPC Session 1),generated,TRUE
+qr_sf_pcl_5_s1,patient_dob,patient-dob,patient_dob,Patient Date of Birth,date,Short-Form PCL-5-8 (IPC Session 1),generated,TRUE
 qr_sf_pcl_5_s2,questionnaire_id_24,,questionnaire_id,Questionnaire ID,text,Short-Form PCL-5-8 (IPC Session 2),system,FALSE
 qr_sf_pcl_5_s2,subject_patient_id_24,,subject_patient_id,Subject Patient ID,text,Short-Form PCL-5-8 (IPC Session 2),system,FALSE
 qr_sf_pcl_5_s2,encounter_id_24,,encounter_id,Encounter ID,text,Short-Form PCL-5-8 (IPC Session 2),system,FALSE
@@ -788,22 +797,22 @@ qr_sf_pcl_5_s2,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__19,5
 qr_sf_pcl_5_s2,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__20,68bec639-6c70-41e0-88f8-fef0ad941b55,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__21,6a52200c-3856-4fcc-afe4-b75921da0122,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,pcl_5_item_4,931dc4ee-b677-4812-9372-3fea7012e9bc,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
-qr_sf_pcl_5_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_50,9de6571c-3f74-4694-a567-ac5c897f96cb,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
+qr_sf_pcl_5_s2,total_score,9de6571c-3f74-4694-a567-ac5c897f96cb,place_declare_values,Total score,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__22,b4f73ad2-ed7a-4268-9057-a4a72b50dd10,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,pcl_5_item_5,c8456561-48fb-49b5-a8e6-6f1a7c2ed7e4,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
-qr_sf_pcl_5_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_51,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
+qr_sf_pcl_5_s2,total_score_meaning,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,Total score meaning,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,pcl_5_item_6,dd349377-e542-4b4f-8fba-795f91431f7d,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__23,e13d2bb9-20a6-4605-a33f-5d9047f6b6a8,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
-qr_sf_pcl_5_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_52,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
+qr_sf_pcl_5_s2,total_score_meaning_code,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,Total score meaning code,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__24,eb42041c-cb74-4d5e-8a29-941776cc0b6e,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
-qr_sf_pcl_5_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_53,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
+qr_sf_pcl_5_s2,encounter_id_of_ptsd_session_2,encounter-id,place_declare_values,Encounter ID of PTSD Session 2,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,form_f1_question_26_2,f1.26.1,form_question,Form F1 Question 26,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,form_f1_question_27_2,f1.27.1,form_question,Form F1 Question 27,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,form_f1_question_28_2,f1.28.1,form_question,Form F1 Question 28,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,form_f1_question_29_2,f1.29.1,form_question,Form F1 Question 29,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s2,form_f1_question_30_2,f1.30.1,form_question,Form F1 Question 30,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
-qr_sf_pcl_5_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_54,is-ptsd,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
-qr_sf_pcl_5_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_55,observation-ptsd-score-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
+qr_sf_pcl_5_s2,is_ptsd,is-ptsd,place_declare_values,Is PTSD?,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
+qr_sf_pcl_5_s2,observation_id_of_pc_ptsd_session_2_score,observation-ptsd-score-id,place_declare_values,Observation ID of PC-PTSD Session 2 Score,text,Short-Form PCL-5-8 (IPC Session 2),questionnaire,FALSE
 qr_sf_pcl_5_s3,questionnaire_id_25,,questionnaire_id,Questionnaire ID,text,Short-Form PCL-5-8 (IPC Session 3),system,FALSE
 qr_sf_pcl_5_s3,subject_patient_id_25,,subject_patient_id,Subject Patient ID,text,Short-Form PCL-5-8 (IPC Session 3),system,FALSE
 qr_sf_pcl_5_s3,encounter_id_25,,encounter_id,Encounter ID,text,Short-Form PCL-5-8 (IPC Session 3),system,FALSE
@@ -821,20 +830,20 @@ qr_sf_pcl_5_s3,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__28,6
 qr_sf_pcl_5_s3,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__29,6a52200c-3856-4fcc-afe4-b75921da0122,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,pcl_5_item_7,a51fba17-fccd-4b65-ada3-5c50a75e5d49,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__30,b4f73ad2-ed7a-4268-9057-a4a72b50dd10,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
-qr_sf_pcl_5_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_56,cbad1c80-ab95-4720-ba6a-0eadd718905d,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
-qr_sf_pcl_5_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_57,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
+qr_sf_pcl_5_s3,total_score,cbad1c80-ab95-4720-ba6a-0eadd718905d,place_declare_values,Total score,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
+qr_sf_pcl_5_s3,total_score_meaning,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,Total score meaning,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__31,e13d2bb9-20a6-4605-a33f-5d9047f6b6a8,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,pcl_5_item_8,e4c58005-803f-4bc3-adaa-1f84c5824b6e,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
-qr_sf_pcl_5_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_58,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
+qr_sf_pcl_5_s3,total_score_meaning_code,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,Total score meaning code,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__32,eb42041c-cb74-4d5e-8a29-941776cc0b6e,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
-qr_sf_pcl_5_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_59,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
+qr_sf_pcl_5_s3,encounter_id_of_ptsd_session_3,encounter-id,place_declare_values,Encounter ID of PTSD Session 3,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,form_f1_question_26_3,f1.26.1,form_question,Form F1 Question 26,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,form_f1_question_27_3,f1.27.1,form_question,Form F1 Question 27,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,form_f1_question_28_3,f1.28.1,form_question,Form F1 Question 28,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,form_f1_question_29_3,f1.29.1,form_question,Form F1 Question 29,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,form_f1_question_30_3,f1.30.1,form_question,Form F1 Question 30,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s3,pcl_5_item_9,f5002611-caf9-4792-8d10-e7870459ea17,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
-qr_sf_pcl_5_s3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_60,is-ptsd,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
+qr_sf_pcl_5_s3,is_ptsd,is-ptsd,place_declare_values,Is PTSD?,text,Short-Form PCL-5-8 (IPC Session 3),questionnaire,FALSE
 qr_sf_pcl_5_s4,questionnaire_id_26,,questionnaire_id,Questionnaire ID,text,Short-Form PCL-5-8 (IPC Session 4),system,FALSE
 qr_sf_pcl_5_s4,subject_patient_id_26,,subject_patient_id,Subject Patient ID,text,Short-Form PCL-5-8 (IPC Session 4),system,FALSE
 qr_sf_pcl_5_s4,encounter_id_26,,encounter_id,Encounter ID,text,Short-Form PCL-5-8 (IPC Session 4),system,FALSE
@@ -848,18 +857,18 @@ qr_sf_pcl_5_s4,questionnaire_response_id_26,,qr_id,Questionnaire Response ID,cha
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__33,347352fc-b189-444a-aa22-df4d9e779f67,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__34,532fcdbc-38b7-4a35-870c-1d5222e239fb,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__35,5bc16477-41ff-485f-a73f-f0caa9c2c0ab,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
-qr_sf_pcl_5_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_61,62b55d32-de8e-4abd-8489-4e3aa9270e11,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
+qr_sf_pcl_5_s4,total_score,62b55d32-de8e-4abd-8489-4e3aa9270e11,place_declare_values,Total score,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__36,68bec639-6c70-41e0-88f8-fef0ad941b55,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__37,6a52200c-3856-4fcc-afe4-b75921da0122,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,pcl_5_item_10,a4b58f6e-3046-4a11-9e9e-e6b1547594e8,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__38,b4f73ad2-ed7a-4268-9057-a4a72b50dd10,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
-qr_sf_pcl_5_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_62,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
+qr_sf_pcl_5_s4,total_score_meaning,d4b3bbcc-6d23-45e1-9755-1aa0bfc1b646,place_declare_values,Total score meaning,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,pcl_5_item_11,d590116a-ec42-46e3-8ab6-6259307af17e,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,pcl_5_item_12,d5a448fb-4db7-45e8-858b-f2d2e7cb0eef,pcl_item,PCL-5 Item,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__39,e13d2bb9-20a6-4605-a33f-5d9047f6b6a8,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
-qr_sf_pcl_5_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_63,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
+qr_sf_pcl_5_s4,total_score_meaning_code,ea00e468-9c26-4a1c-a0af-1b72923b1e2e,place_declare_values,Total score meaning code,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,short_form_pcl_5_8_ipc_session_2_in_the_past_month_how_much__40,eb42041c-cb74-4d5e-8a29-941776cc0b6e,short_form_pcl,"Short-Form PCL-5-8 (IPC Session 2) - In the past month, how much were you bot...",text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
-qr_sf_pcl_5_s4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_64,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
+qr_sf_pcl_5_s4,encounter_id_of_ptsd_session_4,encounter-id,place_declare_values,Encounter ID of PTSD Session 4,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,form_f1_question_26_4,f1.26.1,form_question,Form F1 Question 26,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,form_f1_question_27_4,f1.27.1,form_question,Form F1 Question 27,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
 qr_sf_pcl_5_s4,form_f1_question_28_4,f1.28.1,form_question,Form F1 Question 28,text,Short-Form PCL-5-8 (IPC Session 4),questionnaire,FALSE
@@ -892,7 +901,7 @@ qr_sociodemographic_survey,sociodemographic_survey_what_is_your_marital_status,9
 qr_sociodemographic_survey,demographic_question_6,b4afce83-4279-4d19-8a8b-1e0b7e1ba73c,demographic_question,Demographic Question,text,Sociodemographic Survey,questionnaire,FALSE
 qr_sociodemographic_survey,sociodemographic_survey_what_was_the_highest_grade_or_level_of_,d7e0e5c9-35bd-40bc-9224-9cf9e4b9dbba,highest_grade_level,Sociodemographic Survey - What was the highest grade or level of school that ...,text,Sociodemographic Survey,questionnaire,FALSE
 qr_sociodemographic_survey,sociodemographic_survey_please_specify_3,f11fe547-9be9-4693-8a85-f252e4a6262f,please_specify,Sociodemographic Survey - Please specify:,text,Sociodemographic Survey,questionnaire,FALSE
-qr_sociodemographic_survey,patient_age_6,patient-age,patient_age,Patient Age,text,Sociodemographic Survey,generated,FALSE
+qr_sociodemographic_survey,patient_age_6,patient-age,patient_age,Patient Age,text,Sociodemographic Survey,generated,TRUE
 qr_sociodemographic_survey,patient_biological_sex_3,patient-biological-sex,patient_biological_sex,Patient Biological Sex,text,Sociodemographic Survey,generated,TRUE
 qr_sociodemographic_survey,patient_date_of_birth_6,patient-dob,patient_dob,Patient Date of Birth,text,Sociodemographic Survey,generated,TRUE
 qr_sociodemographic_survey,patient_gender_identity_3,patient-gender-identity,patient_gender_identity,Patient Gender Identity,text,Sociodemographic Survey,generated,TRUE
@@ -927,7 +936,7 @@ qr_spi_subform_1,spi_subform_1_6,c7d21a57-0fc6-4e3a-b411-beceb1fb2423,spi_subfor
 qr_spi_subform_1,spi_subform_1_is_low_risk,d60ed1ee-79c9-444f-aff7-d346974426ab,low_risk,SPI Subform 1 - Is low risk?,text,SPI Subform 1,questionnaire,FALSE
 qr_spi_subform_1,spi_subform_1_in_the_past_month_have_you_actually_had_any_thoug,e2a74544-b333-4767-b3e3-7772413419ce,you_actually_any,"SPI Subform 1 - In the past month, have you actually had any thoughts about k...",text,SPI Subform 1,questionnaire,FALSE
 qr_spi_subform_1,spi_subform_1_7,ecabd308-c45a-41f7-8754-b1f63a101019,spi_subform,SPI Subform 1,text,SPI Subform 1,questionnaire,FALSE
-qr_spi_subform_1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_65,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,SPI Subform 1,questionnaire,FALSE
+qr_spi_subform_1,encounter_id_spi_subform_1,encounter-id,place_declare_values,Encounter ID of SPI Subform 1,text,SPI Subform 1,questionnaire,FALSE
 qr_spi_subform_1,spi_subform_1_taskid_spi_subform_2,task-id-spi-subform-2,taskid_spi_subform,SPI Subform 1 - taskId SPI Subform 2,text,SPI Subform 1,questionnaire,FALSE
 qr_spi_subform_1,spi_subform_2_taskid_spi_subform_3,task-id-spi-subform-3,taskid_spi_subform,SPI Subform 2 - taskId SPI Subform 3,text,SPI Subform 1,questionnaire,FALSE
 qr_spi_subform_1,spi_subform_2_taskid_spi_subform_4,task-id-spi-subform-4,taskid_spi_subform,SPI Subform 2 - taskId SPI Subform 4,text,SPI Subform 1,questionnaire,FALSE
@@ -952,7 +961,7 @@ qr_spi_subform_2,spi_subform_2,53b30f12-74eb-474c-941c-5f0e81b7eb9f,spi_subform,
 qr_spi_subform_2,spi_subform_2_2,783e2646-c8ea-466d-bba8-85c891a14435,spi_subform,SPI Subform 2,text,SPI Subform 2,questionnaire,FALSE
 qr_spi_subform_2,spi_subform_2_3,d02eb882-411e-4bc0-af9d-08a77fcc3f50,spi_subform,SPI Subform 2,text,SPI Subform 2,questionnaire,FALSE
 qr_spi_subform_2,spi_subform_2_what_is_the_recommended_plan_to_address_the_pro_2,ed537539-d317-43fc-a4b3-38de5e15ea4f,recommended_plan_address,SPI Subform 2 - What is the recommended plan to address the probable suicide ...,text,SPI Subform 2,questionnaire,FALSE
-qr_spi_subform_2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_66,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,SPI Subform 2,questionnaire,FALSE
+qr_spi_subform_2,encounter_id_spi_subform_2,encounter-id,place_declare_values,Encounter ID of SPI Subform 2,text,SPI Subform 2,questionnaire,FALSE
 qr_spi_subform_2,spi_subform_2_did_you_discuss_this_client_s_suicide_risk_screen,f4b782e5-18e1-4edf-a3ff-409feb207253,you_discuss_client,SPI Subform 2 - Did you discuss this client's suicide risk screening results ...,text,SPI Subform 2,questionnaire,FALSE
 qr_spi_subform_2,spi_subform_2_taskid_spi_subform_3_2,task-id-spi-subform-3,taskid_spi_subform,SPI Subform 2 - taskId SPI Subform 3,text,SPI Subform 2,questionnaire,FALSE
 qr_spi_subform_2,spi_subform_2_taskid_spi_subform_4_2,task-id-spi-subform-4,taskid_spi_subform,SPI Subform 2 - taskId SPI Subform 4,text,SPI Subform 2,questionnaire,FALSE
@@ -968,7 +977,7 @@ qr_spi_subform_3,practitioner_id_30,,practitioner_id,Practitioner ID,text,SPI Su
 qr_spi_subform_3,practitioner_care_team_id_30,,practitioner_careteam_id,Practitioner Care Team ID,text,SPI Subform 3,system,FALSE
 qr_spi_subform_3,application_version_30,,application_version,Application Version,text,SPI Subform 3,system,FALSE
 qr_spi_subform_3,questionnaire_response_id_30,,qr_id,Questionnaire Response ID,character varying,SPI Subform 3,system,FALSE
-qr_spi_subform_3,a_place_to_declare_values_that_cannot_be_created_using_fhirp_67,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,SPI Subform 3,questionnaire,FALSE
+qr_spi_subform_3,encounter_id_spi_subform_3,encounter-id,place_declare_values,Encounter ID of SPI Subform 3,text,SPI Subform 3,questionnaire,FALSE
 qr_spi_subform_4,questionnaire_id_31,,questionnaire_id,Questionnaire ID,text,SPI Subform 4,system,FALSE
 qr_spi_subform_4,subject_patient_id_31,,subject_patient_id,Subject Patient ID,text,SPI Subform 4,system,FALSE
 qr_spi_subform_4,encounter_id_31,,encounter_id,Encounter ID,text,SPI Subform 4,system,FALSE
@@ -1180,7 +1189,7 @@ qr_spi_subform_4,review_the_safety_planstep_6_making_the_environment_safe_drowni
 qr_spi_subform_4,review_the_safety_planstep_4_family_members_or_friends_who_m_15,ec2a78e1-e70b-4f66-86b1-561cffaf9ffd,review_safety_planstep,Review the Safety PlanStep 4: Family members or friends who may offer help - ...,text,SPI Subform 4,questionnaire,TRUE
 qr_spi_subform_4,review_the_safety_planstep_5_professionals_or_professional_s_35,ec54e447-c981-4dd2-aaa4-659f8e494248,review_safety_planstep,Review the Safety PlanStep 5: Professionals or professional services that can...,text,SPI Subform 4,questionnaire,TRUE
 qr_spi_subform_4,spi_subform_4_50,ee5d4acf-ecf0-4e62-8924-cff17a33679d,spi_subform,SPI Subform 4,text,SPI Subform 4,questionnaire,FALSE
-qr_spi_subform_4,a_place_to_declare_values_that_cannot_be_created_using_fhirp_68,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,SPI Subform 4,questionnaire,FALSE
+qr_spi_subform_4,encounter_id_spi_subform_4,encounter-id,place_declare_values,Encounter ID of SPI Subform 4,text,SPI Subform 4,questionnaire,FALSE
 qr_spi_subform_4,review_the_safety_planstep_6_making_the_environment_safe_other_,f14c3c34-f80a-4481-9d9c-9b05267d4c39,review_safety_planstep,Review the Safety PlanStep 6: Making the environment safe - Other ways I will...,text,SPI Subform 4,questionnaire,TRUE
 qr_spi_subform_4,spi_subform_4_51,f1fef9d7-2ab9-4ead-9c24-c4dc9c7ed4cc,spi_subform,SPI Subform 4,text,SPI Subform 4,questionnaire,FALSE
 qr_spi_subform_4,step_5professionals_or_professional_services_that_can_help_d_32,f311f3ca-5537-4134-8828-5e537bb26a9c,step_professional_services,Step 5Professionals or professional services that can help during a crisis,text,SPI Subform 4,questionnaire,TRUE
@@ -1221,60 +1230,60 @@ qr_start_ipc_s1,practitioner_care_team_id_32,,practitioner_careteam_id,Practitio
 qr_start_ipc_s1,application_version_32,,application_version,Application Version,text,IPC Session 1,system,FALSE
 qr_start_ipc_s1,questionnaire_response_id_32,,qr_id,Questionnaire Response ID,character varying,IPC Session 1,system,FALSE
 qr_start_ipc_s1,person_2,042e5415-93de-419d-9bac-632596939280,person,Person 2,text,IPC Session 1,questionnaire,TRUE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_69,0627ed93-c89d-48ae-bde2-bd013dc58685,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_70,07b722c9-210e-491a-8933-2e9aab3474af,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_71,0c99c32b-a6a7-4de6-9fbc-d34ccf133bbf,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_ipc_session_1_provider_pdf,0627ed93-c89d-48ae-bde2-bd013dc58685,place_declare_values,taskId IPC Session 1 Provider PDF,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,phq_9_total_meaning,07b722c9-210e-491a-8933-2e9aab3474af,place_declare_values,PHQ-9 Total Meaning,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,phq_9_total,0c99c32b-a6a7-4de6-9fbc-d34ccf133bbf,place_declare_values,PHQ-9 total,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_what_about_before_that_was_there_a_time_before_in,0de42ce5-6d9f-40ec-b67b-3d3b975d363b,before_there_before,IPC Session 1 - What about before that? Was there a time before in which you ...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_72,10151d1b-3cd2-4f10-b1e5-d6b20112d801,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_73,13d72f63-dd18-41f9-bf46-44981f2f804a,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,in_the_past_1_year,10151d1b-3cd2-4f10-b1e5-d6b20112d801,place_declare_values,In the past 1 year,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,gad_7_total,13d72f63-dd18-41f9-bf46-44981f2f804a,place_declare_values,GAD-7 total,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_earlier_than_that_you_noticed_symptoms,16333904-aad5-4166-9593-b7286c7b20b2,earlier_you_noticed,"IPC Session 1 - Earlier than that, you noticed symptoms...",text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_is_there_anything_else_that_we_did_not_discuss_th,1809cb03-235d-4855-b201-7b296b160e37,there_anything_else,IPC Session 1 - Is there anything else that we did not discuss that you think...,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1,19416221-7c67-44d7-9b9b-b88364ea7408,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_possible_problem_areas,1ae11d83-35d4-41c0-a804-5ddf6b1c388c,possible_problem_areas,IPC Session 1 - Possible problem areas,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_74,24f9ed3b-3706-43fb-9779-07a9c2077e9d,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_ipc_session_1_client_pdf,24f9ed3b-3706-43fb-9779-07a9c2077e9d,place_declare_values,taskId IPC Session 1 Client PDF,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_what_were_the_symptoms,31a9e716-52ce-4651-bb17-26f442e2ab89,symptoms,IPC Session 1 - What were the symptoms?,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_2,347d89f5-1bad-4ba5-8f45-e63972b02123,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_3,37a6a71f-e6ee-4b2e-bfba-2c2cd51e508b,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_75,47eaf38f-c74e-484a-af95-b0002074bf67,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,ptsd_total_meaning,47eaf38f-c74e-484a-af95-b0002074bf67,place_declare_values,PTSD Total Meaning,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,survey_response_9,4a2ac26a-8d30-4c28-be11-f684f415f661,survey_response,Survey Response,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_your_most_distressing_current_symptoms_began,528fa2c7-7a88-4d4e-b2ba-38c1384aface,your_most_distressing,IPC Session 1 - Your most distressing current symptoms began...,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_when_did_these_symptoms_begin,54a97eb0-3fd7-4b2d-b2b7-ea3fe97a1690,symptoms_begin,IPC Session 1 - When did these symptoms begin?,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_when_did_you_notice_these_symptoms,5d23d8f0-b23a-4e2f-ac66-497d9c6ab3fd,you_notice_symptoms,IPC Session 1 - When did you notice these symptoms?,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_these_are_the_symptoms_you_said_you_are_currently,5e65c0dc-5524-4f3d-8404-a7427a34e61c,symptoms_you_said,IPC Session 1 - These are the symptoms you said you are currently experiencin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_76,6099951a-c965-40f9-ad61-66e7a39a6b92,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,ptsd_total,6099951a-c965-40f9-ad61-66e7a39a6b92,place_declare_values,PTSD total,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,person_3,6409c231-50c1-45fc-808e-f0bd015db97d,person,Person 3,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,ipc_session_1_patient_age,69125945-bec7-4810-985a-8c1052e8d039,patient_age,IPC Session 1 - Patient Age,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_4,69ed5884-0814-4ae0-a7f1-ecf730710523,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_i_noticed_that_when_i_was_asking_about_important_,78bc8272-eba1-48a8-a2f4-0e47304887b8,noticed_asking_important,IPC Session 1 - I noticed that when I was asking about important people in yo...,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_patient_dob,798d2c43-5b9f-436f-9fa2-f360cbeeea73,patient_dob,IPC Session 1 - Patient DOB,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,ipc_session_1_5,7b0a751e-936e-40e8-9076-c7fe1e818c1f,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_77,80344998-41e2-4669-a77e-1fdaebe88bcf,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_mood_pdf,80344998-41e2-4669-a77e-1fdaebe88bcf,place_declare_values,taskId Mood PDF,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,mood_rating_ipc_session_1_2,8085cded-8e0f-497f-9e3d-5fab3981d727,mood_rating_ipc,Mood Rating (IPC Session 1),text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_6,82cdd7f0-f3d1-4eba-a31e-c6ad367742f4,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_78,8a8b5e1e-fa6b-472b-ade7-ee8f5286a759,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_79,a11ebb0d-acb3-4038-956b-293a41acb85b-1,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_80,a11ebb0d-acb3-4038-956b-293a41acb85b-2,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,mood_rating_comment,8a8b5e1e-fa6b-472b-ade7-ee8f5286a759,place_declare_values,Mood Rating comment,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_session_1_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-1,place_declare_values,taskId Session 1 Navigator,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_session_2_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-2,place_declare_values,taskId Session 2 Navigator,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_do_you_agree_with_this_summary,a88cb2bf-e23b-423b-9a22-ab94678ccc3a,you_agree_summary,IPC Session 1 - Do you agree with this summary?,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_in_what_format_did_you_deliver_this_session_with_,acd9d89b-0d67-415e-a3a4-b132ab304c45,format_you_deliver,IPC Session 1 - In what format did you deliver this session with the client?,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_7,b1b6bebb-0cb7-4029-b320-01d3270ee892,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_81,b322e52d-99f3-48e0-bda0-09d95228ae7b,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,in_the_past_6_months,b322e52d-99f3-48e0-bda0-09d95228ae7b,place_declare_values,In the past 6 months,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_2_did_you_complete_the_required_assessment_s_and_th,b3e46a84-9743-4506-9465-43fa16460e16,you_complete_required,IPC Session 2 - Did you complete the required assessment(s) and the Mood Rati...,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,add_family_member_registration_calculated_age_10,b5bc7f80-4a0c-486c-e5eb-32c750036f94,add_family_member,Add Family Member Registration - Calculated Age,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_is_there_anything_that_could_get_in_the_way_of_yo,b7b59772-0272-41f6-ba66-16b09a832fc1,there_anything_get,IPC Session 1 - Is there anything that could get in the way of you attending ...,text,IPC Session 1,questionnaire,TRUE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_82,bd785881-7e04-4093-b191-d845edea4c9d,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,patient_name,bd785881-7e04-4093-b191-d845edea4c9d,place_declare_values,Patient Name,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,ipc_session_1_what_was_going_on_in_your_life_when_you_started_t,c4b93137-7abc-47f1-8c0a-fbfe8ad6ce2d,going_your_life,IPC Session 1 - What was going on in your life when you started to notice the...,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,add_family_member_registration_calculated_month_10,calculated-month,add_family_member,Add Family Member Registration - calculated month,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,add_family_member_registration_calculated_year_10,calculated-year,add_family_member,Add Family Member Registration - calculated year,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,ipc_session_1_8,cd69a7a1-ec17-4f43-8597-26c59732261b,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,add_family_member_registration_date_of_birth_10,cd8e3d6d-e9ff-458d-d122-57070bebffaf,add_family_member,Add Family Member Registration - Date of birth,text,IPC Session 1,questionnaire,TRUE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_83,d126d866-b8c4-4288-84ff-49a40f20e204,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,gad_7_total_meaning,d126d866-b8c4-4288-84ff-49a40f20e204,place_declare_values,GAD-7 Total Meaning,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,mood_rating_ipc_session_1_total_score_2,d58c8907-06c6-4071-aa6c-b2b95d2169c7,mood_rating_ipc,Mood Rating (IPC Session 1) - Total score,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_84,d6c7419a-9082-4579-8678-44e866ab3655,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,patient_gender,d6c7419a-9082-4579-8678-44e866ab3655,place_declare_values,Patient Gender,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,ipc_session_1_what_was_happening_then,e2629251-1266-4760-a539-f0e680df651b,happening,IPC Session 1 - What was happening then?,text,IPC Session 1,questionnaire,TRUE
 qr_start_ipc_s1,ipc_session_1_9,e4ecfbd3-ed37-4b1b-9284-f7cc9386f7b8,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_85,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,mood_rating_total,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,Mood Rating total,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_of_these_symptoms_which_are_the_most_distressing,e8bfb690-b135-4b0f-9291-f6247611ce52,symptoms_most_distressing,"IPC Session 1 - Of these symptoms, which are the most distressing?",text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_86,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,encounter_id_of_ipc_session_1,encounter-id,place_declare_values,Encounter ID of IPC Session 1,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_at_that_time_you_were_experiencing,f11ace93-5d84-4cc5-8598-58f9c5623037,you_experiencing,"IPC Session 1 - At that time, you were experiencing...",text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,mood_rating_ipc_session_2_on_a_scale_of_1_to_10_with_1_being__5,f1.33.6,mood_rating_ipc,"Mood Rating (IPC Session 2) - On a scale of 1 to 10, with 1 being the worst m...",text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,form_f1_question_38,f1.38.3,form_question,Form F1 Question 38,text,IPC Session 1,questionnaire,FALSE
@@ -1325,11 +1334,11 @@ qr_start_ipc_s1,ipc_session_1_17,f1.88.2,ipc_session,IPC Session 1,text,IPC Sess
 qr_start_ipc_s1,ipc_session_1_select_the_possible_interpersonal_problem_area_s_,f1.89.2,select_possible_interpersonal,IPC Session 1 - Select the possible interpersonal problem area(s) you can pro...,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_18,f1.92.1,ipc_session,IPC Session 1,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s1,ipc_session_1_at_that_time_you_were_experiencing_2,fe689023-f019-483b-ba7c-8ff0e16129d5,you_experiencing,"IPC Session 1 - At that time, you were experiencing...",text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_87,observation-mood-score-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_88,task-id-008,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_89,task-id-009,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_90,task-id-010,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
-qr_start_ipc_s1,a_place_to_declare_values_that_cannot_be_created_using_fhirp_91,task-id-012,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,observation_id_of_mood_rating_session_1_score,observation-mood-score-id,place_declare_values,Observation ID of Mood Rating Session 1 Score,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_008,task-id-008,place_declare_values,taskId 008,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_009,task-id-009,place_declare_values,taskId 009,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_010,task-id-010,place_declare_values,taskId 010,text,IPC Session 1,questionnaire,FALSE
+qr_start_ipc_s1,taskid_012,task-id-012,place_declare_values,taskId 012,text,IPC Session 1,questionnaire,FALSE
 qr_start_ipc_s2,questionnaire_id_33,,questionnaire_id,Questionnaire ID,text,IPC Session 2,system,FALSE
 qr_start_ipc_s2,subject_patient_id_33,,subject_patient_id,Subject Patient ID,text,IPC Session 2,system,FALSE
 qr_start_ipc_s2,encounter_id_33,,encounter_id,Encounter ID,text,IPC Session 2,system,FALSE
@@ -1355,7 +1364,7 @@ qr_start_ipc_s2,identified_stage_of_disagreement,2ef63cf4-b37e-4216-a8e1-db6d1b9
 qr_start_ipc_s2,assess_for_violence_was_this_in_the_context_of_an_argument_or_d,2efaba4d-f5af-45f3-9340-1ba9b3fffc1c,assess_violence_context,Assess for violence - Was this in the context of an argument or disagreement?,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,work_at_home_example_guiding_prompts_not_all_questions_need_t_2,2f9608db-8796-4f45-89b7-741585b8a362,work_home_example,Work at Home - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,ipc_session_2_have_you_proposed_the_interpersonal_formulation_i,301ae5ab-7dac-4414-a80a-f8784ba6bf51,you_proposed_interpersonal,IPC Session 2 - Have you proposed the Interpersonal Formulation in IPC sessio...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_92,3abecf2a-c87b-4fad-96eb-e9abc37e9c54,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_ipc_session_2_provider_pdf,3abecf2a-c87b-4fad-96eb-e9abc37e9c54,place_declare_values,taskId IPC Session 2 Provider PDF,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,impasse_questions_asked_in_session_2,3bfee97a-6a0e-4cd0-bdb7-7ffa8d36191f,impasse_questions_asked,Impasse - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,feelings_about_change_questions_asked_in_session_2,3d2ccf9a-0e7b-48a0-8540-44d43b6dacfe,feelings_change_questions,Feelings about change - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,explore_new_relationships_and_re_establish_old_relationships_an,3e0b76f9-0902-43ba-b858-0b1505e9d168,explore_new_relationships,Explore new relationships and re-establish old relationships and interests - ...,text,IPC Session 2,questionnaire,FALSE
@@ -1366,13 +1375,13 @@ qr_start_ipc_s2,communication_analysis_example_guiding_prompts_not_all_questi_2,
 qr_start_ipc_s2,ipc_session_2_2,547a07c2-f94c-4956-997f-0439626d0251,ipc_session,IPC Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,work_at_home_example_guiding_prompts_not_all_questions_need_t_3,5817d327-373e-4fc0-9bac-b64e408b0e7f,work_home_example,Work at Home - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,ipc_session_2_in_what_format_did_you_deliver_this_session_with_,5d0b76c5-a416-45a4-a8fc-9889ea840a03,format_you_deliver,IPC Session 2 - In what format did you deliver this session with the client?,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_93,6099951a-c965-40f9-ad61-66e7a39a6b92,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,ptsd_total,6099951a-c965-40f9-ad61-66e7a39a6b92,place_declare_values,PTSD total,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,assess_for_violence_was_this_in_the_context_of_an_argument_or_2,62c9e3f2-30aa-46b0-9190-aa36a1804fdc,assess_violence_context,Assess for violence - Was this in the context of an argument or disagreement?,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,ipc_session_2_do_you_agree_with_this,62cd085f-52d4-44de-881c-93058f201559,you_agree,IPC Session 2 - Do you agree with this?,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,role_play_example_guiding_prompts_not_all_questions_need_to_b_4,63ac8d07-518c-4791-849a-a9e2c282ce9a,role_play_example,Role Play - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,the_old_role_questions_asked_in_session_2,665e1595-f169-4815-9d24-dac265f1809b,old_role_questions,The old role - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,ipc_session_2_would_you_prefer_to_focus_on_this_new_problem_are,6930d457-7bec-4983-832b-3220b163f505,you_prefer_focus,IPC Session 2 - Would you prefer to focus on this new problem area instead?,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_94,6c0d6638-9b65-4016-b3f0-4008f8e462c2,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_ipc_session_2_client_pdf,6c0d6638-9b65-4016-b3f0-4008f8e462c2,place_declare_values,taskId IPC Session 2 Client PDF,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,the_new_role_questions_asked_in_session_2,6c1b2aa7-f244-4d5a-bfc6-e0faef33bfe6,new_role_questions,The new role - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,discuss_the_relationship_questions_asked_in_session_2,6fb0c7a5-a211-43ec-af7b-5f1079399133,discuss_relationship_questions,Discuss the relationship - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,assess_for_violence_is_any_of_the_2_question_above_is_true,6ff6f541-cb58-48d3-b7eb-24ab667f0a94,assess_violence_any,Assess for violence - Is any of the 2 question above is true?,text,IPC Session 2,questionnaire,FALSE
@@ -1392,8 +1401,8 @@ qr_start_ipc_s2,go_to_the_interventions_tab_and_select_the_suicide_prevention_m,
 qr_start_ipc_s2,explore_difficulties_in_relationships_questions_asked_in_sessio,9cc2834b-0d28-43d0-8811-509995cfcdb8,explore_difficulties_relations,Explore difficulties in relationships - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,decision_analysis_example_guiding_prompts_not_all_questions_n_2,9eac8fed-4265-447f-bbde-0986c34f3875,decision_analysis_example,Decision Analysis - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,disagreements_questions_asked_in_session_2,9ed77f2a-0d5a-434d-b153-d8deadfbc3f8,disagreements_questions_asked,Disagreements - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_95,a11ebb0d-acb3-4038-956b-293a41acb85b-2,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_96,a11ebb0d-acb3-4038-956b-293a41acb85b-3,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_session_2_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-2,place_declare_values,taskId Session 2 Navigator,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_session_3_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-3,place_declare_values,taskId Session 3 Navigator,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,ipc_session_2_4,a4a9cad5-04db-44e5-9a9d-0f1bf40ca840,ipc_session,IPC Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,guiding_prompts_for_stages_of_disagreements,a77f07b3-7913-4708-a354-14e503a948f1,guiding_prompts_stages,Guiding prompts for stages of disagreements,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,dissolution_questions_asked_in_session_2,a7f10195-b859-4670-abbc-a2498c4fe45f,dissolution_questions_asked,Dissolution - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
@@ -1414,23 +1423,23 @@ qr_start_ipc_s2,assess_for_violence_did_the_person_ever_hit_kick_push_or_slap_y,
 qr_start_ipc_s2,identified_stage_of_disagreement_has_there_been_a_change_in_the,e1755ad4-b33a-44a3-b562-4206a582c28a,identified_stage_disagreement,Identified stage of disagreement - Has there been a change in the identified ...,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,discuss_close_relationships_in_the_past_questions_asked_in_sess,e17756cd-4861-4dde-859c-f90241977246,discuss_close_relationships,Discuss close relationships in the past - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,interpersonal_skills_building_example_skills_3,e245b7d9-955a-4c4b-a107-e2bf5d6d2359,interpersonal_skills_building,Interpersonal Skills-Building - Example skills,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_97,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,mood_rating_total,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,Mood Rating total,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,decision_analysis_4,e6befba3-6d25-47ae-9cac-409dfae832a2,decision_analysis,Decision Analysis,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,communication_analysis_example_guiding_prompts_not_all_questi_4,e73f462c-e543-4a3d-849d-dbedcb831444,communication_analysis_example,Communication Analysis - Example guiding prompts (not all questions need to b...,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,identify_social_settings_questions_asked_in_session_2,eb8828db-1674-47e7-ba9a-e3c161160b65,identify_social_settings,Identify social settings - Questions asked in Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,decision_analysis_example_guiding_prompts_not_all_questions_n_3,ecd82c04-48de-48ec-8efe-24cbe04cbe4b,decision_analysis_example,Decision Analysis - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,interpersonal_skills_building_example_skills_4,eea0b1ca-5582-4b45-b5cf-36bc0665ba44,interpersonal_skills_building,Interpersonal Skills-Building - Example skills,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_98,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,encounter_id_of_ipc_session_2,encounter-id,place_declare_values,Encounter ID of IPC Session 2,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,mood_rating_ipc_session_2_on_a_scale_of_1_to_10_with_1_being__6,f1.33.6,mood_rating_ipc,"Mood Rating (IPC Session 2) - On a scale of 1 to 10, with 1 being the worst m...",text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,work_at_home_example_guiding_prompts_not_all_questions_need_t_4,f39b0b39-2058-4c29-a183-aac5dc70e083,work_home_example,Work at Home - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,decision_analysis_example_guiding_prompts_not_all_questions_n_4,f82f76f4-648a-453a-916d-28795448a758,decision_analysis_example,Decision Analysis - Example guiding prompts (not all questions need to be asked),text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s2,guiding_prompts_for_disagreements,f9543e3c-cbff-4d2a-b3df-bf96e509d9ca,guiding_prompts_disagreements,Guiding prompts for disagreements,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhirp_99,observation-mood-score-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhir_100,task-id-013,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhir_101,task-id-014,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhir_102,task-id-015,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhir_103,task-id-016,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
-qr_start_ipc_s2,a_place_to_declare_values_that_cannot_be_created_using_fhir_104,task-id-018,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,observation_id_of_mood_rating_session_1_score,observation-mood-score-id,place_declare_values,Observation ID of Mood Rating Session 1 Score,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_013,task-id-013,place_declare_values,taskId 013,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_014,task-id-014,place_declare_values,taskId 014,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_015,task-id-015,place_declare_values,taskId 015,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_016,task-id-016,place_declare_values,taskId 016,text,IPC Session 2,questionnaire,FALSE
+qr_start_ipc_s2,taskid_018,task-id-018,place_declare_values,taskId 018,text,IPC Session 2,questionnaire,FALSE
 qr_start_ipc_s3,questionnaire_id_34,,questionnaire_id,Questionnaire ID,text,IPC Session 3,system,FALSE
 qr_start_ipc_s3,subject_patient_id_34,,subject_patient_id,Subject Patient ID,text,IPC Session 3,system,FALSE
 qr_start_ipc_s3,encounter_id_34,,encounter_id,Encounter ID,text,IPC Session 3,system,FALSE
@@ -1457,7 +1466,7 @@ qr_start_ipc_s3,feelings_about_change_questions_asked_in_session_2_2,3d2ccf9a-0e
 qr_start_ipc_s3,explore_new_relationships_and_re_establish_old_relationships__2,3e0b76f9-0902-43ba-b858-0b1505e9d168,explore_new_relationships,Explore new relationships and re-establish old relationships and interests - ...,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,decision_analysis_5,3f63637c-1de2-4851-a088-c3b08152447e,decision_analysis,Decision Analysis,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,role_play_example_guiding_prompts_not_all_questions_need_to_b_7,43801cc4-c61f-4ee0-82ad-cf6f1f799593,role_play_example,Role Play - Example guiding prompts (not all questions need to be asked),text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_105,4442589a-51b2-48c3-8297-b805e525642c,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_ipc_session_3_client_pdf,4442589a-51b2-48c3-8297-b805e525642c,place_declare_values,taskId IPC Session 3 Client PDF,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,work_at_home_example_guiding_prompts_not_all_questions_need_t_5,451acc1a-26f4-4374-96da-09bfb47365a8,work_home_example,Work at Home - Example guiding prompts (not all questions need to be asked),text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,discuss_the_relationship,4554f4b2-d15e-47e7-a10d-d77939dd3afc,discuss_relationship,Discuss the relationship,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,assess_for_violence,4ad7384f-a332-4e41-9318-0d3f9e540ee7,assess_violence,Assess for violence,text,IPC Session 3,questionnaire,FALSE
@@ -1495,9 +1504,9 @@ qr_start_ipc_s3,explore_difficulties_in_relationships_questions_asked_in_sess_2,
 qr_start_ipc_s3,the_old_role,9e995f48-b092-49b2-a9e4-c7e754e446e5,old_role,The old role,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,disagreements_questions_asked_in_session_2_2,9ed77f2a-0d5a-434d-b153-d8deadfbc3f8,disagreements_questions_asked,Disagreements - Questions asked in Session 2,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,decision_analysis_example_guiding_prompts_not_all_questions_n_8,9f1e5102-4441-49d8-9fbc-4ea6df196b43,decision_analysis_example,Decision Analysis - Example guiding prompts (not all questions need to be asked),text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_106,a11ebb0d-acb3-4038-956b-293a41acb85b-3,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_107,a11ebb0d-acb3-4038-956b-293a41acb85b-4,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_108,a24c89ff-1e14-403c-8dfa-26fc6c1103d9,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_session_3_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-3,place_declare_values,taskId Session 3 Navigator,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_session_4_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-4,place_declare_values,taskId Session 4 Navigator,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_ipc_session_3_provider_pdf,a24c89ff-1e14-403c-8dfa-26fc6c1103d9,place_declare_values,taskId IPC Session 3 Provider PDF,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,guiding_prompts_for_stages_of_disagreements_2,a77f07b3-7913-4708-a354-14e503a948f1,guiding_prompts_stages,Guiding prompts for stages of disagreements,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,dissolution_questions_asked_in_session_2_2,a7f10195-b859-4670-abbc-a2498c4fe45f,dissolution_questions_asked,Dissolution - Questions asked in Session 2,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,ipc_session_3_in_what_format_did_you_deliver_this_session_with_,ac6eb49b-3d37-4bac-8d27-1e1ad01018ce,format_you_deliver,IPC Session 3 - In what format did you deliver this session with the client?,text,IPC Session 3,questionnaire,FALSE
@@ -1521,23 +1530,23 @@ qr_start_ipc_s3,identified_stage_of_disagreement_has_there_been_a_change_in_t_2,
 qr_start_ipc_s3,discuss_close_relationships_in_the_past_questions_asked_in_se_2,e17756cd-4861-4dde-859c-f90241977246,discuss_close_relationships,Discuss close relationships in the past - Questions asked in Session 2,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,dissolution,e1a13d53-b867-440f-8622-bccebf54f176,dissolution,Dissolution,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,interpersonal_skills_building_example_skills_7,e245b7d9-955a-4c4b-a107-e2bf5d6d2359,interpersonal_skills_building,Interpersonal Skills-Building - Example skills,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_109,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,mood_rating_total,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,Mood Rating total,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,decision_analysis_8,e6befba3-6d25-47ae-9cac-409dfae832a2,decision_analysis,Decision Analysis,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,discuss_the_death,e8b8e550-4d65-42be-acb9-2f4ac17c7f49,discuss_death,Discuss the death,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,work_at_home_example_guiding_prompts_not_all_questions_need_t_8,eb78f289-5f7d-4c89-9ddf-6b393a268462,work_home_example,Work at Home - Example guiding prompts (not all questions need to be asked),text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,identify_social_settings_questions_asked_in_session_2_2,eb8828db-1674-47e7-ba9a-e3c161160b65,identify_social_settings,Identify social settings - Questions asked in Session 2,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,interpersonal_skills_building_example_skills_8,eea0b1ca-5582-4b45-b5cf-36bc0665ba44,interpersonal_skills_building,Interpersonal Skills-Building - Example skills,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_110,encounter-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,encounter_id_of_ipc_session_3,encounter-id,place_declare_values,Encounter ID of IPC Session 3,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,mood_rating_ipc_session_2_on_a_scale_of_1_to_10_with_1_being__7,f1.33.6,mood_rating_ipc,"Mood Rating (IPC Session 2) - On a scale of 1 to 10, with 1 being the worst m...",text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,guiding_prompts_for_disagreements_2,f9543e3c-cbff-4d2a-b3df-bf96e509d9ca,guiding_prompts_disagreements,Guiding prompts for disagreements,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s3,feelings_about_change,f9a9f492-8eb8-4c71-8ec6-f80ab596430b,feelings_change,Feelings about change,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_111,observation-mood-score-id,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_112,task-id-019,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_113,task-id-020,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_114,task-id-021,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_115,task-id-022,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_116,task-id-023,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
-qr_start_ipc_s3,a_place_to_declare_values_that_cannot_be_created_using_fhir_117,task-id-024,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,observation_id_of_mood_rating_session_3_score,observation-mood-score-id,place_declare_values,Observation ID of Mood Rating Session 3 Score,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_019,task-id-019,place_declare_values,taskId 019,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_020,task-id-020,place_declare_values,taskId 020,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_021,task-id-021,place_declare_values,taskId 021,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_022,task-id-022,place_declare_values,taskId 022,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_023,task-id-023,place_declare_values,taskId 023,text,IPC Session 3,questionnaire,FALSE
+qr_start_ipc_s3,taskid_024,task-id-024,place_declare_values,taskId 024,text,IPC Session 3,questionnaire,FALSE
 qr_start_ipc_s4,questionnaire_id_35,,questionnaire_id,Questionnaire ID,text,IPC Session 4,system,FALSE
 qr_start_ipc_s4,subject_patient_id_35,,subject_patient_id,Subject Patient ID,text,IPC Session 4,system,FALSE
 qr_start_ipc_s4,encounter_id_35,,encounter_id,Encounter ID,text,IPC Session 4,system,FALSE
@@ -1554,7 +1563,7 @@ qr_start_ipc_s4,ipc_session_4_what_do_you_think_are_some_situations_that_may_tr,
 qr_start_ipc_s4,ipc_session_4_what_do_you_think_are_some_situations_that_may__2,39dfd1f4-01db-4057-9734-4f2fbd83b8fe,you_think_some,IPC Session 4 - What do you think are some situations that may trigger your s...,text,IPC Session 4,questionnaire,TRUE
 qr_start_ipc_s4,ipc_session_4_i_am_going_to_provide_you_with_our_agency_s_conta,3ce3bf84-176e-40bc-8075-1517a03c6bef,going_provide_you,IPC Session 4 - I am going to provide you with our agency's contact informati...,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,discussion_with_supervisor_for_severe_mental_health_did_you_d_2,4602f806-3bf4-4f16-bee1-c2e690dca588,discussion_supervisor_severe,Discussion with Supervisor (for severe mental health) - Did you discuss this ...,text,IPC Session 4,questionnaire,FALSE
-qr_start_ipc_s4,a_place_to_declare_values_that_cannot_be_created_using_fhir_118,49a270cd-b72b-42a6-92e3-c139f7a85d74,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 4,questionnaire,FALSE
+qr_start_ipc_s4,taskid_ipc_session_4_provider_pdf,49a270cd-b72b-42a6-92e3-c139f7a85d74,place_declare_values,taskId IPC Session 4 Provider PDF,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,ipc_session_4_how_does_it_make_you_feel_to_know_that_today_is_o,4c457ea8-c60d-49f7-b166-ebabf737ab22,make_you_feel,IPC Session 4 - How does it make you feel to know that today is our last sess...,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,discussion_with_supervisor_for_severe_mental_health_what_is_t_2,4e9014d1-e07c-492e-897a-3bf7e8f6f018,discussion_supervisor_severe,Discussion with Supervisor (for severe mental health) - What is the recommend...,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,survey_response_13,6d9345d7-61a0-425b-8496-8b08d68175d0,survey_response,Survey Response,text,IPC Session 4,questionnaire,FALSE
@@ -1569,8 +1578,8 @@ qr_start_ipc_s4,ipc_session_4_how_would_you_know_if_your_symptoms_are_coming_ba,
 qr_start_ipc_s4,ipc_session_4_after_today_s_session_i_can_refer_you_for_clinica,9848888d-1ec0-4d43-b53f-7613ba5144fe,after_today_session,"IPC Session 4 - After today's session, I can refer you for clinical care if y...",text,IPC Session 4,questionnaire,TRUE
 qr_start_ipc_s4,ipc_session_4_reason,9a02423f-9848-4254-b427-3dfa8819d0de,reason,IPC Session 4 - Reason,text,IPC Session 4,questionnaire,TRUE
 qr_start_ipc_s4,ipc_session_4_what_are_some_of_the_skills_you_learned_here_that,9b602b02-e5f9-4795-9fb9-fc7ae4353a19,some_skills_you,IPC Session 4 - What are some of the skills you learned here that you found u...,text,IPC Session 4,questionnaire,TRUE
-qr_start_ipc_s4,a_place_to_declare_values_that_cannot_be_created_using_fhir_119,a11ebb0d-acb3-4038-956b-293a41acb85b-4,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 4,questionnaire,FALSE
-qr_start_ipc_s4,a_place_to_declare_values_that_cannot_be_created_using_fhir_120,a302513b-141a-4316-9546-d013212a361e,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 4,questionnaire,FALSE
+qr_start_ipc_s4,taskid_session_4_navigator,a11ebb0d-acb3-4038-956b-293a41acb85b-4,place_declare_values,taskId Session 4 Navigator,text,IPC Session 4,questionnaire,FALSE
+qr_start_ipc_s4,taskid_ipc_session_4_client_pdf,a302513b-141a-4316-9546-d013212a361e,place_declare_values,taskId IPC Session 4 Client PDF,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,ipc_session_4_please_select_how_you_would_like_to_proceed_with_,a3831bfc-0175-4e5a-8d8d-7313c7f2b69b,please_select_you,IPC Session 4 - Please select how you would like to proceed with the client:,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,ipc_session_4_what_do_you_think_you_still_need_to_work_on_regar,a8c2cacf-7ee5-4076-af42-19d0eba0e6d6,you_think_you,IPC Session 4 - What do you think you still need to work on regarding that pr...,text,IPC Session 4,questionnaire,TRUE
 qr_start_ipc_s4,ipc_session_4_what_we_know_is_that_symptoms_can_come_back_in_th,aa30ce6c-4153-46d8-a4af-83012eafa23d,know_symptoms_come,"IPC Session 4 - What we know is that symptoms can come back. In the future, a...",text,IPC Session 4,questionnaire,TRUE
@@ -1580,7 +1589,7 @@ qr_start_ipc_s4,survey_response_14,b46d08e9-6af9-47be-a09a-afd0cfdf41de,survey_r
 qr_start_ipc_s4,ipc_session_4_total_score,ca41ccab-5f0b-4538-b394-ad342a0b5bdc,total_score,IPC Session 4 - Total score,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,ipc_session_4_what_are_some_of_the_skills_you_learned_here_th_2,cb8337b0-c822-4374-895b-ee875da4d7f6,some_skills_you,IPC Session 4 - What are some of the skills you learned here that you found u...,text,IPC Session 4,questionnaire,TRUE
 qr_start_ipc_s4,ipc_session_4_let_s_look_at_your_symptom_changes_what_were_yo_2,dd000285-7c36-44b4-82e6-4e8826665036,let_look_your,IPC Session 4 - Let's look at your symptom changes. What were your symptoms t...,text,IPC Session 4,questionnaire,FALSE
-qr_start_ipc_s4,a_place_to_declare_values_that_cannot_be_created_using_fhir_121,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,A place to declare values that cannot be created using FHIRPath such as Codin...,text,IPC Session 4,questionnaire,FALSE
+qr_start_ipc_s4,mood_rating_total,e5899d3e-d8fc-4931-91c8-383f51474a5b,place_declare_values,Mood Rating total,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,ipc_session_4_do_you_remember_why_you_came_let_s_talk_about_h_2,e67ca22d-e803-4790-bbce-126f2c863490,you_remember_why,IPC Session 4 - Do you remember why you came? Let’s talk about how you are ma...,text,IPC Session 4,questionnaire,TRUE
 qr_start_ipc_s4,survey_response_15,ec39511c-de47-469d-ac44-973e3fc08532,survey_response,Survey Response,text,IPC Session 4,questionnaire,FALSE
 qr_start_ipc_s4,ipc_session_4_phq_9_total,eda5bee4-4b2a-43d7-a6e9-a180dbf40dce-1,phq_total,IPC Session 4 - PHQ-9 total,text,IPC Session 4,questionnaire,FALSE
