@@ -104,6 +104,9 @@ qr_financial_wellness_tool,financial_wellness_tool_8,moderate-medical-hardships,
 qr_financial_wellness_tool,financial_wellness_tool_9,moderate-paying-bills,financial_wellness_tool,Financial Wellness Tool,text,Financial Wellness Tool,questionnaire,FALSE,114
 qr_financial_wellness_tool,financial_wellness_tool_10,no-financial-hardship,financial_wellness_tool,Financial Wellness Tool,text,Financial Wellness Tool,questionnaire,FALSE,119
 qr_financial_wellness_tool,financial_wellness_tool_11,overall-financial-hardship,financial_wellness_tool,Financial Wellness Tool,text,Financial Wellness Tool,questionnaire,FALSE,109
+qr_financial_wellness_tool,patient_name,patient-name,patient_name,Patient Name,text,Financial Wellness Tool,generated,TRUE,895
+qr_financial_wellness_tool,patient_age,patient-age,patient_age,Patient Age,text,Financial Wellness Tool,generated,TRUE,896
+qr_financial_wellness_tool,patient_dob,patient-dob,patient_dob,Patient Date of Birth,date,Financial Wellness Tool,generated,TRUE,897
 qr_gad_7_s1,questionnaire_id_5,,questionnaire_id,Questionnaire ID,text,GAD-7 (IPC Session 1),system,FALSE,1
 qr_gad_7_s1,subject_patient_id_5,,subject_patient_id,Subject Patient ID,text,GAD-7 (IPC Session 1),system,FALSE,2
 qr_gad_7_s1,encounter_id_5,,encounter_id,Encounter ID,text,GAD-7 (IPC Session 1),system,FALSE,3
@@ -213,6 +216,9 @@ qr_mood_rating_s1,add_family_member_registration_calculated_year_3,calculated-ye
 qr_mood_rating_s1,add_family_member_registration_date_of_birth_3,cd8e3d6d-e9ff-458d-d122-57070bebffaf,add_family_member,Add Family Member Registration - Date of birth,text,Mood Rating (IPC Session 1),questionnaire,TRUE,999
 qr_mood_rating_s1,mood_rating_ipc_session_1_total_score,d58c8907-06c6-4071-aa6c-b2b95d2169c7,mood_rating_ipc,Mood Rating (IPC Session 1) - Total score,text,Mood Rating (IPC Session 1),questionnaire,FALSE,116
 qr_mood_rating_s1,mood_rating_ipc_session_2_on_a_scale_of_1_to_10_with_1_being_th,f1.33.6,mood_rating_ipc,"Mood Rating (IPC Session 2) - On a scale of 1 to 10, with 1 being the worst m...",text,Mood Rating (IPC Session 1),questionnaire,FALSE,109
+qr_mood_rating_s1,patient_name,patient-name,patient_name,Patient Name,text,Mood Rating (IPC Session 1),generated,TRUE,895
+qr_mood_rating_s1,patient_age,patient-age,patient_age,Patient Age,text,Mood Rating (IPC Session 1),generated,TRUE,896
+qr_mood_rating_s1,patient_dob,patient-dob,patient_dob,Patient Date of Birth,date,Mood Rating (IPC Session 1),generated,TRUE,897
 qr_mood_rating_s2,questionnaire_id_10,,questionnaire_id,Questionnaire ID,text,Mood Rating (IPC Session 2),system,FALSE,1
 qr_mood_rating_s2,subject_patient_id_10,,subject_patient_id,Subject Patient ID,text,Mood Rating (IPC Session 2),system,FALSE,2
 qr_mood_rating_s2,encounter_id_10,,encounter_id,Encounter ID,text,Mood Rating (IPC Session 2),system,FALSE,3
@@ -572,6 +578,7 @@ qr_remove_patient,ecbis_remove_family_form_date_moved_away,b6c21488-87b8-4213-8c
 qr_remove_patient,survey_response,cd73cfdf-6d70-4b42-8887-21e27db0b9ec,survey_response,Survey Response,text,eCBIS Remove Family Form,questionnaire,FALSE,999
 qr_remove_patient,ecbis_remove_family_form_reason_for_removal,f83bb7c0-dfd6-4aa8-9cb9-89d48b8040ff,ecbis_remove_family,eCBIS Remove Family Form - Reason for removal,text,eCBIS Remove Family Form,questionnaire,FALSE,101
 qr_remove_patient,ecbis_remove_family_form_2,,patient_birthdate,eCBIS Remove Family Form,text,eCBIS Remove Family Form,generated,TRUE,999
+qr_remove_patient,patient_birthdate,patient-birthdate,patient_birthdate,Patient Birthdate,text,eCBIS Remove Family Form,generated,TRUE,895
 qr_sbirt,questionnaire_id_22,,questionnaire_id,Questionnaire ID,text,SBIRT,system,FALSE,1
 qr_sbirt,subject_patient_id_22,,subject_patient_id,Subject Patient ID,text,SBIRT,system,FALSE,2
 qr_sbirt,encounter_id_22,,encounter_id,Encounter ID,text,SBIRT,system,FALSE,3
