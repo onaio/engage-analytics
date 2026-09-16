@@ -17,7 +17,8 @@ source_data as (
 
 select
     {% set special_columns = ['qr_id', 'questionnaire_id', 'subject_patient_id', 'encounter_id',
-                             'author_practitioner_id', 'practitioner_location_id',
+                             'author_practitioner_id', 'authored_at', 'authored_date',
+                             'practitioner_location_id',
                              'practitioner_organization_id', 'practitioner_id',
                              'practitioner_careteam_id', 'application_version'] %}
 
@@ -27,6 +28,8 @@ select
     MD5(COALESCE(subject_patient_id, '')::text) as subject_patient_id_hash,
     encounter_id,
     author_practitioner_id,
+    authored_at,
+    authored_date,
     practitioner_location_id,
     practitioner_organization_id,
     practitioner_id,
